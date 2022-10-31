@@ -1,6 +1,6 @@
 <?php
 
-class Cliente {
+class Grupo {
     private $id;
     private $nome;
     private $cpf;

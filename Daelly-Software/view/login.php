@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Acesso ao Sistema</title>
 
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
 
-        <script src="js/jquery-3.1.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="/js/jquery-3.1.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
         <style>
             #erro{
                 display: none;
@@ -30,7 +30,7 @@
                         <div class="panel-heading titulo_login">Acesse sua conta</div>
                         <div class="panel-body">
                             <div class="iconmelon">
-                                <img src="img/logo.png" width="180">
+                                <img src="/img/logo.png" width="180">
                             </div>                            
                             <form method="POST">                               
                                 <div class="alert alert-info">
@@ -67,7 +67,7 @@
                 var email = $("#email").val();
                 var senha = $("#senha").val();
                 $.ajax({
-                    url: 'ajax/login.php',
+                    url: '/ajax/login.php',
                     dataType: 'text',
                     data: {email: email, senha: senha},
                     type: 'POST',
@@ -78,7 +78,7 @@
                             $("#erro").css("display", "block");
                             $("body").css("padding-top", ($(window).height() - $(".login-panel").height()) / 2);
                         } else {
-                            $(location).attr("href", "painel.php");
+                            $(location).attr("href", "/view/painel.php");
                         }
                     }
                 });

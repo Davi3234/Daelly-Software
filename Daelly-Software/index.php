@@ -1,8 +1,8 @@
 <?php
 session_start();
 if (isset($_SESSION['email'])) {
-    header("location: painel.php");
+    header("location: view/painel.php");
 } else {
-    header("location: login.php");
+    header("location: view/login.php");
 }
 ?>

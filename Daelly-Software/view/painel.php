@@ -1,25 +1,33 @@
 <?php 
-session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
+// session_start();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+
+require_once "../control/ControlVeiculo.php";
+require_once "../model/DaoVeiculo.php";
+require_once "../model/Veiculo.php";
+
+$control = new ControlVeiculo();
+
+$veiculos = $control->listar();
 ?>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sistema de Gerenciamento de Conteúdo</title>
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
-        <link href="css/datepicker3.css" rel="stylesheet">
-        <link href="css/bootstrap-table.css" rel="stylesheet">
-        <script src="js/jquery-3.1.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-table.js"></script>
-        <script src="js/bootbox.js"></script>
-        <script src="js/lumino.glyphs.js"></script>
-        <script src="js/jquery-maskedinput.min.js"></script>
-        <script src="js/mascaras.js"></script>
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <link href="/css/datepicker3.css" rel="stylesheet">
+        <link href="/css/bootstrap-table.css" rel="stylesheet">
+        <script src="/js/jquery-3.1.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap-table.js"></script>
+        <script src="/js/bootbox.js"></script>
+        <script src="/js/lumino.glyphs.js"></script>
+        <script src="/js/jquery-maskedinput.min.js"></script>
+        <script src="/js/mascaras.js"></script>
     </head>
     <body>
 
@@ -79,10 +87,15 @@ if (!isset($_SESSION['email']))  {
                     </div>
                 </div>
 
-            </div>            
+                <canvas id="canvas"></canvas>
+
+                
+            </div>
         </div>
 
         <script>
+            let veiculos = []
+
             !function ($) {
                 $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
                     $(this).find('em:first').toggleClass("glyphicon-minus");
@@ -100,7 +113,10 @@ if (!isset($_SESSION['email']))  {
             })
         </script>
         <script>
+            console.log({});
             $(document).ready(function () {
+                veiculos = document.getElementById("")
+
                 $('[data-toggle="tooltip"]').tooltip();
                 $('#carregando').fadeOut();
                 $('#conteudo').fadeIn();

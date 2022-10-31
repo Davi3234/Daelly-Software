@@ -11,6 +11,6 @@ if(!$control->efetuarLogin($email, $senha)){
     foreach($control->getErros() as $erro){
         $msg .= $erro;
     }
-    echo $msg;
+    // echo $msg;
 }
 ?>
