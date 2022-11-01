@@ -1,29 +1,33 @@
 <?php
-require_once './model/Veiculo.php';
-require_once './model/DaoVeiculo.php';
-require_once './control/ControlVeiculo.php';
-require_once './model/Revisao.php';
-require_once './model/DaoRevisao.php';
-require_once './control/ControlRevisao.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
+require_once '../model/Grupo.php';
+require_once '../model/DaoGrupo.php';
+require_once '../control/ControlGrupo.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$controlVei = new ControlVeiculo();
-$controlRev = new ControlRevisao();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlFuncionario();
+$controlGru = new ControlGrupo();
+$controlFun = new ControlFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($controlRev->editar($_POST['data_manutencao'], $_POST['quilometragem'], $_POST['id_veiculo'], addslashes($_GET['id']))) {
-        $mensagem = "Revis√£o editada com sucesso";
+    if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'])) {
+        $mensagem = "Funcion·rio inserido com sucesso";
         unset($_POST);
     } else {
         $erros = "";
-        foreach ($controlRev->getErros() as $e) {
+        foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
     }
 }
-$listaVei = $controlVei->listar();
-$revisao = $controlRev->selecionar(addslashes($_GET['id']));
+$listaGru = $controlGru->listar();
+$listaFun = $controlFun->listar();
 ?>
 
 <html>
@@ -32,17 +36,17 @@ $revisao = $controlRev->selecionar(addslashes($_GET['id']));
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Gerenciamento de Conte√∫do</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/bootbox.js"></script>
-    <script src="js/lumino.glyphs.js"></script>
-    <script src="js/jquery-maskedinput.min.js"></script>
-    <script src="js/mascaras.js"></script>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/datepicker3.css" rel="stylesheet">
+    <link href="/css/bootstrap-table.css" rel="stylesheet">
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootbox.js"></script>
+    <script src="/js/lumino.glyphs.js"></script>
+    <script src="/js/jquery-maskedinput.min.js"></script>
+    <script src="/js/mascaras.js"></script>
 </head>
 
 <body>
@@ -56,13 +60,13 @@ $revisao = $controlRev->selecionar(addslashes($_GET['id']));
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ConsertaCar</a>
+                <a class="navbar-brand" href="">Daelly ConfecÁıes</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usu√°rio Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usu·rio Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -89,20 +93,20 @@ $revisao = $controlRev->selecionar(addslashes($_GET['id']));
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Revis√µes</li>
+                    <li class="active">Funcion·rios</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Revis√µes</h1>
+                    <h1 class="page-header">Funcion·rios</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <form action="" method="POST" id="form">
+                        <form action="" method="POST" id="form" name="form">
                             <div class="panel-heading">
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
                                         <use xlink:href="#stroked-checkmark" />
@@ -127,36 +131,51 @@ $revisao = $controlRev->selecionar(addslashes($_GET['id']));
                                 <?php } ?>
 
                                 <div class="campo_esquerda">
-                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['data_manutencao'])) ? $_POST['data_manutencao'] : $revisao->data_manutencao ?>" name="data_manutencao" id="data_manutencao" placeholder="Informe a data da manuten√ß√£o" required="required" data-toggle="tooltip" title="Informe a data da manuten√ß√£o" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : "" ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['quilometragem'])) ? $_POST['quilometragem'] : $revisao->quilometragem ?>" name="quilometragem" id="quilometragem" placeholder="Informe a quilometragem" required="required" data-toggle="tooltip" title="Informe a quilometragem" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['cpf'])) ? $_POST['cpf'] : "" ?>" name="cpf" id="cpf" placeholder="Informe o CPF" required="required" data-toggle="tooltip" title="Informe o CPF" data-placement="auto" />
                                 </div>
                                 <div class="campo_esquerda">
-                                    <select class="form-control" id="id_veiculo" name="id_veiculo">
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['entrada'])) ? $_POST['entrada'] : "" ?>" name="entrada" id="entrada" placeholder="Informe a data de entrada" required="required" data-toggle="tooltip" title="Informe a data de entrada" data-placement="auto" />
+                                </div>
+                                <div class="campo_direita">
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['saida'])) ? $_POST['saida'] : "" ?>" name="saida" id="saida" placeholder="Informe a data de saÌda" data-toggle="tooltip" title="Informe a data de saÌda" data-placement="auto" />
+                                </div>
+                                <div class="campo_esquerda">
+                                    <select class="form-control" id="id_funcao" name="id_funcao">
+                                        <option value="0">Nenhuma</option>
+                                        <?php
+                                        foreach ($listaFun as $f) {
+                                        ?>
+                                            <option value="<?php echo $f->id ?>"><?php echo $f->nome ?></option>
+                                        <?php
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                                <div class="campo_direita">
+                                    <select class="form-control" id="id_grupo" name="id_grupo">
                                         <option value="0">Selecione</option>
                                         <?php
-                                        foreach ($listaVei as $v) {
+                                        foreach ($listaGru as $g) {
                                         ?>
-                                            <?php if ($revisao->id_veiculo == $v->id) {
-                                            ?>
-                                                <option selected value="<?php echo $v->id ?>"><?php echo $v->placa ?></option>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <option value="<?php echo $v->id ?>"><?php echo $v->placa ?></option>
+                                            <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
                                         <?php
-                                            }
                                         }
                                         ?>
                                     </select>
                                 </div>
                             </div>
-                        </form>
+
                     </div>
                 </div>
+
+                </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
     <script>
@@ -183,8 +202,12 @@ $revisao = $controlRev->selecionar(addslashes($_GET['id']));
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "revisoes.php");
+                $(location).attr("href", "funcionarios.php");
             });
+
+        });
+        $(document).ready(function() {
+            $("#cpf").mask("999.999.999-99");
         });
     </script>
 

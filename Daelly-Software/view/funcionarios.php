@@ -1,28 +1,26 @@
 <?php
-require_once './model/Veiculo.php';
-require_once './model/DaoVeiculo.php';
-require_once './control/ControlVeiculo.php';
-require_once './model/Revisao.php';
-require_once './model/DaoRevisao.php';
-require_once './control/ControlRevisao.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$controlRev = new ControlRevisao();
-$controlVei = new ControlVeiculo();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlFuncionario();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($controlRev->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Revis√£o exclu√≠da com sucesso";
+    if ($control->excluir(addslashes($_POST['id']))) {
+        $mensagem = "Funcion·rio excluÌdo com sucesso";
         unset($_POST);
     } else {
         $erros = "";
-        foreach ($controlRev->getErros() as $e) {
+        foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
     }
 }
-$revisoes = $controlRev->listar();
+
+$funcionarios = $control->listar();
 ?>
 
 <html>
@@ -30,17 +28,17 @@ $revisoes = $controlRev->listar();
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Sistema de Gerenciamento de Conte√∫do</title>
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
-        <link href="css/datepicker3.css" rel="stylesheet">
-        <link href="css/bootstrap-table.css" rel="stylesheet">
-        <script src="js/jquery-3.1.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-table.js"></script>
-        <script src="js/bootbox.js"></script>
-        <script src="js/lumino.glyphs.js"></script>      
-        <script src="js/jquery-maskedinput.min.js"></script>      
-        <script src="js/mascaras.js"></script>      
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <link href="/css/datepicker3.css" rel="stylesheet">
+        <link href="/css/bootstrap-table.css" rel="stylesheet">
+        <script src="/js/jquery-3.1.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap-table.js"></script>
+        <script src="/js/bootbox.js"></script>
+        <script src="/js/lumino.glyphs.js"></script>      
+        <script src="/js/jquery-maskedinput.min.js"></script>      
+        <script src="/js/mascaras.js"></script>      
     </head>
     <body>
 
@@ -53,7 +51,7 @@ $revisoes = $controlRev->listar();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">ConsertaCar</a>
+                    <a class="navbar-brand" href="">Daelly ConfecÁıes</a>
                     <ul class="user-menu">
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -80,13 +78,13 @@ $revisoes = $controlRev->listar();
                 <div class="row">
                     <ol class="breadcrumb">
                         <li><a href="index.php"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                        <li class="active">Revis√µes </li>
+                        <li class="active">Funcion·rios</li>
                     </ol>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Revis√µes</h1>
+                        <h1 class="page-header">Funcion·rios</h1>
                     </div>
                 </div>
 
@@ -114,25 +112,31 @@ $revisoes = $controlRev->listar();
 
                                     <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                                         <thead>
-                                            <tr>
+                                            <tr>                                                
                                                 <th data-sortable="true">Id</th>
-                                                <th data-sortable="true">Data da manuten√ß√£o</th>
-                                                <th data-sortable="true">Quilometragem</th>
-                                                <th data-sortable="true">Ve√≠culo</th>
-                                                <th data-sortable="true">Ac√ß√µes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if ($revisoes) foreach ($revisoes as $r) { ?>
+                                                <th data-sortable="true">Nome</th> 
+                                                <th data-sortable="true">CPF</th> 
+                                                <th data-sortable="true">Entrada</th> 
+                                                <th data-sortable="true">SaÌda</th> 
+                                                <th data-sortable="true">FunÁ„o</th> 
+                                                <th data-sortable="true">Grupo</th> 
+                                                <th data-sortable="true">AÁıes</th>                                             
+                                            </tr>                        
+                                        </thead>  
+                                        <tbody> 
+                                            <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
                                                     <tr>
-                                                        <td><?php echo $r->id ?></td>
-                                                        <td><?php echo $r->data_manutencao ?></td>
-                                                        <td><?php echo $r->quilometragem ?>Km</td>
-                                                        <td><?php echo $r->veiculo?></td>
+                                                        <td><?php echo $f->id ?></td>                                                        
+                                                        <td><?php echo $f->nome ?></td>    
+                                                        <td><?php echo $f->cpf ?></td> 
+                                                        <td><?php echo $f->entrada ?></td> 
+                                                        <td><?php echo $f->saida ?></td>    
+                                                        <td><?php echo $f->grupo ?></td>   
+                                                        <td><?php echo $f->funcao ?></td>                                                      
                                                         <td>
-                                                            <a href="#" class="editar" rel="<?php echo $r->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                            <a href="#" class="excluir" rel="<?php echo $r->id ?>">Excluir</a>
-                                                        </td>                                                     
+                                                            <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                                            <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
+                                                        </td>                                                        
                                                     </tr>
                                                 <?php } ?>
                                         </tbody>
@@ -172,7 +176,7 @@ $revisoes = $controlRev->listar();
 
                 $(".editar").click(function () {
                     id = $(this).attr("rel");
-                    $(location).attr("href", "editar-revisao.php?id=" + id);
+                    $(location).attr("href", "editar-funcionario.php?id=" + id);
                 });
 
                 $(".excluir").click(function () {

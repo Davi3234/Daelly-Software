@@ -1,53 +1,44 @@
 <?php
-require_once './model/Veiculo.php';
-require_once './model/DaoVeiculo.php';
-require_once './control/ControlVeiculo.php';
-require_once './model/Revisao.php';
-require_once './model/DaoRevisao.php';
-require_once './control/ControlRevisao.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$controlVei = new ControlVeiculo();
-$controlRev = new ControlRevisao();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($controlRev->inserir($_POST['data_manutencao'], $_POST['quilometragem'], $_POST['id_veiculo'])) {
-        if(count($controlRev->getMsg()) >= 1){
-            $msg = "";
-            foreach ($controlRev->getMsg() as $m) {
-                $msg = $msg . $m . "<br />";
-            }
-        }
-        $mensagem = "RevisÃ£o inserida com sucesso";
+    if ($control->editar($_POST['nome'], $_POST['id_tipo'], addslashes($_GET['id']))) {
+        $mensagem = "Função editada com sucesso";
         unset($_POST);
     } else {
         $erros = "";
-        foreach ($controlRev->getErros() as $e) {
+        foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
     }
 }
-$listaRev = $controlRev->listar();
-$listaVei = $controlVei->listar();
+
+$funcao = $control->selecionar(addslashes($_GET['id']));
 ?>
+
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Gerenciamento de ConteÃºdo</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/bootbox.js"></script>
-    <script src="js/lumino.glyphs.js"></script>
-    <script src="js/jquery-maskedinput.min.js"></script>
-    <script src="js/mascaras.js"></script>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/datepicker3.css" rel="stylesheet">
+    <link href="/ajax/" rel="stylesheet">
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootbox.js"></script>
+    <script src="/js/lumino.glyphs.js"></script>
+    <script src="/js/jquery-maskedinput.min.js"></script>
+    <script src="/js/mascaras.js"></script>
 </head>
 
 <body>
@@ -61,18 +52,18 @@ $listaVei = $controlVei->listar();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ConsertaCar</a>
+                <a class="navbar-brand" href="">Daelly Confecções</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">UsuÃ¡rio Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
                                         <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a></li>
+                                    </svg>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -94,27 +85,27 @@ $listaVei = $controlVei->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">RevisÃµes</li>
+                    <li class="active">Funções</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">RevisÃµes</h1>
+                    <h1 class="page-header">Funções</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <form action="" method="POST" id="form" name="form">
+                        <form action="" method="POST" id="form">
                             <div class="panel-heading">
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
                                         <use xlink:href="#stroked-checkmark" />
                                     </svg> Gravar</button>
                                 <button type="button" class="btn btn-primary voltar" data-toggle="tooltip" title="Voltar para a listagem" data-placement="auto"><svg class="glyph stroked arrow left">
                                         <use xlink:href="#stroked-arrow-left" />
-                                    </svg> Voltar</button>
+                                    </svg>Voltar</button>
                             </div>
                             <div class="panel-body">
 
@@ -125,36 +116,13 @@ $listaVei = $controlVei->listar();
                                     </div>
                                 <?php } ?>
 
-                                <?php if (isset($msg)) { ?>
-                                    <div class="alert alert-warning">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
-                                        <?php echo $msg; ?>
-                                    </div>
-                                <?php } ?>
-
                                 <?php if (isset($erros)) { ?>
                                     <div class="alert alert-danger">
                                         <?php echo $erros; ?>
                                     </div>
                                 <?php } ?>
-
                                 <div class="campo_esquerda">
-                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['data_manutencao'])) ? $_POST['data_manutencao'] : "" ?>" name="data_manutencao" id="data_manutencao" placeholder="Informe a data da manutenÃ§Ã£o" required="required" data-toggle="tooltip" title="Informe a data da manutenÃ§Ã£o" data-placement="auto" />
-                                </div>
-                                <div class="campo_direita">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['quilometragem'])) ? $_POST['quilometragem'] : "" ?>" name="quilometragem" id="quilometragem" placeholder="Informe a quilometragem" required="required" data-toggle="tooltip" title="Informe a quilometragem" data-placement="auto" />
-                                </div>
-                                <div class="campo_esquerda">
-                                    <select class="form-control" id="id_veiculo" name="id_veiculo">
-                                        <option value="0">Selecione</option>
-                                        <?php
-                                        foreach ($listaVei as $v) {
-                                        ?>
-                                            <option value="<?php echo $v->id ?>"><?php echo $v->placa ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : $funcao->nome ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
                                 </div>
                             </div>
                         </form>
@@ -188,7 +156,7 @@ $listaVei = $controlVei->listar();
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "revisoes.php");
+                $(location).attr("href", "funcoes.php");
             });
 
         });

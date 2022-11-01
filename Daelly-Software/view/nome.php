@@ -1,88 +1,54 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
             <ul class="nav menu">
                 <li role="presentation" class="divider"></li>
-                <li class="active"><a href="painel.php"><svg class="glyph dashboard-dial"><use xlink:href="#stroked-dashboard-dial"/></svg> In√≠cio</a></li>                                                                                         
+                <li class="active"><a href="painel.php"><svg class="glyph dashboard-dial"><use xlink:href="#stroked-dashboard-dial"/></svg> InÌcio</a></li>   
                 <li class="parent">
-                    <a href="cadastro-usuario.php">
-                        <span data-toggle="collapse" href="#itens_capa"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg> Usu√°rios</span>
+                    <a href="cadastro-funcionario.php">
+                        <span data-toggle="collapse" href="#funcionarios"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg>Funcion·rios</span>
                     </a>
-                    <ul class="children collapse" id="itens_capa">
+                    <ul class="children collapse" id="funcionarios">
                         <li>
-                            <a class="" href="usuarios.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Usu√°rios
+                            <a class="" href="funcionarios.php">
+                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Funcion·rios
                             </a>
                         </li>                       
                         <li>
-                            <a class="" href="cadastro-usuario.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Usu√°rio
-                            </a>
-                        </li>                       
-                    </ul>
-                </li>  
-                <li class="parent">
-                    <a href="cadastro-fabricante.php">
-                        <span data-toggle="collapse" href="#fabricantes"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg> Fabricantes</span>
-                    </a>
-                    <ul class="children collapse" id="fabricantes">
-                        <li>
-                            <a class="" href="fabricantes.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Fabricantes
-                            </a>
-                        </li>                       
-                        <li>
-                            <a class="" href="cadastro-fabricante.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Fabricantes
+                            <a class="" href="cadastro-funcionario.php">
+                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Funcion·rios
                             </a>
                         </li>                       
                     </ul>
                 </li>
                 <li class="parent">
-                    <a href="cadastro-cliente.php">
-                        <span data-toggle="collapse" href="#clientes"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg> Cliente</span>
+                    <a href="cadastro-grupo.php">
+                        <span data-toggle="collapse" href="#grupos"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg>Grupos</span>
                     </a>
-                    <ul class="children collapse" id="clientes">
+                    <ul class="children collapse" id="grupos">
                         <li>
-                            <a class="" href="clientes.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Clientes
+                            <a class="" href="grupos.php">
+                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Grupos
                             </a>
                         </li>                       
                         <li>
-                            <a class="" href="cadastro-cliente.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Clientes
+                            <a class="" href="cadastro-grupo.php">
+                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Grupos
                             </a>
                         </li>                       
                     </ul>
                 </li>
                 <li class="parent">
-                    <a href="cadastro-veiculo.php">
-                        <span data-toggle="collapse" href="#veiculos"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg> Veiculos</span>
+                    <a href="cadastro-funcao.php">
+                        <span data-toggle="collapse" href="#funcoes"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg>FunÁıes</span>
                     </a>
-                    <ul class="children collapse" id="veiculos">
+                    <ul class="children collapse" id="funcoes">
                         <li>
-                            <a class="" href="veiculos.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Veiculos
+                            <a class="" href="funcoes.php">
+                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar FunÁıes
                             </a>
                         </li>                       
                         <li>
-                            <a class="" href="cadastro-veiculo.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Ve√≠culos
-                            </a>
-                        </li>                       
-                    </ul>
-                </li>
-                <li class="parent">
-                    <a href="cadastro-revisao.php">
-                        <span data-toggle="collapse" href="#revisoes"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg>Revis√µes</span>
-                    </a>
-                    <ul class="children collapse" id="revisoes">
-                        <li>
-                            <a class="" href="revisoes.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Listar Revis√µes
-                            </a>
-                        </li>                       
-                        <li>
-                            <a class="" href="cadastro-revisao.php">
-                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar Revis√µes
+                            <a class="" href="cadastro-grupo.php">
+                                <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Cadastrar FunÁıes
                             </a>
                         </li>                       
                     </ul>

@@ -1,51 +1,44 @@
 <?php
-require_once './model/Veiculo.php';
-require_once './model/DaoVeiculo.php';
-require_once './control/ControlVeiculo.php';
-require_once './model/Fabricante.php';
-require_once './model/DaoFabricante.php';
-require_once './control/ControlFabricante.php';
-require_once './model/Cliente.php';
-require_once './model/DaoCliente.php';
-require_once './control/ControlCliente.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$controlVei = new ControlVeiculo();
-$controlCli = new ControlCliente();
-$controlFab = new ControlFabricante();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlFuncionario();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($controlVei->inserir($_POST['placa'], $_POST['modelo'], $_POST['ano'], $_POST['id_cliente'], $_POST['id_fabricante'])) {
-        $mensagem = "Ve√≠culo inserido com sucesso";
+    if ($control->editar($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'], addslashes($_GET['id']))) {
+        $mensagem = "FunÁ„o editada com sucesso";
         unset($_POST);
     } else {
         $erros = "";
-        foreach ($controlVei->getErros() as $e) {
+        foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
     }
 }
-$listaCli = $controlCli->listar();
-$listaFab = $controlFab->listar();
+
+$funcionario = $control->selecionar(addslashes($_GET['id']));
 ?>
+
 <html>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gerenciamento de Conte√∫do</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/bootbox.js"></script>
-    <script src="js/lumino.glyphs.js"></script>
-    <script src="js/jquery-maskedinput.min.js"></script>
-    <script src="js/mascaras.js"></script>
+    <title>Sistema de Gerenciamento de Malharia</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/datepicker3.css" rel="stylesheet">
+    <link href="/ajax/" rel="stylesheet">
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootbox.js"></script>
+    <script src="/js/lumino.glyphs.js"></script>
+    <script src="/js/jquery-maskedinput.min.js"></script>
+    <script src="/js/mascaras.js"></script>
 </head>
 
 <body>
@@ -59,18 +52,18 @@ $listaFab = $controlFab->listar();
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ConsertaCar</a>
+                <a class="navbar-brand" href="">Daelly ConfecÁıes</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usu√°rio Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usu·rio Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
                                         <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a></li>
+                                    </svg>Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -92,27 +85,27 @@ $listaFab = $controlFab->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Ve√≠culos</li>
+                    <li class="active">Funcion·rios</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Ve√≠culos</h1>
+                    <h1 class="page-header">Funcion·rios</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <form action="" method="POST" id="form" name="form">
+                        <form action="" method="POST" id="form">
                             <div class="panel-heading">
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
                                         <use xlink:href="#stroked-checkmark" />
                                     </svg> Gravar</button>
                                 <button type="button" class="btn btn-primary voltar" data-toggle="tooltip" title="Voltar para a listagem" data-placement="auto"><svg class="glyph stroked arrow left">
                                         <use xlink:href="#stroked-arrow-left" />
-                                    </svg> Voltar</button>
+                                    </svg>Voltar</button>
                             </div>
                             <div class="panel-body">
 
@@ -128,39 +121,17 @@ $listaFab = $controlFab->listar();
                                         <?php echo $erros; ?>
                                     </div>
                                 <?php } ?>
-
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['placa'])) ? $_POST['placa'] : "" ?>" name="placa" id="placa" placeholder="Informe a placa" required="required" data-toggle="tooltip" title="Informe a placa" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : $funcionario->nome ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['modelo'])) ? $_POST['modelo'] : "" ?>" name="modelo" id="modelo" placeholder="Informe o modelo" required="required" data-toggle="tooltip" title="Informe o modelo" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['cpf'])) ? $_POST['cpf'] : $funcionario->cpf ?>" name="cpf" id="cpf" placeholder="Informe o CPF" required="required" data-toggle="tooltip" title="Informe o CPF" data-placement="auto" />
                                 </div>
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['ano'])) ? $_POST['ano'] : "" ?>" name="ano" id="ano" placeholder="Informe o ano" required="required" data-toggle="tooltip" title="Informe o ano" data-placement="auto" />
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['entrada'])) ? $_POST['entrada'] : $funcionario->entrada ?>" name="entrada" id="entrada" placeholder="Informe a data de entrada" required="required" data-toggle="tooltip" title="Informe a data de entrada" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                    <select class="form-control" id="id_cliente" name="id_cliente">
-                                        <option value="0">Selecione</option>
-                                        <?php
-                                        foreach ($listaCli as $c) {
-                                        ?>
-                                            <option value="<?php echo $c->id ?>"><?php echo $c->nome ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
-                                <div class="campo_esquerda">
-                                    <select class="form-control" id="id_fabricante" name="id_fabricante">
-                                    <option value="0">Selecione</option>
-                                    <?php 
-                                    foreach($listaFab as $f){
-                                    ?>
-                                    <option value="<?php echo $f->id?>"><?php echo $f->nome ?></option>
-                                    <?php 
-                                    }
-                                    ?>
-                                    </select>
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['saida'])) ? $_POST['saida'] : $funcionario->saida ?>" name="saida" id="saida" placeholder="Informe a data de saÌda" data-toggle="tooltip" title="Informe a data de saÌda" data-placement="auto" />
                                 </div>
                             </div>
                         </form>
@@ -194,7 +165,7 @@ $listaFab = $controlFab->listar();
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "veiculos.php");
+                $(location).attr("href", "funcionarios.php");
             });
 
         });

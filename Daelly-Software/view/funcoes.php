@@ -1,22 +1,16 @@
 <?php
-require_once './model/Veiculo.php';
-require_once './model/DaoVeiculo.php';
-require_once './control/ControlVeiculo.php';
-require_once './model/Fabricante.php';
-require_once './model/DaoFabricante.php';
-require_once './control/ControlFabricante.php';
-require_once './model/Cliente.php';
-require_once './model/DaoCliente.php';
-require_once './control/ControlCliente.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$controlVei = new ControlVeiculo();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "VeÃ­culo excluÃ­do com sucesso";
+        $mensagem = "Função excluída com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -25,25 +19,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-$veiculos = $controlVei->listar();
+
+$funcoes = $control->listar();
 ?>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sistema de Gerenciamento de ConteÃºdo</title>
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/styles.css" rel="stylesheet">
-        <link href="css/datepicker3.css" rel="stylesheet">
-        <link href="css/bootstrap-table.css" rel="stylesheet">
-        <script src="js/jquery-3.1.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootstrap-table.js"></script>
-        <script src="js/bootbox.js"></script>
-        <script src="js/lumino.glyphs.js"></script>      
-        <script src="js/jquery-maskedinput.min.js"></script>      
-        <script src="js/mascaras.js"></script>      
+        <title>Sistema de Gerenciamento de Malharia</title>
+        <link href="/css/bootstrap.css" rel="stylesheet">
+        <link href="/css/styles.css" rel="stylesheet">
+        <link href="/css/datepicker3.css" rel="stylesheet">
+        <link href="/css/bootstrap-table.css" rel="stylesheet">
+        <script src="/js/jquery-3.1.0.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap-table.js"></script>
+        <script src="/js/bootbox.js"></script>
+        <script src="/js/lumino.glyphs.js"></script>      
+        <script src="/js/jquery-maskedinput.min.js"></script>      
+        <script src="/js/mascaras.js"></script>      
     </head>
     <body>
 
@@ -56,11 +51,11 @@ $veiculos = $controlVei->listar();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">ConsertaCar</a>
+                    <a class="navbar-brand" href="">Daelly Confecções</a>
                     <ul class="user-menu">
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg><span class="nome_usuario">UsuÃ¡rio Logado </span><span class="caret"></span>                                    
+                                <svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>                                    
                             </a>
                             <ul class="dropdown-menu" role="menu">                                
                                 <li><a href="logout.php"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
@@ -83,13 +78,13 @@ $veiculos = $controlVei->listar();
                 <div class="row">
                     <ol class="breadcrumb">
                         <li><a href="index.php"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                        <li class="active">VeÃ­culos </li>
+                        <li class="active">Funções</li>
                     </ol>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">VeÃ­culos</h1>
+                        <h1 class="page-header">Funções</h1>
                     </div>
                 </div>
 
@@ -119,26 +114,18 @@ $veiculos = $controlVei->listar();
                                         <thead>
                                             <tr>                                                
                                                 <th data-sortable="true">Id</th>
-                                                <th data-sortable="true">Placa</th> 
-                                                <th data-sortable="true">Modelo</th> 
-                                                <th data-sortable="true">Ano</th> 
-                                                <th data-sortable="true">Cliente</th> 
-                                                <th data-sortable="true">Fabricante</th> 
-                                                <th data-sortable="true">AÃ§Ãµes</th>                                             
+                                                <th data-sortable="true">Nome</th> 
+                                                <th data-sortable="true">Ações</th>                                             
                                             </tr>                        
                                         </thead>  
                                         <tbody> 
-                                            <?php if ($veiculos) foreach ($veiculos as $v) { ?>
+                                            <?php if ($funcoes) foreach ($funcoes as $f) { ?>
                                                     <tr>
-                                                        <td><?php echo $v->id ?></td>                                                        
-                                                        <td><?php echo $v->placa ?></td>    
-                                                        <td><?php echo $v->modelo ?></td> 
-                                                        <td><?php echo $v->ano ?></td> 
-                                                        <td><?php echo $v->cliente ?></td>    
-                                                        <td><?php echo $v->fabricante ?></td>                                                       
+                                                        <td><?php echo $f->id ?></td>                                                        
+                                                        <td><?php echo $f->nome ?></td>                                                       
                                                         <td>
-                                                            <a href="#" class="editar" rel="<?php echo $v->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                            <a href="#" class="excluir" rel="<?php echo $v->id ?>">Excluir</a>
+                                                            <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                                            <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
                                                         </td>                                                        
                                                     </tr>
                                                 <?php } ?>
@@ -179,7 +166,7 @@ $veiculos = $controlVei->listar();
 
                 $(".editar").click(function () {
                     id = $(this).attr("rel");
-                    $(location).attr("href", "editar-veiculo.php?id=" + id);
+                    $(location).attr("href", "editar-funcao.php?id=" + id);
                 });
 
                 $(".excluir").click(function () {

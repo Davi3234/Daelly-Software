@@ -1,23 +1,15 @@
 <?php
-require_once './model/Veiculo.php';
-require_once './model/DaoVeiculo.php';
-require_once './control/ControlVeiculo.php';
-require_once './model/Fabricante.php';
-require_once './model/DaoFabricante.php';
-require_once './control/ControlFabricante.php';
-require_once './model/Cliente.php';
-require_once './model/DaoCliente.php';
-require_once './control/ControlCliente.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$controlVei = new ControlVeiculo();
-$controlCli = new ControlCliente();
-$controlFab = new ControlFabricante();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($controlVei->editar($_POST['placa'], $_POST['modelo'], $_POST['ano'], $_POST['id_cliente'], $_POST['id_fabricante'], addslashes($_GET['id']))) {
-        $mensagem = "Veiculo editado com sucesso";
+    if ($control->inserir($_POST['nome'], $_POST['id_tipo'])) {
+        $mensagem = "Função inserida com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -26,9 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-$listaCli = $controlCli->listar();
-$listaFab = $controlFab->listar();
-$veiculo = $controlVei->selecionar(addslashes($_GET['id']));
 ?>
 
 <html>
@@ -36,18 +25,18 @@ $veiculo = $controlVei->selecionar(addslashes($_GET['id']));
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gerenciamento de ConteÃºdo</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/bootbox.js"></script>
-    <script src="js/lumino.glyphs.js"></script>
-    <script src="js/jquery-maskedinput.min.js"></script>
-    <script src="js/mascaras.js"></script>
+    <title>Sistema de Gerenciamento de Malharia</title>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/datepicker3.css" rel="stylesheet">
+    <link href="/css/bootstrap-table.css" rel="stylesheet">
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootbox.js"></script>
+    <script src="/js/lumino.glyphs.js"></script>
+    <script src="/js/jquery-maskedinput.min.js"></script>
+    <script src="/js/mascaras.js"></script>
 </head>
 
 <body>
@@ -61,13 +50,13 @@ $veiculo = $controlVei->selecionar(addslashes($_GET['id']));
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ConsertaCar</a>
+                <a class="navbar-brand" href="">Daelly Confecções</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">UsuÃ¡rio Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -94,20 +83,20 @@ $veiculo = $controlVei->selecionar(addslashes($_GET['id']));
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Veiculos</li>
+                    <li class="active">Funções</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Veiculos</h1>
+                    <h1 class="page-header">Funções</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <form action="" method="POST" id="form">
+                        <form action="" method="POST" id="form" name="form">
                             <div class="panel-heading">
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
                                         <use xlink:href="#stroked-checkmark" />
@@ -132,58 +121,28 @@ $veiculo = $controlVei->selecionar(addslashes($_GET['id']));
                                 <?php } ?>
 
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['placa'])) ? $_POST['placa'] : $veiculo->placa ?>" name="placa" id="placa" placeholder="Informe a placa" required="required" data-toggle="tooltip" title="Informe a placa" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : "" ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['modelo'])) ? $_POST['modelo'] : $veiculo->modelo ?>" name="modelo" id="modelo" placeholder="Informe o modelo" required="required" data-toggle="tooltip" title="Informe o modelo" data-placement="auto" />
-                                </div>
-                                <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['ano'])) ? $_POST['ano'] : $veiculo->ano ?>" name="ano" id="ano" placeholder="Informe o ano" required="required" data-toggle="tooltip" title="Informe o ano" data-placement="auto" />
-                                </div>
-                                <div class="campo_direita">
-                                    <select class="form-control" id="id_cliente" name="id_cliente">
+                                <select class="form-control" id="id_tipo" name="id_tipo">
                                         <option value="0">Selecione</option>
                                         <?php
-                                        foreach ($listaCli as $c) {
+                                        foreach ($listaTipo as $t) {
                                         ?>
-                                            <?php if ($veiculo->id_cliente == $c->id) {
-                                            ?>
-                                                <option selected value="<?php echo $c->id ?>"><?php echo $c->nome ?></option>
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <option value="<?php echo $c->id ?>"><?php echo $c->nome ?></option>
+                                            <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
                                         <?php
-                                            }
                                         }
                                         ?>
                                     </select>
                                 </div>
-                                <div class="campo_esquerda">
-                                    <select class="form-control" id="id_fabricante" name="id_fabricante">
-                                        <option value="0">Selecione</option>
-                                        <?php
-                                        foreach ($listaFab as $f) {
-                                            ?>
-                                                <?php if ($veiculo->id_fabricante == $f->id) {
-                                                ?>
-                                                    <option selected value="<?php echo $f->id ?>"><?php echo $f->nome ?></option>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <option value="<?php echo $f->id ?>"><?php echo $f->nome ?></option>
-                                            <?php
-                                                }
-                                            }
-                                        ?>
-                                    </select>
-                                </div>
                             </div>
-                        </form>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
     <script>
@@ -210,8 +169,9 @@ $veiculo = $controlVei->selecionar(addslashes($_GET['id']));
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "veiculos.php");
+                $(location).attr("href", "funcoes.php");
             });
+
         });
     </script>
 

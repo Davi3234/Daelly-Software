@@ -4,13 +4,13 @@
 //     header("location: login.php");
 // }
 
-require_once "../control/ControlVeiculo.php";
-require_once "../model/DaoVeiculo.php";
-require_once "../model/Veiculo.php";
+// require_once "../control/ControlVeiculo.php";
+// require_once "../model/DaoVeiculo.php";
+// require_once "../model/Veiculo.php";
 
-$control = new ControlVeiculo();
+// $control = new ControlVeiculo();
 
-$veiculos = $control->listar();
+// $veiculos = $control->listar();
 ?>
 <html>
     <head>
@@ -40,7 +40,7 @@ $veiculos = $control->listar();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">ConsertaCar</a>
+                    <a class="navbar-brand" href="">Daelly Confecções</a>
                     <ul class="user-menu">
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">

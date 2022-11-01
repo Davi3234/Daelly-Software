@@ -1,15 +1,15 @@
 <?php
-require_once './model/Administrador.php';
-require_once './model/DaoAdministrador.php';
-require_once './control/ControlAdministrador.php';
+require_once '../model/Grupo.php';
+require_once '../model/DaoGrupo.php';
+require_once '../control/ControlGrupo.php';
 session_start();
-if (!isset($_SESSION['email']))  {
-    header("location: login.php");
-}
-$control = new ControlAdministrador();
+// if (!isset($_SESSION['email']))  {
+//     header("location: login.php");
+// }
+$control = new ControlGrupo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->editar($_POST['nome'], $_POST['email'], $_POST['senha'], addslashes($_GET['id']))) {
-        $mensagem = "Administrador editado com sucesso";
+    if ($control->inserir($_POST['numero'])) {
+        $mensagem = "Grupo inserido com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -18,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
-$administrador = $control->selecionar(addslashes($_GET['id']));
 ?>
 
 <html>
@@ -28,17 +26,17 @@ $administrador = $control->selecionar(addslashes($_GET['id']));
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sistema de Gerenciamento de Conte√∫do</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
-    <link href="css/datepicker3.css" rel="stylesheet">
-    <link href="css/bootstrap-table.css" rel="stylesheet">
-    <script src="js/jquery-3.1.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/bootbox.js"></script>
-    <script src="js/lumino.glyphs.js"></script>
-    <script src="js/jquery-maskedinput.min.js"></script>
-    <script src="js/mascaras.js"></script>
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/datepicker3.css" rel="stylesheet">
+    <link href="/css/bootstrap-table.css" rel="stylesheet">
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
+    <script src="/js/bootbox.js"></script>
+    <script src="/js/lumino.glyphs.js"></script>
+    <script src="/js/jquery-maskedinput.min.js"></script>
+    <script src="/js/mascaras.js"></script>
 </head>
 
 <body>
@@ -52,13 +50,13 @@ $administrador = $control->selecionar(addslashes($_GET['id']));
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">ConsertaCar</a>
+                <a class="navbar-brand" href="">Daelly ConfecÁıes</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usu√°rio Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usu·rio Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -70,6 +68,7 @@ $administrador = $control->selecionar(addslashes($_GET['id']));
             </div>
         </div>
     </nav>
+
 
     <?php include 'nome.php' ?>
 
@@ -84,20 +83,20 @@ $administrador = $control->selecionar(addslashes($_GET['id']));
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Usu√°rios</li>
+                    <li class="active">Grupos</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Usu√°rios</h1>
+                    <h1 class="page-header">Grupos</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <form action="" method="POST" id="form">
+                        <form action="" method="POST" id="form" name="form">
                             <div class="panel-heading">
                                 <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
                                         <use xlink:href="#stroked-checkmark" />
@@ -122,20 +121,16 @@ $administrador = $control->selecionar(addslashes($_GET['id']));
                                 <?php } ?>
 
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : $administrador->nome ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
-                                </div>
-                                <div class="campo_direita">
-                                    <input type="email" class="form-control" value="<?php echo (isset($_POST['email'])) ? $_POST['email'] : $administrador->email ?>" name="email" id="email" placeholder="Informe o e-mail" required="required" data-toggle="tooltip" title="Informe o e-mail" data-placement="auto" />
-                                </div>
-                                <div class="campo_esquerda">
-                                    <input type="password" class="form-control" value="" name="senha" id="senha" placeholder="Informe a senha" data-toggle="tooltip" title="Informe a senha" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['numero'])) ? $_POST['numero'] : "" ?>" name="numero" id="numero" placeholder="Informe o n˙mero" required="required" data-toggle="tooltip" title="Informe o n˙mero" data-placement="auto" />
                                 </div>
                             </div>
-                        </form>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
     <script>
@@ -162,7 +157,7 @@ $administrador = $control->selecionar(addslashes($_GET['id']));
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "usuarios.php");
+                $(location).attr("href", "grupos.php");
             });
 
         });
