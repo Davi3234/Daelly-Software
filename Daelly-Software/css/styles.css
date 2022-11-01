@@ -322,16 +322,6 @@ a.bg-danger:hover {
     text-align: center;
 }
 
-.panel-footer .input-group {
-    padding: 0px;
-    margin: 0 -5px;
-}
-
-.panel-footer .input-group-btn:last-child>.btn, 
-.panel-footer .input-group-btn:last-child>.btn-group {
-    margin: 0;
-}
-
 .panel-widget .panel-footer a {
     color: #999;
 }
@@ -752,20 +742,6 @@ h1.page-header {
     margin: -15px;
     background: #fff;
     color: #5f6468;
-}
-
-#checkbox {
-    margin: 0;
-}
-
-.todo-list .checkbox { 
-    display:inline-block; 
-    margin: 0px;
-}
-
-.panel-body input[type=checkbox]:checked + label { 
-    text-decoration: line-through;
-    color: #777; 
 }
 
 .todo-list-item {

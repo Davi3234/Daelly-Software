@@ -1,23 +1,15 @@
 <?php
-require_once '../model/Funcionario.php';
-require_once '../model/DaoFuncionario.php';
-require_once '../control/ControlFuncionario.php';
-require_once '../model/Grupo.php';
-require_once '../model/DaoGrupo.php';
-require_once '../control/ControlGrupo.php';
-require_once '../model/Funcao.php';
-require_once '../model/DaoFuncao.php';
-require_once '../control/ControlFuncao.php';
+require_once '../model/Tipo.php';
+require_once '../model/DaoTipo.php';
+require_once '../control/ControlTipo.php';
 session_start();
 // if (!isset($_SESSION['email']))  {
 //     header("location: login.php");
 // }
-$control = new ControlFuncionario();
-$controlGru = new ControlGrupo();
-$controlFun = new ControlFuncao();
+$control = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'])) {
-        $mensagem = "Funcion�rio inserido com sucesso";
+    if ($control->inserir($_POST['nome'])) {
+        $mensagem = "Tipo inserido com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -26,8 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-$listaGru = $controlGru->listar();
-$listaFun = $controlFun->listar();
 ?>
 
 <html>
@@ -35,7 +25,7 @@ $listaFun = $controlFun->listar();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gerenciamento de Conteúdo</title>
+    <title>Sistema de Gerenciamento de Malharia</title>
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/datepicker3.css" rel="stylesheet">
@@ -93,13 +83,13 @@ $listaFun = $controlFun->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Funcion�rios</li>
+                    <li class="active">Tipos</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Funcion�rios</h1>
+                    <h1 class="page-header">Tipos</h1>
                 </div>
             </div>
 
@@ -133,45 +123,9 @@ $listaFun = $controlFun->listar();
                                 <div class="campo_esquerda">
                                     <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : "" ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
                                 </div>
-                                <div class="campo_direita">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['cpf'])) ? $_POST['cpf'] : "" ?>" name="cpf" id="cpf" placeholder="Informe o CPF" required="required" data-toggle="tooltip" title="Informe o CPF" data-placement="auto" />
-                                </div>
-                                <div class="campo_esquerda">
-                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['entrada'])) ? $_POST['entrada'] : "" ?>" name="entrada" id="entrada" placeholder="Informe a data de entrada" required="required" data-toggle="tooltip" title="Informe a data de entrada" data-placement="auto" />
-                                </div>
-                                <div class="campo_direita">
-                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['saida'])) ? $_POST['saida'] : "" ?>" name="saida" id="saida" placeholder="Informe a data de sa�da" data-toggle="tooltip" title="Informe a data de sa�da" data-placement="auto" />
-                                </div>
-                                <div class="form-check campo_esquerda">
-                                    <?php
-                                    foreach ($listaFun as $f) {
-                                    ?>
-                                        <input class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            <?php echo $f->nome ?>
-                                        </label>
-                                        <br>
-                                    <?php
-                                    }
-                                    ?>
-                                </div>
-                                <div class="campo_direita">
-                                    <select class="form-control" id="id_grupo" name="id_grupo">
-                                        <option value="0">Selecione</option>
-                                        <?php
-                                        foreach ($listaGru as $g) {
-                                        ?>
-                                            <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
-                                        <?php
-                                        }
-                                        ?>
-                                    </select>
-                                </div>
                             </div>
-
                     </div>
                 </div>
-
                 </form>
             </div>
         </div>
@@ -203,12 +157,9 @@ $listaFun = $controlFun->listar();
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "funcionarios.php");
+                $(location).attr("href", "tipos.php");
             });
 
-        });
-        $(document).ready(function() {
-            $("#cpf").mask("999.999.999-99");
         });
     </script>
 
