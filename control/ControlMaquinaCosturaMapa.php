@@ -17,6 +17,16 @@ class ControlMaquinaCosturaMapa
         return $this->daoMaquinaMapa->listar();
     }
 
+    public function listarMCMapa()
+    {
+        return $this->daoMaquinaMapa->listarMCMapa();
+    }
+
+    public function listarMCInventario()
+    {
+        return $this->daoMaquinaMapa->listarMCInventario();
+    }
+
     public function selecionar($id)
     {
         return $this->daoMaquinaMapa->selecionar($id);

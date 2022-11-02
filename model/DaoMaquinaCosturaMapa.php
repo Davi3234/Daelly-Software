@@ -45,6 +45,24 @@ class DaoMaquinaCosturaMapa
             return false;
         }
     }
+    
+    function listarMCMapa()
+    {
+        try {
+            return $this->conexao->query("select map.* , maq.codigo as maquina_costura from maquina_costura_mapa map join maquina_costura maq on maq.id = map.id_maquina_costura", PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    
+    function listarMCInventario()
+    {
+        try {
+            return $this->conexao->query("select map.* , maq.codigo as maquina_costura from maquina_costura_mapa map join maquina_costura maq on maq.id = map.id_maquina_costura", PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
 
     function selecionar($id)
     {
