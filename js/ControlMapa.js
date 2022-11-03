@@ -88,31 +88,28 @@ function ControlMapa() {
             addMaquinaInventario(tag)
             return
         }
-        tag.style.position = "absolute"
-
-        updatePosition(tag, x, y)
-
-        listaMCMapa.appendChild(tag)
         const { maquina } = getMaquina({ id: tag.id.substring(8) })
 
         maquina.posicionado = 1
-        console.log(maquinas);
+        updatePosition(tag, maquina, x, y)
+
+        tag.style.position = "absolute"
+
+        listaMCMapa.appendChild(tag)
     }
 
     const addMaquinaInventario = (tag) => {
-        tag.style.position = "relative"
-
-        updatePosition(tag, 0, 0)
-
-        listaMCInventario.appendChild(tag)
         const { maquina } = getMaquina({ id: tag.id.substring(8) })
 
         maquina.posicionado = 0
+        updatePosition(tag, maquina, 0, 0)
+
+        tag.style.position = "relative"
+
+        listaMCInventario.appendChild(tag)
     }
 
-    const updatePosition = (tag, x, y) => {
-        const { maquina } = getMaquina({ id: tag.id.substring(8) })
-
+    const updatePosition = (tag, maquina, x, y) => {
         maquina.x = x
         maquina.y = y
 

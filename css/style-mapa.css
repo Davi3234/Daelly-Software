@@ -65,7 +65,7 @@ body {
 }
 #maquina-info-content {
     position: absolute;
-    /* display: none; */
+    display: none;
     padding: 15px;
     top: 50%;
     left: 50%;

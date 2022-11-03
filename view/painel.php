@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (!isset($_SESSION["email"]))  {
-//     header("location: login.php");
-// }
+session_start();
+if (!isset($_SESSION["email"]))  {
+    header("location: login.php");
+}
 
 require_once "../control/ControlMaquinaCosturaMapa.php";
 require_once "../model/DaoMaquinaCosturaMapa.php";
@@ -21,7 +21,9 @@ if ($maquinas) foreach ($maquinas as $mc) {
     if ($i > 0) {
         $data .= ',';
     }
-    $data .= $mc->codigo . ':{"id":' . $mc->id . ',"codigo":' . $mc->codigo . ',"x":' . $mc->x . ',"y":' . $mc->y . '}';
+    $data .= $mc->codigo . ':{"id":' . $mc->id . ',"codigo":' . $mc->codigo . ',
+        "x":' . $mc->x . ',"y":' . $mc->y . ',"posicionado":' . $mc->posicionado . ',
+    "id_maquina_costura":' . $mc->id_maquina_costura . '}';
     $i++;
 }
 
@@ -96,7 +98,7 @@ $data .= '}';
                     <div id="mapa">
                         <div class="listas-maquinas" id="lista-maquinas-mapa" ondrop="dropMapa(event, 'mapa')" ondragover="allowDrop(event)">
                             <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
-                                <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->maquina_costura ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px;"><?php echo $mc->maquina_costura ?></div>
+                                <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px;"><?php echo $mc->codigo ?></div>
                             <?php } ?>
                         </div>
                     </div>
