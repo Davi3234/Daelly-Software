@@ -82,9 +82,8 @@ CREATE TABLE `compressor` (
 CREATE TABLE `maquina_costura_mapa` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_maquina_costura` INT NOT NULL,
-  `codigo` INT NOT NULL,
   `posicionado` INT NULL DEFAULT 0,
-  `x` INT NULL,
-  `y` INT NULL,
+  `x` INT NULL DEFAULT 0,
+  `y` INT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
