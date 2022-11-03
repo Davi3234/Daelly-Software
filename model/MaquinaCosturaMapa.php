@@ -3,14 +3,12 @@
 class MaquinaCosturaMapa {
     private $id;
     private $id_maquina_costura;
-    private $codigo;
     private $posicionado;
     private $x;
     private $y;
     
-    function __construct($codigo = null, $posicionado = null, $x = null, $y = null, $id_maquina_costura = null, $id = null) {
+    function __construct($id_maquina_costura = null, $posicionado = 0, $x = 0, $y = 0, $id = null) {
         $this->id = $id;
-        $this->codigo = $codigo;
         $this->posicionado = $posicionado;
         $this->x = $x;
         $this->y = $y;
@@ -23,10 +21,6 @@ class MaquinaCosturaMapa {
 
     function getIdMaquinaCostura() {
         return $this->id_maquina_costura;
-    }
-
-    function getCodigo() {
-        return $this->codigo;
     }
 
     function getPosicionado() {
@@ -45,10 +39,6 @@ class MaquinaCosturaMapa {
         $this->id = $id;
     }
 
-    function setCodigo($codigo) {
-        $this->codigo = $codigo;
-    }
-
     function setPosicionado($posicionado) {
         $this->posicionado = $posicionado;
     }
@@ -60,7 +50,4 @@ class MaquinaCosturaMapa {
     function setY($y) {
         $this->y = $y;
     }
-
-
-
 }

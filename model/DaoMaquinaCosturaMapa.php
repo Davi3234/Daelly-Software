@@ -17,7 +17,7 @@ class DaoMaquinaCosturaMapa
     function inserir(MaquinaCosturaMapa $maquina_mapa)
     {
         try {
-            return $this->conexao->exec("insert into maquina_costura_mapa (codigo, posicionado, x, y, id_maquina_costura) values ('" . $maquina_mapa->getCodigo() . "', '". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."' , '". $maquina_mapa->getIdMaquinaCostura() ."' )");
+            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura) values ('". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."' , '". $maquina_mapa->getIdMaquinaCostura() ."' )");
         } catch (PDOException $ex) {
             return false;
         }
@@ -25,7 +25,7 @@ class DaoMaquinaCosturaMapa
 
     function editar(MaquinaCosturaMapa $maquina_mapa)
     {
-        return $this->conexao->exec("update maquina_costura_mapa set codigo='" . $maquina_mapa->getCodigo() . "' , posicionado = '". $maquina_mapa->getPosicionado() ."' , x = '". $maquina_mapa->getX() ."' , y = '". $maquina_mapa->getY() . "', id_maquina_costura = '". $maquina_mapa->getIdMaquinaCostura() . "' where id=" . $maquina_mapa->getId());
+        return $this->conexao->exec("update maquina_costura_mapa set posicionado = '". $maquina_mapa->getPosicionado() ."' , x = '". $maquina_mapa->getX() ."' , y = '". $maquina_mapa->getY() . "', id_maquina_costura = '". $maquina_mapa->getIdMaquinaCostura() . "' where id=" . $maquina_mapa->getId());
     }
 
     function excluir($id)

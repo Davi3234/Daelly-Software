@@ -6,6 +6,7 @@ USE `daelly`;
 
 # Create Tables
 
+DROP TABLE IF EXISTS `administrador`;
 DROP TABLE IF EXISTS `grupo`;
 DROP TABLE IF EXISTS `funcionario`;
 DROP TABLE IF EXISTS `funcao`;
@@ -15,6 +16,13 @@ DROP TABLE IF EXISTS `maquina_costura`;
 DROP TABLE IF EXISTS `manutencao`;
 DROP TABLE IF EXISTS `compressor`;
 DROP TABLE IF EXISTS `maquina_costura_mapa`;
+
+CREATE TABLE `administrador` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` INT DEFAULT NULL,
+  `senha` VARCHAR(14) NOT NULL,
+  PRIMARY KEY (`id`)
+);
 
 CREATE TABLE `grupo` (
   `id` INT NOT NULL AUTO_INCREMENT,
