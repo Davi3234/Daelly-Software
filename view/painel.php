@@ -21,7 +21,7 @@ if ($maquinas) foreach($maquinas as $mc) {
     if ($i > 0) {
         $data .= ',';
     }
-    $data .= $mc->maquina_costura . ':{"id":' . $mc->id . ',"codigo":' . $mc->maquina_costura . ',"x":' . $mc->x . ',"y":' . $mc->y . '}';
+    $data .= $mc->codigo . ':{"id":' . $mc->id . ',"codigo":' . $mc->codigo . ',"x":' . $mc->x . ',"y":' . $mc->y . '}';
     $i++;
 }
 
