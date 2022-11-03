@@ -1,3 +1,6 @@
+body {
+    position: relative;
+}
 #header-content {
     height: 50px !important;
 }
@@ -25,6 +28,7 @@
     height: 100%;
     overflow-y: auto;
     overflow-x: auto;
+    box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
 }
 #mapa-box.max-content {
     height: 100%;
@@ -61,21 +65,24 @@
 }
 #maquina-info-content {
     position: absolute;
-    display: none;
+    /* display: none; */
     padding: 15px;
+    top: 50%;
+    left: 50%;
     background-color: #fff;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+    transform: translate(-50%, -150%);
+    z-index: 100 !important;
+}
+#maquina-info-content::before {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: 50%;
+    background-color: #fff;
+    transform: rotate(45deg) translateY(10px);
 }
 #maquina-info-content.active {
-    display: block;
-}
-#maquina-config {
-    position: absolute;
-    display: none;
-    padding: 15px;
-    background-color: #fff;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
-}
-#maquina-config.active {
     display: block;
 }

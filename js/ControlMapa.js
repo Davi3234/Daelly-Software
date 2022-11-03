@@ -1,190 +1,153 @@
-const mapa = document.getElementById("lista-maquinas-mapa")
-const mapaBox = document.getElementById("mapa-box")
-const inventario = document.getElementById("lista-maquinas-inventario")
+const mapa = document.getElementById("mapa")
+const listaMCMapa = document.getElementById("lista-maquinas-mapa")
+const listaMCInventario = document.getElementById("lista-maquinas-inventario")
 const maquinaInfo = document.getElementById("maquina-info-content")
-const maquinaConfig = document.getElementById("maquina-config")
 
-let validAddMaquinaMapa = true
-let validShowDetailMaquina = true
-const mapaDimension = { width: 1000, height: 1000, }
+const mapaDimension = { width: 1000, height: 1000 }
 
-document.getElementById("mapa").style.width = mapaDimension.width + "px"
-document.getElementById("mapa").style.height = mapaDimension.height + "px"
+mapa.style.width = mapaDimension.width + "px"
+mapa.style.height = mapaDimension.height + "px"
+
+function getMaquina({ id }) {
+    let maquina = null
+    Object.keys(maquinas).map(i => {
+        if (maquina) { return }
+        if (maquinas[i].codigo != i) { return }
+
+        maquina = maquinas[i]
+    })
+    return { maquina }
+}
 
 function ControlMapa() {
-    const state = {
-        mc: null,
-        tag: null
-    }
-
-    const getMaquina = (codigo) => {
-        let maquina = null
-
-        Object.keys(maquinas).map(i => {
-            if (maquina) { return }
-            if (maquinas[i].codigo != codigo) { return }
-
-            maquina = maquinas[i]
-        })
-
-        return {
-            maquina
-        }
-    }
+    let maquinaInfoToggle = false
 
     const iniciarComponents = () => {
-        document.getElementById("mapa-content").addEventListener("contextmenu", (ev) => {
-            ev.preventDefault()
-        })
+        maquinaInfoToggle = false
+        document.querySelectorAll("#lista-maquinas-mapa .maquinas").forEach(a => a.style.position = "absolute")
         document.querySelectorAll(".maquinas").forEach(a => {
-            a.addEventListener("mousedown", (ev) => {
-                maquinaConfig.classList.toggle("active", false)
-                if (ev.button == 0) maquinaClickDown(ev)
-                else if (ev.button == 2) showOptionMaquina(ev)
-            })
-            a.addEventListener("mouseup", maquinaClickUp)
-            a.addEventListener("mouseout", () => {
-                maquinaInfo.classList.toggle("active", false)
-                validShowDetailMaquina = false
-            })
-            a.addEventListener("mousemove", showDetailsMaquina)
+            // document.getElementById("").addEventListener("mouseenter", maquinaHoverIn)
+            a.addEventListener("mouseenter", maquinaHoverIn)
+            a.addEventListener("mouseout", maquinaHoverOut)
         })
-        document.querySelectorAll("#lista-maquinas-mapa .maquinas").forEach(a => {
-            a.style.position = "absolute"
-        })
-
-        window.addEventListener("mousemove", ev => {
-            if (!state.tag || !state.mc) { return }
-
-            if (validAddMaquinaMapa) {
-                addMaquinaMapa(state.tag, state.mc)
-                validAddMaquinaMapa = false
-            }
-
-            mouseMove(ev)
-        })
-        window.addEventListener("click", () => {
-            document.querySelector(".maquinas.active") && maquinaClickUp()
-            maquinaConfig.classList.toggle("active", false)
-        })
-
-        maquinaConfig.addEventListener("click", (ev) => {
-            addMaquinaInventario(document.getElementById("maquina-" + document.getElementById("mc-config-codigo").innerHTML))
-        })
+        window.addEventListener("click", hiddenMaquinaInfo)
     }
 
-    const showOptionMaquina = ({ srcElement: tag, pageX: x, pageY: y }) => {
-        if (state.tag && state.mc) { return }
-        const { maquina } = getMaquina(tag.id.substring(8))
-
-        maquinaConfig.style.left = (x - tag.clientWidth) + "px"
-        maquinaConfig.style.top = (y - tag.clientHeight) + "px"
-
-        document.getElementById("mc-config-codigo").innerHTML = maquina.codigo
-
-        maquinaConfig.classList.toggle("active", true)
-        maquinaInfo.classList.toggle("active", false)
+    const maquinaHoverIn = (ev) => {
+        showMaquinaInfo(ev)
     }
 
-    const showDetailsMaquina = ({ srcElement: tag, pageX: x, pageY: y }) => {
-        if (state.tag && state.mc) { return }
-        const { maquina } = getMaquina(tag.id.substring(8))
+    const maquinaHoverOut = (ev) => {
+        !maquinaInfo.classList.contains("active") && hiddenMaquinaInfo()
+    }
+
+    const maquinaDragClickDown = (ev) => {
+        ev.dataTransfer.setData("text", ev.target.id)
+        maquinaInfoToggle && hiddenMaquinaInfo()
+    }
+
+    const showMaquinaInfo = ({ target }) => {
+        if (maquinaInfoToggle) { return }
+        maquinaInfoToggle = true
+
+        const { clientX: x, clientY: y } = target //
 
         maquinaInfo.style.left = x + "px"
         maquinaInfo.style.top = y + "px"
 
-        document.getElementById("mc-info-codigo").innerHTML = maquina.codigo
-
-        validShowDetailMaquina = true
         setTimeout(() => {
-            if (!validShowDetailMaquina) { return }
-
-            !maquinaConfig.classList.contains("active") && maquinaInfo.classList.toggle("active", true)
-        }, 1000)
+            maquinaInfo.classList.toggle("active", maquinaInfoToggle)
+        }, 1500)
     }
 
-    const addMaquinaMapa = (tag, mc) => {
-        tag.style.position = "absolute"
-        mapa.appendChild(tag)
+    const hiddenMaquinaInfo = () => {
+        maquinaInfoToggle = false
+        maquinaInfo.classList.toggle("active", maquinaInfoToggle)
+    }
 
-        tag.style.left = mc.x + "px"
-        tag.style.top = mc.y + "px"
+    const maquinaDragMove = (ev) => {
+        ev.preventDefault()
+    }
+
+    const maquinaDragClickUpMapa = (ev) => {
+        ev.preventDefault()
+        const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
+
+        addMaquinaMapa(tag, ev.offsetX - (tag.clientWidth / 2), ev.offsetY - (tag.clientHeight / 2))
+    }
+
+    const maquinaDragClickUpInventario = (ev) => {
+        ev.preventDefault()
+        const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
+
+        addMaquinaInventario(tag)
+    }
+
+    const addMaquinaMapa = (tag, x, y) => {
+        if (x <= 0 || x >= mapa.clientWidth + tag.clientWidth || y <= 0 || y >= mapa.clientHeight + tag.clientHeight) {
+            addMaquinaInventario(tag)
+            return
+        }
+        tag.style.position = "absolute"
+
+        updatePosition(tag, x, y)
+
+        listaMCMapa.appendChild(tag)
+        const { maquina } = getMaquina({ id: tag.id.substring(8) })
+
+        maquina.posicionado = 1
+        console.log(maquinas);
     }
 
     const addMaquinaInventario = (tag) => {
         tag.style.position = "relative"
-        tag.style.top = 0 + "px"
-        tag.style.left = 0 + "px"
-        inventario.appendChild(tag)
+
+        updatePosition(tag, 0, 0)
+
+        listaMCInventario.appendChild(tag)
+        const { maquina } = getMaquina({ id: tag.id.substring(8) })
+
+        maquina.posicionado = 0
     }
 
-    const maquinaClickDown = ({ target }) => {
-        validShowDetailMaquina = false
+    const updatePosition = (tag, x, y) => {
+        const { maquina } = getMaquina({ id: tag.id.substring(8) })
 
-        state.tag = target
-        state.mc = getMaquina(target.innerHTML).maquina
-
-        state.tag.classList.toggle("active", true)
-        maquinaInfo.classList.toggle("active", false)
-    }
-
-    const maquinaClickUp = () => {
-        if (!state.tag || !state.mc) { return }
-
-        maquinaDrop()
-
-        state.tag.classList.toggle("active", false)
-
-        state.tag = null
-        state.mc = null
-    }
-
-    const mouseMove = ({ clientX: x, clientY: y }) => {
-        updateMoveTag(x - (state.tag.clientWidth / 2), y - (state.tag.clientHeight / 2))
-    }
-
-    const updateMoveTag = (x, y, tagA = null) => {
-        const tag = tagA ? tagA : state.tag
-
-        const bounds = tag.getBoundingClientRect()
+        maquina.x = x
+        maquina.y = y
 
         tag.style.left = x + "px"
         tag.style.top = y + "px"
-
-        state.mc.x = x
-        state.mc.y = y
-    }
-
-    const maquinaDrop = () => {
-        validAddMaquinaMapa = true
-        verifyCollision()
-    }
-
-    const verifyCollision = () => {
-        const validCollision = (x1, y1, w1, h1, x2, y2, w2, h2) => {
-            return ((x1 >= x2 && x1 <= x2 + w2 && y1 >= y2 && y1 <= y2 + h2) ||
-                (x1 + w1 >= x2 && x1 + w1 <= x2 + w2 && y1 >= y2 && y1 <= y2 + h2) ||
-                (x1 + w1 >= x2 && x1 + w1 <= x2 + w2 && y1 + h1 >= y2 && y1 + h1 <= y2 + h2) ||
-                (x1 <= x2 + w2 && x1 >= x2 && y1 + h1 >= y2 && y1 + h1 <= y2 + h2))
-        }
-
-        const { mc, tag } = state
-
-        Object.keys(maquinas).map(i => {
-            const mc2 = maquinas[i]
-            const tag2 = document.getElementById("maquina-" + mc2.codigo)
-
-            if (mc.codigo == mc2.codigo) { return }
-
-            if (validCollision(mc.x, mc.y, tag.clientWidth, tag.clientHeight, mc2.x, mc2.y, tag2.clientWidth, tag2.clientHeight)) {
-                addMaquinaInventario(tag)
-            }
-        })
     }
 
     iniciarComponents()
+
+    return {
+        maquinaDragMove,
+        maquinaDragClickDown,
+        maquinaDragClickUpMapa,
+        maquinaDragClickUpInventario,
+    }
 }
 
+let control = null
+
 window.onload = () => {
-    ControlMapa()
+    control = ControlMapa()
+}
+
+function allowDrop(ev) {
+    control && control.maquinaDragMove(ev)
+}
+
+function drag(ev) {
+    control && control.maquinaDragClickDown(ev)
+}
+
+function dropMapa(ev) {
+    control && control.maquinaDragClickUpMapa(ev)
+}
+
+function dropInventario(ev) {
+    control && control.maquinaDragClickUpInventario(ev)
 }

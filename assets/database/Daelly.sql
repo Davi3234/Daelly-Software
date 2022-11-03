@@ -98,3 +98,10 @@ CREATE TABLE `maquina_costura_mapa` (
   `y` INT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
+
+CREATE TABLE `mapa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `width` INT NOT NULL,
+  `height` INT NOT NULL,
+  PRIMARY KEY (`id`)
+);
