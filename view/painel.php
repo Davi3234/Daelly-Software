@@ -11,6 +11,8 @@ require_once "../model/MaquinaCosturaMapa.php";
 $control = new ControlMaquinaCosturaMapa();
 
 $maquinas = $control->listar();
+$maquinasMapa = $control->listarMCMapa();
+$maquinasInventario = $control->listarMCInventario();
 
 $data = '{';
     
@@ -19,7 +21,7 @@ if ($maquinas) foreach($maquinas as $mc) {
     if ($i > 0) {
         $data .= ',';
     }
-    $data .= '' . $mc->id . ':{"id":' . $mc->id . ',codigo:' . $mc->codigo . ',"x":' . $mc->x . ',"y":' . $mc->y . '}';
+    $data .= $mc->maquina_costura . ':{"id":' . $mc->id . ',"codigo":' . $mc->maquina_costura . ',"x":' . $mc->x . ',"y":' . $mc->y . '}';
     $i++;
 }
 
@@ -94,16 +96,15 @@ $data .= '}';
                 <div id="mapa-box">
                     <div id="mapa">
                         <div class="listas-maquinas" id="lista-maquinas-mapa">
-                            <?php if ($maquinas) foreach($maquinas as $mc) { ?>
-                                <div class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
+                            <?php if ($maquinasMapa) foreach($maquinasMapa as $mc) { ?>
+                                <div class="maquinas" id="maquina-<?php echo $mc->maquina_costura ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px;"><?php echo $mc->maquina_costura ?></div>
                             <?php } ?>
                         </div>
                     </div>
                 </div>
                 <div id="inventario">
                     <div class="listas-maquinas" id="lista-maquinas-inventario">
-                        <?php if ($maquinas) foreach($maquinas as $mc) { ?>
-                            <?php echo $mc->codigo ?>
+                        <?php if ($maquinasInventario) foreach($maquinasInventario as $mc) { ?>
                             <div class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
                         <?php } ?>
                     </div>

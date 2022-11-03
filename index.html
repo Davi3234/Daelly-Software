@@ -15,13 +15,19 @@
         }
         
         body {
+            display: flex;
             height: 100vh;
         }
         
+        .a {
+            width: 10px;
+            background-color: black;
+        }
+        
         #mapa-content {
-            height: 100%;
             display: flex;
             flex-direction: column;
+            width: 100%;
         }
         
         #_mapa {
@@ -91,6 +97,7 @@
 </head>
 
 <body>
+    <div class="a"></div>
     <div id="mapa-content">
         <div id="_mapa">
             <div id="mapa">
@@ -233,6 +240,14 @@
                     addMaquinaMapa(state.tag, state.mc)
                     validAddMaquinaMapa = false
                 }
+
+                console.log({
+                    x: ev.offsetX,
+                    y: ev.offsetY
+                }, {
+                    x: ev.clientX,
+                    y: ev.clientY
+                });
                 mouseMove(ev)
             })
             window.addEventListener("click", () => {
@@ -335,20 +350,22 @@
         }
 
         function mouseMove({
-            pageX: x,
-            pageY: y
+            clientX: x,
+            clientY: y
         }) {
             if (!state.tag || !state.mc) {
                 return
             }
-            updateMoveTag((x + _mapa.scrollLeft) - (state.tag.clientWidth / 2), (y + _mapa.scrollTop) - (state.tag.clientHeight / 2))
+            updateMoveTag(x - (state.tag.clientWidth / 2), y - (state.tag.clientHeight / 2))
         }
 
         function updateMoveTag(x, y, tagA = null) {
             const tag = tagA ? tagA : state.tag
 
-            tag.style.left = x + "px"
-            tag.style.top = y + "px"
+            const bounds = tag.getBoundingClientRect()
+
+            tag.style.left = (x - bounds.left) + "px"
+            tag.style.top = (y - bounds.top) + "px"
 
             state.mc.x = x
             state.mc.y = y

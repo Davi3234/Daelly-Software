@@ -49,7 +49,7 @@ class DaoMaquinaCosturaMapa
     function listarMCMapa()
     {
         try {
-            return $this->conexao->query("select map.* , maq.codigo as maquina_costura from maquina_costura_mapa map join maquina_costura maq on maq.id = map.id_maquina_costura", PDO::FETCH_OBJ);
+            return $this->conexao->query("select map.* , maq.codigo as maquina_costura from maquina_costura_mapa map join maquina_costura maq on maq.id = map.id_maquina_costura where map.posicionado = 1", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -58,7 +58,7 @@ class DaoMaquinaCosturaMapa
     function listarMCInventario()
     {
         try {
-            return $this->conexao->query("select map.* , maq.codigo as maquina_costura from maquina_costura_mapa map join maquina_costura maq on maq.id = map.id_maquina_costura", PDO::FETCH_OBJ);
+            return $this->conexao->query("select map.* , maq.codigo as maquina_costura from maquina_costura_mapa map join maquina_costura maq on maq.id = map.id_maquina_costura where map.posicionado = 0", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
