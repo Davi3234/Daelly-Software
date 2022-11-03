@@ -3,9 +3,9 @@ require_once '../model/Grupo.php';
 require_once '../model/DaoGrupo.php';
 require_once '../control/ControlGrupo.php';
 session_start();
-// if (!isset($_SESSION['email']))  {
-//     header("location: login.php");
-// }
+if (!isset($_SESSION['email']))  {
+    header("location: login.php");
+}
 $control = new ControlGrupo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->inserir($_POST['numero'])) {
@@ -50,13 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Daelly Confecções</a>
+                <a class="navbar-brand" href="">Daelly Confecï¿½ï¿½es</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usuï¿½rio Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -121,7 +121,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <?php } ?>
 
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['numero'])) ? $_POST['numero'] : "" ?>" name="numero" id="numero" placeholder="Informe o número" required="required" data-toggle="tooltip" title="Informe o número" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['numero'])) ? $_POST['numero'] : "" ?>" name="numero" id="numero" placeholder="Informe o nï¿½mero" required="required" data-toggle="tooltip" title="Informe o nï¿½mero" data-placement="auto" />
                                 </div>
                             </div>
                     </div>

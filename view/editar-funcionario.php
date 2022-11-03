@@ -3,13 +3,13 @@ require_once '../model/Funcionario.php';
 require_once '../model/DaoFuncionario.php';
 require_once '../control/ControlFuncionario.php';
 session_start();
-// if (!isset($_SESSION['email']))  {
-//     header("location: login.php");
-// }
+if (!isset($_SESSION['email']))  {
+    header("location: login.php");
+}
 $control = new ControlFuncionario();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'], addslashes($_GET['id']))) {
-        $mensagem = "Função editada com sucesso";
+        $mensagem = "Funï¿½ï¿½o editada com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -52,13 +52,13 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Daelly Confecções</a>
+                <a class="navbar-brand" href="">Daelly Confecï¿½ï¿½es</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usuï¿½rio Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -85,13 +85,13 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Funcionários</li>
+                    <li class="active">Funcionï¿½rios</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Funcionários</h1>
+                    <h1 class="page-header">Funcionï¿½rios</h1>
                 </div>
             </div>
 
@@ -131,7 +131,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                                     <input type="date" class="form-control" value="<?php echo (isset($_POST['entrada'])) ? $_POST['entrada'] : $funcionario->entrada ?>" name="entrada" id="entrada" placeholder="Informe a data de entrada" required="required" data-toggle="tooltip" title="Informe a data de entrada" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['saida'])) ? $_POST['saida'] : $funcionario->saida ?>" name="saida" id="saida" placeholder="Informe a data de saída" data-toggle="tooltip" title="Informe a data de saída" data-placement="auto" />
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['saida'])) ? $_POST['saida'] : $funcionario->saida ?>" name="saida" id="saida" placeholder="Informe a data de saï¿½da" data-toggle="tooltip" title="Informe a data de saï¿½da" data-placement="auto" />
                                 </div>
                             </div>
                         </form>

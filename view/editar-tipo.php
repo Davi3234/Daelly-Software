@@ -3,9 +3,9 @@ require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
 session_start();
-// if (!isset($_SESSION['email']))  {
-//     header("location: login.php");
-// }
+if (!isset($_SESSION['email']))  {
+    header("location: login.php");
+}
 $control = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar($_POST['nome'], addslashes($_GET['id']))) {
@@ -31,7 +31,6 @@ $tipo = $control->selecionar(addslashes($_GET['id']));
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/datepicker3.css" rel="stylesheet">
-    <link href="/ajax/" rel="stylesheet">
     <script src="/js/jquery-3.1.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-table.js"></script>

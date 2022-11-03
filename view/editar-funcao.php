@@ -3,13 +3,13 @@ require_once '../model/Funcao.php';
 require_once '../model/DaoFuncao.php';
 require_once '../control/ControlFuncao.php';
 session_start();
-// if (!isset($_SESSION['email']))  {
-//     header("location: login.php");
-// }
+if (!isset($_SESSION['email']))  {
+    header("location: login.php");
+}
 $control = new ControlFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar($_POST['nome'], $_POST['id_tipo'], addslashes($_GET['id']))) {
-        $mensagem = "Função editada com sucesso";
+        $mensagem = "Funï¿½ï¿½o editada com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -52,13 +52,13 @@ $funcao = $control->selecionar(addslashes($_GET['id']));
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">Daelly Confecções</a>
+                <a class="navbar-brand" href="">Daelly Confecï¿½ï¿½es</a>
                 <ul class="user-menu">
                     <li class="dropdown pull-right">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usuï¿½rio Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -85,13 +85,13 @@ $funcao = $control->selecionar(addslashes($_GET['id']));
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Funções</li>
+                    <li class="active">Funï¿½ï¿½es</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Funções</h1>
+                    <h1 class="page-header">Funï¿½ï¿½es</h1>
                 </div>
             </div>
 

@@ -3,14 +3,14 @@ require_once '../model/Funcionario.php';
 require_once '../model/DaoFuncionario.php';
 require_once '../control/ControlFuncionario.php';
 session_start();
-// if (!isset($_SESSION['email']))  {
-//     header("location: login.php");
-// }
+if (!isset($_SESSION['email']))  {
+    header("location: login.php");
+}
 $control = new ControlFuncionario();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Funcionário excluído com sucesso";
+        $mensagem = "Funcionï¿½rio excluï¿½do com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -51,7 +51,7 @@ $funcionarios = $control->listar();
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="">Daelly Confecções</a>
+                    <a class="navbar-brand" href="">Daelly Confecï¿½ï¿½es</a>
                     <ul class="user-menu">
                         <li class="dropdown pull-right">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -78,13 +78,13 @@ $funcionarios = $control->listar();
                 <div class="row">
                     <ol class="breadcrumb">
                         <li><a href="index.php"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                        <li class="active">Funcionários</li>
+                        <li class="active">Funcionï¿½rios</li>
                     </ol>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Funcionários</h1>
+                        <h1 class="page-header">Funcionï¿½rios</h1>
                     </div>
                 </div>
 
@@ -117,10 +117,10 @@ $funcionarios = $control->listar();
                                                 <th data-sortable="true">Nome</th> 
                                                 <th data-sortable="true">CPF</th> 
                                                 <th data-sortable="true">Entrada</th> 
-                                                <th data-sortable="true">Saída</th> 
-                                                <th data-sortable="true">Função</th> 
+                                                <th data-sortable="true">Saï¿½da</th> 
+                                                <th data-sortable="true">Funï¿½ï¿½o</th> 
                                                 <th data-sortable="true">Grupo</th> 
-                                                <th data-sortable="true">Ações</th>                                             
+                                                <th data-sortable="true">Aï¿½ï¿½es</th>                                             
                                             </tr>                        
                                         </thead>  
                                         <tbody> 
