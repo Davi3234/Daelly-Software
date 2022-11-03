@@ -1,6 +1,5 @@
 <?php
 
-
 class Administrador {
     private $id;
     private $nome;
@@ -8,7 +7,7 @@ class Administrador {
     private $senha;
     private $tentativas;
     private $ultimoAcesso;
-    
+
     function __construct($nome = null, $email = null, $senha = null, $tentativas = null, $ultimoAcesso = null, $id = null) {
         $this->id = $id;
         $this->nome = $nome;

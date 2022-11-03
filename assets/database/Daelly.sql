@@ -19,8 +19,11 @@ DROP TABLE IF EXISTS `maquina_costura_mapa`;
 
 CREATE TABLE `administrador` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `email` INT DEFAULT NULL,
-  `senha` VARCHAR(14) NOT NULL,
+  `nome` VARCHAR(45) DEFAULT NULL,
+  `email` VARCHAR(45) DEFAULT NULL,
+  `senha` VARCHAR(45) DEFAULT NULL,
+  `tentativas` INT DEFAULT NULL,
+  `ultimo_acesso` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 

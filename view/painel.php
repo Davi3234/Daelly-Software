@@ -1,8 +1,8 @@
 <?php
-// session_start();
-// if (!isset($_SESSION['email']))  {
-//     header("location: login.php");
-// }
+session_start();
+if (!isset($_SESSION["email"]))  {
+    header("location: login.php");
+}
 
 require_once "../control/ControlMaquinaCosturaMapa.php";
 require_once "../model/DaoMaquinaCosturaMapa.php";
@@ -91,7 +91,6 @@ $data .= '}';
                     <li class="active">Painel de Gerenciamento</li>
                 </ol>
             </div>
-
             <div id="mapa-content">
                 <div id="mapa-box">
                     <div id="mapa">

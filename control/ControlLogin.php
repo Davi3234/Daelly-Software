@@ -1,57 +1,70 @@
 <?php
-class ControlLogin {
 
-    private $admin;
+class ControlLogin {
     private $daoLog;
-    private $erros;
+    private $err;
+    private $adm;
 
     public function __construct() {
-        $this->admin = new Administrador();
         $this->daoLog = new DaoLogin();
-        $this->erros = array();
+        $this->adm = new Administrador();
+        $this->err = null;
     }
 
-    public function setValores($email = null, $senha = null, $nome = null, $tentativas = null, $ultimoAcesso = null, $id = null){
-        $this->admin = new Administrador($nome, $email, $senha, $tentativas, $ultimoAcesso, $id); 
+    public function getErr() {
+        return $this->err;
     }
 
-    public function verificarValores($email, $senha){
+    private function setValores($email, $senha) {
+        $this->adm->setEmail($email);
+        $this->adm->setSenha(md5($senha));
+    }
+
+    private function verificarValores($email, $senha) {
         $this->setValores($email, $senha);
-        if($this->daoLog->verificarEmail($this->admin)){
 
-        }else{
-        }
-    }
-
-    public function efetuarLogin($email, $senha){
-        $this->setValores($email, $senha);
-        if($this->daoLog->verificarEmail($this->admin)){
-            if($this->daoLog->efetuarLogin($this->admin)){
-                $this->daoLog->atualizarUltimoAcesso($this->admin);
-                $this->daoLog->zerarTentativas($this->admin);
-                $_SESSION['email'] = $this->admin->getEmail();
-            return true;
-            }
-        }else{
-            $this->daoLog->incrementarTentativa($this->admin);
-            $this->erros[] = "E-mail ou senha incorretos";
+        if ($email == "" || $senha == "") {
+            $this->err = "O campo do senha e email é obrigatório";
+            return false;
+        } 
+        if (!$this->daoLog->verificarEmail($this->adm)) {
+            $this->err = "Email ou senha incorreto";
             return false;
         }
 
+        return true;
     }
 
-    public function getAdmin(){
-        return $this->admin;
+    public function executarLogin($email, $senha) {
+        if (!$this->verificarValores($email, $senha)) { 
+            return false;
+        }
+        
+        if ($this->daoLog->getTentativas($this->adm) >= 3) {
+            $this->err = "Usuário bloqueado";
+            return false;
+        }
+
+        return $this->efetuarLogin();
     }
 
-    function getErros() {
-        return $this->erros;
+    private function efetuarLogin() {
+        if (!$this->daoLog->efetuarLogin($this->adm)) {
+            $this->daoLog->incrementarTentativa($this->adm);
+            $this->err = "Email ou senha incorreto";
+            return false;
+        }
+
+        $this->daoLog->zerarTentativas($this->adm);
+        $this->daoLog->atualizarUltimoAcesso($this->adm);
+        
+        $_SESSION["email"] = $this->adm->getEmail();
+        
+        return true;
     }
 
-    function efetuarLogout(){
-        $_SESSION['email'] = null;
+    public function efetuarLogout() {
+        $_SESSION["email"] = null;
         session_destroy();
     }
-
-
 }
