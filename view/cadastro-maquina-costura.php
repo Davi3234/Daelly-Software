@@ -1,7 +1,7 @@
 <?php
-require_once '../model/Funcao.php';
-require_once '../model/DaoFuncao.php';
-require_once '../control/ControlFuncao.php';
+require_once '../model/MaquinaCostura.php';
+require_once '../model/DaoMaquinaCostura.php';
+require_once '../control/ControlMaquinaCostura.php';
 require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
@@ -9,11 +9,11 @@ session_start();
 if (!isset($_SESSION['email']))  {
     header("location: login.php");
 }
-$control = new ControlFuncao();
+$control = new ControlMaquinaCostura();
 $controlTipo = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->inserir($_POST['nome'], $_POST['id_tipo'])) {
-        $mensagem = "Fun��o inserida com sucesso";
+    if ($control->inserir($_POST['codigo'], $_POST['modelo'], $_POST['marca'], $_POST['chassi'], $_POST['aquisicao'], $_POST['id_tipo'])) {
+        $mensagem = "Máquina de costura inserida com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -88,13 +88,13 @@ $listaTipo = $controlTipo->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Fun��es</li>
+                    <li class="active">Máquina de costura</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Fun��es</h1>
+                    <h1 class="page-header">Máquina de costura</h1>
                 </div>
             </div>
 
@@ -126,10 +126,22 @@ $listaTipo = $controlTipo->listar();
                                 <?php } ?>
 
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : "" ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['codigo'])) ? $_POST['codigo'] : "" ?>" name="codigo" id="codigo" placeholder="Informe o código" required="required" data-toggle="tooltip" title="Informe o código" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                <select class="form-control" id="id_tipo" name="id_tipo">
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['modelo'])) ? $_POST['modelo'] : "" ?>" name="modelo" id="modelo" placeholder="Informe o modelo" required="required" data-toggle="tooltip" title="Informe o modelo" data-placement="auto" />
+                                </div>
+                                <div class="campo_esquerda">
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['marca'])) ? $_POST['marca'] : "" ?>" name="marca" id="marca" placeholder="Informe a marca" required="required" data-toggle="tooltip" title="Informe a marca" data-placement="auto" />
+                                </div>
+                                <div class="campo_direita">
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['chassi'])) ? $_POST['chassi'] : "" ?>" name="chassi" id="chassi" placeholder="Informe o chassi" required="required" data-toggle="tooltip" title="Informe o chassi" data-placement="auto" />
+                                </div>
+                                <div class="campo_esquerda">
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['aquisicao'])) ? $_POST['aquisicao'] : "" ?>" name="aquisicao" id="aquisicao" placeholder="Informe a data de aquisição" required="required" data-toggle="tooltip" title="Informe a data de aquisição" data-placement="auto" />
+                                </div>
+                                <div class="campo_direita">
+                                    <select class="form-control" id="id_tipo" name="id_tipo">
                                         <option value="0">Selecione</option>
                                         <?php
                                         foreach ($listaTipo as $t) {
@@ -174,7 +186,7 @@ $listaTipo = $controlTipo->listar();
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "funcoes.php");
+                $(location).attr("href", "compressores.php");
             });
 
         });
