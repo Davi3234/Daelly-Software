@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION["email"]))  {
+if (!isset($_SESSION["email"])) {
     header("location: login.php");
 }
 
@@ -93,24 +93,33 @@ $data .= '}';
                     <li class="active">Painel de Gerenciamento</li>
                 </ol>
             </div>
-            <div id="mapa-content">
-                <div id="mapa-box">
-                    <div id="mapa">
-                        <div class="listas-maquinas" id="lista-maquinas-mapa" ondrop="dropMapa(event, 'mapa')" ondragover="allowDrop(event)">
-                            <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
-                                <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px;"><?php echo $mc->codigo ?></div>
+
+            <form action="" method="post">
+                <div class="panel-heading">
+                    <button id="bt-salvar-maquinas" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked checkmark">
+                            <use xlink:href="#stroked-checkmark" />
+                        </svg> Gravar</button>
+                </div>
+                <div id="mapa-content">
+                    <div id="mapa-box">
+                        <div id="mapa">
+                            <div class="listas-maquinas" id="lista-maquinas-mapa" ondrop="dropMapa(event)" ondragover="allowDrop(event)">
+                                <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
+                                    <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px;"><?php echo $mc->codigo ?></div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="inventario">
+                        <div class="listas-maquinas" id="lista-maquinas-inventario" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
+                            <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
+                                <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
                             <?php } ?>
                         </div>
                     </div>
                 </div>
-                <div id="inventario">
-                    <div class="listas-maquinas" id="lista-maquinas-inventario" ondrop="dropInventario(event, 'inventario')" ondragover="allowDrop(event)">
-                        <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
-                            <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
-                        <?php } ?>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
     <div id="maquina-info-content">
@@ -121,10 +130,10 @@ $data .= '}';
     <script>
         ! function($) {
             $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-        }(window.jQuery);
+                $(this).find('em:first').toggleClass("glyphicon-minus")
+            })
+            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus")
+        }(window.jQuery)
 
         $(window).on('resize', function() {
             if ($(window).width() > 768)
@@ -139,10 +148,10 @@ $data .= '}';
         const maquinas = JSON.parse(JSON.stringify(<?php echo $data ?>))
 
         $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
-            $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
-        });
+            $('[data-toggle="tooltip"]').tooltip()
+            $('#carregando').fadeOut()
+            $('#conteudo').fadeIn()
+        })
     </script>
 </body>
 

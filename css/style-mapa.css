@@ -9,6 +9,17 @@ body {
     flex-direction: column;
     max-height: 100% !important;
 }
+.panel-heading {
+    height: 60px !important;
+}
+.panel-heading button {
+    opacity: .7;
+    cursor: not-allowed;
+}
+.panel-heading button.valid {
+    opacity: 1;
+    cursor: auto;
+}
 .main {
     height: calc(100vh - 50px) !important;
     padding: 0 !important;
@@ -22,7 +33,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 90px) !important;
+    height: calc(100vh - 150px) !important;
 }
 #mapa-box {
     height: 100%;

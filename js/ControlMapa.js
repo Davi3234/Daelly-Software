@@ -2,21 +2,55 @@ const mapa = document.getElementById("mapa")
 const listaMCMapa = document.getElementById("lista-maquinas-mapa")
 const listaMCInventario = document.getElementById("lista-maquinas-inventario")
 const maquinaInfo = document.getElementById("maquina-info-content")
+const btSalvarMaquinas = document.getElementById("bt-salvar-maquinas")
 
 const mapaDimension = { width: 1000, height: 1000 }
+const maquinasAlteradas = []
 
 mapa.style.width = mapaDimension.width + "px"
 mapa.style.height = mapaDimension.height + "px"
 
-function getMaquina({ id }) {
+function getMaquina({ codigo }) {
     let maquina = null
     Object.keys(maquinas).map(i => {
         if (maquina) { return }
-        if (maquinas[i].codigo != i) { return }
+        if (maquinas[i].codigo != codigo) { return }
 
-        maquina = maquinas[i]
+        maquina = { codigo: maquinas[i].codigo, posicionado: maquinas[i].posicionado, x: maquinas[i].x, y: maquinas[i].y }
     })
     return { maquina }
+}
+
+function addMaquinaAtualizada({ codigo, posicionado, x, y }) {
+    maquinasAlteradas.push({ codigo, posicionado, x, y })
+}
+
+function removerMaquinaAtualizada(mc) {
+    maquinasAlteradas.splice(mc, 1)
+}
+
+function atualizarListaMaquinasAlteradas(mcChanged) {
+    const { maquina: mcOrigin } = getMaquina(mcChanged)
+    const mcInUpdate = maquinasAlteradas.find(m => m.codigo == mcChanged.codigo)
+
+    if (!mcInUpdate) {
+        if (mcChanged.posicionado == mcOrigin.posicionado) { return }
+        addMaquinaAtualizada(mcChanged)
+        return
+    }
+
+    mcInUpdate.x = mcChanged.x
+    mcInUpdate.y = mcChanged.y
+
+    if (mcChanged.posicionado == mcOrigin.posicionado) {
+        if (mcOrigin.posicionado == 0) {
+            removerMaquinaAtualizada(mcInUpdate)
+            return
+        }
+        return
+    }
+
+    if (mcChanged.posicionado == 1) { return }
 }
 
 function ControlMapa() {
@@ -24,6 +58,7 @@ function ControlMapa() {
 
     const iniciarComponents = () => {
         maquinaInfoToggle = false
+        btSalvarMaquinas.title = "Sem alteração para salvar"
         document.querySelectorAll("#lista-maquinas-mapa .maquinas").forEach(a => a.style.position = "absolute")
         document.querySelectorAll(".maquinas").forEach(a => {
             // document.getElementById("").addEventListener("mouseenter", maquinaHoverIn)
@@ -60,6 +95,13 @@ function ControlMapa() {
         }, 1500)
     }
 
+    const toggleBtSalvar = () => {
+        const value = maquinasAlteradas.length > 0
+
+        btSalvarMaquinas.classList.toggle("valid", value)
+        btSalvarMaquinas.title = value ? "Gravar alterações" : "Sem alterações feitas"
+    }
+
     const hiddenMaquinaInfo = () => {
         maquinaInfoToggle = false
         maquinaInfo.classList.toggle("active", maquinaInfoToggle)
@@ -74,6 +116,7 @@ function ControlMapa() {
         const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
 
         addMaquinaMapa(tag, ev.offsetX - (tag.clientWidth / 2), ev.offsetY - (tag.clientHeight / 2))
+        toggleBtSalvar()
     }
 
     const maquinaDragClickUpInventario = (ev) => {
@@ -81,6 +124,7 @@ function ControlMapa() {
         const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
 
         addMaquinaInventario(tag)
+        toggleBtSalvar()
     }
 
     const addMaquinaMapa = (tag, x, y) => {
@@ -88,7 +132,7 @@ function ControlMapa() {
             addMaquinaInventario(tag)
             return
         }
-        const { maquina } = getMaquina({ id: tag.id.substring(8) })
+        const { maquina } = getMaquina({ codigo: tag.id.substring(8) })
 
         maquina.posicionado = 1
         updatePosition(tag, maquina, x, y)
@@ -96,10 +140,12 @@ function ControlMapa() {
         tag.style.position = "absolute"
 
         listaMCMapa.appendChild(tag)
+
+        atualizarListaMaquinasAlteradas(maquina)
     }
 
     const addMaquinaInventario = (tag) => {
-        const { maquina } = getMaquina({ id: tag.id.substring(8) })
+        const { maquina } = getMaquina({ codigo: tag.id.substring(8) })
 
         maquina.posicionado = 0
         updatePosition(tag, maquina, 0, 0)
@@ -107,6 +153,8 @@ function ControlMapa() {
         tag.style.position = "relative"
 
         listaMCInventario.appendChild(tag)
+
+        atualizarListaMaquinasAlteradas(maquina)
     }
 
     const updatePosition = (tag, maquina, x, y) => {
