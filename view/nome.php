@@ -119,6 +119,29 @@
                 </li>
             </ul>
         </li>
+        <li class="parent">
+            <a href="cadastro-maquina-costura.php">
+                <span data-toggle="collapse" href="#maquinas-costura"><svg class="glyph stroked chevron-down">
+                        <use xlink:href="#stroked-chevron-down"></use>
+                    </svg>Máquina de Costura</span>
+            </a>
+            <ul class="children collapse" id="maquinas-costura">
+                <li>
+                    <a class="" href="maquinas-costura.php">
+                        <svg class="glyph stroked chevron-right">
+                            <use xlink:href="#stroked-chevron-right"></use>
+                        </svg> Listar Máquinas
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="cadastro-maquina-costura.php">
+                        <svg class="glyph stroked chevron-right">
+                            <use xlink:href="#stroked-chevron-right"></use>
+                        </svg> Cadastrar Máquina
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li role="presentation" class="divider"></li>
     </ul>
 </div>

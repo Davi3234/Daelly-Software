@@ -37,6 +37,15 @@ class DaoMaquinaCosturaMapa
         }
     }
 
+    function excluirByIdMaquinaCostura($id)
+    {
+        try {
+            return $this->conexao->exec("delete from maquina_costura_mapa where id_maquina_costura=" . $id);
+        } catch (PDOException $exc) {
+            return false;
+        }
+    }
+
     function listar()
     {
         try {

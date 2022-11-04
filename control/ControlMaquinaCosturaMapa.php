@@ -12,7 +12,7 @@ class ControlMaquinaCosturaMapa
     }
 
     private function setValores($id_maquina_costura = null, $posicionado = 0, $x = 0, $y = 0, $id = null) {
-        $this->maquina_mapa = new MaquinaCosturaMapa($posicionado, $x, $y, $id_maquina_costura, $id);
+        $this->maquina_mapa = new MaquinaCosturaMapa($id_maquina_costura, $posicionado, $x, $y, $id);
     }
 
     public function cadastrar($id_maquina_costura) {
@@ -21,7 +21,7 @@ class ControlMaquinaCosturaMapa
         return $this->daoMaquinaMapa->inserir($this->maquina_mapa);
     }
 
-    public function editar($id, $id_maquina_costura = null, $posicionado = 0, $x = 0, $y = 0) {
+    public function editar($id, $posicionado = 0, $x = 0, $y = 0, $id_maquina_costura = null) {
         $this->setValores($id_maquina_costura, $posicionado, $x, $y, $id);
 
         return $this->daoMaquinaMapa->editar($this->maquina_mapa);
@@ -29,6 +29,10 @@ class ControlMaquinaCosturaMapa
 
     public function excluir($id) {
         return $this->daoMaquinaMapa->excluir($id);
+    }
+
+    public function excluirByIdMaquinaCostura($id) {
+        return $this->daoMaquinaMapa->excluirByIdMaquinaCostura($id);
     }
 
     public function selecionar($id)

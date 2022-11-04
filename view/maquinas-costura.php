@@ -1,15 +1,19 @@
 <?php
-require_once '../model/Funcao.php';
-require_once '../model/DaoFuncao.php';
-require_once '../control/ControlFuncao.php';
+require_once '../model/MaquinaCostura.php';
+require_once '../model/DaoMaquinaCostura.php';
+require_once '../control/ControlMaquinaCostura.php';
+require_once '../model/MaquinaCosturaMapa.php';
+require_once '../model/DaoMaquinaCosturaMapa.php';
+require_once '../control/ControlMaquinaCosturaMapa.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
-$control = new ControlFuncao();
+$control = new ControlMaquinaCostura();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->inserir($_POST['nome'], $_POST['id_tipo'])) {
-        $mensagem = "Fun��o inserida com sucesso";
+    if ($control->excluir(addslashes($_POST['id']))) {
+        $mensagem = "Máquina de costura excluído com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -18,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+$maquinas = $control->listar();
 ?>
 
 <html>
@@ -83,29 +89,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Fun��es</li>
+                    <li class="active">Máquinas</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Fun��es</h1>
+                    <h1 class="page-header">Máquinas</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
-                        <form action="" method="POST" id="form" name="form">
-                            <div class="panel-heading">
-                                <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
-                                        <use xlink:href="#stroked-checkmark" />
-                                    </svg> Gravar</button>
-                                <button type="button" class="btn btn-primary voltar" data-toggle="tooltip" title="Voltar para a listagem" data-placement="auto"><svg class="glyph stroked arrow left">
-                                        <use xlink:href="#stroked-arrow-left" />
-                                    </svg> Voltar</button>
-                            </div>
-                            <div class="panel-body">
+
+                        <div class="panel-body">
+                            <form action="" method="POST" id="form">
+                                <input type="hidden" value="" name="id" id="id" />
+                                <input type="hidden" value="" name="acao" id="acao" />
 
                                 <?php if (isset($mensagem)) { ?>
                                     <div class="alert alert-success">
@@ -120,25 +121,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </div>
                                 <?php } ?>
 
-                                <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : "" ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
-                                </div>
-                                <div class="campo_direita">
-                                    <select class="form-control" id="id_tipo" name="id_tipo" placeholder="Informe o tipo" data-toggle="tooltip" title="Informe o tipo" data-placement="auto">
-                                        <option value="0">Selecione</option>
-                                        <?php foreach ($listaTipo as $t) { ?>
-                                            <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                                    <thead>
+                                        <tr>
+                                            <th data-sortable="true">Id</th>
+                                            <th data-sortable="true">Código</th>
+                                            <th data-sortable="true">Modelo</th>
+                                            <th data-sortable="true">Tipo</th>
+                                            <th data-sortable="true">Marca</th>
+                                            <th data-sortable="true">Chassi</th>
+                                            <th data-sortable="true">Aquisição</th>
+                                            <th data-sortable="true">Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if ($maquinas) foreach ($maquinas as $t) { ?>
+                                            <tr>
+                                                <td><?php echo $t->id ?></td>
+                                                <td><?php echo $t->codigo ?></td>
+                                                <td><?php echo $t->modelo ?></td>
+                                                <td><?php if ($t->tipo) {
+                                                        echo $t->tipo;
+                                                    } else {
+                                                        echo "Nenhum";
+                                                    } ?></td>
+                                                <td><?php echo $t->marca ?></td>
+                                                <td><?php echo $t->chassi ?></td>
+                                                <td><?php echo $t->aquisicao ?></td>
+                                                <td>
+                                                    <a href="#" class="editar" rel="<?php echo $t->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" class="excluir" rel="<?php echo $t->id ?>">Excluir</a>
+                                                </td>
+                                            </tr>
                                         <?php } ?>
-                                    </select>
-                                </div>
-                            </div>
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                </form>
             </div>
+
         </div>
-    </div>
-    </div>
     </div>
 
     <script>
@@ -164,8 +188,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $('#carregando').fadeOut();
             $('#conteudo').fadeIn();
 
-            $(".voltar").click(function() {
-                $(location).attr("href", "funcoes.php");
+            $(".editar").click(function() {
+                id = $(this).attr("rel");
+                $(location).attr("href", "editar-maquina-costura.php?id=" + id);
+            });
+
+            $(".excluir").click(function() {
+                if (confirm("Deseja realmente excluir o registro?")) {
+                    id = $(this).attr("rel");
+                    $("#id").val(id);
+                    $("#form").submit();
+                }
             });
 
         });

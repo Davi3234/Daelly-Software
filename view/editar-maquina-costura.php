@@ -1,15 +1,22 @@
 <?php
-require_once '../model/Funcao.php';
-require_once '../model/DaoFuncao.php';
-require_once '../control/ControlFuncao.php';
+require_once '../model/MaquinaCostura.php';
+require_once '../model/DaoMaquinaCostura.php';
+require_once '../control/ControlMaquinaCostura.php';
+require_once '../model/MaquinaCosturaMapa.php';
+require_once '../model/DaoMaquinaCosturaMapa.php';
+require_once '../control/ControlMaquinaCosturaMapa.php';
+require_once '../model/Tipo.php';
+require_once '../model/DaoTipo.php';
+require_once '../control/ControlTipo.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
-$control = new ControlFuncao();
+$control = new ControlMaquinaCostura();
+$controlTipo = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->inserir($_POST['nome'], $_POST['id_tipo'])) {
-        $mensagem = "Fun��o inserida com sucesso";
+    if ($control->editar(addslashes($_GET["id"]), $_POST["codigo"], $_POST["modelo"], $_POST["marca"], $_POST["chassi"], $_POST["aquisicao"], $_POST["tipo"])) {
+        $mensagem = "Máquina de costura editada com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -18,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+$tipos = $controlTipo->listar();
+$maquina = $control->selecionar(addslashes($_GET["id"]));
 ?>
 
 <html>
@@ -83,13 +92,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Fun��es</li>
+                    <li class="active">Máquinas de Costura</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Fun��es</h1>
+                    <h1 class="page-header">Máquinas de Costura</h1>
                 </div>
             </div>
 
@@ -121,15 +130,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <?php } ?>
 
                                 <div class="campo_esquerda">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : "" ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['chassi'])) ? $_POST['chassi'] : $maquina->chassi ?>" name="chassi" id="chassi" placeholder="Informe o chassi" required="required" data-toggle="tooltip" title="Informe o chassi" data-placement="auto" />
                                 </div>
                                 <div class="campo_direita">
-                                    <select class="form-control" id="id_tipo" name="id_tipo" placeholder="Informe o tipo" data-toggle="tooltip" title="Informe o tipo" data-placement="auto">
+                                    <input type="number" min="1" class="form-control" value="<?php echo (isset($_POST['codigo'])) ? $_POST['codigo'] : $maquina->codigo ?>" name="codigo" id="codigo" placeholder="Informe o codigo" required="required" data-toggle="tooltip" title="Informe o código" data-placement="auto" />
+                                </div>
+                                <div class="campo_esquerda">
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['modelo'])) ? $_POST['modelo'] : $maquina->modelo ?>" name="modelo" id="modelo" placeholder="Informe o modelo" required="required" data-toggle="tooltip" title="Informe o modelo" data-placement="auto" />
+                                </div>
+                                <div class="campo_direita">
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['marca'])) ? $_POST['marca'] : $maquina->marca ?>" name="marca" id="marca" placeholder="Informe o marca" required="required" data-toggle="tooltip" title="Informe a marca" data-placement="auto" />
+                                </div>
+                                <div class="campo_esquerda">
+                                    <select class="form-control" id="tipo" name="tipo" required="required" placeholder="Informe o tipo" data-toggle="tooltip" title="Informe o tipo" data-placement="auto">
                                         <option value="0">Selecione</option>
-                                        <?php foreach ($listaTipo as $t) { ?>
-                                            <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <?php foreach ($tipos as $t) { ?>
+                                            <option <?php if ($maquina->id_tipo == $t->id) { ?> selected <?php } ?> value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                                <div class="campo_direita">
+                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['aquisicao'])) ? $_POST['aquisicao'] : $maquina->aquisicao ?>" name="aquisicao" id="aquisicao" placeholder="Informe o aquisicao" required="required" data-toggle="tooltip" title="Informe a aquisição" data-placement="auto" />
                                 </div>
                             </div>
                     </div>
@@ -165,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "funcoes.php");
+                $(location).attr("href", "tipos.php");
             });
 
         });
