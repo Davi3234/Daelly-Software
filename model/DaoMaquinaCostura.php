@@ -9,6 +9,7 @@ class DaoMaquinaCostura
     {
         try {
             $this->conexao = new PDO("mysql:host=localhost;dbname=daelly", "Dan Ruan", "user");
+
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }
@@ -18,6 +19,7 @@ class DaoMaquinaCostura
     {
         try {
             return $this->conexao->exec("insert into maquina_costura (id_tipo, codigo, modelo, marca, chassi, aquisicao) values ('". $maquina->getId_tipo() ."' , '". $maquina->getCodigo() ."' , '". $maquina->getModelo() ."' , '". $maquina->getMarca() ."', '" . $maquina->getChassi() . "', '" . $maquina->getAquisicao() . "')");
+
         } catch (PDOException $ex) {
             return false;
         }
@@ -26,6 +28,7 @@ class DaoMaquinaCostura
     function editar(MaquinaCostura $maquina)
     {
         return $this->conexao->exec("update maquina_costura set id_tipo = " . $maquina->getId_tipo() . ", codigo = '" . $maquina->getCodigo() . "', modelo = '" . $maquina->getModelo() . "', marca = '" . $maquina->getMarca() . "', chassi = '" . $maquina->getChassi() . "', aquisicao = '" . $maquina->getAquisicao() . "' where id=" . $maquina->getId());
+
     }
 
     function excluir($id)

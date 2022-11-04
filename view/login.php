@@ -55,7 +55,6 @@
                 </div>
             </div>
         </div>
-        
         <script>
             $(document).ready(function(){
                 $("body").css("padding-top", ($(window).height() - $(".login-panel").height()) / 2);

@@ -25,7 +25,7 @@ class DaoFuncao
 
     function editar(Funcao $funcao)
     {
-        return $this->conexao->exec("update grupo set nome='" . $funcao->getNome() . "' id_tipo = '".$funcao->getIdTipo()."'where id=".$funcao->getId());
+        return $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "' id_tipo = '".$funcao->getIdTipo()."'where id=".$funcao->getId());
     }
 
     function excluir($id)
