@@ -5,7 +5,6 @@ const maquinaInfo = document.getElementById("maquina-info-content")
 const btSalvarMaquinas = document.getElementById("bt-salvar-maquinas")
 
 const mapaDimension = { width: 1000, height: 1000 }
-const maquinasAlteradas = []
 
 mapa.style.width = mapaDimension.width + "px"
 mapa.style.height = mapaDimension.height + "px"
@@ -16,13 +15,13 @@ function getMaquina({ codigo }) {
         if (maquina) { return }
         if (maquinas[i].codigo != codigo) { return }
 
-        maquina = { codigo: maquinas[i].codigo, posicionado: maquinas[i].posicionado, x: maquinas[i].x, y: maquinas[i].y }
+        maquina = { id: maquinas[i].id, codigo: maquinas[i].codigo, posicionado: maquinas[i].posicionado, x: maquinas[i].x, y: maquinas[i].y }
     })
     return { maquina }
 }
 
-function addMaquinaAtualizada({ codigo, posicionado, x, y }) {
-    maquinasAlteradas.push({ codigo, posicionado, x, y })
+function addMaquinaAtualizada({ id, codigo, posicionado, x, y }) {
+    maquinasAlteradas.push({ id, codigo, posicionado, x, y })
 }
 
 function removerMaquinaAtualizada(mc) {
@@ -34,7 +33,7 @@ function atualizarListaMaquinasAlteradas(mcChanged) {
     const mcInUpdate = maquinasAlteradas.find(m => m.codigo == mcChanged.codigo)
 
     if (!mcInUpdate) {
-        if (mcChanged.posicionado == mcOrigin.posicionado) { return }
+        if (mcChanged.posicionado == mcOrigin.posicionado && mcOrigin.posicionado == 0) { return }
         addMaquinaAtualizada(mcChanged)
         return
     }

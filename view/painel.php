@@ -10,6 +10,14 @@ require_once "../model/MaquinaCosturaMapa.php";
 
 $control = new ControlMaquinaCosturaMapa();
 
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $maquinasAlteradas = json_decode($_POST["maquinas"])->maquinas;
+    $msg = "";
+    foreach($maquinasAlteradas as $mc) {
+        $control->editar($mc->id, $mc->posicionado, $mc->x, $mc->y);
+    }
+}
+
 $maquinas = $control->listar();
 $maquinasMapa = $control->listarMCMapa();
 $maquinasInventario = $control->listarMCInventario();
@@ -83,8 +91,8 @@ $data .= '}';
         <div id="carregando">
             Carregando...
         </div>
-        <div id="conteudo">
 
+        <div id="conteudo">
             <div class="row">
                 <ol class="breadcrumb">
                     <li><a href=""><svg class="glyph stroked home">
@@ -94,7 +102,8 @@ $data .= '}';
                 </ol>
             </div>
 
-            <form action="" method="post">
+            <form action="" method="post" id="editar-maquinas-mapa">
+                <input id="maquinas-input" name="maquinas" type="text" hidden value="{}">
                 <div class="panel-heading">
                     <button id="bt-salvar-maquinas" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked checkmark">
                             <use xlink:href="#stroked-checkmark" />
@@ -146,12 +155,36 @@ $data .= '}';
     </script>
     <script>
         const maquinas = JSON.parse(JSON.stringify(<?php echo $data ?>))
+        const maquinasAlteradas = []
 
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip()
             $('#carregando').fadeOut()
             $('#conteudo').fadeIn()
+            $('#editar-maquinas-mapa').submit((ev) => {
+                if (maquinasAlteradas.length <= 0) {
+                    ev.preventDefault()
+                    return
+                }
+
+                editarMaquinaAlteradas()
+            })
         })
+
+        function editarMaquinaAlteradas() {
+            const tag = document.getElementById("maquinas-input")
+
+            let data = '{"maquinas":['
+            let i = 0
+            maquinasAlteradas.forEach(mc => {
+                if (i > 0) {data += ','}
+                data += '{"id":' + mc.id + ',"codigo":' + mc.codigo + ',"posicionado":' + mc.posicionado + ',"x":' + mc.x + ',"y":' + mc.y + '}'
+                i++
+            })
+            data += ']}'
+
+            tag.value = data
+        }
     </script>
 </body>
 
