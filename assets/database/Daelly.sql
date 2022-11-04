@@ -13,9 +13,9 @@ DROP TABLE IF EXISTS `funcao`;
 DROP TABLE IF EXISTS `funca_funci`;
 DROP TABLE IF EXISTS `tipo`;
 DROP TABLE IF EXISTS `maquina_costura`;
+DROP TABLE IF EXISTS `maquina_costura_mapa`;
 DROP TABLE IF EXISTS `manutencao`;
 DROP TABLE IF EXISTS `compressor`;
-DROP TABLE IF EXISTS `maquina_costura_mapa`;
 
 CREATE TABLE `administrador` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -73,6 +73,15 @@ CREATE TABLE `maquina_costura` (
   PRIMARY KEY (`id`)
 );
 
+CREATE TABLE `maquina_costura_mapa` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_maquina_costura` INT NOT NULL,
+  `posicionado` INT NULL DEFAULT 0,
+  `x` INT NULL DEFAULT 0,
+  `y` INT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+);
+
 CREATE TABLE `manutencao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_maquina_costura` INT DEFAULT NULL,
@@ -87,15 +96,6 @@ CREATE TABLE `compressor` (
   `codigo` INT NOT NULL,
   `marca` VARCHAR(50) NULL,
   `modelo` VARCHAR(50) NULL,
-  PRIMARY KEY (`id`)
-);
-
-CREATE TABLE `maquina_costura_mapa` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `id_maquina_costura` INT NOT NULL,
-  `posicionado` INT NULL DEFAULT 0,
-  `x` INT NULL DEFAULT 0,
-  `y` INT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 );
 
