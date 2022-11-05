@@ -17,7 +17,7 @@ class DaoMaquinaCosturaMapa
     function inserir(MaquinaCosturaMapa $maquina_mapa)
     {
         try {
-            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura) values ('". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."', '". $maquina_mapa->getIdMaquinaCostura() ."')");
+            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura) values (". $maquina_mapa->getPosicionado() .", ". $maquina_mapa->getX() .", ". $maquina_mapa->getY() .", ". $maquina_mapa->getIdMaquinaCostura() .")");
         } catch (PDOException $ex) {
             return false;
         }
@@ -25,7 +25,7 @@ class DaoMaquinaCosturaMapa
 
     function editar(MaquinaCosturaMapa $maquina_mapa)
     {
-        return $this->conexao->exec("update maquina_costura_mapa set posicionado = '". $maquina_mapa->getPosicionado() ."' , x = '". $maquina_mapa->getX() ."' , y = '". $maquina_mapa->getY() . "' where id=" . $maquina_mapa->getId());
+        return $this->conexao->exec("update maquina_costura_mapa set posicionado = ". $maquina_mapa->getPosicionado() .", x = ". $maquina_mapa->getX() .", y = ". $maquina_mapa->getY() . " where id = " . $maquina_mapa->getId());
     }
 
     function excluir($id)
@@ -49,9 +49,7 @@ class DaoMaquinaCosturaMapa
     function listar()
     {
         try {
-            return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipoitems.forEach(function (item) {
-                
-            }) from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id", PDO::FETCH_OBJ);
+            return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }

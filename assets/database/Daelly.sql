@@ -9,9 +9,9 @@ USE `daelly`;
 DROP TABLE IF EXISTS `administrador`;
 CREATE TABLE `administrador` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `nome` VARCHAR(45) DEFAULT NULL,
-  `email` VARCHAR(45) DEFAULT NULL,
-  `senha` VARCHAR(45) DEFAULT NULL,
+  `nome` VARCHAR(50) DEFAULT NULL,
+  `email` VARCHAR(50) DEFAULT NULL,
+  `senha` VARCHAR(50) DEFAULT NULL,
   `tentativas` INT DEFAULT NULL,
   `ultimo_acesso` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
