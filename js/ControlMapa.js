@@ -6,15 +6,7 @@ const btSalvarMaquinas = document.getElementById("bt-salvar-maquinas")
 const btResetarMaquinas = document.getElementById("bt-resetar-maquinas")
 
 function getMaquina({ codigo }) {
-    let maquina = null
-    Object.keys(maquinas).map(i => {
-        if (maquina) { return }
-        if (maquinas[i].codigo != codigo) { return }
-
-        maquina = { id: maquinas[i].id, codigo: maquinas[i].codigo, posicionado: maquinas[i].posicionado, x: maquinas[i].x, y: maquinas[i].y }
-    })
-    const tag = document.getElementById("maquina-" + codigo)
-    return { maquina, tag }
+    return { maquina: { id: maquinas[codigo].id, codigo: maquinas[codigo].codigo, posicionado: maquinas[codigo].posicionado, x: maquinas[codigo].x, y: maquinas[codigo].y }, tag: document.getElementById("maquina-" + codigo) }
 }
 
 function addMaquinaAtualizada({ id, codigo, posicionado, x, y }) {
@@ -53,6 +45,24 @@ function atualizarListaMaquinasAlteradas(mcChanged) {
         removerMaquinaAtualizada(mcInUpdate)
         return
     }
+
+    // Do mapa para o inventario e vice-versa
+    if (mcChanged.posicionado == 1) { // Do inventário para o mapa
+        if (mcChanged.x != mcOrigin.x || mcChanged.y != mcOrigin.y) { // Alterou a posição
+            mcInUpdate.x = mcChanged.x
+            mcInUpdate.y = mcChanged.y
+            return
+        }
+        // Mesma posição do mapa
+        removerMaquinaAtualizada(mcInUpdate)
+        return
+    }
+
+    // Do mapa para o inventário
+    mcInUpdate.posicionado = 0
+    mcInUpdate.x = 0
+    mcInUpdate.y = 0
+    return
 }
 
 function ControlMapa() {
@@ -72,13 +82,14 @@ function ControlMapa() {
     }
 
     const resetarMaquinas = () => {
-        maquinasAlteradas.forEach(({ codigo }) => {
-            const { maquina, tag } = getMaquina({ codigo })
+        while (maquinasAlteradas.length > 0) {
+            const { maquina, tag } = getMaquina(maquinasAlteradas[0])
 
             if (maquina.posicionado == 0) addMaquinaInventario(tag)
             else addMaquinaMapa(tag, maquina.x, maquina.y)
+
             toggleBtSalvar()
-        })
+        }
     }
 
     const maquinaHoverIn = (ev) => {
