@@ -17,7 +17,7 @@ class DaoMaquinaCosturaMapa
     function inserir(MaquinaCosturaMapa $maquina_mapa)
     {
         try {
-            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura) values ('". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."' , '". $maquina_mapa->getIdMaquinaCostura() ."' )");
+            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura, width, height) values ('". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."', '". $maquina_mapa->getIdMaquinaCostura() ."', 100, 100)");
         } catch (PDOException $ex) {
             return false;
         }
