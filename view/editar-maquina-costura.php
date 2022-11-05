@@ -186,7 +186,7 @@ $maquina = $control->selecionar(addslashes($_GET["id"]));
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "maquinas-costura.php");
+                $(location).attr("href", "tipos.php");
             });
 
         });

@@ -16,7 +16,6 @@ $control = new ControlMaquinaCostura();
 $controlTipo = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->cadastrar($_POST["codigo"], $_POST["modelo"], $_POST["marca"], $_POST["chassi"], $_POST["aquisicao"], $_POST["tipo"])) {
-
         $mensagem = "Máquina de costura inserida com sucesso";
         unset($_POST);
     } else {
@@ -93,14 +92,12 @@ $tipos = $controlTipo->listar();
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
                     <li class="active">Máquinas de Costura</li>
-
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">Máquinas de Costura</h1>
-
                 </div>
             </div>
 
@@ -153,7 +150,6 @@ $tipos = $controlTipo->listar();
                                 </div>
                                 <div class="campo_direita">
                                     <input type="text" class="form-control" value="<?php echo (isset($_POST['aquisicao'])) ? $_POST['aquisicao'] : "" ?>" name="aquisicao" id="aquisicao" placeholder="Informe o aquisicao" required="required" data-toggle="tooltip" title="Informe a aquisição" data-placement="auto" />
-
                                 </div>
                             </div>
                     </div>
@@ -190,7 +186,6 @@ $tipos = $controlTipo->listar();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "tipos.php");
-
             });
 
         });

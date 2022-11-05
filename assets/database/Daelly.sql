@@ -7,6 +7,16 @@ USE `daelly`;
 # Create Tables
 
 DROP TABLE IF EXISTS `administrador`;
+DROP TABLE IF EXISTS `grupo`;
+DROP TABLE IF EXISTS `funcionario`;
+DROP TABLE IF EXISTS `funcao`;
+DROP TABLE IF EXISTS `funca_funci`;
+DROP TABLE IF EXISTS `tipo`;
+DROP TABLE IF EXISTS `maquina_costura`;
+DROP TABLE IF EXISTS `maquina_costura_mapa`;
+DROP TABLE IF EXISTS `manutencao`;
+DROP TABLE IF EXISTS `compressor`;
+
 CREATE TABLE `administrador` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) DEFAULT NULL,
@@ -17,14 +27,12 @@ CREATE TABLE `administrador` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `grupo`;
 CREATE TABLE `grupo` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `numero` INT NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `funcionario`;
 CREATE TABLE `funcionario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_grupo` INT DEFAULT NULL,
@@ -35,7 +43,6 @@ CREATE TABLE `funcionario` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `funcao`;
 CREATE TABLE `funcao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_tipo` INT DEFAULT NULL,
@@ -43,21 +50,18 @@ CREATE TABLE `funcao` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `funca_funci`;
 CREATE TABLE `funca_funci` (
   `id_funcionario` INT NOT NULL,
   `id_funcao` INT NOT NULL,
   PRIMARY KEY (`id_funcionario`,`id_funcao`)
 );
 
-DROP TABLE IF EXISTS `tipo`;
 CREATE TABLE `tipo` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `maquina_costura`;
 CREATE TABLE `maquina_costura` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_tipo` INT NOT NULL,
@@ -69,19 +73,15 @@ CREATE TABLE `maquina_costura` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `maquina_costura_mapa`;
 CREATE TABLE `maquina_costura_mapa` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_maquina_costura` INT NOT NULL,
   `posicionado` INT NULL DEFAULT 0,
   `x` INT NULL DEFAULT 0,
   `y` INT NULL DEFAULT 0,
-  `width` INT NOT NULL,
-  `height` INT NOT NULL,
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `manutencao`;
 CREATE TABLE `manutencao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `id_maquina_costura` INT DEFAULT NULL,
@@ -91,7 +91,6 @@ CREATE TABLE `manutencao` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `compressor`;
 CREATE TABLE `compressor` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `codigo` INT NOT NULL,
@@ -100,7 +99,6 @@ CREATE TABLE `compressor` (
   PRIMARY KEY (`id`)
 );
 
-DROP TABLE IF EXISTS `mapa`;
 CREATE TABLE `mapa` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `width` INT NOT NULL,

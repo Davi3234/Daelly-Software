@@ -97,7 +97,6 @@ class ControlMaquinaCostura
     private function criarMaquinaMapa($id_maquna_costura)
     {
         return $this->controlMaquinaMapa->cadastrar($id_maquna_costura);
-
     }
 
     public function excluir($id)
@@ -119,7 +118,6 @@ class ControlMaquinaCostura
     private function selecionarByCodigo($id)
     {
         return $this->daoMaquina->selecionarByCodigo($id);
-
     }
 
     public function listar()
