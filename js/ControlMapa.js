@@ -5,11 +5,6 @@ const maquinaInfo = document.getElementById("maquina-info-content")
 const btSalvarMaquinas = document.getElementById("bt-salvar-maquinas")
 const btResetarMaquinas = document.getElementById("bt-resetar-maquinas")
 
-const mapaDimension = { width: 1000, height: 1000 }
-
-mapa.style.width = mapaDimension.width + "px"
-mapa.style.height = mapaDimension.height + "px"
-
 function getMaquina({ codigo }) {
     let maquina = null
     Object.keys(maquinas).map(i => {

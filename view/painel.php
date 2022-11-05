@@ -7,12 +7,15 @@ if (!isset($_SESSION["email"])) {
 require_once "../control/ControlMaquinaCosturaMapa.php";
 require_once "../model/DaoMaquinaCosturaMapa.php";
 require_once "../model/MaquinaCosturaMapa.php";
+require_once "../control/ControlMapa.php";
+require_once "../model/DaoMapa.php";
 
 $control = new ControlMaquinaCosturaMapa();
+$controlMapa = new ControlMapa();
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $maquinasAlteradas = json_decode($_POST["maquinas"])->maquinas;
-    $msg = "";
+
     foreach($maquinasAlteradas as $mc) {
         $control->editar($mc->id, $mc->posicionado, $mc->x, $mc->y);
     }
@@ -21,9 +24,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 $maquinas = $control->listar();
 $maquinasMapa = $control->listarMCMapa();
 $maquinasInventario = $control->listarMCInventario();
+$mapa = $controlMapa->selecionar();
 
 $data = '{';
-
 $i = 0;
 if ($maquinas) foreach ($maquinas as $mc) {
     if ($i > 0) {
@@ -31,10 +34,11 @@ if ($maquinas) foreach ($maquinas as $mc) {
     }
     $data .= $mc->codigo . ':{"id":' . $mc->id . ',"codigo":' . $mc->codigo . ',
         "x":' . $mc->x . ',"y":' . $mc->y . ',"posicionado":' . $mc->posicionado . ',
-    "id_maquina_costura":' . $mc->id_maquina_costura . '}';
+    "id_maquina_costura":' . $mc->id_maquina_costura . ',"modelo":"' . $mc->modelo . '",
+    "marca":"' . $mc->marca . '","chassi":"' . $mc->chassi . '","aquisicao":"' . $mc->aquisicao . '",
+    "tipo":"' . $mc->tipo . '"}';
     $i++;
 }
-
 $data .= '}';
 ?>
 <html>
@@ -114,19 +118,19 @@ $data .= '}';
                 </div>
                 <div id="mapa-content">
                     <div id="mapa-box">
-                        <div id="mapa">
+                        <div id="mapa" style="width: <?php echo $mapa->largura_mapa ?>px; height: <?php echo $mapa->altura_mapa ?>px;">
                             <div class="listas-maquinas" id="lista-maquinas-mapa" ondrop="dropMapa(event)" ondragover="allowDrop(event)">
                                 <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
-                                    <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px;"><?php echo $mc->codigo ?></div>
+                                    <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;"><?php echo $mc->codigo ?></div>
                                 <?php } ?>
                             </div>
                         </div>
                     </div>
 
-                    <div id="inventario">
+                    <div id="inventario" style="height: <?php echo $mapa->altura_mc + 20 ?>px;">
                         <div class="listas-maquinas" id="lista-maquinas-inventario" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
                             <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
-                                <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
+                                <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;"><?php echo $mc->codigo ?></div>
                             <?php } ?>
                         </div>
                     </div>
@@ -159,6 +163,8 @@ $data .= '}';
     <script>
         const maquinas = JSON.parse(JSON.stringify(<?php echo $data ?>))
         const maquinasAlteradas = []
+
+        console.log(maquinas)
 
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip()

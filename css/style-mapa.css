@@ -33,7 +33,7 @@ body {
     position: relative;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 90px) !important;
+    height: calc(100vh - 150px) !important;
 }
 #mapa-box {
     height: 100%;
@@ -48,7 +48,6 @@ body {
     position: relative;
 }
 #inventario {
-    height: 65px;
     box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
 }
 .listas-maquinas {
@@ -63,8 +62,6 @@ body {
     overflow-x: auto;
 }
 .maquinas {
-    width: 50px;
-    height: 50px;
     background-color: blueviolet;
     color: #fff;
     user-select: none;

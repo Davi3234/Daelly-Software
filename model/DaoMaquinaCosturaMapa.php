@@ -17,7 +17,7 @@ class DaoMaquinaCosturaMapa
     function inserir(MaquinaCosturaMapa $maquina_mapa)
     {
         try {
-            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura, width, height) values ('". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."', '". $maquina_mapa->getIdMaquinaCostura() ."', 100, 100)");
+            return $this->conexao->exec("insert into maquina_costura_mapa (posicionado, x, y, id_maquina_costura) values ('". $maquina_mapa->getPosicionado() ."' , '". $maquina_mapa->getX() ."' , '". $maquina_mapa->getY() ."', '". $maquina_mapa->getIdMaquinaCostura() ."')");
         } catch (PDOException $ex) {
             return false;
         }
@@ -49,7 +49,9 @@ class DaoMaquinaCosturaMapa
     function listar()
     {
         try {
-            return $this->conexao->query("select mcm.*, mc.*, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id", PDO::FETCH_OBJ);
+            return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipoitems.forEach(function (item) {
+                
+            }) from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -58,7 +60,7 @@ class DaoMaquinaCosturaMapa
     function listarMCMapa()
     {
         try {
-            return $this->conexao->query("select mcm.*, mc.*, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id where mcm.posicionado = 1", PDO::FETCH_OBJ);
+            return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id where mcm.posicionado = 1", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -67,7 +69,9 @@ class DaoMaquinaCosturaMapa
     function listarMCInventario()
     {
         try {
-            return $this->conexao->query("select mcm.*, mc.*, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id where mcm.posicionado = 0", PDO::FETCH_OBJ);
+            return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipoitems.forEach(function (item) {
+                
+            }) from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id where mcm.posicionado = 0", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -76,7 +80,9 @@ class DaoMaquinaCosturaMapa
     function selecionar($id)
     {
         try {
-            return $this->conexao->query("select mcm.*, mc.*, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id where id = " . $id)->fetchObject();
+            return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipoitems.forEach(function (item) {
+                
+            }) from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id where id = " . $id)->fetchObject();
         } catch (PDOException $ex) {
             return false;
         }
