@@ -3,6 +3,7 @@ const listaMCMapa = document.getElementById("lista-maquinas-mapa")
 const listaMCInventario = document.getElementById("lista-maquinas-inventario")
 const maquinaInfo = document.getElementById("maquina-info-content")
 const btSalvarMaquinas = document.getElementById("bt-salvar-maquinas")
+const btResetarMaquinas = document.getElementById("bt-resetar-maquinas")
 
 const mapaDimension = { width: 1000, height: 1000 }
 
@@ -17,7 +18,8 @@ function getMaquina({ codigo }) {
 
         maquina = { id: maquinas[i].id, codigo: maquinas[i].codigo, posicionado: maquinas[i].posicionado, x: maquinas[i].x, y: maquinas[i].y }
     })
-    return { maquina }
+    const tag = document.getElementById("maquina-" + codigo)
+    return { maquina, tag }
 }
 
 function addMaquinaAtualizada({ id, codigo, posicionado, x, y }) {
@@ -32,24 +34,30 @@ function atualizarListaMaquinasAlteradas(mcChanged) {
     const { maquina: mcOrigin } = getMaquina(mcChanged)
     const mcInUpdate = maquinasAlteradas.find(m => m.codigo == mcChanged.codigo)
 
-    if (!mcInUpdate) {
-        if (mcChanged.posicionado == mcOrigin.posicionado && mcOrigin.posicionado == 0) { return }
+    if (!mcInUpdate) { // Primeira alteração da máquina
+        if (mcChanged.posicionado == mcOrigin.posicionado && mcOrigin.posicionado == 0) { // Do inventário para o inventário
+            return
+        }
+        // Do inventário para o mapa e vice-versa / Do mapa para o mapa
         addMaquinaAtualizada(mcChanged)
         return
     }
 
-    mcInUpdate.x = mcChanged.x
-    mcInUpdate.y = mcChanged.y
-
     if (mcChanged.posicionado == mcOrigin.posicionado) {
-        if (mcOrigin.posicionado == 0) {
+        if (mcOrigin.posicionado == 1) { // Do mapa para o mapa
+            if (mcChanged.x != mcOrigin.x || mcChanged.y != mcOrigin.y) { // Alterou a posição
+                mcInUpdate.x = mcChanged.x
+                mcInUpdate.y = mcChanged.y
+                return
+            }
+            // Mesma posição do mapa
             removerMaquinaAtualizada(mcInUpdate)
             return
         }
+        // Do mapa/inventario para o inventário
+        removerMaquinaAtualizada(mcInUpdate)
         return
     }
-
-    if (mcChanged.posicionado == 1) { return }
 }
 
 function ControlMapa() {
@@ -58,6 +66,7 @@ function ControlMapa() {
     const iniciarComponents = () => {
         maquinaInfoToggle = false
         btSalvarMaquinas.title = "Sem alteração para salvar"
+        btResetarMaquinas.title = "Sem alteração para resetar"
         document.querySelectorAll("#lista-maquinas-mapa .maquinas").forEach(a => a.style.position = "absolute")
         document.querySelectorAll(".maquinas").forEach(a => {
             // document.getElementById("").addEventListener("mouseenter", maquinaHoverIn)
@@ -65,6 +74,16 @@ function ControlMapa() {
             a.addEventListener("mouseout", maquinaHoverOut)
         })
         window.addEventListener("click", hiddenMaquinaInfo)
+    }
+
+    const resetarMaquinas = () => {
+        maquinasAlteradas.forEach(({ codigo }) => {
+            const { maquina, tag } = getMaquina({ codigo })
+
+            if (maquina.posicionado == 0) addMaquinaInventario(tag)
+            else addMaquinaMapa(tag, maquina.x, maquina.y)
+            toggleBtSalvar()
+        })
     }
 
     const maquinaHoverIn = (ev) => {
@@ -99,6 +118,8 @@ function ControlMapa() {
 
         btSalvarMaquinas.classList.toggle("valid", value)
         btSalvarMaquinas.title = value ? "Gravar alterações" : "Sem alterações feitas"
+        btResetarMaquinas.classList.toggle("valid", value)
+        btResetarMaquinas.title = value ? "Resetar alterações" : "Sem alterações feitas"
     }
 
     const hiddenMaquinaInfo = () => {
@@ -171,6 +192,7 @@ function ControlMapa() {
         maquinaDragClickDown,
         maquinaDragClickUpMapa,
         maquinaDragClickUpInventario,
+        resetarMaquinas
     }
 }
 
@@ -194,4 +216,8 @@ function dropMapa(ev) {
 
 function dropInventario(ev) {
     control && control.maquinaDragClickUpInventario(ev)
+}
+
+function resetarMaquinasAlteradas() {
+    control && control.resetarMaquinas()
 }

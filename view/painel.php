@@ -103,11 +103,14 @@ $data .= '}';
             </div>
 
             <form action="" method="post" id="editar-maquinas-mapa">
-                <input id="maquinas-input" name="maquinas" type="text" hidden value="{}">
+                <input id="maquinas-input" name="maquinas" type="text" hidden value='{"maquinas":[]}'>
                 <div class="panel-heading">
                     <button id="bt-salvar-maquinas" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked checkmark">
                             <use xlink:href="#stroked-checkmark" />
                         </svg> Gravar</button>
+                        <button id="bt-resetar-maquinas" onclick="resetarMaquinasAlteradas()" type="button" class="btn btn-primary resetar" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked arrow left">
+                                        <use xlink:href="#stroked-arrow-left" />
+                                    </svg> Resetar</button>
                 </div>
                 <div id="mapa-content">
                     <div id="mapa-box">
@@ -167,11 +170,11 @@ $data .= '}';
                     return
                 }
 
-                editarMaquinaAlteradas()
+                editarMaquinasAlteradas()
             })
         })
 
-        function editarMaquinaAlteradas() {
+        function editarMaquinasAlteradas() {
             const tag = document.getElementById("maquinas-input")
 
             let data = '{"maquinas":['
