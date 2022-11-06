@@ -6,25 +6,19 @@ class Funcionario {
     private $nome;
     private $entrada;
     private $saida;
-    private $id_funcao;
     private $id_grupo;
     
-    function __construct($cpf = null, $nome = null, $entrada = null, $saida = null, $id_funcao = null, $id_grupo = null, $id = null) {
+    function __construct($cpf = null, $nome = null, $entrada = null, $saida = null, $id_grupo = null, $id = null) {
         $this->id = $id;
         $this->cpf = $cpf;
         $this->nome = $nome;
         $this->entrada = $entrada;
         $this->saida = $saida;
-        $this->id_funcao = $id_funcao;
         $this->id_grupo = $id_grupo;
     }
     
     function getId() {
         return $this->id;
-    }
-
-    function getIdFuncao() {
-        return $this->id_funcao;
     }
     
     function getIdGrupo() {
@@ -46,7 +40,6 @@ class Funcionario {
     function getSaida() {
         return $this->saida;
     }
-
 
     function setId($id) {
         $this->id = $id;

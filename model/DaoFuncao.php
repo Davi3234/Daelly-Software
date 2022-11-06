@@ -17,7 +17,11 @@ class DaoFuncao
     function inserir(Funcao $funcao)
     {
         try {
-            return $this->conexao->exec("insert into funcao (nome, id_tipo) values ('" . $funcao->getNome() . "', '".$funcao->getIdTipo()."' )");
+            if ($funcao->getIdTipo()) {
+                return $this->conexao->exec("insert into funcao (nome, id_tipo) values ('" . $funcao->getNome() . "', '" . $funcao->getIdTipo() . "' )");
+            } else {
+                return $this->conexao->exec("insert into funcao (nome) values ('" . $funcao->getNome() . "')");
+            }
         } catch (PDOException $ex) {
             return false;
         }
@@ -25,7 +29,11 @@ class DaoFuncao
 
     function editar(Funcao $funcao)
     {
-        return $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "' id_tipo = '".$funcao->getIdTipo()."'where id=".$funcao->getId());
+        if ($funcao->getIdTipo()) {
+            return $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "' id_tipo = '" . $funcao->getIdTipo() . "'where id=" . $funcao->getId());
+        } else {
+            return $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "' where id=" . $funcao->getId());
+        }
     }
 
     function excluir($id)
