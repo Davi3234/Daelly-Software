@@ -9,14 +9,16 @@ require_once '../model/Funcao.php';
 require_once '../model/DaoFuncao.php';
 require_once '../control/ControlFuncao.php';
 session_start();
-if (!isset($_SESSION['email']))  {
+if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlFuncionario();
 $controlGru = new ControlGrupo();
 $controlFun = new ControlFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'])) {
+    $funcoesSelecionadas = json_decode($_POST["funcoes-selecionadas"])->funcoes;
+
+    if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'], $funcoesSelecionadas)) {
         $mensagem = "Funcion�rio inserido com sucesso";
         unset($_POST);
     } else {
@@ -107,8 +109,9 @@ $listaFun = $controlFun->listar();
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <form action="" method="POST" id="form" name="form">
+                            <input hidden type="text" name="funcoes-selecionadas" id="funcoes-input" value='{"funcoes":[]}'>
                             <div class="panel-heading">
-                                <button type="submit" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
+                                <button type="submit" id="gravar" class="btn btn-primary" data-toggle="tooltip" title="Gravar o registro" data-placement="auto"><svg class="glyph stroked checkmark">
                                         <use xlink:href="#stroked-checkmark" />
                                     </svg> Gravar</button>
                                 <button type="button" class="btn btn-primary voltar" data-toggle="tooltip" title="Voltar para a listagem" data-placement="auto"><svg class="glyph stroked arrow left">
@@ -146,10 +149,8 @@ $listaFun = $controlFun->listar();
                                     <?php
                                     foreach ($listaFun as $f) {
                                     ?>
-                                        <input class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            <?php echo $f->nome ?>
-                                        </label>
+                                        <input name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                        <label class="form-check-label" for="flexCheckDefault"><?php echo $f->nome ?></label>
                                         <br>
                                     <?php
                                     }
@@ -168,10 +169,8 @@ $listaFun = $controlFun->listar();
                                     </select>
                                 </div>
                             </div>
-
                     </div>
                 </div>
-
                 </form>
             </div>
         </div>
@@ -206,6 +205,23 @@ $listaFun = $controlFun->listar();
                 $(location).attr("href", "funcionarios.php");
             });
 
+            $('#form').submit((ev) => {
+                // ev.preventDefault()
+                const funcoesSelecionadas = []
+                document.getElementsByName("funcoes[]").forEach(tag => {
+                    if (!tag.checked) {
+                        return
+                    }
+                    funcoesSelecionadas.push(Number(tag.value))
+                })
+
+                const data = `{"funcoes":${JSON.stringify(funcoesSelecionadas)}}`
+
+                console.log(data);
+
+                document.getElementById("funcoes-input").value = data
+
+            })
         });
         $(document).ready(function() {
             $("#cpf").mask("999.999.999-99");

@@ -58,6 +58,9 @@ body {
     width: 100%;
     height: 100%;
 }
+#lista-maquinas-mapa {
+    padding: 0;
+}
 #lista-maquinas-inventario {
     overflow-x: auto;
 }

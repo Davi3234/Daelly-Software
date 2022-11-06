@@ -26,20 +26,16 @@ $maquinasMapa = $control->listarMCMapa();
 $maquinasInventario = $control->listarMCInventario();
 $mapa = $controlMapa->selecionar();
 
-$data = '{';
+$data = '{"maquinas":[';
 $i = 0;
 if ($maquinas) foreach ($maquinas as $mc) {
     if ($i > 0) {
         $data .= ',';
     }
-    $data .= $mc->codigo . ':{"id":' . $mc->id . ',"codigo":' . $mc->codigo . ',
-        "x":' . $mc->x . ',"y":' . $mc->y . ',"posicionado":' . $mc->posicionado . ',
-    "id_maquina_costura":' . $mc->id_maquina_costura . ',"modelo":"' . $mc->modelo . '",
-    "marca":"' . $mc->marca . '","chassi":"' . $mc->chassi . '","aquisicao":"' . $mc->aquisicao . '",
-    "tipo":"' . $mc->tipo . '"}';
+    $data .= json_encode($mc);
     $i++;
 }
-$data .= '}';
+$data .= ']}';
 ?>
 <html>
 
@@ -161,10 +157,8 @@ $data .= '}';
         })
     </script>
     <script>
-        const maquinas = JSON.parse(JSON.stringify(<?php echo $data ?>))
+        const { maquinas } = JSON.parse(JSON.stringify(<?php echo $data ?>))
         const maquinasAlteradas = []
-
-        console.log(maquinas)
 
         $(document).ready(function() {
             $('[data-toggle="tooltip"]').tooltip()
@@ -183,14 +177,7 @@ $data .= '}';
         function editarMaquinasAlteradas() {
             const tag = document.getElementById("maquinas-input")
 
-            let data = '{"maquinas":['
-            let i = 0
-            maquinasAlteradas.forEach(mc => {
-                if (i > 0) {data += ','}
-                data += '{"id":' + mc.id + ',"codigo":' + mc.codigo + ',"posicionado":' + mc.posicionado + ',"x":' + mc.x + ',"y":' + mc.y + '}'
-                i++
-            })
-            data += ']}'
+            let data = `{"maquinas":${JSON.stringify(maquinasAlteradas)}}`
 
             tag.value = data
         }

@@ -124,7 +124,6 @@ $maquinas = $control->listar();
                                 <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                                     <thead>
                                         <tr>
-                                            <th data-sortable="true">Id</th>
                                             <th data-sortable="true">Código</th>
                                             <th data-sortable="true">Modelo</th>
                                             <th data-sortable="true">Tipo</th>
@@ -137,7 +136,6 @@ $maquinas = $control->listar();
                                     <tbody>
                                         <?php if ($maquinas) foreach ($maquinas as $t) { ?>
                                             <tr>
-                                                <td><?php echo $t->id ?></td>
                                                 <td><?php echo $t->codigo ?></td>
                                                 <td><?php echo $t->modelo ?></td>
                                                 <td><?php if ($t->tipo) {

@@ -115,7 +115,6 @@ $grupos = $control->listar();
                                     <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                                         <thead>
                                             <tr>                                                
-                                                <th data-sortable="true">Id</th>
                                                 <th data-sortable="true">Número</th> 
                                                 <th data-sortable="true">A��es</th>                                             
                                             </tr>                        
@@ -123,7 +122,6 @@ $grupos = $control->listar();
                                         <tbody> 
                                             <?php if ($grupos) foreach ($grupos as $t) { ?>
                                                     <tr>
-                                                        <td><?php echo $t->id ?></td>                                                        
                                                         <td><?php echo $t->numero ?></td>                                                       
                                                         <td>
                                                             <a href="#" class="editar" rel="<?php echo $t->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;

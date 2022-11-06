@@ -5,8 +5,11 @@ const maquinaInfo = document.getElementById("maquina-info-content")
 const btSalvarMaquinas = document.getElementById("bt-salvar-maquinas")
 const btResetarMaquinas = document.getElementById("bt-resetar-maquinas")
 
-function getMaquina({ codigo }) {
-    return { maquina: { id: maquinas[codigo].id, codigo: maquinas[codigo].codigo, posicionado: maquinas[codigo].posicionado, x: maquinas[codigo].x, y: maquinas[codigo].y }, tag: document.getElementById("maquina-" + codigo) }
+function getMaquina({ codigo: cod1 }) {
+    const { id, codigo, posicionado, x, y } = maquinas.find(({ codigo: cod2 }) => { return cod2 == cod1 })
+    const tag = document.getElementById("maquina-" + codigo)
+
+    return { maquina: { id, codigo, posicionado, x, y }, tag }
 }
 
 function addMaquinaAtualizada({ id, codigo, posicionado, x, y }) {
