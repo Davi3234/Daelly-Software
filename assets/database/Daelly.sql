@@ -31,7 +31,7 @@ CREATE TABLE `funcionario` (
   `id_grupo` INT DEFAULT NULL,
   `cpf` VARCHAR(14) NOT NULL,
   `nome` VARCHAR(50) NULL,
-  `inicio` VARCHAR(10) NULL,
+  `entrada` VARCHAR(10) NULL,
   `saida` VARCHAR(10) NULL,
   PRIMARY KEY (`id`)
 );
