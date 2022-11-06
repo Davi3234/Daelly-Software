@@ -13,7 +13,7 @@ class ControlFuncao
         $this->erros = array();
     }
 
-    public function inserir($nome, $id_tipo)
+    public function inserir($nome, $id_tipo = null)
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
@@ -22,7 +22,7 @@ class ControlFuncao
             $this->erros[] = "Informe o tipo";
         }
         if (!$this->erros) {
-            $this->funcao = new Funcao($nome, $id_tipo);
+            $this->funcao = new Funcao($nome, $id_tipo == 0 ? null : $id_tipo);
             if ($this->daoFuncao->inserir($this->funcao)) {
                 return true;
             } else {
@@ -34,16 +34,13 @@ class ControlFuncao
         }
     }
 
-    public function editar($nome, $id_tipo, $id)
+    public function editar($id, $nome, $id_tipo = null)
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
         }
-        if (strlen($id_tipo) == 0) {
-            $this->erros[] = "Informe o tipo";
-        }
         if (!$this->erros) {
-            $this->funcao = new Funcao($nome, $id_tipo, $id);
+            $this->funcao = new Funcao($nome, $id_tipo == 0 ? null : $id_tipo, $id);
             if ($this->daoFuncao->editar($this->funcao)) {
                 return true;
             }
