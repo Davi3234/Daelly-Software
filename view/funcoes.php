@@ -113,7 +113,6 @@ $funcoes = $control->listar();
                                     <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                                         <thead>
                                             <tr>                                                
-                                                <th data-sortable="true">Id</th>
                                                 <th data-sortable="true">Nome</th> 
                                                 <th data-sortable="true">A��es</th>                                             
                                             </tr>                        
@@ -121,7 +120,6 @@ $funcoes = $control->listar();
                                         <tbody> 
                                             <?php if ($funcoes) foreach ($funcoes as $f) { ?>
                                                     <tr>
-                                                        <td><?php echo $f->id ?></td>                                                        
                                                         <td><?php echo $f->nome ?></td>                                                       
                                                         <td>
                                                             <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;

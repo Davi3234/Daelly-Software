@@ -8,7 +8,7 @@ if (!isset($_SESSION['email']))  {
 }
 $control = new ControlFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->editar($_POST['nome'], $_POST['id_tipo'], addslashes($_GET['id']))) {
+    if ($control->editar(addslashes($_GET['id']), $_POST['nome'], $_POST['id_tipo'])) {
         $mensagem = "Fun��o editada com sucesso";
         unset($_POST);
     } else {

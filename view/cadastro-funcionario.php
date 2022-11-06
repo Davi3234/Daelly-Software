@@ -2,6 +2,9 @@
 require_once '../model/Funcionario.php';
 require_once '../model/DaoFuncionario.php';
 require_once '../control/ControlFuncionario.php';
+require_once '../model/FuncionarioFuncao.php';
+require_once '../model/DaoFuncionarioFuncao.php';
+require_once '../control/ControlFuncionarioFuncao.php';
 require_once '../model/Grupo.php';
 require_once '../model/DaoGrupo.php';
 require_once '../control/ControlGrupo.php';
@@ -15,13 +18,16 @@ if (!isset($_SESSION['email'])) {
 $control = new ControlFuncionario();
 $controlGru = new ControlGrupo();
 $controlFun = new ControlFuncao();
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $funcoesSelecionadas = json_decode($_POST["funcoes-selecionadas"])->funcoes;
 
-    if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_funcao'], $_POST['id_grupo'], $funcoesSelecionadas)) {
+    if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
         $mensagem = "Funcion�rio inserido com sucesso";
+        $control->atualizarFuncoes($control->selecionarByCpf($_POST["cpf"])->id, $funcoesSelecionadas);
         unset($_POST);
-    } else {
+    }
+    if (count($control->getErros()) > 0) {
         $erros = "";
         foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
@@ -206,7 +212,6 @@ $listaFun = $controlFun->listar();
             });
 
             $('#form').submit((ev) => {
-                // ev.preventDefault()
                 const funcoesSelecionadas = []
                 document.getElementsByName("funcoes[]").forEach(tag => {
                     if (!tag.checked) {
@@ -217,10 +222,7 @@ $listaFun = $controlFun->listar();
 
                 const data = `{"funcoes":${JSON.stringify(funcoesSelecionadas)}}`
 
-                console.log(data);
-
                 document.getElementById("funcoes-input").value = data
-
             })
         });
         $(document).ready(function() {

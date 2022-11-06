@@ -2,6 +2,15 @@
 require_once '../model/Funcionario.php';
 require_once '../model/DaoFuncionario.php';
 require_once '../control/ControlFuncionario.php';
+require_once '../model/FuncionarioFuncao.php';
+require_once '../model/DaoFuncionarioFuncao.php';
+require_once '../control/ControlFuncionarioFuncao.php';
+require_once '../model/Grupo.php';
+require_once '../model/DaoGrupo.php';
+require_once '../control/ControlGrupo.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 session_start();
 if (!isset($_SESSION['email']))  {
     header("location: login.php");
@@ -113,12 +122,10 @@ $funcionarios = $control->listar();
                                     <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                                         <thead>
                                             <tr>                                                
-                                                <th data-sortable="true">Id</th>
                                                 <th data-sortable="true">Nome</th> 
                                                 <th data-sortable="true">CPF</th> 
                                                 <th data-sortable="true">Entrada</th> 
                                                 <th data-sortable="true">Sa�da</th> 
-                                                <th data-sortable="true">Fun��o</th> 
                                                 <th data-sortable="true">Grupo</th> 
                                                 <th data-sortable="true">A��es</th>                                             
                                             </tr>                        
@@ -126,13 +133,11 @@ $funcionarios = $control->listar();
                                         <tbody> 
                                             <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
                                                     <tr>
-                                                        <td><?php echo $f->id ?></td>                                                        
                                                         <td><?php echo $f->nome ?></td>    
                                                         <td><?php echo $f->cpf ?></td> 
                                                         <td><?php echo $f->entrada ?></td> 
                                                         <td><?php echo $f->saida ?></td>    
-                                                        <td><?php echo $f->grupo ?></td>   
-                                                        <td><?php echo $f->funcao ?></td>                                                      
+                                                        <td><?php echo $f->grupo ? $f->grupo : "Nenhum" ?></td>   
                                                         <td>
                                                             <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
                                                             <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
