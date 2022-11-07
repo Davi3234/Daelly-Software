@@ -142,6 +142,29 @@
                 </li>
             </ul>
         </li>
+        <li class="parent">
+            <a href="cadastro-manutencao.php">
+                <span data-toggle="collapse" href="#manutencoes"><svg class="glyph stroked chevron-down">
+                        <use xlink:href="#stroked-chevron-down"></use>
+                    </svg>Manutenção</span>
+            </a>
+            <ul class="children collapse" id="manutencoes">
+                <li>
+                    <a class="" href="manutencoes.php">
+                        <svg class="glyph stroked chevron-right">
+                            <use xlink:href="#stroked-chevron-right"></use>
+                        </svg> Listar Manutenções
+                    </a>
+                </li>
+                <li>
+                    <a class="" href="cadastro-manutencao.php">
+                        <svg class="glyph stroked chevron-right">
+                            <use xlink:href="#stroked-chevron-right"></use>
+                        </svg> Cadastrar Manutenção
+                    </a>
+                </li>
+            </ul>
+        </li>
         <li role="presentation" class="divider"></li>
     </ul>
 </div>

@@ -149,7 +149,7 @@ $tipos = $controlTipo->listar();
                                     </select>
                                 </div>
                                 <div class="campo_direita">
-                                    <input type="text" class="form-control" value="<?php echo (isset($_POST['aquisicao'])) ? $_POST['aquisicao'] : "" ?>" name="aquisicao" id="aquisicao" placeholder="Informe o aquisicao" required="required" data-toggle="tooltip" title="Informe a aquisição" data-placement="auto" />
+                                    <input type="date" class="form-control" value="<?php echo (isset($_POST['aquisicao'])) ? $_POST['aquisicao'] : "" ?>" name="aquisicao" id="aquisicao" placeholder="Informe o aquisicao" required="required" data-toggle="tooltip" title="Informe a aquisição" data-placement="auto" />
                                 </div>
                             </div>
                     </div>
