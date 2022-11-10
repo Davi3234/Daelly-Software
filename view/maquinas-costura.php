@@ -29,20 +29,7 @@ $maquinas = $control->listar();
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gerenciamento de Malharia</title>
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/datepicker3.css" rel="stylesheet">
-    <link href="/css/bootstrap-table.css" rel="stylesheet">
-    <script src="/js/jquery-3.1.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-table.js"></script>
-    <script src="/js/bootbox.js"></script>
-    <script src="/js/lumino.glyphs.js"></script>
-    <script src="/js/jquery-maskedinput.min.js"></script>
-    <script src="/js/mascaras.js"></script>
+<?php include 'header.php' ?>
 </head>
 
 <body>

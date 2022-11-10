@@ -3,7 +3,7 @@ require_once '../model/Compressor.php';
 require_once '../model/DaoCompressor.php';
 require_once '../control/ControlCompressor.php';
 session_start();
-if (!isset($_SESSION['email']))  {
+if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlCompressor();
@@ -23,48 +23,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gerenciamento de Malharia</title>
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
-    <link href="/css/datepicker3.css" rel="stylesheet">
-    <link href="/css/bootstrap-table.css" rel="stylesheet">
-    <script src="/js/jquery-3.1.0.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/bootstrap-table.js"></script>
-    <script src="/js/bootbox.js"></script>
-    <script src="/js/lumino.glyphs.js"></script>
-    <script src="/js/jquery-maskedinput.min.js"></script>
-    <script src="/js/mascaras.js"></script>
+    <?php include 'header.php'?>
 </head>
 
 <body>
-
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-expand-lg bg-light">
         <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-                    <span class="sr-only">Menu</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="">Daelly Confec��es</a>
-                <ul class="user-menu">
-                    <li class="dropdown pull-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user">
-                                <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usu�rio Logado </span><span class="caret"></span>
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
                         </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="logout.php"><svg class="glyph stroked cancel">
-                                        <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a></li>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled">Disabled</a>
+                    </li>
                 </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
             </div>
         </div>
     </nav>

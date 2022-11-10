@@ -1,4 +1,4 @@
-<div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+<!-- <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
     <ul class="nav menu">
         <li role="presentation" class="divider"></li>
         <li class="active"><a href="painel.php"><svg class="glyph dashboard-dial">
@@ -167,4 +167,4 @@
         </li>
         <li role="presentation" class="divider"></li>
     </ul>
-</div>
+</div> -->
