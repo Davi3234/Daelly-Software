@@ -66,7 +66,7 @@ CREATE TABLE `maquina_costura` (
   `modelo` VARCHAR(50) NULL,
   `marca` VARCHAR(50) NULL,
   `chassi` VARCHAR(50) NULL,
-  `aquisicao` VARCHAR(50) NULL,
+  `aquisicao` DATE DEFAULT NULL,
   PRIMARY KEY (`id`)
 );
 
