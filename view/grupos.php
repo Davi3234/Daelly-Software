@@ -146,6 +146,7 @@ $grupos = $control->listar();
                     $(this).find('em:first').toggleClass("glyphicon-minus");
                 });
                 $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+            $(".parent#menu-item-grupo").addClass("active");
             }(window.jQuery);
 
             $(window).on('resize', function () {

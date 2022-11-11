@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar(addslashes($_GET['id']), $_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
         $mensagem = "Funcion�rio editado com sucesso";
 
-        // $control->atualizarFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas));
+        $control->atualizarFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas));
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
@@ -38,8 +38,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 $listaGru = $controlGru->listar();
 $listaFun = $controlFun->listar();
-$listaFuncaInFunci = $controlFF->listarByFuncionario(addslashes($_GET['id']));
-
+$listaFuncaInFunci = array();
+foreach($controlFF->listarByFuncionario(addslashes($_GET['id'])) as $f){
+    $listaFuncaInFunci[] = $f['id_funcao'];
+}
 $funcionario = $control->selecionar(addslashes($_GET['id']));
 ?>
 
@@ -158,7 +160,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                                 </div>
                                 <div class="form-check campo_esquerda">
                                     <?php foreach ($listaFun as $f) { ?>
-                                        <input name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                        <input <?php if (in_array($f->id, $listaFuncaInFunci)) { ?> checked <?php } ?> name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
                                         <label class="form-check-label" for="flexCheckDefault"><?php echo $f->nome ?></label>
                                         <br>
                                     <?php } ?>
@@ -191,6 +193,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+            $(".parent#menu-item-funcionario").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {

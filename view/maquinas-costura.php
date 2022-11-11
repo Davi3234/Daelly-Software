@@ -169,6 +169,7 @@ $maquinas = $control->listar();
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+            $(".parent#menu-item-maquina-costura").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {

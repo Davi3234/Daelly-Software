@@ -105,10 +105,10 @@ $data .= ']}';
             <form action="" method="post" id="editar-maquinas-mapa">
                 <input id="maquinas-input" name="maquinas" type="text" hidden value='{"maquinas":[]}'>
                 <div class="panel-heading">
-                    <button id="bt-salvar-maquinas" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked checkmark">
+                    <button id="bt-salvar-maquinas" type="submit" title="Gravar alterações" class="btn btn-primary" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked checkmark">
                             <use xlink:href="#stroked-checkmark" />
                         </svg> Gravar</button>
-                        <button id="bt-resetar-maquinas" onclick="resetarMaquinasAlteradas()" type="button" class="btn btn-primary resetar" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked arrow left">
+                        <button id="bt-resetar-maquinas" title="Resetar alterações" onclick="resetarMaquinasAlteradas()" type="button" class="btn btn-primary resetar" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked arrow left">
                                         <use xlink:href="#stroked-arrow-left" />
                                     </svg> Resetar</button>
                 </div>
@@ -138,6 +138,7 @@ $data .= ']}';
         <strong>Máquina <span id="mc-info-codigo"></span></strong>
         <button>Adicionar a máquina ao inventário</button>
     </div>
+
     <script src="../js/ControlMapa.js"></script>
     <script>
         ! function($) {
@@ -145,6 +146,7 @@ $data .= ']}';
                 $(this).find('em:first').toggleClass("glyphicon-minus")
             })
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus")
+            $(".parent#menu-item-inicio").addClass("active");
         }(window.jQuery)
 
         $(window).on('resize', function() {

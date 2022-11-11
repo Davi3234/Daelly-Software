@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
         $mensagem = "Funcion�rio inserido com sucesso";
-        $control->atualizarFuncoes($control->selecionarByCpf($_POST["cpf"])->id, $funcoesSelecionadas);
+        $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"])->id, $funcoesSelecionadas);
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
@@ -190,6 +190,7 @@ $listaFun = $controlFun->listar();
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+            $(".parent#menu-item-funcionario").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {

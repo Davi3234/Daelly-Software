@@ -139,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+            $(".parent#menu-item-tipo").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {

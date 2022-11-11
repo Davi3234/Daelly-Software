@@ -1,10 +1,10 @@
 <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
     <ul class="nav menu">
         <li role="presentation" class="divider"></li>
-        <li class="active"><a href="painel.php"><svg class="glyph dashboard-dial">
+        <li class="parent" id="menu-item-inicio"><a href="painel.php"><svg class="glyph dashboard-dial">
                     <use xlink:href="#stroked-dashboard-dial" />
                 </svg> In�cio</a></li>
-        <li class="parent">
+        <li class="parent" id="menu-item-funcionario">
             <a href="cadastro-funcionario.php">
                 <span data-toggle="collapse" href="#funcionarios"><svg class="glyph stroked chevron-down">
                         <use xlink:href="#stroked-chevron-down"></use>
@@ -27,7 +27,7 @@
                 </li>
             </ul>
         </li>
-        <li class="parent">
+        <li class="parent" id="menu-item-grupo">
             <a href="cadastro-grupo.php">
                 <span data-toggle="collapse" href="#grupos"><svg class="glyph stroked chevron-down">
                         <use xlink:href="#stroked-chevron-down"></use>
@@ -50,7 +50,7 @@
                 </li>
             </ul>
         </li>
-        <li class="parent">
+        <li class="parent" id="menu-item-funcao">
             <a href="cadastro-funcao.php">
                 <span data-toggle="collapse" href="#funcoes"><svg class="glyph stroked chevron-down">
                         <use xlink:href="#stroked-chevron-down"></use>
@@ -73,7 +73,7 @@
                 </li>
             </ul>
         </li>
-        <li class="parent">
+        <li class="parent" id="menu-item-tipo">
             <a href="cadastro-tipo.php">
                 <span data-toggle="collapse" href="#tipos"><svg class="glyph stroked chevron-down">
                         <use xlink:href="#stroked-chevron-down"></use>
@@ -96,7 +96,7 @@
                 </li>
             </ul>
         </li>
-        <li class="parent">
+        <li class="parent" id="menu-item-compressor">
             <a href="cadastro-compressor.php">
                 <span data-toggle="collapse" href="#compressores"><svg class="glyph stroked chevron-down">
                         <use xlink:href="#stroked-chevron-down"></use>
@@ -119,7 +119,7 @@
                 </li>
             </ul>
         </li>
-        <li class="parent">
+        <li class="parent" id="menu-item-maquina-costura">
             <a href="cadastro-maquina-costura.php">
                 <span data-toggle="collapse" href="#maquinas-costura"><svg class="glyph stroked chevron-down">
                         <use xlink:href="#stroked-chevron-down"></use>
