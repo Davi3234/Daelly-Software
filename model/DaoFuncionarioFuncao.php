@@ -14,6 +14,18 @@ class DaoFuncionarioFuncao
         }
     }
 
+    public function iniciarTransacao() {
+        return $this->conexao->beginTransaction();
+    }
+
+    public function rollback() {
+        return $this->conexao->rollBack();
+    }
+    
+    public function commit() {
+        return $this->conexao->commit();
+    }
+
     function inserir(FuncionarioFuncao $funci_funca)
     {
         try {
@@ -62,7 +74,7 @@ class DaoFuncionarioFuncao
     function listarByFuncionario($id)
     {
         try {
-            return $this->conexao->query("select ff.* from funca_funci ff where ff.id_funcionario = 1; where funci.id = " . $id, PDO::FETCH_OBJ);
+            return $this->conexao->query("select id_funcao from funca_funci where id_funcionario = " . $id);
         } catch (PDOException $e) {
             return false;
         }

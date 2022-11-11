@@ -25,7 +25,8 @@ class DaoMaquinaCosturaMapa
 
     function editar(MaquinaCosturaMapa $maquina_mapa)
     {
-        return $this->conexao->exec("update maquina_costura_mapa set posicionado = ". $maquina_mapa->getPosicionado() .", x = ". $maquina_mapa->getX() .", y = ". $maquina_mapa->getY() . " where id = " . $maquina_mapa->getId());
+        $this->conexao->exec("update maquina_costura_mapa set posicionado = ". $maquina_mapa->getPosicionado() .", x = ". $maquina_mapa->getX() .", y = ". $maquina_mapa->getY() . " where id = " . $maquina_mapa->getId());
+        return true;
     }
 
     function excluir($id)

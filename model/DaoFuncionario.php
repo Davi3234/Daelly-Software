@@ -18,10 +18,11 @@ class DaoFuncionario
     {
         try {
             if ($funcionario->getIdGrupo()) {
-                return $this->conexao->exec("insert into funcionario (cpf, nome, entrada, saida, id_grupo) values ('" . $funcionario->getCpf() . "', '" . $funcionario->getNome() . "' , '" . $funcionario->getEntrada() . "' , '" . $funcionario->getSaida() . "', '" . $funcionario->getIdGrupo() . "' )");
+                $this->conexao->exec("insert into funcionario (cpf, nome, entrada, saida, id_grupo) values ('" . $funcionario->getCpf() . "', '" . $funcionario->getNome() . "' , '" . $funcionario->getEntrada() . "' , '" . $funcionario->getSaida() . "', '" . $funcionario->getIdGrupo() . "' )");
             } else {
-                return $this->conexao->exec("insert into funcionario (cpf, nome, entrada, saida) values ('" . $funcionario->getCpf() . "', '" . $funcionario->getNome() . "' , '" . $funcionario->getEntrada() . "' , '" . $funcionario->getSaida() . "')");
+                $this->conexao->exec("insert into funcionario (cpf, nome, entrada, saida) values ('" . $funcionario->getCpf() . "', '" . $funcionario->getNome() . "' , '" . $funcionario->getEntrada() . "' , '" . $funcionario->getSaida() . "')");
             }
+            return true;
         } catch (PDOException $ex) {
             return false;
         }
@@ -29,10 +30,15 @@ class DaoFuncionario
 
     function editar(Funcionario $funcionario)
     {
-        if ($funcionario->getIdGrupo()) {
-            return $this->conexao->exec("update funcionario set cpf='" . $funcionario->getCpf() . "' , nome = '" . $funcionario->getNome() . "' , entrada = '" . $funcionario->getEntrada() . "' , saida = '" . $funcionario->getSaida() . "', id_grupo = " . $funcionario->getIdGrupo() . " where id=" . $funcionario->getId());
-        } else {
-            return $this->conexao->exec("update funcionario set cpf='" . $funcionario->getCpf() . "' , nome = '" . $funcionario->getNome() . "' , entrada = '" . $funcionario->getEntrada() . "' , saida = '" . $funcionario->getSaida() . "', id_grupo = null where id=" . $funcionario->getId());
+        try {
+            if ($funcionario->getIdGrupo() == null) {
+                $this->conexao->exec("update funcionario set cpf='" . $funcionario->getCpf() . "' , nome = '" . $funcionario->getNome() . "' , entrada = '" . $funcionario->getEntrada() . "' , saida = '" . $funcionario->getSaida() . "', id_grupo = null where id=" . $funcionario->getId());
+            } else {
+                $this->conexao->exec("update funcionario set cpf='" . $funcionario->getCpf() . "' , nome = '" . $funcionario->getNome() . "' , entrada = '" . $funcionario->getEntrada() . "' , saida = '" . $funcionario->getSaida() . "', id_grupo = " . $funcionario->getIdGrupo() . " where id=" . $funcionario->getId());
+            }
+            return true;
+        } catch (PDOException $ex) {
+            return false;
         }
     }
 

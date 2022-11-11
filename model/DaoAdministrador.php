@@ -23,7 +23,8 @@ class DaoAdministrador {
     function editar(Administrador $administrador) {
         try {
             if($administrador->getSenha()){
-                return $this->conexao->exec("update administrador set nome='" . $administrador->getNome() . "', email='" . $administrador->getEmail() . "', senha='" . $administrador->getSenha() . "' where id=" . $administrador->getId());
+                $this->conexao->exec("update administrador set nome='" . $administrador->getNome() . "', email='" . $administrador->getEmail() . "', senha='" . $administrador->getSenha() . "' where id=" . $administrador->getId());
+                return true;
             }else{
                 return $this->conexao->exec("update administrador set nome='" . $administrador->getNome() . "', email='" . $administrador->getEmail() . "' where id=" . $administrador->getId());
             }

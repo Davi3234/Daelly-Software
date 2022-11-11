@@ -17,7 +17,7 @@ class DaoMaquinaCostura
     function inserir(MaquinaCostura $maquina)
     {
         try {
-            return $this->conexao->exec("insert into maquina_costura (id_tipo, codigo, modelo, marca, chassi, aquisicao) values ('". $maquina->getId_tipo() ."' , '". $maquina->getCodigo() ."' , '". $maquina->getModelo() ."' , '". $maquina->getMarca() ."', '" . $maquina->getChassi() . "', '" . $maquina->getAquisicao() . "')");
+            return $this->conexao->exec("insert into maquina_costura (id_tipo, codigo, modelo, marca, chassi, aquisicao) values ('" . $maquina->getId_tipo() . "' , '" . $maquina->getCodigo() . "' , '" . $maquina->getModelo() . "' , '" . $maquina->getMarca() . "', '" . $maquina->getChassi() . "', '" . $maquina->getAquisicao() . "')");
         } catch (PDOException $ex) {
             return false;
         }
@@ -25,7 +25,8 @@ class DaoMaquinaCostura
 
     function editar(MaquinaCostura $maquina)
     {
-        return $this->conexao->exec("update maquina_costura set id_tipo = " . $maquina->getId_tipo() . ", codigo = '" . $maquina->getCodigo() . "', modelo = '" . $maquina->getModelo() . "', marca = '" . $maquina->getMarca() . "', chassi = '" . $maquina->getChassi() . "', aquisicao = '" . $maquina->getAquisicao() . "' where id=" . $maquina->getId());
+        $this->conexao->exec("update maquina_costura set id_tipo = " . $maquina->getId_tipo() . ", codigo = '" . $maquina->getCodigo() . "', modelo = '" . $maquina->getModelo() . "', marca = '" . $maquina->getMarca() . "', chassi = '" . $maquina->getChassi() . "', aquisicao = '" . $maquina->getAquisicao() . "' where id=" . $maquina->getId());
+        return true;
     }
 
     function excluir($id)

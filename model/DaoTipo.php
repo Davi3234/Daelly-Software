@@ -25,7 +25,8 @@ class DaoTipo
 
     function editar(Tipo $tipo)
     {
-        return $this->conexao->exec("update tipo set nome='" . $tipo->getNome() . "'where id=".$tipo->getId());
+        $this->conexao->exec("update tipo set nome='" . $tipo->getNome() . "'where id=".$tipo->getId());
+        return true;
     }
 
     function excluir($id)

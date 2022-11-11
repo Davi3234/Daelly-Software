@@ -25,7 +25,8 @@ class DaoGrupo
 
     function editar(Grupo $grupo)
     {
-        return $this->conexao->exec("update grupo set numero='" . $grupo->getNumero() . "' where id=" . $grupo->getId());
+        $this->conexao->exec("update grupo set numero='" . $grupo->getNumero() . "' where id=" . $grupo->getId());
+        return true;
     }
 
     function excluir($id)
