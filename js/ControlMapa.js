@@ -73,11 +73,8 @@ function ControlMapa() {
 
     const iniciarComponents = () => {
         maquinaInfoToggle = false
-        btSalvarMaquinas.title = "Sem alteração para salvar"
-        btResetarMaquinas.title = "Sem alteração para resetar"
         document.querySelectorAll("#lista-maquinas-mapa .maquinas").forEach(a => a.style.position = "absolute")
         document.querySelectorAll(".maquinas").forEach(a => {
-            // document.getElementById("").addEventListener("mouseenter", maquinaHoverIn)
             a.addEventListener("mouseenter", maquinaHoverIn)
             a.addEventListener("mouseout", maquinaHoverOut)
         })
@@ -91,7 +88,7 @@ function ControlMapa() {
             if (maquina.posicionado == 0) addMaquinaInventario(tag)
             else addMaquinaMapa(tag, maquina.x, maquina.y)
 
-            toggleBtSalvar()
+            toggleBtActions()
         }
     }
 
@@ -118,17 +115,15 @@ function ControlMapa() {
         maquinaInfo.style.top = y + "px"
 
         setTimeout(() => {
-            maquinaInfo.classList.toggle("active", maquinaInfoToggle)
+            // maquinaInfo.classList.toggle("active", maquinaInfoToggle)
         }, 1500)
     }
 
-    const toggleBtSalvar = () => {
-        const value = maquinasAlteradas.length > 0
+    const toggleBtActions = () => {
+        const isMaquinasAlteradas = maquinasAlteradas.length > 0
 
-        btSalvarMaquinas.classList.toggle("valid", value)
-        btSalvarMaquinas.title = value ? "Gravar alterações" : "Sem alterações feitas"
-        btResetarMaquinas.classList.toggle("valid", value)
-        btResetarMaquinas.title = value ? "Resetar alterações" : "Sem alterações feitas"
+        btSalvarMaquinas.classList.toggle("valid", isMaquinasAlteradas)
+        btResetarMaquinas.classList.toggle("valid", isMaquinasAlteradas)
     }
 
     const hiddenMaquinaInfo = () => {
@@ -145,7 +140,7 @@ function ControlMapa() {
         const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
 
         addMaquinaMapa(tag, ev.offsetX - (tag.clientWidth / 2), ev.offsetY - (tag.clientHeight / 2))
-        toggleBtSalvar()
+        toggleBtActions()
     }
 
     const maquinaDragClickUpInventario = (ev) => {
@@ -153,7 +148,7 @@ function ControlMapa() {
         const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
 
         addMaquinaInventario(tag)
-        toggleBtSalvar()
+        toggleBtActions()
     }
 
     const addMaquinaMapa = (tag, x, y) => {
