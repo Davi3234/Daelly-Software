@@ -14,22 +14,25 @@ class DaoFuncionarioFuncao
         }
     }
 
-    public function iniciarTransacao() {
+    public function iniciarTransacao()
+    {
         return $this->conexao->beginTransaction();
     }
 
-    public function rollback() {
+    public function rollback()
+    {
         return $this->conexao->rollBack();
     }
-    
-    public function commit() {
+
+    public function commit()
+    {
         return $this->conexao->commit();
     }
 
     function inserir(FuncionarioFuncao $funci_funca)
     {
         try {
-            return $this->conexao->exec("insert into funca_funci (id_funcionario, id_funcao) values (" . $funci_funca->getId_funcionario() . ", ".$funci_funca->getId_funcao().")");
+            return $this->conexao->exec("insert into funca_funci (id_funcionario, id_funcao) values (" . $funci_funca->getId_funcionario() . ", " . $funci_funca->getId_funcao() . ")");
         } catch (PDOException $ex) {
             return false;
         }
@@ -38,7 +41,8 @@ class DaoFuncionarioFuncao
     function excluir($id_funca, $id_funcionario)
     {
         try {
-            return $this->conexao->exec("delete from funca_funci where id_funcao = " . $id_funca . " and id_funcionario = " . $id_funcionario);
+            $this->conexao->exec("delete from funca_funci where id_funcao = " . $id_funca . " and id_funcionario = " . $id_funcionario);
+            return true;
         } catch (PDOException $exc) {
             return false;
         }
@@ -47,7 +51,8 @@ class DaoFuncionarioFuncao
     function excluirByFuncionario($id_funcionario)
     {
         try {
-            return $this->conexao->exec("delete from funca_funci where id_funcionario = " . $id_funcionario);
+            $this->conexao->exec("delete from funca_funci where id_funcionario = " . $id_funcionario);
+            return true;
         } catch (PDOException $exc) {
             return false;
         }

@@ -2,11 +2,15 @@
 require_once '../model/Funcao.php';
 require_once '../model/DaoFuncao.php';
 require_once '../control/ControlFuncao.php';
+require_once '../model/Tipo.php';
+require_once '../model/DaoTipo.php';
+require_once '../control/ControlTipo.php';
 session_start();
-if (!isset($_SESSION['email']))  {
+if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlFuncao();
+$controlTip = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar(addslashes($_GET['id']), $_POST['nome'], $_POST['id_tipo'])) {
         $mensagem = "Fun��o editada com sucesso";
@@ -20,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 $funcao = $control->selecionar(addslashes($_GET['id']));
+$listaTipo = $controlTip->listar();
 ?>
 
 <html>
@@ -120,8 +125,17 @@ $funcao = $control->selecionar(addslashes($_GET['id']));
                                         <?php echo $erros; ?>
                                     </div>
                                 <?php } ?>
+
                                 <div class="campo_esquerda">
                                     <input type="text" class="form-control" value="<?php echo (isset($_POST['nome'])) ? $_POST['nome'] : $funcao->nome ?>" name="nome" id="nome" placeholder="Informe o nome" required="required" data-toggle="tooltip" title="Informe o nome" data-placement="auto" />
+                                </div>
+                                <div class="campo_direita">
+                                    <select class="form-control" id="id_tipo" name="id_tipo" placeholder="Informe o tipo" data-toggle="tooltip" title="Informe o tipo" data-placement="auto">
+                                        <option value="0">Selecione</option>
+                                        <?php foreach ($listaTipo as $t) { ?>
+                                            <option <?php if ($funcao->id_tipo == $t->id) { ?> selected <?php } ?> value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <?php } ?>
+                                    </select>
                                 </div>
                             </div>
                         </form>

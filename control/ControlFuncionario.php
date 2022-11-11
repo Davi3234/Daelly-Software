@@ -19,6 +19,8 @@ class ControlFuncionario
     {
         if (strlen($cpf) == 0) {
             $this->erros[] = "Informe o CPF";
+        } else if ($this->selecionarByCpf($cpf)) {
+            $this->erros[] = "Funcionário com o mesmo CPF já cadastrado";
         }
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
@@ -50,17 +52,16 @@ class ControlFuncionario
         }
         if (!$this->erros) {
             $this->funcionario = new Funcionario($cpf, $nome, $entrada, $saida, $id_grupo == 0 ? null : $id_grupo, $id);
-            if (!$this->daoFuncionario->editar($this->funcionario)) {
-                echo "!";
-                $this->erros[] = "Erro ao editar o registro";
-                return false;
+            if ($this->daoFuncionario->editar($this->funcionario)) {
+                return true;
             }
-            return true;
+            $this->erros[] = "Erro ao editar o registro";
+            return false;
         }
         return false;
     }
 
-    public function atualizarFuncoes($id, $funcoes = array())
+    public function vincularFuncoes($id, $funcoes = array())
     {
         $this->controlFuncaFunci->atualizarFuncoes($id, $funcoes);
         if ($this->controlFuncaFunci->getErro()) {

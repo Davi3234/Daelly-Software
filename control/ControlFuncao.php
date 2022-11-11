@@ -20,6 +20,8 @@ class ControlFuncao
         }
         if (strlen($id_tipo) == 0) {
             $this->erros[] = "Informe o tipo";
+        } else if ($id_tipo == 0) {
+            $id_tipo = null;
         }
         if (!$this->erros) {
             $this->funcao = new Funcao($nome, $id_tipo == 0 ? null : $id_tipo);

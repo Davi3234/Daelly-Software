@@ -19,24 +19,29 @@ class ControlFuncionarioFuncao
         if ($this->daoFuncionarioFuncao->inserir($this->funcionariofuncao)) {
             return true;
         }
-        $this->erro = "Erro ao atualizar as funções do funionário";
+        $this->erro = "Erro ao atualizar as funções do funcionário";
         return false;
     }
 
-    public function atualizarFuncoes($id_funcionario, $funcoesAtuais = array()) {
-        $funcoesOriginais = $this->listarByFuncionario($id_funcionario);
+    public function vincularFuncoes($id_funcionario, $funcoesAtuais = array()) {
+        $this->daoFuncionarioFuncao->iniciarTransacao();
+        if ($funcoesAtuais) foreach ($funcoesAtuais as $fa) {
+            if (!$this->inserir($id_funcionario, $fa)) {
+                $this->daoFuncionarioFuncao->rollback();
+                return false;
+            }
+        }
+        $this->daoFuncionarioFuncao->commit();
+        return true;
+    }
 
-        // if ($funcoesAtuais) foreach($funcoesAtuais as $fa) {
-        //     if (!is_array($funcoesOriginais) || !in_array($fa, $funcoesOriginais)) {
-        //         $this->inserir($id_funcionario, $fa);
-        //     }
-        // }
+    public function atualizarFuncoes($id_funcionario, $funcoesAtuais = array())
+    {
+        if ($this->listarByFuncionario($id_funcionario)) {
+            $this->excluirByFuncionario($id_funcionario);
+        }
 
-        // if ($funcoesOriginais) foreach($funcoesOriginais as $fo) {
-        //     if (!is_array($funcoesAtuais) || !in_array($fo, $funcoesAtuais)) {
-        //         $this->excluir($id_funcionario, $fo);
-        //     }
-        // }
+        return $this->vincularFuncoes($id_funcionario, $funcoesAtuais);
     }
 
     public function excluir($id_funcionario, $id_funca)
@@ -44,7 +49,7 @@ class ControlFuncionarioFuncao
         if ($this->daoFuncionarioFuncao->excluir($id_funca, $id_funcionario)) {
             return true;
         } else {
-            $this->erro = "Erro ao atualizar as funções do funionário";
+            $this->erro = "Erro ao atualizar as funções do funcionário";
             return false;
         }
     }
@@ -54,7 +59,7 @@ class ControlFuncionarioFuncao
         if ($this->daoFuncionarioFuncao->excluirByFuncionario($id_funcionario)) {
             return true;
         } else {
-            $this->erro = "Erro ao atualizar as funções do funionário";
+            $this->erro = "Erro ao atualizar as funções do funcionário";
             return false;
         }
     }

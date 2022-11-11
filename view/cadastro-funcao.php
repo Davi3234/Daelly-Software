@@ -2,11 +2,15 @@
 require_once '../model/Funcao.php';
 require_once '../model/DaoFuncao.php';
 require_once '../control/ControlFuncao.php';
+require_once '../model/Tipo.php';
+require_once '../model/DaoTipo.php';
+require_once '../control/ControlTipo.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlFuncao();
+$controlTip = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->inserir($_POST['nome'], $_POST['id_tipo'])) {
         $mensagem = "Fun��o inserida com sucesso";
@@ -18,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
+
+$listaTipo = $controlTip->listar();
 ?>
 
 <html>

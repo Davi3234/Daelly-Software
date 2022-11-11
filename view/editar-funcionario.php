@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar(addslashes($_GET['id']), $_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
         $mensagem = "Funcion�rio editado com sucesso";
 
-        $control->atualizarFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas));
+        $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas)->id, $funcoesSelecionadas);
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
