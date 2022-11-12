@@ -4,7 +4,7 @@
     </div>
 
     <div class="profile-parent">
-        <div class="profile-children header">Profile</div>
+        <div class="profile-item-children header"><p>Profile <span class="icon material-symbols-outlined">expand_more</span></p></div>
         <div class="profile-item-children itens">
             <a href="logout.php" class="item"><span>Logout</span></a>
         </div>

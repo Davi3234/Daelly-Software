@@ -65,10 +65,58 @@ main {
 #cabecalho {
     padding: 2rem 5rem;
     width: 100%;
+    background-color: #232a8d;
+    color: #fff;
+    z-index: 10;
 }
 .cabecalho-content {
     display: flex;
     justify-content: space-between;
+}
+.profile-parent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+}
+.profile-item-children {
+    transition: .3s;
+}
+.profile-item-children.header {
+    position: relative;
+    align-items: center;
+    padding: 1.5rem 4rem;
+}
+.profile-item-children.header .icon {
+    position: absolute;
+}
+.profile-item-children.itens a {
+    color: #fff;
+}
+.profile-item-children.itens {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    right: 0;
+    box-shadow: 0 10px 1rem rgba(0, 0, 0, .2);
+}
+.profile-item-children.itens .item {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #232a8d;
+    text-align: center;
+}
+.profile-item-children.itens .item:hover {
+    padding: 1rem 2rem;
+    background-color: #3f448b;
+}
+.profile-parent:hover .profile-item-children.header {
+    background-color: #3f448b;
+}
+.profile-item-children.itens:hover,
+.profile-parent:hover .profile-item-children.itens {
+    display: flex;
 }
 
 /* Barra Lateral */
@@ -79,9 +127,10 @@ main {
     background-color: #fff;
     border-right: .1rem solid #00000033;
     bottom: 0;
-    z-index: 1000;
+    z-index: 10;
     overflow-x: hidden;
     overflow-y: auto;
+    font-size: 1.4rem;
 }
 .barra-lateral-content {
     display: flex;
@@ -103,21 +152,22 @@ main {
     cursor: pointer;
 }
 .item-children.header {
-    padding: 1rem 2rem;
+    display: flex;
+    gap: .5rem;
+    padding: 1rem 1.5rem;
+    position: relative;
     transition: .3s;
 }
 .item-children.itens {
-    display: flex;
+    display: none;
     flex-direction: column;
     background-color: #f0f0f0;
-    height: 0;
-    overflow: hidden;
 }
 .item-children.itens.active {
-    height: 100%;
+    display: flex;
 }
 .item-children.itens .item {
-    padding: 1rem 2rem 1rem 4rem;
+    padding: 1rem 2rem 1rem 5rem;
     transition: .3s;
 }
 .item-children.header:hover,
@@ -130,4 +180,5 @@ main {
 #painel-comando {
     width: 100%;
     overflow-y: auto;
+    z-index: 5;
 }
