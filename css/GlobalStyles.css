@@ -13,6 +13,7 @@ body {
     height: 100vh;
     font-size: 1.6rem !important;
     background-color: #ebebeb;
+    overflow: hidden;
 }
 a {
     text-decoration: none;
@@ -68,6 +69,23 @@ main {
     margin: 2rem auto;
     background-color: #00000033;
 }
+.bt-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem;
+    border-radius: .3rem;
+}
+.bt-action.bt-remove {
+    background-color: #ff00004f;
+    color: #ff0000;
+    border: .01rem solid #ff0000;
+}
+.bt-action.bt-edit {
+    background-color: #1100ff41;
+    color: #1100ff;
+    border: .01rem solid #1100ff;
+}
 ::-webkit-scrollbar {
     background: transparent;
     width: 5px;
@@ -84,6 +102,7 @@ main {
     align-items: center;
     width: 100%;
     height: 10%;
+    min-height: 6.3rem;
     background-color: #232a8d;
     color: #fff;
     z-index: 10;
@@ -202,6 +221,7 @@ main {
     width: 100%;
     overflow-y: auto;
     z-index: 5;
+    overflow-y: auto;
 }
 #conteudo {
     width: 100%;
@@ -227,4 +247,14 @@ table {
 }
 thead {
     background-color: #dadada;
+}
+td,
+th {
+    padding: .5rem 1rem;
+}
+.actions-form {
+    display: flex;
+    position: relative;
+    height: 100%;
+    justify-content: space-around;
 }

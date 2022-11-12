@@ -101,14 +101,16 @@ $funcionarios = $control->listar();
                                             <?php echo $f->entrada ?>
                                         </td>
                                         <td>
-                                            <?php echo $f->saida ?>
+                                            <?php echo $f->saida ? $f->saida : "----/--/--" ?>
                                         </td>
                                         <td>
                                             <?php echo $f->grupo ? $f->grupo : "Nenhum" ?>
                                         </td>
                                         <td>
-                                            <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                            <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
+                                            <div class="actions-form">
+                                                <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                <a href="#" class="excluir bt-action bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -125,11 +127,6 @@ $funcionarios = $control->listar();
         $(document).ready(function() {
             $('#carregando').fadeOut();
             $('#conteudo').fadeIn();
-
-            $(".editar").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "editar-funcionario.php?id=" + id);
-            });
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente excluir o registro?")) {
