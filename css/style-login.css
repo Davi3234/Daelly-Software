@@ -1,0 +1,38 @@
+
+body #img {
+    position: absolute;
+    filter: blur(8px);
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+}
+
+.btn {
+    padding: 1rem !important;
+    font-size: 1.4rem !important;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext {
+    padding: 2.5rem .5rem !important;
+}
+
+.form-control {
+    font-size: 1.4rem !important;
+}
+
+.panel {
+    background-image: linear-gradient(45deg, #70c9f3, #135d92);
+}
+
+.titulo {
+    font-size: 2.4rem;
+    color: #04243b;
+    text-align: center;
+    margin-bottom: 20px;
+}

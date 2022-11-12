@@ -6,7 +6,7 @@ class DaoAdministrador {
 
     function __construct() {
         try {
-            $this->conexao = new PDO("mysql:host=localhost;dbname=daelly", "Dan Ruan", "user");
+            $this->conexao = new PDO("mysql:host=localhost;dbname=daelly", "root", "root");
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }
