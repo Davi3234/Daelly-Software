@@ -80,14 +80,9 @@ $listaFun = $controlFun->listar();
                     <div class="line-division"></div>
 
                     <div class="fill-inputs">
-                        <div class="input-box input-position-right">
+                        <div class="input-box input-position-left">
                             <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
                             <label for="nome">Nome</label>
-                            <i></i>
-                        </div>
-                        <div class="input-box input-position-left">
-                            <input type="text" name="cpf" id="cpf" required="required">
-                            <label for="cpf">CPF</label>
                             <i></i>
                         </div>
                         <div class="input-box input-position-right">
@@ -96,6 +91,11 @@ $listaFun = $controlFun->listar();
                             <i></i>
                         </div>
                         <div class="input-box input-position-left">
+                            <input type="text" name="cpf" id="cpf" required="required">
+                            <label for="cpf">CPF</label>
+                            <i></i>
+                        </div>
+                        <div class="input-box input-position-right">
                             <input type="text" name="saida" id="saida" required="required">
                             <label for="saida">Saída</label>
                             <i></i>
