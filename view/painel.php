@@ -47,7 +47,7 @@ $data .= ']}';
 </head>
 
 <body>
-    <header id="cabecalho">
+    <header id="header">
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -62,7 +62,7 @@ $data .= ']}';
             </div>
 
             <div id="conteudo">
-                Conteudo
+                
             </div>
         </div>
     </main>

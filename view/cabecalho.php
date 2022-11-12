@@ -1,4 +1,4 @@
-<div class="cabecalho-content">
+<div class="header-content">
     <div class="logo">
         <h1>Logo</h1>
     </div>
