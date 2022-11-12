@@ -17,7 +17,7 @@
     max-width: 40rem;
     padding: 3rem;
     background-color: #fff;
-    border-radius: 1rem;
+    border-radius: .3rem;
     border: .1rem solid #b6b6b6;
 }
 .login-content .fill-inputs {

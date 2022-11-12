@@ -29,6 +29,7 @@ button {
     cursor: pointer;
 }
 #carregando {
+    position: absolute;
     margin: 5rem auto 0 auto;
     width: 80%;
     background-color: #fff;
@@ -197,4 +198,12 @@ main {
 }
 #conteudo {
     width: 100%;
+    background-color: #fff;
+    border-radius: .3rem;
+}
+.conteudo-header {
+    padding: 3rem;
+    padding-bottom: 1rem;
+    letter-spacing: .01rem;
+    font-size: 1.8rem;
 }

@@ -55,7 +55,68 @@ $funcionarios = $control->listar();
             </div>
 
             <div id="conteudo">
+                <div class="conteudo-header">
+                    <h2>Funcionários</h2>
+                </div>
+                <div class="line-division"></div>
 
+                <div class="conteudo-main">
+                    <form action="" method="POST" id="form">
+                        <input type="hidden" value="" name="id" id="id" />
+                        <input type="hidden" value="" name="acao" id="acao" />
+
+                        <?php if (isset($mensagem)) { ?>
+                            <div class="alert alert-success">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
+                                <?php echo $mensagem; ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (isset($erros)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erros; ?>
+                            </div>
+                        <?php } ?>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-sortable="true">Nome</th>
+                                    <th data-sortable="true">CPF</th>
+                                    <th data-sortable="true">Entrada</th>
+                                    <th data-sortable="true">Sa�da</th>
+                                    <th data-sortable="true">Grupo</th>
+                                    <th data-sortable="true">A��es</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $f->nome ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->cpf ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->entrada ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->saida ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->grupo ? $f->grupo : "Nenhum" ?>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                            <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
             </div>
         </div>
     </main>
