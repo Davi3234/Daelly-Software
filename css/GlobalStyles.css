@@ -81,21 +81,41 @@ main {
     width: 100%;
     overflow: auto !important;
 }
+.menu-item-parent:hover .item-children.header {
+    background-color: #dadada;
+}
+.item-children.header.active {
+    background-color: #232a8d;
+    color: #fff;
+}
+.item-children.header.active:hover {
+    background-color: #3f448b;
+}
 .item-children {
     cursor: pointer;
 }
 .item-children.header {
-    margin: 1rem 2rem;
+    padding: 1rem 2rem;
+    transition: .3s;
 }
 .item-children.itens {
+    display: flex;
+    flex-direction: column;
+    background-color: #f0f0f0;
     height: 0;
     overflow: hidden;
-    padding-left: 2rem;
-    transition: height 2s;
 }
 .item-children.itens.active {
-    margin: 1rem 2rem;
-    height: auto;
+    height: 100%;
+}
+.item-children.itens .item {
+    padding: 1rem 2rem 1rem 4rem;
+    color: #000;
+    transition: .3s;
+}
+.item-children.header:hover,
+.item-children.itens .item:hover {
+    background-color: #dadada;
 }
 
 /* Painel de Comando */

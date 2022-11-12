@@ -69,6 +69,7 @@ $data .= ']}';
 
     <!-- <script src="../js/ControlMapa.js"></script> -->
     <script>
+        $('#i-inicio').addClass("active")
         const {
             maquinas
         } = JSON.parse(JSON.stringify(<?php echo $data ?>))
