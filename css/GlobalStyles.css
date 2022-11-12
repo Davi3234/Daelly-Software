@@ -131,8 +131,9 @@ main {
 /* Form */
 
 .fill-inputs {
-    /* column-count: 2; */
-    gap: 3rem;
+    position: relative;
+    width: 100%;
+    height: auto;
 }
 .fill-inputs.login {
     display: flex;
@@ -144,12 +145,15 @@ main {
     display: flex;
     flex-direction: column;
     margin-top: 3rem;
+    width: 100%;
 }
 .fill-inputs .input-box.input-position-left {
     float: left;
+    width: 48%;
 }
 .fill-inputs .input-box.input-position-right {
     float: right;
+    width: 48%;
 }
 .fill-inputs input {
     font-size: 1.4rem;
