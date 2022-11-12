@@ -9,7 +9,7 @@ class DaoTipo
     {
         try {
             include "../db-config.php";
-            $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["user"]);
+            $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }

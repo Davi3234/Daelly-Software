@@ -4,7 +4,7 @@ class DaoLogin{
 
     public function __construct(){
         include "../db-config.php";
-            $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["user"]);
+            $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
     }
 
     public function verificarEmail(Administrador $admin){
