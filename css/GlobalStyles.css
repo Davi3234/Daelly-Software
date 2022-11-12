@@ -196,6 +196,7 @@ main {
 /* Painel de Comando */
 
 #painel-comando {
+    position: relative;
     padding: 4rem;
     width: 100%;
     overflow-y: auto;
@@ -205,13 +206,17 @@ main {
     width: 100%;
     background-color: #fff;
     border-radius: .3rem;
+    padding: 3rem;
 }
 .conteudo-header {
-    padding: 3rem;
-    padding-bottom: 1rem;
+    margin-bottom: 1rem;
     letter-spacing: .01rem;
     font-size: 1.8rem;
 }
 table {
     width: 100%;
+    border-radius: .3rem;
+}
+thead {
+    background-color: #dadada;
 }
