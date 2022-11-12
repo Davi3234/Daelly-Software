@@ -14,6 +14,7 @@ body {
 }
 a {
     text-decoration: none;
+    color: #000;
 }
 input,
 select,
@@ -24,10 +25,6 @@ button {
 }
 button {
     cursor: pointer;
-}
-#cabecalho {
-    padding: 2rem 5rem;
-    width: 100%;
 }
 #carregando {
     margin: 0 auto;
@@ -61,6 +58,17 @@ main {
     width: 100%;
     margin: 2rem auto;
     background-color: #00000033;
+}
+
+/* Cabeçalho */
+
+#cabecalho {
+    padding: 2rem 5rem;
+    width: 100%;
+}
+.cabecalho-content {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* Barra Lateral */
@@ -110,7 +118,6 @@ main {
 }
 .item-children.itens .item {
     padding: 1rem 2rem 1rem 4rem;
-    color: #000;
     transition: .3s;
 }
 .item-children.header:hover,
