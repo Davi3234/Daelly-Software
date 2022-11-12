@@ -51,6 +51,11 @@ button {
     background-color: #ff000044;
     color: #ff0000;
 }
+.alert.alert-success {
+    border: .1rem solid #18cc00;
+    background-color: #18cc004d;
+    color: #18cc00;
+}
 main {
     display: flex;
     width: 100%;
@@ -206,4 +211,7 @@ main {
     padding-bottom: 1rem;
     letter-spacing: .01rem;
     font-size: 1.8rem;
+}
+table {
+    width: 100%;
 }

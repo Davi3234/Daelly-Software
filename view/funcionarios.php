@@ -67,7 +67,6 @@ $funcionarios = $control->listar();
 
                         <?php if (isset($mensagem)) { ?>
                             <div class="alert alert-success">
-                                <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
                                 <?php echo $mensagem; ?>
                             </div>
                         <?php } ?>
@@ -81,12 +80,12 @@ $funcionarios = $control->listar();
                         <table>
                             <thead>
                                 <tr>
-                                    <th data-sortable="true">Nome</th>
-                                    <th data-sortable="true">CPF</th>
-                                    <th data-sortable="true">Entrada</th>
-                                    <th data-sortable="true">Sa�da</th>
-                                    <th data-sortable="true">Grupo</th>
-                                    <th data-sortable="true">A��es</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Entrada</th>
+                                    <th>Saída</th>
+                                    <th>Grupo</th>
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
