@@ -62,7 +62,11 @@ $data .= ']}';
             </div>
 
             <div id="conteudo">
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> styles-page
             </div>
         </div>
     </main>

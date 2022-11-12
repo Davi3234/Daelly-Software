@@ -13,6 +13,10 @@ body {
     height: 100vh;
     font-size: 1.6rem !important;
     background-color: #ebebeb;
+<<<<<<< HEAD
+=======
+    overflow: hidden;
+>>>>>>> styles-page
 }
 a {
     text-decoration: none;
@@ -29,6 +33,10 @@ button {
     cursor: pointer;
 }
 #carregando {
+<<<<<<< HEAD
+=======
+    position: absolute;
+>>>>>>> styles-page
     margin: 5rem auto 0 auto;
     width: 80%;
     background-color: #fff;
@@ -42,6 +50,10 @@ button {
 }
 .alert {
     padding: 1rem;
+<<<<<<< HEAD
+=======
+    margin: 1rem 0;
+>>>>>>> styles-page
     width: 100%;
     border-radius: .5rem;
 }
@@ -50,6 +62,14 @@ button {
     background-color: #ff000044;
     color: #ff0000;
 }
+<<<<<<< HEAD
+=======
+.alert.alert-success {
+    border: .1rem solid #18cc00;
+    background-color: #18cc004d;
+    color: #18cc00;
+}
+>>>>>>> styles-page
 main {
     display: flex;
     width: 100%;
@@ -61,6 +81,26 @@ main {
     margin: 2rem auto;
     background-color: #00000033;
 }
+<<<<<<< HEAD
+=======
+.bt-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem;
+    border-radius: .3rem;
+}
+.bt-action.bt-remove {
+    background-color: #ff00004f;
+    color: #ff0000;
+    border: .01rem solid #ff0000;
+}
+.bt-action.bt-edit {
+    background-color: #1100ff41;
+    color: #1100ff;
+    border: .01rem solid #1100ff;
+}
+>>>>>>> styles-page
 ::-webkit-scrollbar {
     background: transparent;
     width: 5px;
@@ -77,6 +117,10 @@ main {
     align-items: center;
     width: 100%;
     height: 10%;
+<<<<<<< HEAD
+=======
+    min-height: 6.3rem;
+>>>>>>> styles-page
     background-color: #232a8d;
     color: #fff;
     z-index: 10;
@@ -190,11 +234,54 @@ main {
 /* Painel de Comando */
 
 #painel-comando {
+<<<<<<< HEAD
+=======
+    position: relative;
+>>>>>>> styles-page
     padding: 4rem;
     width: 100%;
     overflow-y: auto;
     z-index: 5;
+<<<<<<< HEAD
 }
 #conteudo {
     width: 100%;
+=======
+    overflow-y: auto;
+}
+#conteudo {
+    width: 100%;
+    background-color: #fff;
+    border-radius: .3rem;
+    padding: 3rem;
+}
+.conteudo-header {
+    margin-bottom: 1rem;
+    letter-spacing: .01rem;
+    font-size: 1.8rem;
+}
+table,
+td,
+th,
+tr {
+    border: .01rem solid #b6b6b6;
+}
+table {
+    width: 100%;
+    border-radius: .3rem;
+    border-collapse: collapse;
+}
+thead {
+    background-color: #dadada;
+}
+td,
+th {
+    padding: .5rem 1rem;
+}
+.actions-form {
+    display: flex;
+    position: relative;
+    height: 100%;
+    justify-content: space-around;
+>>>>>>> styles-page
 }
