@@ -8,7 +8,8 @@ class DaoMaquinaCostura
     function __construct()
     {
         try {
-            $this->conexao = new PDO("mysql:host=localhost;dbname=daelly", "Dan Ruan", "user");
+            include "../config/db-config.php";
+            $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }
