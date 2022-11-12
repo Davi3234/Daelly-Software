@@ -5,14 +5,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/GlobalStyles.css" rel="stylesheet">
     <script src="/js/jquery-3.1.0.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>
     <script src="/js/bootbox.js"></script>
     <script src="/js/bootstrap-confirmation.js"></script>
     <script src="/js/bootstrap-table.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/ControlMapa.js"></script>
     <script src="/js/jquery-maskedinput.min.js"></script>
     <script src="/js/lumino.glyphs.js"></script>
     <script src="/js/mascaras.js"></script>
