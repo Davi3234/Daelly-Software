@@ -11,7 +11,6 @@ body {
     height: 100vh;
     font-size: 1.6rem !important;
     background-color: #ebebeb;
-    overflow: hidden;
 }
 a {
     text-decoration: none;
@@ -57,9 +56,9 @@ main {
     width: 100%;
 }
 .line-division {
-    height: 2px;
-    width: 90%;
-    margin: 1rem auto;
+    height: 1px;
+    width: 100%;
+    margin: 2rem auto;
     background-color: #00000033;
 }
 
@@ -69,6 +68,8 @@ main {
     width: 25%;
     background-color: #fff;
     border-right: .1rem solid #00000033;
+    top: 0;
+    bottom: 0;
 }
 .barra-lateral-content {
     display: flex;
