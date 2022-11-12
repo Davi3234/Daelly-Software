@@ -2,15 +2,22 @@
 require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
+require_once '../model/MaquinaCostura.php';
+require_once '../model/DaoMaquinaCostura.php';
+require_once '../control/ControlMaquinaCostura.php';
+require_once '../model/MaquinaCosturaMapa.php';
+require_once '../model/DaoMaquinaCosturaMapa.php';
+require_once '../control/ControlMaquinaCosturaMapa.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
-$control = new ControlTipo();
+$control = new ControlMaquinaCostura();
+$controlTipo = new ControlTipo();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Tipo excluído com sucesso";
+        $mensagem = "Máquina de costura excluído com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -20,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$tipos = $control->listar();
+$tipo = $controlTipo->selecionar(addslashes($_GET["id"]));
+$maquinas = $control->listarByTipo($tipo->id);
 ?>
 
 <html>
@@ -86,13 +94,13 @@ $tipos = $control->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Tipos</li>
+                    <li class="active">Máquinas de Costura</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tipos</h1>
+                    <h1 class="page-header">Máquinas de Costura do tipo <?php echo $tipo->nome ?></h1>
                 </div>
             </div>
 
@@ -121,19 +129,25 @@ $tipos = $control->listar();
                                 <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
                                     <thead>
                                         <tr>
-                                            <th data-sortable="true">Nome</th>
-                                            <th data-sortable="true">A��es</th>
+                                            <th data-sortable="true">Código</th>
+                                            <th data-sortable="true">Modelo</th>
+                                            <th data-sortable="true">Marca</th>
+                                            <th data-sortable="true">Chassi</th>
+                                            <th data-sortable="true">Aquisição</th>
+                                            <th data-sortable="true">Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($tipos) foreach ($tipos as $t) { ?>
+                                        <?php if ($maquinas) foreach ($maquinas as $t) { ?>
                                             <tr>
-                                                <td><?php echo $t->nome ?></td>
+                                                <td><?php echo $t->codigo ?></td>
+                                                <td><?php echo $t->modelo ?></td>
+                                                <td><?php echo $t->marca ?></td>
+                                                <td><?php echo $t->chassi ?></td>
+                                                <td><?php echo $t->aquisicao ?></td>
                                                 <td>
                                                     <a href="#" class="editar" rel="<?php echo $t->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="excluir" rel="<?php echo $t->id ?>">Excluir</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-maquinas" rel="<?php echo $t->id ?>">Máquinas de Costura</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-funcoes" rel="<?php echo $t->id ?>">Funções</a>
+                                                    <a href="#" class="excluir" rel="<?php echo $t->id ?>">Excluir</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -154,7 +168,7 @@ $tipos = $control->listar();
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-            $(".parent#menu-item-tipo").addClass("active");
+            $(".parent#menu-item-maquina-costura").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {
@@ -174,17 +188,7 @@ $tipos = $control->listar();
 
             $(".editar").click(function() {
                 id = $(this).attr("rel");
-                $(location).attr("href", "editar-tipo.php?id=" + id);
-            });
-
-            $(".ver-maquinas").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "maquinas-costura-por-tipo.php?id=" + id);
-            });
-
-            $(".ver-funcoes").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "funcoes-por-tipo.php?id=" + id);
+                $(location).attr("href", "editar-maquina-costura.php?id=" + id);
             });
 
             $(".excluir").click(function() {

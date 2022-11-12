@@ -47,6 +47,15 @@ class DaoMaquinaCostura
         }
     }
 
+    function listarByTipo($id_tipo)
+    {
+        try {
+            return $this->conexao->query("select mc.*, tip.nome as tipo from maquina_costura mc join tipo tip on mc.id_tipo = tip.id where tip.id = " . $id_tipo, PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     function selecionar($id)
     {
         try {

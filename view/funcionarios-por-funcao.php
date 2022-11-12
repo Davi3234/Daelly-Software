@@ -1,16 +1,26 @@
 <?php
-require_once '../model/Tipo.php';
-require_once '../model/DaoTipo.php';
-require_once '../control/ControlTipo.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
+require_once '../model/FuncionarioFuncao.php';
+require_once '../model/DaoFuncionarioFuncao.php';
+require_once '../control/ControlFuncionarioFuncao.php';
+require_once '../model/Grupo.php';
+require_once '../model/DaoGrupo.php';
+require_once '../control/ControlGrupo.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
-$control = new ControlTipo();
+$control = new ControlFuncionario();
+$controlFuncao = new ControlFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Tipo excluído com sucesso";
+        $mensagem = "Funcion�rio exclu�do com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -20,7 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$tipos = $control->listar();
+$funcao = $controlFuncao->selecionar(addslashes($_GET["id"]));
+$funcionarios = $control->listarByFuncao($funcao->id);
 ?>
 
 <html>
@@ -28,7 +39,7 @@ $tipos = $control->listar();
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sistema de Gerenciamento de Malharia</title>
+    <title>Sistema de Gerenciamento de Conteúdo</title>
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/styles.css" rel="stylesheet">
     <link href="/css/datepicker3.css" rel="stylesheet">
@@ -59,7 +70,7 @@ $tipos = $control->listar();
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <svg class="glyph stroked male-user">
                                 <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usu�rio Logado </span><span class="caret"></span>
+                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="logout.php"><svg class="glyph stroked cancel">
@@ -86,13 +97,13 @@ $tipos = $control->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Tipos</li>
+                    <li class="active">Funcionários</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tipos</h1>
+                    <h1 class="page-header">Funcionários que exercem a função <?php echo $funcao->nome; ?></h1>
                 </div>
             </div>
 
@@ -122,18 +133,24 @@ $tipos = $control->listar();
                                     <thead>
                                         <tr>
                                             <th data-sortable="true">Nome</th>
+                                            <th data-sortable="true">CPF</th>
+                                            <th data-sortable="true">Entrada</th>
+                                            <th data-sortable="true">Sa�da</th>
+                                            <th data-sortable="true">Grupo</th>
                                             <th data-sortable="true">A��es</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($tipos) foreach ($tipos as $t) { ?>
+                                        <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
                                             <tr>
-                                                <td><?php echo $t->nome ?></td>
+                                                <td><?php echo $f->nome ?></td>
+                                                <td><?php echo $f->cpf ?></td>
+                                                <td><?php echo $f->entrada ?></td>
+                                                <td><?php echo $f->saida ?></td>
+                                                <td><?php echo $f->grupo ? $f->grupo : "Nenhum" ?></td>
                                                 <td>
-                                                    <a href="#" class="editar" rel="<?php echo $t->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="excluir" rel="<?php echo $t->id ?>">Excluir</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-maquinas" rel="<?php echo $t->id ?>">Máquinas de Costura</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-funcoes" rel="<?php echo $t->id ?>">Funções</a>
+                                                    <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -154,7 +171,7 @@ $tipos = $control->listar();
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-            $(".parent#menu-item-tipo").addClass("active");
+            $(".parent#menu-item-funcionario").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {
@@ -174,17 +191,7 @@ $tipos = $control->listar();
 
             $(".editar").click(function() {
                 id = $(this).attr("rel");
-                $(location).attr("href", "editar-tipo.php?id=" + id);
-            });
-
-            $(".ver-maquinas").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "maquinas-costura-por-tipo.php?id=" + id);
-            });
-
-            $(".ver-funcoes").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "funcoes-por-tipo.php?id=" + id);
+                $(location).attr("href", "editar-funcionario.php?id=" + id);
             });
 
             $(".excluir").click(function() {

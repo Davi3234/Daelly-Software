@@ -133,7 +133,8 @@ $funcoes = $control->listar();
                                                 <td><?php echo $f->tipo ? $f->tipo : "Nenhum" ?></td>
                                                 <td>
                                                     <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
+                                                    <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" class="ver-funcionarios" rel="<?php echo $f->id ?>">Funcionários</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -175,6 +176,11 @@ $funcoes = $control->listar();
             $(".editar").click(function() {
                 id = $(this).attr("rel");
                 $(location).attr("href", "editar-funcao.php?id=" + id);
+            });
+
+            $(".ver-funcionarios").click(function() {
+                id = $(this).attr("rel");
+                $(location).attr("href", "funcionarios-por-funcao.php?id=" + id);
             });
 
             $(".excluir").click(function() {

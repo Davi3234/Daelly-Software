@@ -59,6 +59,15 @@ class DaoFuncao
         }
     }
 
+    function listarByTipo($id_tipo)
+    {
+        try {
+            return $this->conexao->query("select f.* from funcao f join tipo t on t.id = f.id_tipo where t.id = " . $id_tipo, PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     function selecionar($id)
     {
         try {

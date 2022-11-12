@@ -124,4 +124,9 @@ class ControlMaquinaCostura
     {
         return $this->daoMaquina->listar();
     }
+
+    public function listarByTipo($id_tipo)
+    {
+        return $this->daoMaquina->listarByTipo($id_tipo);
+    }
 }

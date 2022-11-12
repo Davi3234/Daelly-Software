@@ -67,6 +67,11 @@ class ControlFuncao
         return $this->daoFuncao->listar();
     }
 
+    public function listarByTipo($id_tipo)
+    {
+        return $this->daoFuncao->listarByTipo($id_tipo);
+    }
+
     public function selecionar($id)
     {
         return $this->daoFuncao->selecionar($id);

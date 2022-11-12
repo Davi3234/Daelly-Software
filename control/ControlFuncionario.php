@@ -86,6 +86,16 @@ class ControlFuncionario
         return $this->daoFuncionario->listar();
     }
 
+    public function listarByFuncao($id_funcao)
+    {
+        return $this->daoFuncionario->listarByFuncao($id_funcao);
+    }
+
+    public function listarByGrupo($id_grupo)
+    {
+        return $this->daoFuncionario->listarByGrupo($id_grupo);
+    }
+
     public function selecionar($id)
     {
         return $this->daoFuncionario->selecionar($id);

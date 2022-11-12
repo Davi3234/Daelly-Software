@@ -1,4 +1,7 @@
 <?php
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
 require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
@@ -6,11 +9,12 @@ session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
-$control = new ControlTipo();
+$control = new ControlFuncao();
+$controlTipo = new ControlTipo();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Tipo excluído com sucesso";
+        $mensagem = "Fun��o exclu�da com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -20,7 +24,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$tipos = $control->listar();
+$tipo = $controlTipo->selecionar(addslashes($_GET["id"]));
+$funcoes = $control->listarByTipo($tipo->id);
 ?>
 
 <html>
@@ -86,13 +91,13 @@ $tipos = $control->listar();
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Tipos</li>
+                    <li class="active">Funções</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tipos</h1>
+                    <h1 class="page-header">Funções do tipo <?php echo $tipo->nome ?></h1>
                 </div>
             </div>
 
@@ -126,14 +131,13 @@ $tipos = $control->listar();
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if ($tipos) foreach ($tipos as $t) { ?>
+                                        <?php if ($funcoes) foreach ($funcoes as $f) { ?>
                                             <tr>
-                                                <td><?php echo $t->nome ?></td>
+                                                <td><?php echo $f->nome ?></td>
                                                 <td>
-                                                    <a href="#" class="editar" rel="<?php echo $t->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="excluir" rel="<?php echo $t->id ?>">Excluir</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-maquinas" rel="<?php echo $t->id ?>">Máquinas de Costura</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-funcoes" rel="<?php echo $t->id ?>">Funções</a>
+                                                    <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>&nbsp;&nbsp;&nbsp;
+                                                    <a href="#" class="ver-funcionarios" rel="<?php echo $f->id ?>">Funcionários</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -154,7 +158,7 @@ $tipos = $control->listar();
                 $(this).find('em:first').toggleClass("glyphicon-minus");
             });
             $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-            $(".parent#menu-item-tipo").addClass("active");
+            $(".parent#menu-item-funcao").addClass("active");
         }(window.jQuery);
 
         $(window).on('resize', function() {
@@ -174,17 +178,12 @@ $tipos = $control->listar();
 
             $(".editar").click(function() {
                 id = $(this).attr("rel");
-                $(location).attr("href", "editar-tipo.php?id=" + id);
+                $(location).attr("href", "editar-funcao.php?id=" + id);
             });
 
-            $(".ver-maquinas").click(function() {
+            $(".ver-funcionarios").click(function() {
                 id = $(this).attr("rel");
-                $(location).attr("href", "maquinas-costura-por-tipo.php?id=" + id);
-            });
-
-            $(".ver-funcoes").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "funcoes-por-tipo.php?id=" + id);
+                $(location).attr("href", "funcionarios-por-funcao.php?id=" + id);
             });
 
             $(".excluir").click(function() {

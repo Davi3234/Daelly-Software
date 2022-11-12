@@ -60,6 +60,24 @@ class DaoFuncionario
         }
     }
 
+    function listarByFuncao($id_funcao)
+    {
+        try {
+            return $this->conexao->query("select funci.*, (select numero from grupo where id = funci.id_grupo) as grupo from funcionario funci join funca_funci ff on ff.id_funcionario = funci.id join funcao funca on funca.id = ff.id_funcao where funca.id = " . $id_funcao, PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
+    function listarByGrupo($id_grupo)
+    {
+        try {
+            return $this->conexao->query("select funci.* from funcionario funci join grupo gru on gru.id = funci.id_grupo where gru.id = " . $id_grupo, PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     function selecionar($id)
     {
         try {
