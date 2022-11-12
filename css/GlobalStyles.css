@@ -179,6 +179,9 @@ main {
 .menu-item-parent:hover .item-children.header {
     background-color: #dadada;
 }
+.menu-item-parent:hover .item-children.header.active {
+    background-color: #3f448b;
+}
 .item-children.header.active {
     background-color: #232a8d;
     color: #fff;
