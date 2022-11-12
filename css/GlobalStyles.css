@@ -8,9 +8,10 @@ html {
     font-size: 65.2% !important;
 }
 body {
-    min-height: 100vh;
+    height: 100vh;
     font-size: 1.6rem !important;
     background-color: #ebebeb;
+    overflow: hidden;
 }
 a {
     text-decoration: none;
@@ -25,6 +26,10 @@ button {
 button {
     cursor: pointer;
 }
+#cabecalho {
+    padding: 1rem 5rem;
+    width: 100%;
+}
 #carregando {
     margin: 0 auto;
     width: 80%;
@@ -33,6 +38,9 @@ button {
     border: .1rem solid #b6b6b6;
     padding: 1rem 0;
     text-align: center;
+}
+#conteudo {
+    display: none;
 }
 .alert {
     padding: 1rem;
@@ -43,4 +51,41 @@ button {
     border: .1rem solid #ff0000;
     background-color: #ff000044;
     color: #ff0000;
+}
+main {
+    display: flex;
+    width: 100%;
+}
+.line-division {
+    height: 2px;
+    width: 90%;
+    margin: 1rem auto;
+    background-color: #00000033;
+}
+
+/* Barra Lateral */
+
+#barra-lateral {
+    width: 25%;
+    background-color: #fff;
+    border-right: .1rem solid #00000033;
+}
+.barra-lateral-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto !important;
+}
+.item-children {
+    margin: 1rem 2rem;
+}
+.item-children.itens {
+    padding-left: 2rem;
+}
+
+/* Painel de Comando */
+
+#painel-comando {
+    width: 100%;
+    overflow-y: auto;
 }
