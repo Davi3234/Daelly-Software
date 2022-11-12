@@ -107,9 +107,9 @@ $funcionarios = $control->listar();
                                             <?php echo $f->grupo ? $f->grupo : "Nenhum" ?>
                                         </td>
                                         <td>
-                                            <div class="actions-form">
-                                                <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" class="excluir bt-action bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                            <div class="actions-form table">
+                                                <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                <a href="#" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
                                             </div>
                                         </td>
                                     </tr>

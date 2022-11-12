@@ -29,9 +29,23 @@ button {
 button {
     cursor: pointer;
 }
+main {
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+#conteudo {
+    display: none;
+    border: .1rem solid #b6b6b6;
+}
+
+/* Utils */
+
 #carregando {
     position: absolute;
-    margin: 5rem auto 0 auto;
+    margin: 5rem auto;
+    left: 50%;
+    transform: translateX(-50%);
     width: 80%;
     background-color: #fff;
     border-radius: .5rem;
@@ -39,9 +53,15 @@ button {
     padding: 1rem 0;
     text-align: center;
 }
-#conteudo {
-    display: none;
+.line-division {
+    height: 1px;
+    width: 100%;
+    margin: 2rem auto;
+    background-color: #00000033;
 }
+
+/* Mensagens */
+
 .alert {
     padding: 1rem;
     margin: 1rem 0;
@@ -58,30 +78,44 @@ button {
     background-color: #18cc004d;
     color: #18cc00;
 }
-main {
+
+/* BT Actions */
+
+.actions-form {
     display: flex;
-    width: 100%;
-    height: 90%;
+    gap: 1rem;
 }
-.line-division {
-    height: 1px;
-    width: 100%;
-    margin: 2rem auto;
-    background-color: #00000033;
+.actions-form.table {
+    position: relative;
+    height: 100%;
 }
 .bt-action {
+    border-radius: .3rem;
+    transition: .3s;
+}
+.bt-action.form {
+    padding: 1rem 1.5rem;
+}
+.bt-action.form.primary {
+    background-color: #1100ff;
+    color: #fff;
+}
+.bt-action.form.primary:hover {
+    background-color: #232a8d;
+    color: #fff;
+}
+.bt-action.table {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: .3rem;
-    border-radius: .3rem;
 }
-.bt-action.bt-remove {
+.bt-action.table.bt-remove {
     background-color: #ff00004f;
     color: #ff0000;
     border: .01rem solid #ff0000;
 }
-.bt-action.bt-edit {
+.bt-action.table.bt-edit {
     background-color: #1100ff41;
     color: #1100ff;
     border: .01rem solid #1100ff;
@@ -92,6 +126,101 @@ main {
 }
 ::-webkit-scrollbar-thumb {
     background-color: #b6b6b6;
+}
+
+/* Form */
+
+.fill-inputs {
+    /* column-count: 2; */
+    gap: 3rem;
+}
+.fill-inputs.login {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+.fill-inputs .input-box {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+}
+.fill-inputs .input-box.input-position-left {
+    float: left;
+}
+.fill-inputs .input-box.input-position-right {
+    float: right;
+}
+.fill-inputs input {
+    font-size: 1.4rem;
+    letter-spacing: .08rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    z-index: 5;
+    color: #fff;
+}
+.fill-inputs label {
+    position: absolute;
+    pointer-events: none;
+    font-size: 1.5rem;
+    z-index: 10;
+    transition: .3s;
+    color: #000;
+}
+.fill-inputs i {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #232a8d;
+    border-radius: .3rem;
+    transition: .3s;
+}
+.fill-inputs input:valid~label,
+.fill-inputs input:focus~label {
+    transform: translateY(-2.5rem) scale(.9);
+}
+.fill-inputs input:valid~i,
+.fill-inputs input:focus~i {
+    height: 100%;
+}
+.fill-inputs button {
+    padding: 1rem 3rem;
+    background-color: #232a8d;
+    color: #fff;
+    transition: .3s;
+    border-radius: .3rem;
+    float: right;
+    font-size: 1.4rem;
+}
+.fill-inputs button:hover {
+    background-color: #3f448b;
+}
+
+/* Form Login */
+
+.session-login {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    color: #232a8d;
+}
+.login-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 80%;
+    max-width: 40rem;
+    padding: 3rem;
+    background-color: #fff;
+    border-radius: .3rem;
+    border: .1rem solid #b6b6b6;
 }
 
 /* Cabeçalho */
@@ -254,10 +383,4 @@ thead {
 td,
 th {
     padding: .5rem 1rem;
-}
-.actions-form {
-    display: flex;
-    position: relative;
-    height: 100%;
-    justify-content: space-around;
 }
