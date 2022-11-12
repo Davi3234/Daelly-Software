@@ -26,7 +26,7 @@ button {
     cursor: pointer;
 }
 #cabecalho {
-    padding: 1rem 5rem;
+    padding: 2rem 5rem;
     width: 100%;
 }
 #carregando {
@@ -52,6 +52,7 @@ button {
     color: #ff0000;
 }
 main {
+    position: relative;
     display: flex;
     width: 100%;
 }
@@ -65,11 +66,14 @@ main {
 /* Barra Lateral */
 
 #barra-lateral {
+    display: block;
     width: 25%;
     background-color: #fff;
     border-right: .1rem solid #00000033;
-    top: 0;
     bottom: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .barra-lateral-content {
     display: flex;
@@ -78,10 +82,20 @@ main {
     overflow: auto !important;
 }
 .item-children {
+    cursor: pointer;
+}
+.item-children.header {
     margin: 1rem 2rem;
 }
 .item-children.itens {
+    height: 0;
+    overflow: hidden;
     padding-left: 2rem;
+    transition: height 2s;
+}
+.item-children.itens.active {
+    margin: 1rem 2rem;
+    height: auto;
 }
 
 /* Painel de Comando */
