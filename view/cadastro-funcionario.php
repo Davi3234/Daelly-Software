@@ -80,64 +80,59 @@ $listaFun = $controlFun->listar();
                 <div class="line-division"></div>
 
                 <div class="conteudo-main">
-                    <form action="" method="post" id="form"></form>
-                    <input hidden type="text" name="funcoes-selecionadas" id="funcoes-input" value='{"funcoes":[]}'>
+                    <form action="" method="post" id="form">
+                        <input hidden type="text" name="funcoes-selecionadas" id="funcoes-input" value='{"funcoes":[]}'>
 
-                    <div class="actions-form">
-                        <button type="submit" id="gravar" class="bt-action form primary">Gravar</button>
-                        <button type="button" class="bt-action form primary voltar">Voltar</button>
-                    </div>
-
-                    <div class="line-division"></div>
-
-                    <div class="fill-inputs">
-                        <div class="input-box input-position-left">
-                            <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
-                            <label for="nome">Nome</label>
-                            <i></i>
-                        </div>
-                        <div class="input-box input-position-right">
-                            <input type="date" name="entrada" id="entrada" required="required">
-                            <label for="entrada">Entrada</label>
-                            <i></i>
-                        </div>
-                        <div class="input-box input-position-left">
-                            <input type="text" name="cpf" id="cpf" required="required">
-                            <label for="cpf">CPF</label>
-                            <i></i>
-                        </div>
-                        <div class="input-box input-position-right">
-                            <input type="date" name="saida" id="saida" required="required">
-                            <label for="saida">Saída</label>
-                            <i></i>
+                        <div class="actions-form">
+                            <button type="submit" id="gravar" class="bt-action form primary">Gravar</button>
+                            <button type="button" class="bt-action form primary voltar">Voltar</button>
                         </div>
 
-                        <div class="input-box input-position-left">
-                            <?php foreach ($listaFun as $f) { ?>
-                                <input name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                <label class="form-check-label" for="flexCheckDefault"><?php echo $f->nome ?></label>
-                                <br>
-                            <?php } ?>
-                        </div>
-                        <div class="input-box input-position-right">
-                            <select class="form-control" id="id_grupo" name="id_grupo">
-                                <option value="0">Selecione</option>
-                                <?php foreach ($listaGru as $g) { ?>
-                                    <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
+                        <div class="line-division"></div>
+
+                        <div class="fill-inputs">
+                            <div class="input-box input-position-left">
+                                <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
+                                <label for="nome">Nome</label>
+                                <i></i>
+                            </div>
+                            <div class="input-box input-position-right">
+                                <input type="date" name="entrada" id="entrada" required="required">
+                                <label for="entrada">Entrada</label>
+                                <i></i>
+                            </div>
+                            <div class="input-box input-position-left">
+                                <input type="text" name="cpf" id="cpf" required="required">
+                                <label for="cpf">CPF</label>
+                                <i></i>
+                            </div>
+                            <div class="input-box input-position-right">
+                                <input type="date" name="saida" id="saida" required="required">
+                                <label for="saida">Saída</label>
+                                <i></i>
+                            </div>
+
+                            <div class="input-box input-position-left">
+                                <?php foreach ($listaFun as $f) { ?>
+                                    <input name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault"><?php echo $f->nome ?></label>
+                                    <br>
                                 <?php } ?>
-                            </select>
-                            <label for="id_grupo">Grupo</label>
-                            <i></i>
+                            </div>
+                            <div class="input-box input-position-right">
+                                <select class="form-control" id="id_grupo" name="id_grupo">
+                                    <option value="0">Selecione</option>
+                                    <?php foreach ($listaGru as $g) { ?>
+                                        <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
+                                    <?php } ?>
+                                </select>
+                                <label for="id_grupo">Grupo</label>
+                                <i></i>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-
-
-        </div>
-        </form>
-        </div>
-        </div>
         </div>
     </main>
 
