@@ -152,25 +152,25 @@ main {
     margin-bottom: 3rem;
     width: 100%;
 }
-.fill-inputs .input-box.input-position-left {
+.input-box.input-position-left {
     float: left;
     width: 48%;
     margin-top: 0.15rem;
 }
-.fill-inputs .input-box.input-position-right {
+.input-box.input-position-right {
     float: right;
     width: 48%;
 }
-.fill-inputs input,
-.fill-inputs select {
+.input-box input,
+.input-box select {
     font-size: 1.4rem;
-    letter-spacing: .08rem;
+    letter-spacing: .1rem;
     width: 100%;
     padding: 1rem 2rem;
     z-index: 5;
     color: #fff;
 }
-.fill-inputs label {
+.input-box label {
     position: absolute;
     pointer-events: none;
     font-size: 1.5rem;
@@ -178,7 +178,7 @@ main {
     transition: .3s;
     color: #000;
 }
-.fill-inputs i {
+.input-box i {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -188,12 +188,16 @@ main {
     border-radius: .3rem;
     transition: .3s;
 }
-.fill-inputs input:valid~label,
-.fill-inputs input:focus~label {
+.input-box input:valid~label,
+.input-box input:focus~label,
+.input-box select:valid~label,
+.input-box select:focus~label {
     transform: translateY(-2.5rem) scale(.9);
 }
-.fill-inputs input:valid~i,
-.fill-inputs input:focus~i {
+.input-box input:valid~i,
+.input-box input:focus~i,
+.input-box select:valid~i,
+.input-box select:focus~i {
     height: 100%;
 }
 .fill-inputs button {
@@ -207,6 +211,18 @@ main {
 }
 .fill-inputs button:hover {
     background-color: #3f448b;
+}
+.checkbox-box {
+    justify-content: left;
+}
+.checkbox-box label {
+    position: relative;
+}
+.checkbox-box input {
+    width: 1.5rem;
+}
+.checkbox-box input:checked {
+    background-color: #232a8d;
 }
 
 /* Form Login */
