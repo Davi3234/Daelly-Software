@@ -1,7 +1,7 @@
 <div class="barra-lateral-content">
     <i class="line-division"></i>
     <div class="menu-item-parent">
-        <div id="i-inicio" class="item-children header no-expansive"><span class="icon material-symbols-outlined" style="font-size: 2rem;">home</span> Início</div>
+        <a href="painel.php" id="i-inicio" class="item-children header no-expansive"><span class="icon material-symbols-outlined" style="font-size: 2rem;">home</span> Início</a>
     </div>
     <div class="menu-item-parent">
         <div id="i-funcionario" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Funcionários</div>

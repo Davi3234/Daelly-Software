@@ -97,11 +97,11 @@ main {
     padding: 1rem 1.5rem;
 }
 .bt-action.form.primary {
-    background-color: #1100ff;
+    background-color: #232a8d;
     color: #fff;
 }
 .bt-action.form.primary:hover {
-    background-color: #232a8d;
+    background-color: #3f448b;
     color: #fff;
 }
 .bt-action.table {
@@ -152,12 +152,14 @@ main {
 .fill-inputs .input-box.input-position-left {
     float: left;
     width: 48%;
+    margin-top: 0.15rem;
 }
 .fill-inputs .input-box.input-position-right {
     float: right;
     width: 48%;
 }
-.fill-inputs input {
+.fill-inputs input,
+.fill-inputs select {
     font-size: 1.4rem;
     letter-spacing: .08rem;
     width: 100%;
@@ -280,6 +282,7 @@ main {
     padding: 1rem 2rem;
     background-color: #232a8d;
     text-align: center;
+    transition: .3s;
 }
 .profile-item-children.itens .item:hover {
     padding: 1rem 2rem;

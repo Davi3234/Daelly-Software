@@ -65,10 +65,21 @@ $listaFun = $controlFun->listar();
                     <h2>Cadastro de Funcionário</h2>
                 </div>
 
+                <?php if (isset($mensagem)) { ?>
+                    <div class="alert alert-success">
+                        <?php echo $mensagem; ?>
+                    </div>
+                <?php } ?>
+
+                <?php if (isset($erros)) { ?>
+                    <div class="alert alert-danger">
+                        <?php echo $erros; ?>
+                    </div>
+                <?php } ?>
+
                 <div class="line-division"></div>
 
                 <div class="conteudo-main">
-
                     <form action="" method="post" id="form"></form>
                     <input hidden type="text" name="funcoes-selecionadas" id="funcoes-input" value='{"funcoes":[]}'>
 
@@ -100,12 +111,31 @@ $listaFun = $controlFun->listar();
                             <label for="saida">Saída</label>
                             <i></i>
                         </div>
+
+                        <div class="input-box input-position-left">
+                            <?php foreach ($listaFun as $f) { ?>
+                                <input name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault"><?php echo $f->nome ?></label>
+                                <br>
+                            <?php } ?>
+                        </div>
+                        <div class="input-box input-position-right">
+                            <select class="form-control" id="id_grupo" name="id_grupo">
+                                <option value="0">Selecione</option>
+                                <?php foreach ($listaGru as $g) { ?>
+                                    <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
+                                <?php } ?>
+                            </select>
+                            <label for="id_grupo">Grupo</label>
+                            <i></i>
+                        </div>
                     </div>
                 </div>
-
-
             </div>
-            </form>
+
+
+        </div>
+        </form>
         </div>
         </div>
         </div>
