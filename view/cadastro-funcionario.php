@@ -86,7 +86,7 @@ $listaFun = $controlFun->listar();
                             <i></i>
                         </div>
                         <div class="input-box input-position-right">
-                            <input type="text" name="entrada" id="entrada" required="required">
+                            <input type="date" name="entrada" id="entrada" required="required">
                             <label for="entrada">Entrada</label>
                             <i></i>
                         </div>
@@ -96,7 +96,7 @@ $listaFun = $controlFun->listar();
                             <i></i>
                         </div>
                         <div class="input-box input-position-right">
-                            <input type="text" name="saida" id="saida" required="required">
+                            <input type="date" name="saida" id="saida" required="required">
                             <label for="saida">Saída</label>
                             <i></i>
                         </div>

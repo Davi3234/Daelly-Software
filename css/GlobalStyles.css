@@ -132,8 +132,10 @@ main {
 
 .fill-inputs {
     position: relative;
+    display: table;
     width: 100%;
     height: auto;
+    margin-top: 3rem;
 }
 .fill-inputs.login {
     display: flex;
@@ -144,7 +146,7 @@ main {
     position: relative;
     display: flex;
     flex-direction: column;
-    margin-top: 3rem;
+    margin-bottom: 3rem;
     width: 100%;
 }
 .fill-inputs .input-box.input-position-left {
