@@ -113,10 +113,15 @@ $listaFun = $controlFun->listar();
                             </div>
 
                             <div class="input-box input-position-left">
+                                <div class="checkbox-box">
+                                    <input name="funcoes[]" type="checkbox" checked value="1" id="flexCheckDefault">
+                                    <label for="flexCheckDefault">1</label>
+                                </div>
+                                <div class="checkbox-box">
+                                    <input name="funcoes[]" type="checkbox" value="1" id="flexCheckDefault">
+                                    <label for="flexCheckDefault">1</label>
+                                </div>
                                 <?php foreach ($listaFun as $f) { ?>
-                                    <input name="funcoes[]" class="form-check-input" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault"><?php echo $f->nome ?></label>
-                                    <br>
                                 <?php } ?>
                             </div>
                             <div class="input-box input-position-right">

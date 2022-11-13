@@ -7,7 +7,7 @@ $menuItens = [
     ["grupo", "cadastro-grupo.php", "grupos.php", "Grupo", true],
     ["maquina-costura", "cadastro-maquina-costura.php", "maquinas-costura.php", "Máquina Costura", true],
     ["compressor", "cadastro-compressor.php", "compressors.php", "Compressor", true],
-    ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", true],
+    ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", true]
 ];
 ?>
 
