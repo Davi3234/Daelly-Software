@@ -142,8 +142,8 @@ $listaFun = $controlFun->listar();
     </main>
 
     <script>
-        $('#i-funcionario').addClass("active")
         $(document).ready(function() {
+            $('#i-funcionario').addClass("active")
             $('#carregando').fadeOut();
             $('#conteudo').fadeIn();
 

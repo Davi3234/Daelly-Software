@@ -73,13 +73,13 @@ $data .= ']}';
 
     <!-- <script src="../js/ControlMapa.js"></script> -->
     <script>
-        $('#i-inicio').addClass("active")
         const {
             maquinas
         } = JSON.parse(JSON.stringify(<?php echo $data ?>))
         const maquinasAlteradas = []
-
+        
         $(document).ready(function() {
+            $('#i-inicio').addClass("active")
             $('#carregando').fadeOut()
             $('#conteudo').fadeIn()
             $('#editar-maquinas-mapa').submit((ev) => {

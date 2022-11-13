@@ -142,6 +142,9 @@ main {
     flex-direction: column;
     gap: 3rem;
 }
+.fill-inputs.login .input-box {
+    margin-bottom: 0;
+}
 .fill-inputs .input-box {
     position: relative;
     display: flex;

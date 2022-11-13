@@ -1,65 +1,30 @@
+<?php
+$menuItens = [
+    ["inicio", "painel.php", "#", "Início", false],
+    ["funcionario", "cadastro-funcionario.php", "funcionarios.php", "Funcionário", true],
+    ["funcao", "cadastro-funcao.php", "funcões.php", "Função", true],
+    ["tipo", "cadastro-tipo.php", "tipos.php", "Tipo", true],
+    ["grupo", "cadastro-grupo.php", "grupos.php", "Grupo", true],
+    ["maquina-costura", "cadastro-maquina-costura.php", "maquinas-costura.php", "Máquina Costura", true],
+    ["compressor", "cadastro-compressor.php", "compressors.php", "Compressor", true],
+    ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", true],
+];
+?>
+
 <div class="barra-lateral-content">
     <i class="line-division"></i>
-    <div class="menu-item-parent">
-        <a href="painel.php" id="i-inicio" class="item-children header no-expansive"><span class="icon material-symbols-outlined" style="font-size: 2rem;">home</span> Início</a>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-funcionario" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Funcionários</div>
-        <div id="i-expansive-funcionario" class="item-children itens">
-            <a href="cadastro-funcionario.php" class="item"><span>Cadastro</span></a>
-            <a href="funcionarios.php" class="item"><span>Listagem</span></a>
+    <?php foreach ($menuItens as $item) { ?>
+        <div class="menu-item-parent">
+            <?php if ($item[4]) { ?>
+                <div id="i-<?php echo $item[0] ?>" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> <?php echo $item[3] ?></div>
+                <div id="i-expansive-<?php echo $item[0] ?>" class="item-children itens">
+                    <a href="<?php echo $item[1] ?>" class="item"><span>Cadastro</span></a>
+                    <a href="<?php echo $item[2] ?>" class="item"><span>Listagem</span></a>
+                </div>
+            <?php } else { ?>
+                <a href="<?php echo $item[1] ?>" id="i-<?php echo $item[0] ?>" class="item-children header no-expansive"><span class="icon material-symbols-outlined" style="font-size: 2rem;">home</span> <?php echo $item[3] ?></a>
+            <?php } ?>
         </div>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-funcao" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Funções</div>
-        <div id="i-expansive-funcao" class="item-children itens">
-            <a href="cadastro-funcao.php" class="item"><span>Cadastro</span></a>
-            <a href="funcoes.php" class="item"><span>Listagem</span></a>
-        </div>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-tipo" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Tipos</div>
-        <div id="i-expansive-tipo" class="item-children itens">
-            <a href="cadastro-tipo.php" class="item"><span>Cadastro</span></a>
-            <a href="tipos.php" class="item"><span>Listagem</span></a>
-        </div>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-grupo" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Grupos</div>
-        <div id="i-expansive-grupo" class="item-children itens">
-            <a href="cadastro-grupo.php" class="item"><span>Cadastro</span></a>
-            <a href="grupos.php" class="item"><span>Listagem</span></a>
-        </div>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-maquina-costura" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Máquinas de Costura</div>
-        <div id="i-expansive-maquina-costura" class="item-children itens">
-            <a href="cadastro-maquina-costura.php" class="item"><span>Cadastro</span></a>
-            <a href="maquinas-costura.php" class="item"><span>Listagem</span></a>
-        </div>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-compressor" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Compressores</div>
-        <div id="i-expansive-compressor" class="item-children itens">
-            <a href="cadastro-compressor.php" class="item"><span>Cadastro</span></a>
-            <a href="compressores.php" class="item"><span>Listagem</span></a>
-        </div>
-    </div>
-    <div class="menu-item-parent">
-        <div id="i-manutencao" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> Manutenções</div>
-        <div id="i-expansive-manutencao" class="item-children itens">
-            <a href="#" class="item"><span>Cadastro</span></a>
-            <a href="#" class="item"><span>Listagem</span></a>
-        </div>
-    </div>
+    <?php } ?>
     <i class="line-division"></i>
 </div>
-
-<script>
-    document.querySelectorAll(".item-children.header").forEach(a => a.addEventListener("click", ({target}) => {
-        if (target.classList.contains("no-expansive")) {return}
-        const tag = document.querySelector(".item-children.itens#i-expansive-" + (target.id.substr(2)))
-        if (!tag) {return}
-        tag.classList.toggle("active");
-    }))
-</script>
