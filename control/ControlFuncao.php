@@ -36,7 +36,7 @@ class ControlFuncao
         }
     }
 
-    public function editar($id, $nome, $id_tipo = null)
+    public function editar($nome, $id_tipo = null, $id)
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";

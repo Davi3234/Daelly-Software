@@ -17,14 +17,17 @@ body {
 }
 a {
     text-decoration: none;
-    color: #000;
+    color: rgb(255, 255, 255);
 }
 input,
-select,
 button {
     outline: none;
     border: none;
     background: transparent;
+}
+select{
+    outline: none;
+    border: none;
 }
 button {
     cursor: pointer;
@@ -97,7 +100,7 @@ main {
     padding: 1rem 1.5rem;
 }
 .bt-action.form.primary {
-    background-color: #232a8d;
+    background-color: #0e135d;
     color: #fff;
 }
 .bt-action.form.primary:hover {
@@ -155,20 +158,35 @@ main {
 .input-box.input-position-left {
     float: left;
     width: 48%;
-    margin-top: 0.15rem;
 }
 .input-box.input-position-right {
     float: right;
     width: 48%;
 }
-.input-box input,
-.input-box select {
+.input-box input{
     font-size: 1.4rem;
     letter-spacing: .1rem;
     width: 100%;
     padding: 1rem 2rem;
     z-index: 5;
     color: #fff;
+}
+.input-box select {
+    font-size: 1.4rem;
+    letter-spacing: .1rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    z-index: 5;
+    color: rgb(0, 0, 0);
+    border: white;
+}
+.input-box select:hover,
+.input-box select:focus,
+.input-box select:active,
+.input-box select:checked 
+.input-box select:valid{
+  color: white;
+  background-color: #0e135d;
 }
 .input-box label {
     position: absolute;
@@ -184,7 +202,7 @@ main {
     left: 0;
     right: 0;
     height: 2px;
-    background-color: #232a8d;
+    background-color: #0e135d;
     border-radius: .3rem;
     transition: .3s;
 }
@@ -259,7 +277,7 @@ main {
     width: 100%;
     height: 10%;
     min-height: 6.3rem;
-    background-color: #232a8d;
+    background-color: #2cb4dd;
     color: #fff;
     z-index: 10;
 }
@@ -320,11 +338,12 @@ main {
 #barra-lateral {
     display: block;
     width: 25%;
-    background-color: #fff;
+    background-color: #0e135d;
     border-right: .1rem solid #00000033;
     z-index: 10;
     overflow-x: hidden;
     overflow-y: auto;
+    color: #fff;
     font-size: 1.4rem;
 }
 .barra-lateral-content {
@@ -334,13 +353,13 @@ main {
     overflow: auto !important;
 }
 .menu-item-parent:hover .item-children.header {
-    background-color: #dadada;
+    background-color: #1f2467; 
 }
 .menu-item-parent:hover .item-children.header.active {
-    background-color: #3f448b;
+    background-color: #0011ff; 
 }
 .item-children.header.active {
-    background-color: #232a8d;
+    background-color: #0011ff;  
     color: #fff;
 }
 .item-children.header.active:hover {
@@ -359,7 +378,7 @@ main {
 .item-children.itens {
     display: none;
     flex-direction: column;
-    background-color: #f0f0f0;
+    background-color: #3f448b;
 }
 .item-children.itens.active {
     display: flex;
@@ -367,10 +386,11 @@ main {
 .item-children.itens .item {
     padding: 1rem 2rem 1rem 5rem;
     transition: .3s;
+    color: #fff;
 }
 .item-children.header:hover,
 .item-children.itens .item:hover {
-    background-color: #dadada;
+    background-color: #1b2178; 
 }
 
 /* Painel de Comando */
@@ -411,4 +431,5 @@ thead {
 td,
 th {
     padding: .5rem 1rem;
+    text-align: center;
 }

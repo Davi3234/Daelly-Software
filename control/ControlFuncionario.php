@@ -39,7 +39,7 @@ class ControlFuncionario
         return false;
     }
 
-    public function editar($id, $cpf, $nome, $entrada, $saida = null, $id_grupo = null)
+    public function editar($cpf, $nome, $entrada, $saida = null, $id_grupo = null, $id)
     {
         if (strlen($cpf) == 0) {
             $this->erros[] = "Informe o CPF";

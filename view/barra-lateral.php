@@ -2,11 +2,11 @@
 $menuItens = [
     ["inicio", "painel.php", "#", "Início", false],
     ["funcionario", "cadastro-funcionario.php", "funcionarios.php", "Funcionário", true],
-    ["funcao", "cadastro-funcao.php", "funcões.php", "Função", true],
+    ["funcao", "cadastro-funcao.php", "funcoes.php", "Função", true],
     ["tipo", "cadastro-tipo.php", "tipos.php", "Tipo", true],
     ["grupo", "cadastro-grupo.php", "grupos.php", "Grupo", true],
     ["maquina-costura", "cadastro-maquina-costura.php", "maquinas-costura.php", "Máquina Costura", true],
-    ["compressor", "cadastro-compressor.php", "compressors.php", "Compressor", true],
+    ["compressor", "cadastro-compressor.php", "compressores.php", "Compressor", true],
     ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", true]
 ];
 ?>

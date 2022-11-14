@@ -8,7 +8,7 @@ class DaoFuncao
     function __construct()
     {
         try {
-            include "../config/db-config.php";
+            include "../assets/db-config.php";
             $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
         } catch (PDOException $ex) {
             die($ex->getMessage());

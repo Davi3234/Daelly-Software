@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $funcoesSelecionadas = json_decode($_POST["funcoes-selecionadas"])->funcoes;
 
     if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
-        $mensagem = "Funcionï¿½rio inserido com sucesso";
+        $mensagem = "Funcionário inserido com sucesso";
         $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"])->id, $funcoesSelecionadas);
         unset($_POST);
     }
@@ -107,11 +107,10 @@ $listaFun = $controlFun->listar();
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="date" name="saida" id="saida" required="required">
-                                <label for="saida">SaÃ­da</label>
+                                <input type="date" name="saida" id="saida">
+                                <label for="saida">Saída</label>
                                 <i></i>
                             </div>
-
                             <div class="input-box input-position-left">
                                 <div class="checkbox-box">
                                     <input name="funcoes[]" type="checkbox" checked value="1" id="flexCheckDefault">

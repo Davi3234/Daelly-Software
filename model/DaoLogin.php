@@ -3,7 +3,7 @@ class DaoLogin{
     private $conexao;
 
     public function __construct(){
-        include "../config/db-config.php";
+        include "../assets/db-config.php";
             $this->conexao = new PDO("mysql:host=localhost;dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
     }
 

@@ -122,6 +122,7 @@ $funcionarios = $control->listar();
         </div>
     </main>
 
+
     <script>
         $(document).ready(function() {
             $('#i-funcionario').addClass("active")
@@ -140,5 +141,4 @@ $funcionarios = $control->listar();
     </script>
 
 </body>
-
 </html>

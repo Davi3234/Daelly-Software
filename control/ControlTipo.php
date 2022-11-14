@@ -1,5 +1,5 @@
 <?php
-class Controltipo
+class ControlTipo
 {
 
     private $tipo;
