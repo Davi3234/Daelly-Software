@@ -1,99 +1,126 @@
-body {
-    position: relative;
+.pc-mapa {
+    #conteudo {
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        #mapa-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100%;
+            #mapa-box {
+                height: 100%;
+                overflow-y: auto;
+                overflow-x: auto;
+                z-index: 90;
+            }
+            #inventario {
+                height: 15%;
+                border-top: $border;
+                z-index: 100;
+                background-color: #fff;
+                overflow-x: auto;
+            }
+        }
+    }
 }
-#header-content {
-    height: 50px !important;
-}
-#conteudo {
-    display: flex !important;
-    flex-direction: column;
-    max-height: 100% !important;
-}
-.panel-heading {
-    height: 60px !important;
-}
-.panel-heading button {
-    opacity: .7;
-    cursor: not-allowed;
-}
-.panel-heading button.valid {
-    opacity: 1;
-    cursor: auto;
-}
-.main {
-    height: calc(100vh - 50px) !important;
-    padding: 0 !important;
-}
-.row {
-    padding: 0 0 0 15px;
-    margin-right: 0 !important;
-    height: 40px;
-}
-#mapa-content {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 150px) !important;
-}
-#mapa-box {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: auto;
-    box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
-}
-#mapa-box.max-content {
-    height: 100%;
-}
-#mapa {
-    position: relative;
-}
-#inventario {
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
-}
-.listas-maquinas {
-    position: relative;
-    padding: 5px;
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    height: 100%;
-}
-#lista-maquinas-mapa {
-    padding: 0;
-}
-#lista-maquinas-inventario {
-    overflow-x: auto;
-}
-.maquinas {
-    background-color: blueviolet;
-    color: #fff;
-    // user-select: none;
-    cursor: move;
-}
-.maquinas.active {
-    position: absolute;
-    opacity: .7;
-}
-#maquina-info-content {
-    position: absolute;
-    display: none;
-    padding: 15px;
-    top: 50%;
-    left: 50%;
-    background-color: #fff;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
-    transform: translate(-50%, -150%);
-    z-index: 100 !important;
-}
-#maquina-info-content::before {
-    content: '';
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    left: 50%;
-    background-color: #fff;
-    transform: rotate(45deg) translateY(10px);
-}
-#maquina-info-content.active {
-    display: block;
-}
+// body {
+//     position: relative;
+// }
+// #header-content {
+//     height: 50px !important;
+// }
+// #conteudo {
+//     display: flex !important;
+//     flex-direction: column;
+//     max-height: 100% !important;
+// }
+// .panel-heading {
+//     height: 60px !important;
+// }
+// .panel-heading button {
+//     opacity: .7;
+//     cursor: not-allowed;
+// }
+// .panel-heading button.valid {
+//     opacity: 1;
+//     cursor: auto;
+// }
+// .main {
+//     height: calc(100vh - 50px) !important;
+//     padding: 0 !important;
+// }
+// .row {
+//     padding: 0 0 0 15px;
+//     margin-right: 0 !important;
+//     height: 40px;
+// }
+// #mapa-content {
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     height: calc(100vh - 150px) !important;
+// }
+// #mapa-box {
+//     height: 100%;
+//     overflow-y: auto;
+//     overflow-x: auto;
+//     box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
+// }
+// #mapa-box.max-content {
+//     height: 100%;
+// }
+// #mapa {
+//     position: relative;
+// }
+// #inventario {
+//     box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+// }
+// .listas-maquinas {
+//     position: relative;
+//     padding: 5px;
+//     display: flex;
+//     gap: 10px;
+//     width: 100%;
+//     height: 100%;
+// }
+// #lista-maquinas-mapa {
+//     padding: 0;
+// }
+// #lista-maquinas-inventario {
+//     overflow-x: auto;
+// }
+// .maquinas {
+//     background-color: blueviolet;
+//     color: #fff;
+//     // user-select: none;
+//     cursor: move;
+// }
+// .maquinas.active {
+//     position: absolute;
+//     opacity: .7;
+// }
+// #maquina-info-content {
+//     position: absolute;
+//     display: none;
+//     padding: 15px;
+//     top: 50%;
+//     left: 50%;
+//     background-color: #fff;
+//     box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
+//     transform: translate(-50%, -150%);
+//     z-index: 100 !important;
+// }
+// #maquina-info-content::before {
+//     content: '';
+//     position: absolute;
+//     width: 40px;
+//     height: 40px;
+//     left: 50%;
+//     background-color: #fff;
+//     transform: rotate(45deg) translateY(10px);
+// }
+// #maquina-info-content.active {
+//     display: block;
+// }

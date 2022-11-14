@@ -56,24 +56,48 @@ $data .= ']}';
             <?php include "barra-lateral.php" ?>
         </div>
 
-        <div id="painel-comando">
+        <div id="painel-comando" class="pc-mapa" style="padding: 2rem;">
             <div id="carregando">
                 Carregando...
             </div>
 
-            <div id="conteudo">
-                
+            <div id="conteudo" style="padding: 0;">
+                <form action="" method="post" id="editar-maquinas-mapa" style="width: 100%; height: 100%;">
+                    <input id="maquinas-input" name="maquinas" type="text" hidden value='{"maquinas":[]}'>
+                    <div id="mapa-content">
+                        <div id="mapa-box">
+                            <div id="mapa" style="width: <?php echo $mapa->largura_mapa ?>px; height: <?php echo $mapa->altura_mapa ?>px;">
+                                <div class="listas-maquinas" id="lista-maquinas-mapa" ondrop="dropMapa(event)" ondragover="allowDrop(event)">
+                                    <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
+                                        <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;"><?php echo $mc->codigo ?></div>
+                                    <?php } ?>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="inventario">
+                            <div class="listas-maquinas" id="lista-maquinas-inventario" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
+                                <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
+                                    <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
+                                <?php } ?>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div id="maquina-info-content" style="display: none !important;">
+                    <strong>Máquina <span id="mc-info-codigo"></span></strong>
+                    <button>Adicionar a máquina ao inventário</button>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- <script src="../js/ControlMapa.js"></script> -->
     <script>
         const {
             maquinas
         } = JSON.parse(JSON.stringify(<?php echo $data ?>))
         const maquinasAlteradas = []
-        
+
         $(document).ready(function() {
             $('#i-inicio').addClass("active")
             $('#carregando').fadeOut()
@@ -87,15 +111,24 @@ $data .= ']}';
                 editarMaquinasAlteradas()
             })
         })
-
+        
         function editarMaquinasAlteradas() {
             const tag = document.getElementById("maquinas-input")
-
+            
             let data = `{"maquinas":${JSON.stringify(maquinasAlteradas)}}`
-
+            
             tag.value = data
         }
-    </script>
+        </script>
+    <!-- <script src="../js/ControlMapa.js"></script> -->
 </body>
 
 </html>
+<!-- <div class="panel-heading">
+                        <button id="bt-salvar-maquinas" type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked checkmark">
+                                <use xlink:href="#stroked-checkmark" />
+                            </svg> Gravar</button>
+                        <button id="bt-resetar-maquinas" onclick="resetarMaquinasAlteradas()" type="button" class="btn btn-primary resetar" data-toggle="tooltip" data-placement="auto"><svg class="glyph stroked arrow left">
+                                <use xlink:href="#stroked-arrow-left" />
+                            </svg> Resetar</button>
+                    </div> -->
