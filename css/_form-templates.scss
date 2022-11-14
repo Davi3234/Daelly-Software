@@ -4,91 +4,87 @@
     width: 100%;
     height: auto;
     margin-top: 3rem;
-}
-.fill-inputs.login {
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-}
-.fill-inputs.login .input-box {
-    margin-bottom: 0;
-}
-.fill-inputs .input-box {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 3rem;
-    width: 100%;
-}
-.input-box.input-position-left {
-    float: left;
-    width: 48%;
-    margin-top: 0.15rem;
-}
-.input-box.input-position-right {
-    float: right;
-    width: 48%;
-}
-.input-box input,
-.input-box select {
-    font-size: 1.4rem;
-    letter-spacing: .1rem;
-    width: 100%;
-    padding: 1rem 2rem;
-    z-index: 5;
-    color: #fff;
-}
-.input-box label {
-    position: absolute;
-    pointer-events: none;
-    font-size: 1.5rem;
-    z-index: 10;
-    transition: .3s;
-    color: #000;
-}
-.input-box i {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: $primary-color;
-    border-radius: $border-radius;
-    transition: .3s;
-}
-.input-box input:valid~label,
-.input-box input:focus~label,
-.input-box select:valid~label,
-.input-box select:focus~label {
-    transform: translateY(-2.5rem) scale(.9);
-}
-.input-box input:valid~i,
-.input-box input:focus~i,
-.input-box select:valid~i,
-.input-box select:focus~i {
-    height: 100%;
-}
-.fill-inputs button {
-    padding: 1rem 3rem;
-    background-color: $primary-color;
-    color: #fff;
-    transition: .3s;
-    border-radius: $border-radius;
-    float: right;
-    font-size: 1.4rem;
-}
-.fill-inputs button:hover {
-    background-color: #3f448b;
-}
-.checkbox-box {
-    justify-content: left;
-}
-.checkbox-box label {
-    position: relative;
-}
-.checkbox-box input {
-    width: 1.5rem;
-}
-.checkbox-box input:checked {
-    background-color: $primary-color;
+    .input-box {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3rem;
+        width: 100%;
+        &.input-position-left {
+            float: left;
+            width: 48%;
+            margin-top: 0.15rem;
+        }
+        &.input-position-right {
+            float: right;
+            width: 48%;
+        }
+        input,
+        select {
+            font-size: 1.4rem;
+            letter-spacing: .1rem;
+            width: 100%;
+            padding: 1rem 2rem;
+            z-index: 5;
+            color: #fff;
+        }
+        select {
+            background-color: $primary-color;
+            border-radius: $border-radius;
+        }
+        label {
+            position: absolute;
+            pointer-events: none;
+            font-size: 1.5rem;
+            z-index: 10;
+            transition: .3s;
+            color: #000;
+        }
+        i {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background-color: $primary-color;
+            border-radius: $border-radius;
+            transition: .3s;
+        }
+        input:valid~label,
+        input:focus~label,
+        select:valid~label,
+        select:focus~label {
+            transform: translateY(-2.5rem) scale(.9);
+        }
+        input:valid~i,
+        input:focus~i,
+        select:valid~i,
+        select:focus~i {
+            height: 100%;
+        }
+    }
+    button {
+        padding: 1rem 3rem;
+        background-color: $primary-color;
+        color: #fff;
+        transition: .3s;
+        border-radius: $border-radius;
+        float: right;
+        font-size: 1.4rem;
+        &:hover {
+            background-color: $primary-color-darkness;
+        }
+    }
+    .checkbox-box {
+        justify-content: left;
+        label {
+            position: relative;
+        }
+        input {
+            width: 1.5rem;
+            &:checked {
+                background-color: $primary-color;
+            }
+        }
+    }
 }

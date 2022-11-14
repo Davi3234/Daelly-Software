@@ -14,7 +14,7 @@ $menuItens = [
 <div class="barra-lateral-content">
     <i class="line-division"></i>
     <?php foreach ($menuItens as $item) { ?>
-        <div class="menu-item-parent">
+        <div class="item-parent">
             <?php if ($item[4]) { ?>
                 <div id="i-<?php echo $item[0] ?>" class="item-children header"><span class="icon material-symbols-outlined">expand_more</span> <?php echo $item[3] ?></div>
                 <div id="i-expansive-<?php echo $item[0] ?>" class="item-children itens">

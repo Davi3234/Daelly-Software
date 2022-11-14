@@ -5,12 +5,12 @@
     border-radius: $border-radius;
     &.alert-danger {
         border: .1rem solid $alert-danger-color;
-        background-color: #ff000044;
+        background-color: $alert-danger-color-lightness;
         color: $alert-danger-color;
     }
     &.alert-success {
         border: .1rem solid $alert-sucess-color;
-        background-color: #18cc004d;
+        background-color: $alert-sucess-color-lightness;
         color: $alert-sucess-color;
     }
 }

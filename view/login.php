@@ -8,14 +8,8 @@ if (isset($_SESSION["email"])) {
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso ao Sistema</title>
-    <link rel="stylesheet" href="../css/GlobalStyles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="/js/jquery-3.1.0.min.js"></script>
-
+    <?php include "head.php" ?>
+    <title>Acesso ao Sistema - Daelly Conffecções</title>
     <style>
         #carregando,
         #erro {
@@ -37,7 +31,7 @@ if (isset($_SESSION["email"])) {
 
             <div id="erro" class="alert alert-danger"></div>
 
-            <div class="fill-inputs login" style="margin-top: 2rem;">
+            <div class="fill-inputs" style="margin-top: 2rem;">
                 <div class="input-box">
                     <input type="email" name="email" id="email" required="required" autofocus="TRUE">
                     <label for="email">Email</label>

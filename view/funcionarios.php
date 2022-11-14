@@ -19,7 +19,7 @@ $control = new ControlFuncionario();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Funcion�rio exclu�do com sucesso";
+        $mensagem = "Funcionário excluído com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -109,7 +109,7 @@ $funcionarios = $control->listar();
                                         <td>
                                             <div class="actions-form table">
                                                 <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                                <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
                                             </div>
                                         </td>
                                     </tr>

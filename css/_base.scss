@@ -1,15 +1,20 @@
-$darkness-ammount: 10;
-$lightness-ammount: 10;
-$primary-color: #232a8d;
-$primary-color-darkness: darkness( #232a8d, $darkness-ammount);
-$secondary-color: #b6b6b6;
-$terciary-color: #00000033;
+$darkness-ammount: 50;
+$lightness-ammount: 50;
 $neutro-color: #ebebeb;
-$alert-sucess-color: #18cc00;
+$primary-color: #232a8d;
+$primary-color-darkness: darken( #232a8d, $darkness-ammount * .15);
+$secondary-color: darken( $neutro-color, 20);
+$terciary-color: #00000033;
+$alert-sucess-color: #3c763d;
+$alert-sucess-color-darkness: darken( $alert-sucess-color, $darkness-ammount);
+$alert-sucess-color-lightness: lighten( $alert-sucess-color, $lightness-ammount);
 $alert-danger-color: #ff0000;
+$alert-danger-color-darkness: darken( $alert-danger-color, $darkness-ammount);
+$alert-danger-color-lightness: lighten( $alert-danger-color, $lightness-ammount - 10);
 $bt-action-edit-color: #1100ff;
 $bt-remove-edit-color: #ff0000;
 $border-radius: .3rem;
+$border: 1px solid $secondary-color;
 * {
     margin: 0;
     padding: 0;

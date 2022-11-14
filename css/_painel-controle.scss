@@ -5,17 +5,17 @@
     min-height: 100%;
     overflow-y: auto;
     z-index: 5;
-}
-#conteudo {
-    width: 100%;
-    background-color: #fff;
-    border-radius: $border-radius;
-    padding: 3rem;
-    display: none;
-    border: .1rem solid $secondary-color;
-}
-.conteudo-header {
-    margin-bottom: 1rem;
-    letter-spacing: .01rem;
-    font-size: 1.8rem;
+    #conteudo {
+        width: 100%;
+        background-color: #fff;
+        border-radius: $border-radius;
+        padding: 3rem;
+        display: none;
+        border: $border;
+        .conteudo-header {
+            margin-bottom: 1rem;
+            letter-spacing: .01rem;
+            font-size: 1.8rem;
+        }
+    }
 }

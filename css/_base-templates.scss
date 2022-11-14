@@ -6,7 +6,7 @@
     width: 80%;
     background-color: #fff;
     border-radius: $border-radius;
-    border: .1rem solid $secondary-color;
+    border: $border;
     padding: 1rem 0;
     text-align: center;
 }
@@ -14,5 +14,5 @@
     height: 1px;
     width: 100%;
     margin: 2rem auto;
-    background-color: $terciary-color;
+    background-color: $secondary-color;
 }

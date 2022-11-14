@@ -65,16 +65,16 @@ $listaFun = $controlFun->listar();
                     <h2>Cadastro de Funcionário</h2>
                 </div>
 
-                <div class="alert alert-success">
-                    <?php echo $mensagem; ?>
-                </div>
                 <?php if (isset($mensagem)) { ?>
+                    <div class="alert alert-success">
+                        <?php echo $mensagem; ?>
+                    </div>
                 <?php } ?>
 
-                <div class="alert alert-danger">
-                    <?php echo $erros; ?>
-                </div>
                 <?php if (isset($erros)) { ?>
+                    <div class="alert alert-danger">
+                        <?php echo $erros; ?>
+                    </div>
                 <?php } ?>
 
                 <div class="line-division"></div>
@@ -93,21 +93,21 @@ $listaFun = $controlFun->listar();
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
-                                <label for="nome">Nome</label>
+                                <label for="nome">Nome*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
                                 <input type="date" name="entrada" id="entrada" required="required">
-                                <label for="entrada">Entrada</label>
+                                <label for="entrada">Entrada*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
                                 <input type="text" name="cpf" id="cpf" required="required">
-                                <label for="cpf">CPF</label>
+                                <label for="cpf">CPF*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="date" name="saida" id="saida" required="required">
+                                <input type="date" name="saida" id="saida">
                                 <label for="saida">Saída</label>
                                 <i></i>
                             </div>
