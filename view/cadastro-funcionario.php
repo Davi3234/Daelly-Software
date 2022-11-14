@@ -111,7 +111,6 @@ $listaFun = $controlFun->listar();
                                 <label for="saida">Saída</label>
                                 <i></i>
                             </div>
-
                             <div class="input-box input-position-left">
                                 <div class="checkbox-box">
                                     <input name="funcoes[]" type="checkbox" checked value="1" id="flexCheckDefault">

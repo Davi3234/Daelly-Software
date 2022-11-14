@@ -3,14 +3,14 @@ require_once '../model/Compressor.php';
 require_once '../model/DaoCompressor.php';
 require_once '../control/ControlCompressor.php';
 session_start();
-if (!isset($_SESSION['email']))  {
+if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlCompressor();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Compressor excluÃ­do com sucesso";
+        $mensagem = "Compressor excluï¿½do com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -19,158 +19,108 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
-$compressor = $control->listar();
+$compressores = $control->listar();
 ?>
 
 <html>
-    <head>
-    <?php include 'header.php' ?>    
-    </head>
-    <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-                        <span class="sr-only">Menu</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="">Daelly Confecï¿½ï¿½es</a>
-                    <ul class="user-menu">
-                        <li class="dropdown pull-right">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg><span class="nome_usuario">Usuï¿½rio Logado </span><span class="caret"></span>                                    
-                            </a>
-                            <ul class="dropdown-menu" role="menu">                                
-                                <li><a href="logout.php"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+<head>
+    <?php include "head.php" ?>
+    <title>Lista de Compressores - Daelly ConffecÃ§Ãµes</title>
+</head>
 
-        
-        <?php include'nome.php'?>
+<body>
+    <header id="header">
+        <?php include "cabecalho.php" ?>
+    </header>
 
-        <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">            
-            <div id="carregando">
-                Carregando...                        
-            </div>
-            <div id="conteudo">               
-
-                <div class="row">
-                    <ol class="breadcrumb">
-                        <li><a href="index.php"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-                        <li class="active">Compressor</li>
-                    </ol>
-                </div>
-
-                <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Compressor</h1>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-
-                            <div class="panel-body">
-                                <form action="" method="POST" id="form">
-                                    <input type="hidden" value="" name="id" id="id"/>
-                                    <input type="hidden" value="" name="acao" id="acao"/>
-
-                                    <?php if (isset($mensagem)) { ?>
-                                        <div class="alert alert-success">
-                                            <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
-                                            <?php echo $mensagem; ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <?php if (isset($erros)) { ?>
-                                        <div class="alert alert-danger">
-                                            <?php echo $erros; ?>
-                                        </div>
-                                    <?php } ?>
-
-                                    <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-                                        <thead>
-                                            <tr>                                                
-                                                <th data-sortable="true">Id</th>
-                                                <th data-sortable="true">CÃ³digo</th> 
-                                                <th data-sortable="true">Marca</th> 
-                                                <th data-sortable="true">Modelo</th> 
-                                                <th data-sortable="true">Aï¿½ï¿½es</th>                                             
-                                            </tr>                        
-                                        </thead>  
-                                        <tbody> 
-                                            <?php if ($compressor) foreach ($compressor as $f) { ?>
-                                                    <tr>
-                                                        <td><?php echo $f->id ?></td>                                                        
-                                                        <td><?php echo $f->codigo ?></td>    
-                                                        <td><?php echo $f->marca ?></td>   
-                                                        <td><?php echo $f->modelo ?></td>                                                      
-                                                        <td>
-                                                            <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                            <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
-                                                        </td>                                                        
-                                                    </tr>
-                                                <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </form>
-                            </div>		
-                        </div>
-                    </div>
-                </div>
-
-            </div>            
+    <main>
+        <div id="barra-lateral">
+            <?php include "barra-lateral.php" ?>
         </div>
 
-        <script>
-            !function ($) {
-                $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
-                    $(this).find('em:first').toggleClass("glyphicon-minus");
-                });
-                $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-            $(".parent#menu-item-compressor").addClass("active");
-            }(window.jQuery);
+        <div id="painel-comando">
+            <div id="carregando">
+                Carregando...
+            </div>
 
-            $(window).on('resize', function () {
-                if ($(window).width() > 768)
-                    $('#sidebar-collapse').collapse('show')
-            })
-            $(window).on('resize', function () {
-                if ($(window).width() <= 767)
-                    $('#sidebar-collapse').collapse('hide')
-            })
+            <div id="conteudo">
+                <div class="conteudo-header">
+                    <h2>Compressores</h2>
+                </div>
+                <div class="line-division"></div>
 
-        </script>
-        <script>
-            $(document).ready(function () {
-                $('[data-toggle="tooltip"]').tooltip();
-                $('#carregando').fadeOut();
-                $('#conteudo').fadeIn();
+                <div class="conteudo-main">
+                    <form action="" method="POST" id="form">
+                        <input type="hidden" value="" name="id" id="id" />
+                        <input type="hidden" value="" name="acao" id="acao" />
 
-                $(".editar").click(function () {
+                        <?php if (isset($mensagem)) { ?>
+                            <div class="alert alert-success">
+                                <?php echo $mensagem; ?>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (isset($erros)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erros; ?>
+                            </div>
+                        <?php } ?>
+
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($compressores) foreach ($compressores as $c) { ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $c->codigo ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $c->marca ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $c->modelo ?>
+                                        </td>
+                                        <td>
+                                            <div class="actions-form table">
+                                                <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>&nbsp;&nbsp;&nbsp;
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        $(document).ready(function() {
+            $('#i-compressor').addClass("active")
+            $('#carregando').fadeOut();
+            $('#conteudo').fadeIn();
+
+            $(".excluir").click(function() {
+                if (confirm("Deseja realmente excluir o registro?")) {
                     id = $(this).attr("rel");
-                    $(location).attr("href", "editar-compressor.php?id=" + id);
-                });
-
-                $(".excluir").click(function () {
-                    if (confirm("Deseja realmente excluir o registro?")) {
-                        id = $(this).attr("rel");
-                        $("#id").val(id);
-                        $("#form").submit();
-                    }
-                });
-
+                    $("#id").val(id);
+                    $("#form").submit();
+                }
             });
-        </script>
 
-    </body>
+        });
+    </script>
+
+</body>
 </html>

@@ -55,7 +55,7 @@ class ControlMaquinaCostura
         return count($this->erros) == 0;
     }
 
-    public function cadastrar($codigo = null, $modelo = null, $marca = null, $chassi = null, $aquisicao = null, $id_tipo = null)
+    public function inserir($codigo = null, $modelo = null, $marca = null, $chassi = null, $aquisicao = null, $id_tipo = null)
     {
         $this->setValores($codigo, $modelo, $marca, $chassi, $aquisicao, $id_tipo);
 
@@ -79,7 +79,7 @@ class ControlMaquinaCostura
         return true;
     }
 
-    public function editar($id = null, $codigo = null, $modelo = null, $marca = null, $chassi = null, $aquisicao = null, $id_tipo = null)
+    public function editar($codigo = null, $modelo = null, $marca = null, $chassi = null, $aquisicao = null, $id_tipo = null, $id = null)
     {
         $this->setValores($codigo, $modelo, $marca, $chassi, $aquisicao, $id_tipo, $id);
         if (!$this->verificarValores()) {

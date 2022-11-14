@@ -1,16 +1,16 @@
 <?php
-require_once '../model/Grupo.php';
-require_once '../model/DaoGrupo.php';
-require_once '../control/ControlGrupo.php';
+require_once '../model/Compressor.php';
+require_once '../model/DaoCompressor.php';
+require_once '../control/ControlCompressor.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
-$control = new ControlGrupo();
+$control = new ControlCompressor();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->editar($_POST['numero'], addslashes($_GET['id']))) {
-        $mensagem = "Grupo editado com sucesso";
+    if ($control->editar($_POST['codigo'], $_POST['marca'], $_POST['modelo'], addslashes($_GET['id']))) {
+        $mensagem = "Compressor editado com sucesso";
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
@@ -20,14 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-$grupo = $control->selecionar(addslashes($_GET['id']));
+$compressor = $control->selecionar(addslashes($_GET['id']));
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar Grupo - Daelly Conffecções</title>
+    <title>Editar Compressor - Daelly Conffecções</title>
 </head>
 
 <body>
@@ -47,7 +47,7 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Editar Grupo</h2>
+                    <h2>Editar Compressor</h2>
                 </div>
 
                 <?php if (isset($mensagem)) { ?>
@@ -75,8 +75,18 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="numero" id="numero" value="<?php echo $grupo->numero ?>" required="required" autofocus="TRUE">
-                                <label for="numero">N�mero</label>
+                                <input type="text" name="codigo" id="codigo" value="<?php echo $compressor->codigo ?>" required="required" autofocus="TRUE">
+                                <label for="codigo">C�digo</label>
+                                <i></i>
+                            </div>
+                            <div class="input-box input-position-right">
+                                <input type="text" name="marca" id="marca" value="<?php echo $compressor->marca ?>" required="required" autofocus="TRUE">
+                                <label for="marca">Marca</label>
+                                <i></i>
+                            </div>
+                            <div class="input-box input-position-right">
+                                <input type="text" name="modelo" id="modelo" value="<?php echo $compressor->modelo ?>" required="required" autofocus="TRUE">
+                                <label for="modelo">Modelo</label>
                                 <i></i>
                             </div>
                         </div>
@@ -88,12 +98,12 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
 
     <script>
         $(document).ready(function() {
-            $('#i-grupo').addClass("active")
+            $('#i-compressor').addClass("active")
             $('#carregando').fadeOut();
             $('#conteudo').fadeIn();
 
             $(".voltar").click(function() {
-                $(location).attr("href", "grupos.php");
+                $(location).attr("href", "compressores.php");
             });
         });
     </script>
