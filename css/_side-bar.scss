@@ -1,0 +1,55 @@
+#barra-lateral {
+    display: block;
+    width: 25%;
+    background-color: #fff;
+    border-right: .1rem solid $terciary-color;
+    z-index: 10;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 1.4rem;
+}
+.barra-lateral-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: auto !important;
+}
+.menu-item-parent:hover .item-children.header {
+    background-color: #dadada;
+}
+.menu-item-parent:hover .item-children.header.active {
+    background-color: #3f448b;
+}
+.item-children.header.active {
+    background-color: $primary-color;
+    color: #fff;
+}
+.item-children.header.active:hover {
+    background-color: #3f448b;
+}
+.item-children {
+    cursor: pointer;
+}
+.item-children.header {
+    display: flex;
+    gap: .5rem;
+    padding: 1rem 1.5rem;
+    position: relative;
+    transition: .3s;
+}
+.item-children.itens {
+    display: none;
+    flex-direction: column;
+    background-color: #f0f0f0;
+}
+.item-children.itens.active {
+    display: flex;
+}
+.item-children.itens .item {
+    padding: 1rem 2rem 1rem 5rem;
+    transition: .3s;
+}
+.item-children.header:hover,
+.item-children.itens .item:hover {
+    background-color: #dadada;
+}

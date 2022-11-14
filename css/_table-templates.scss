@@ -1,0 +1,18 @@
+table,
+td,
+th,
+tr {
+    border: .01rem solid $secondary-color;
+}
+table {
+    width: 100%;
+    border-radius: $border-radius;
+    border-collapse: collapse;
+}
+thead {
+    background-color: #dadada;
+}
+td,
+th {
+    padding: .5rem 1rem;
+}

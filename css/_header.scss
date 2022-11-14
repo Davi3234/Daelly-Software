@@ -1,0 +1,62 @@
+#header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    min-height: 6.3rem;
+    background-color: $primary-color;
+    color: #fff;
+    z-index: 10;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+}
+.profile-parent {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+}
+.profile-item-children {
+    transition: .3s;
+}
+.profile-item-children.header {
+    position: relative;
+    align-items: center;
+    padding: 1.5rem 4rem;
+}
+.profile-item-children.header .icon {
+    position: absolute;
+}
+.profile-item-children.itens a {
+    color: #fff;
+}
+.profile-item-children.itens {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    right: 0;
+    box-shadow: 0 10px 1rem rgba(0, 0, 0, .2);
+}
+.profile-item-children.itens .item {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: $primary-color;
+    text-align: center;
+    transition: .3s;
+}
+.profile-item-children.itens .item:hover {
+    padding: 1rem 2rem;
+    background-color: #3f448b;
+}
+.profile-parent:hover .profile-item-children.header {
+    background-color: #3f448b;
+}
+.profile-item-children.itens:hover,
+.profile-parent:hover .profile-item-children.itens {
+    display: flex;
+}

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $funcoesSelecionadas = json_decode($_POST["funcoes-selecionadas"])->funcoes;
 
     if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
-        $mensagem = "Funcion�rio inserido com sucesso";
+        $mensagem = "Funcionário inserido com sucesso";
         $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"])->id, $funcoesSelecionadas);
         unset($_POST);
     }
@@ -65,16 +65,16 @@ $listaFun = $controlFun->listar();
                     <h2>Cadastro de Funcionário</h2>
                 </div>
 
+                <div class="alert alert-success">
+                    <?php echo $mensagem; ?>
+                </div>
                 <?php if (isset($mensagem)) { ?>
-                    <div class="alert alert-success">
-                        <?php echo $mensagem; ?>
-                    </div>
                 <?php } ?>
 
+                <div class="alert alert-danger">
+                    <?php echo $erros; ?>
+                </div>
                 <?php if (isset($erros)) { ?>
-                    <div class="alert alert-danger">
-                        <?php echo $erros; ?>
-                    </div>
                 <?php } ?>
 
                 <div class="line-division"></div>

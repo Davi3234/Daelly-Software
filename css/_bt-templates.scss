@@ -1,0 +1,39 @@
+.actions-form {
+    display: flex;
+    gap: 1rem;
+}
+.actions-form.table {
+    position: relative;
+    height: 100%;
+}
+.bt-action {
+    border-radius: $border-radius;
+    transition: .3s;
+}
+.bt-action.form {
+    padding: 1rem 1.5rem;
+}
+.bt-action.form.primary {
+    background-color: $primary-color;
+    color: #fff;
+}
+.bt-action.form.primary:hover {
+    background-color: #3f448b;
+    color: #fff;
+}
+.bt-action.table {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3rem;
+}
+.bt-action.table.bt-remove {
+    background-color: #ff00004f;
+    color: $bt-remove-edit-color;
+    border: .01rem solid $bt-remove-edit-color;
+}
+.bt-action.table.bt-edit {
+    background-color: #1100ff41;
+    color: $bt-action-edit-color;
+    border: .01rem solid $bt-action-edit-color;
+}

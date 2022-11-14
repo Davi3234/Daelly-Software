@@ -1,0 +1,55 @@
+$darkness-ammount: 10;
+$lightness-ammount: 10;
+$primary-color: #232a8d;
+$primary-color-darkness: darkness( #232a8d, $darkness-ammount);
+$secondary-color: #b6b6b6;
+$terciary-color: #00000033;
+$neutro-color: #ebebeb;
+$alert-sucess-color: #18cc00;
+$alert-danger-color: #ff0000;
+$bt-action-edit-color: #1100ff;
+$bt-remove-edit-color: #ff0000;
+$border-radius: .3rem;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+html {
+    font-size: 65.2% !important;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-size: 1.6rem !important;
+    background-color: $neutro-color;
+    overflow: hidden;
+}
+a {
+    text-decoration: none;
+    color: #000;
+}
+input,
+select,
+button {
+    outline: none;
+    border: none;
+    background: transparent;
+}
+button {
+    cursor: pointer;
+}
+main {
+    display: flex;
+    width: 100%;
+    height: 90%;
+}
+::-webkit-scrollbar {
+    background: transparent;
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: $secondary-color;
+}
