@@ -33,7 +33,7 @@ $tipos = $controlTip->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar Função - Daelly ConffecÃ§Ãµes</title>
+    <title>Editar Função - Daelly Confeções</title>
 </head>
 
 <body>

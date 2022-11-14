@@ -20,7 +20,7 @@ class ControlFuncionario
         if (strlen($cpf) == 0) {
             $this->erros[] = "Informe o CPF";
         } else if ($this->selecionarByCpf($cpf)) {
-            $this->erros[] = "Funcionário com o mesmo CPF já cadastrado";
+            $this->erros[] = "Funcion�rioo mesmo CPF já cadastrado";
         }
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";

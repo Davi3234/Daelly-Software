@@ -36,7 +36,7 @@ $funcionarios = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Funcion√°rios - Daelly Conffec√ß√µes</title>
+    <title>Lista de Funcion·rios - Daelly ConfeÁıestle>
 </head>
 
 <body>
@@ -56,7 +56,7 @@ $funcionarios = $control->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Funcion√°rios</h2>
+                    <h2>Funcion·rio <h2>
                 </div>
                 <div class="line-division"></div>
 

@@ -18,7 +18,7 @@ class DaoManutencao
     function inserir(Manutencao $manutencao)
     {
         try {
-            return $this->conexao->exec("insert into manutencao (descricao, data_manutencao, id_maquina, id_compressor) values ('" . $manutencao->getDescricao() . "','" . $manutencao->getDataManutencao() . $manutencao->getIdCompresor() . "','" . $manutencao->getIdMaquina() . "' )");
+            return $this->conexao->exec("insert into manutencao (descricao, data_manutencao, id_maquina_costura, id_compressor) values ('" . $manutencao->getDescricao() . "','" . $manutencao->getDataManutencao() . "','" . $manutencao->getIdMaquina() . "','" . $manutencao->getIdCompresor() . "' )");
         } catch (PDOException $ex) {
             return false;
         }
@@ -38,10 +38,18 @@ class DaoManutencao
         }
     }
 
-    function listar()
+    function listarMaq()
     {
         try {
-            return $this->conexao->query("select m.*, maq.codigo as maquina, c.codigo as compressor from manutencao m join maquina maq on maq.id = m.id_maquina join compressor c on c.id = m.id_compressor", PDO::FETCH_OBJ);
+            return $this->conexao->query("select m.*, maq.codigo as maquina, t.nome as tipo from manutencao m join maquina_costura maq on maq.id = m.id_maquina_costura join tipo t on t.id = maq.id_tipo", PDO::FETCH_OBJ);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+    function listarCom()
+    {
+        try {
+            return $this->conexao->query("select com.codigo as compressor from manutencao m join compressor com on com.id = m.id_compressor", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }

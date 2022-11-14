@@ -31,7 +31,7 @@ $maquinas = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Máquinas de Costura - Daelly ConffecÃ§Ãµes</title>
+    <title>Lista de Máquinas de Costura - Daelly Confeções</title>
 </head>
 
 <body>

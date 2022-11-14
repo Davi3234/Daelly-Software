@@ -27,7 +27,7 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar Grupo - Daelly ConffecÃ§Ãµes</title>
+    <title>Editar Grupo - Daelly Confeções</title>
 </head>
 
 <body>

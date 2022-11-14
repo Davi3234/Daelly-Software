@@ -27,7 +27,7 @@ $compressor = $control->selecionar(addslashes($_GET['id']));
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar Compressor - Daelly ConffecÃ§Ãµes</title>
+    <title>Editar Compressor - Daelly Confeções</title>
 </head>
 
 <body>

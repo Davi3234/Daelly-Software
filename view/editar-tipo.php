@@ -27,7 +27,7 @@ $tipo = $control->selecionar(addslashes($_GET['id']));
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar Tipo - Daelly Conffec√ß√µes</title>
+    <title>Editar Tipo - Daelly ConfeÁıestle>
 </head>
 
 <body>

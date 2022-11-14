@@ -84,13 +84,13 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Funcion√°rios</li>
+                    <li class="active">Funcion·rios</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Funcion√°rios que exercem a fun√ß√£o <?php echo $funcao->nome; ?></h1>
+                    <h1 class="page-header">Funcion·rios que exercem a FunÁ„o <?php echo $funcao->nome; ?></h1>
                 </div>
             </div>
 

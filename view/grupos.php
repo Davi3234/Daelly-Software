@@ -26,7 +26,7 @@ $grupos = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Grupos - Daelly ConffecÃ§Ãµes</title>
+    <title>Lista de Grupos - Daelly Confeções</title>
 </head>
 
 <body>

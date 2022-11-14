@@ -171,6 +171,25 @@ main {
     z-index: 5;
     color: #fff;
 }
+.readonly label{
+    color: black;
+    letter-spacing: .1rem;
+    font-size: 1.3rem;
+    
+}
+.readonly input{
+    color: white;
+    padding: 1rem 2rem;
+    background-color: #0e135d;
+    letter-spacing: .1rem;
+    font-size: 1.4rem;
+    border: white;
+    border-radius: .3rem;
+}
+.readonly{
+    float: left;
+    width: 48%;
+}
 .input-box select {
     font-size: 1.4rem;
     letter-spacing: .1rem;

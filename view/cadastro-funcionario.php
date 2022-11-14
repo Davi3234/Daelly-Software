@@ -42,7 +42,7 @@ $listaFun = $controlFun->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Cadastro de Funcion√°rio - Daelly Conffec√ß√µes</title>
+    <title>Cadastro de Funcion·rio - Daelly ConfeÁıes</title>
 </head>
 
 <body>
@@ -62,7 +62,7 @@ $listaFun = $controlFun->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Cadastro de Funcion√°rio</h2>
+                    <h2>Cadastro de Funcion·rio</h2>
                 </div>
 
                 <?php if (isset($mensagem)) { ?>

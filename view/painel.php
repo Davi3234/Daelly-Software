@@ -43,7 +43,7 @@ $data .= ']}';
 
 <head>
     <?php include "head.php" ?>
-    <title>Painel - Daelly ConffecÃ§Ãµes</title>
+    <title>Painel - Daelly Confeções</title>
 </head>
 
 <body>

@@ -34,7 +34,7 @@ $tipos = $controlTip->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar Máquina de Costura - Daelly ConffecÃ§Ãµes</title>
+    <title>Editar Máquina de Costura - Daelly Confeções</title>
 </head>
 
 <body>

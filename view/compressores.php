@@ -26,7 +26,7 @@ $compressores = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Compressores - Daelly ConffecÃ§Ãµes</title>
+    <title>Lista de Compressores - Daelly Confeções</title>
 </head>
 
 <body>

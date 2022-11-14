@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <?php include "head.php" ?>
-    <title>Cadastro de Compressor - Daelly ConffecÃ§Ãµes</title>
+    <title>Cadastro de Compressor - Daelly Confeções</title>
 </head>
 
 <body>
