@@ -13,7 +13,7 @@ $control = new ControlFuncao();
 $controlTip = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->inserir($_POST['nome'], $_POST['id_tipo'])) {
-        $mensagem = "FunÁ„o inserida com sucesso";
+        $mensagem = "Fun√ß√£o inserida com sucesso";
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
@@ -30,7 +30,7 @@ $tipos = $controlTip->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Cadastro de FunÁ„o - Daelly Conffec√ß√µes</title>
+    <title>Cadastro de Fun√ß√£o - Daelly Conffec√ß√µes</title>
 </head>
 
 <body>
@@ -50,7 +50,7 @@ $tipos = $controlTip->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Cadastro de FunÁ„o</h2>
+                    <h2>Cadastro de Fun√ß√£o</h2>
                 </div>
 
                 <?php if (isset($mensagem)) { ?>
@@ -79,7 +79,7 @@ $tipos = $controlTip->listar();
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
-                                <label for="nome">Nome</label>
+                                <label for="nome">Nome*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">

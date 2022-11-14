@@ -91,7 +91,7 @@ $listaFun = $controlFun->listar();
                         <div class="line-division"></div>
 
                         <div class="fill-inputs">
-                            <div class="input-box input-position-left">
+                            <div class="input-box input-position-left" style="margin-top: .15rem;">
                                 <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
                                 <label for="nome">Nome*</label>
                                 <i></i>
@@ -101,7 +101,7 @@ $listaFun = $controlFun->listar();
                                 <label for="entrada">Entrada*</label>
                                 <i></i>
                             </div>
-                            <div class="input-box input-position-left">
+                            <div class="input-box input-position-left" style="margin-top: .15rem;">
                                 <input type="text" name="cpf" id="cpf" required="required">
                                 <label for="cpf">CPF*</label>
                                 <i></i>

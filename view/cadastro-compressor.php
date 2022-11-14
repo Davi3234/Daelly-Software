@@ -75,17 +75,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="codigo" id="codigo" required="required" autofocus="TRUE">
-                                <label for="codigo">Código</label>
+                                <label for="codigo">CÃ³digo*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
                                 <input type="text" name="marca" id="marca" required="required" autofocus="TRUE">
-                                <label for="marca">Marca</label>
+                                <label for="marca">Marca*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
                                 <input type="text" name="modelo" id="modelo" required="required" autofocus="TRUE">
-                                <label for="modelo">Modelo</label>
+                                <label for="modelo">Modelo*</label>
                                 <i></i>
                             </div>
                         </div>

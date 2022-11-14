@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $funcoesSelecionadas = json_decode($_POST["funcoes-selecionadas"])->funcoes;
 
     if ($control->editar(addslashes($_GET['id']), $_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
-        $mensagem = "Funcion�rio editado com sucesso";
+        $mensagem = "Funcionário editado com sucesso";
 
         $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas)->id, $funcoesSelecionadas);
         unset($_POST);

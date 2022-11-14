@@ -76,7 +76,7 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="numero" id="numero" value="<?php echo $grupo->numero ?>" required="required" autofocus="TRUE">
-                                <label for="numero">Número</label>
+                                <label for="numero">NÃºmero*</label>
                                 <i></i>
                             </div>
                         </div>

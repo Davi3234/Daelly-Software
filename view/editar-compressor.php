@@ -76,17 +76,17 @@ $compressor = $control->selecionar(addslashes($_GET['id']));
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="codigo" id="codigo" value="<?php echo $compressor->codigo ?>" required="required" autofocus="TRUE">
-                                <label for="codigo">Código</label>
+                                <label for="codigo">CÃ³digo*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
                                 <input type="text" name="marca" id="marca" value="<?php echo $compressor->marca ?>" required="required" autofocus="TRUE">
-                                <label for="marca">Marca</label>
+                                <label for="marca">Marca*</label>
                                 <i></i>
                             </div>
-                            <div class="input-box input-position-right">
+                            <div class="input-box input-position-left">
                                 <input type="text" name="modelo" id="modelo" value="<?php echo $compressor->modelo ?>" required="required" autofocus="TRUE">
-                                <label for="modelo">Modelo</label>
+                                <label for="modelo">Modelo*</label>
                                 <i></i>
                             </div>
                         </div>

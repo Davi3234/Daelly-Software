@@ -10,7 +10,7 @@ $control = new ControlGrupo();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Grupo excluï¿½do com sucesso";
+        $mensagem = "Grupo excluÃ­do com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -70,8 +70,8 @@ $grupos = $control->listar();
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Número</th>
-                                    <th>Ações</th>
+                                    <th>NÃºmero</th>
+                                    <th>AÃ§Ãµes</th>
                                 </tr>
                             </thead>
                             <tbody>

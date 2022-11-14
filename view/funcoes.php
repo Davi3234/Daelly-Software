@@ -10,7 +10,7 @@ $control = new ControlFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Função excluï¿½da com sucesso";
+        $mensagem = "FunÃ§Ã£o excluÃ­da com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -26,7 +26,7 @@ $funcoes = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Funções - Daelly ConffecÃ§Ãµes</title>
+    <title>Lista de FunÃ§Ãµes - Daelly ConffecÃ§Ãµes</title>
 </head>
 
 <body>
@@ -46,7 +46,7 @@ $funcoes = $control->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Funções</h2>
+                    <h2>FunÃ§Ãµes</h2>
                 </div>
                 <div class="line-division"></div>
 
@@ -72,7 +72,7 @@ $funcoes = $control->listar();
                                 <tr>
                                     <th>Nome</th>
                                     <th>Tipo</th>
-                                    <th>Ações</th>
+                                    <th>AÃ§Ãµes</th>
                                 </tr>
                             </thead>
                             <tbody>

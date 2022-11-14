@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="numero" id="numero" required="required" autofocus="TRUE">
-                                <label for="numero">Número</label>
+                                <label for="numero">NÃºmero*</label>
                                 <i></i>
                             </div>
                         </div>

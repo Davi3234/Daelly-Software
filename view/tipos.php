@@ -10,7 +10,7 @@ $control = new ControlTipo();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Tipo excluï¿½do com sucesso";
+        $mensagem = "Tipo excluÃ­do com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -71,7 +71,7 @@ $tipos = $control->listar();
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>Ações</th>
+                                    <th>AÃ§Ãµes</th>
                                 </tr>
                             </thead>
                             <tbody>

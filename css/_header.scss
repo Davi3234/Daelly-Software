@@ -12,6 +12,10 @@
         display: flex;
         justify-content: space-between;
         width: 90%;
+        font-size: 1.4rem;
+        .logo {
+            color: #fff;
+        }
     }
     .profile-parent {
         position: relative;

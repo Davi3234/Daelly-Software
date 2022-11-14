@@ -15,7 +15,7 @@ if (!isset($_SESSION['email'])) {
 $control = new ControlMaquinaCostura();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "M·quina de costura excluÌda com sucesso";
+        $mensagem = "M√°quina de costura excluÔøΩda com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -31,7 +31,7 @@ $maquinas = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de M·quinas de Costura - Daelly Conffec√ß√µes</title>
+    <title>Lista de M√°quinas de Costura - Daelly Conffec√ß√µes</title>
 </head>
 
 <body>
@@ -51,7 +51,7 @@ $maquinas = $control->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>M·quinas de Costura</h2>
+                    <h2>M√°quinas de Costura</h2>
                 </div>
                 <div class="line-division"></div>
 
@@ -75,13 +75,13 @@ $maquinas = $control->listar();
                         <table>
                             <thead>
                                 <tr>
-                                    <th>CÛdigo</th>
+                                    <th>C√≥digo</th>
                                     <th>Modelo</th>
                                     <th>Marca</th>
                                     <th>Chassi</th>
-                                    <th>Data de AquisiÁ„o</th>
+                                    <th>Data de Aquisi√ß√£o</th>
                                     <th>Tipo</th>
-                                    <th>AÁıes</th>
+                                    <th>A√ß√µes</th>
                                 </tr>
                             </thead>
                             <tbody>

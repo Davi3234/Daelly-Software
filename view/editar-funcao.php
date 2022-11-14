@@ -14,7 +14,7 @@ $controlTip = new ControlTipo();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar($_POST['nome'], $_POST['id_tipo'], addslashes($_GET['id']))) {
-        $mensagem = "FunÁ„o editada com sucesso";
+        $mensagem = "Fun√ß√£o editada com sucesso";
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
@@ -33,7 +33,7 @@ $tipos = $controlTip->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Editar FunÁ„o - Daelly Conffec√ß√µes</title>
+    <title>Editar Fun√ß√£o - Daelly Conffec√ß√µes</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@ $tipos = $controlTip->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Editar FunÁ„o</h2>
+                    <h2>Editar Fun√ß√£o</h2>
                 </div>
 
                 <?php if (isset($mensagem)) { ?>
@@ -82,7 +82,7 @@ $tipos = $controlTip->listar();
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="nome" id="nome" value="<?php echo $funcao->nome ?>" required="required" autofocus="TRUE">
-                                <label for="nome">Nome</label>
+                                <label for="nome">Nome*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">

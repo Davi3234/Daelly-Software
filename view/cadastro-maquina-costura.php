@@ -16,7 +16,7 @@ $control = new ControlMaquinaCostura();
 $controlTip = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->inserir($_POST['codigo'], $_POST['modelo'], $_POST['marca'], $_POST['chassi'], $_POST['aquisicao'], $_POST['id_tipo'])) {
-        $mensagem = "Máquina de costura inserida com sucesso";
+        $mensagem = "MÃ¡quina de costura inserida com sucesso";
         unset($_POST);
     }
     if (count($control->getErros()) > 0) {
@@ -33,7 +33,7 @@ $tipos = $controlTip->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Cadastro de Máquina de Costura - Daelly ConffecÃ§Ãµes</title>
+    <title>Cadastro de MÃ¡quina de Costura - Daelly ConffecÃ§Ãµes</title>
 </head>
 
 <body>
@@ -53,7 +53,7 @@ $tipos = $controlTip->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Cadastro de Máquina de Costura</h2>
+                    <h2>Cadastro de MÃ¡quina de Costura</h2>
                 </div>
 
                 <?php if (isset($mensagem)) { ?>
@@ -82,27 +82,27 @@ $tipos = $controlTip->listar();
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
                                 <input type="text" name="codigo" id="codigo" required="required" autofocus="TRUE">
-                                <label for="codigo">Código</label>
+                                <label for="codigo">CÃ³digo*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
                                 <input type="text" name="modelo" id="modelo" required="required" autofocus="TRUE">
-                                <label for="modelo">Modelo</label>
+                                <label for="modelo">Modelo*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
                                 <input type="text" name="marca" id="marca" required="required" autofocus="TRUE">
-                                <label for="marca">Marca</label>
+                                <label for="marca">Marca*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
                                 <input type="text" name="chassi" id="chassi" required="required" autofocus="TRUE">
-                                <label for="chassi">Número</label>
+                                <label for="chassi">Chassi*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
                                 <input type="date" name="aquisicao" id="aquisicao" required="required" autofocus="TRUE">
-                                <label for="aquisicao">Data de aquisição</label>
+                                <label for="aquisicao">Data de aquisiÃ§Ã£o*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">

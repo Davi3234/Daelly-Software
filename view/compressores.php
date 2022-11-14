@@ -10,7 +10,7 @@ $control = new ControlCompressor();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Compressor excluï¿½do com sucesso";
+        $mensagem = "Compressor excluÃ­do com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -70,10 +70,10 @@ $compressores = $control->listar();
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Código</th>
+                                    <th>CÃ³digo</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
-                                    <th>Ações</th>
+                                    <th>AÃ§Ãµes</th>
                                 </tr>
                             </thead>
                             <tbody>
