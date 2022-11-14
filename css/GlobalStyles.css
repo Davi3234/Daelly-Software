@@ -43,8 +43,8 @@ main {
 
 ::-webkit-scrollbar {
   background: transparent;
-  width: 7.5px;
-  height: 7.5px;
+  width: 6.5px;
+  height: 6.5px;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -236,7 +236,7 @@ table th {
   padding: 0.5rem 1rem;
 }
 table thead {
-  background-color: #dadada;
+  background-color: #d9d9d9;
 }
 
 .session-login {
@@ -429,6 +429,20 @@ table thead {
   width: 100%;
   height: 100%;
 }
+.pc-mapa #conteudo #mapa-content .maquinas {
+  height: 50px;
+  height: 50px;
+  background-color: dodgerblue;
+  cursor: move;
+}
+.pc-mapa #conteudo #mapa-content .maquinas .active {
+  position: absolute;
+  opacity: 0.7;
+}
+.pc-mapa #conteudo #mapa-content .listas-maquinas {
+  width: 100%;
+  height: 100%;
+}
 .pc-mapa #conteudo #mapa-content #mapa-box {
   height: 100%;
   overflow-y: auto;
@@ -436,9 +450,20 @@ table thead {
   z-index: 90;
 }
 .pc-mapa #conteudo #mapa-content #inventario {
-  height: 15%;
+  height: 6.5rem;
   border-top: 1px solid #b8b8b8;
   z-index: 100;
   background-color: #fff;
+}
+.pc-mapa #conteudo #mapa-content #inventario .listas-maquinas {
+  position: relative;
+  padding: 1rem;
+  align-items: center;
+  display: flex;
+  gap: 10px;
   overflow-x: auto;
+}
+.pc-mapa #conteudo #mapa-content #inventario .listas-maquinas .maquinas {
+  height: 4.5rem;
+  width: 4.5rem;
 }/*# sourceMappingURL=GlobalStyles.css.map */

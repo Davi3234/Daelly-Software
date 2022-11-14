@@ -116,7 +116,7 @@ $tipos = $controlTip->listar();
                                             <?php }?>
                                     <?php } ?>
                                 </select>
-                                <label for="id_tipo">Tipo</label>
+                                <label for="id_tipo">Tipo*</label>
                             </div>
                         </div>
                     </form>

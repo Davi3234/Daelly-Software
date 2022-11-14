@@ -2,7 +2,7 @@ $darkness-ammount: 50;
 $lightness-ammount: 50;
 $neutro-color: #ebebeb;
 $primary-color: #232a8d;
-$primary-color-darkness: darken( #232a8d, $darkness-ammount * .15);
+$primary-color-darkness: darken( $primary-color, $darkness-ammount * .15);
 $secondary-color: darken( $neutro-color, 20);
 $terciary-color: #00000033;
 $alert-sucess-color: #3c763d;
@@ -53,8 +53,8 @@ main {
 }
 ::-webkit-scrollbar {
     background: transparent;
-    width: 7.5px;
-    height: 7.5px;
+    width: 6.5px;
+    height: 6.5px;
 }
 ::-webkit-scrollbar-thumb {
     background-color: $secondary-color;

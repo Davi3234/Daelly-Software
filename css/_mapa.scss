@@ -9,6 +9,20 @@
             flex-direction: column;
             width: 100%;
             height: 100%;
+            .maquinas {
+                height: 50px;
+                height: 50px;
+                background-color: dodgerblue;
+                cursor: move;
+                .active {
+                    position: absolute;
+                    opacity: .7;
+                }
+            }
+            .listas-maquinas {
+                width: 100%;
+                height: 100%;
+            }
             #mapa-box {
                 height: 100%;
                 overflow-y: auto;
@@ -16,91 +30,26 @@
                 z-index: 90;
             }
             #inventario {
-                height: 15%;
+                height: 6.5rem;
                 border-top: $border;
                 z-index: 100;
                 background-color: #fff;
-                overflow-x: auto;
+                .listas-maquinas {
+                    position: relative;
+                    padding: 1rem;
+                    align-items: center;
+                    display: flex;
+                    gap: 10px;
+                    overflow-x: auto;
+                    .maquinas {
+                        height: 4.5rem;
+                        width: 4.5rem;
+                    }
+                }
             }
         }
     }
 }
-// body {
-//     position: relative;
-// }
-// #header-content {
-//     height: 50px !important;
-// }
-// #conteudo {
-//     display: flex !important;
-//     flex-direction: column;
-//     max-height: 100% !important;
-// }
-// .panel-heading {
-//     height: 60px !important;
-// }
-// .panel-heading button {
-//     opacity: .7;
-//     cursor: not-allowed;
-// }
-// .panel-heading button.valid {
-//     opacity: 1;
-//     cursor: auto;
-// }
-// .main {
-//     height: calc(100vh - 50px) !important;
-//     padding: 0 !important;
-// }
-// .row {
-//     padding: 0 0 0 15px;
-//     margin-right: 0 !important;
-//     height: 40px;
-// }
-// #mapa-content {
-//     position: relative;
-//     display: flex;
-//     flex-direction: column;
-//     height: calc(100vh - 150px) !important;
-// }
-// #mapa-box {
-//     height: 100%;
-//     overflow-y: auto;
-//     overflow-x: auto;
-//     box-shadow: inset 0 0 1rem rgba(0, 0, 0, .4);
-// }
-// #mapa-box.max-content {
-//     height: 100%;
-// }
-// #mapa {
-//     position: relative;
-// }
-// #inventario {
-//     box-shadow: 0 0 1rem rgba(0, 0, 0, .2);
-// }
-// .listas-maquinas {
-//     position: relative;
-//     padding: 5px;
-//     display: flex;
-//     gap: 10px;
-//     width: 100%;
-//     height: 100%;
-// }
-// #lista-maquinas-mapa {
-//     padding: 0;
-// }
-// #lista-maquinas-inventario {
-//     overflow-x: auto;
-// }
-// .maquinas {
-//     background-color: blueviolet;
-//     color: #fff;
-//     // user-select: none;
-//     cursor: move;
-// }
-// .maquinas.active {
-//     position: absolute;
-//     opacity: .7;
-// }
 // #maquina-info-content {
 //     position: absolute;
 //     display: none;

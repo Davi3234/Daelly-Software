@@ -77,24 +77,28 @@ $compressores = $control->listar();
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if ($compressores) foreach ($compressores as $c) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $c->codigo ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $c->marca ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $c->modelo ?>
-                                        </td>
-                                        <td>
-                                            <div class="actions-form table">
-                                                <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>&nbsp;&nbsp;&nbsp;
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <?php if (is_array($compressores) && count($compressores) > 0) {
+                                    foreach ($compressores as $c) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $c->codigo ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $c->marca ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $c->modelo ?>
+                                            </td>
+                                            <td>
+                                                <div class="actions-form table">
+                                                    <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>&nbsp;&nbsp;&nbsp;
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php }
+                                } else { ?>
+                                    <tr>Nenhum registro cadastrado</tr>
                                 <?php } ?>
                             </tbody>
                         </table>
@@ -104,23 +108,21 @@ $compressores = $control->listar();
         </div>
     </main>
 
-
     <script>
         $(document).ready(function() {
             $('#i-compressor').addClass("active")
-            $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('#carregando').fadeOut()
+            $('#conteudo').fadeIn()
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente excluir o registro?")) {
-                    id = $(this).attr("rel");
-                    $("#id").val(id);
-                    $("#form").submit();
+                    id = $(this).attr("rel")
+                    $("#id").val(id)
+                    $("#form").submit()
                 }
-            });
-
-        });
+            })
+        })
     </script>
-
 </body>
+
 </html>
