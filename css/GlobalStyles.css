@@ -14,7 +14,16 @@ body {
     font-size: 1.6rem !important;
     background-color: #ebebeb;
     overflow: hidden;
+    
 }
+.bg-image {
+    background-image: url("../assets/imgs/Malharia.jpeg");
+    filter: blur(7px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 a {
     text-decoration: none;
     color: rgb(255, 255, 255);
@@ -282,7 +291,7 @@ main {
     width: 80%;
     max-width: 40rem;
     padding: 3rem;
-    background-color: #fff;
+    background-image: linear-gradient( rgb(23, 164, 196), #79dedb);
     border-radius: .3rem;
     border: .1rem solid #b6b6b6;
 }

@@ -36,7 +36,7 @@ $funcionarios = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Funcionários - Daelly Confeçõestle>
+    <title>Lista de Funcionários - Daelly Confeções </title>
 </head>
 
 <body>

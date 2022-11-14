@@ -24,7 +24,8 @@ if (isset($_SESSION["email"])) {
     </style>
 </head>
 
-<body style="padding-top: 5rem;">
+<body>
+<div class="bg-image"></div>
     <div id="carregando" style="margin-top: 0;">
         Efetuando login...
     </div>
