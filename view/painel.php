@@ -62,11 +62,7 @@ $data .= ']}';
             </div>
 
             <div id="conteudo">
-                <div class="conteudo-header">
-                    <h2>Painel</h2>
-                </div>
-                <div class="line-division"></div>
-                <div class="conteudo-main"></div>
+                
             </div>
         </div>
     </main>
