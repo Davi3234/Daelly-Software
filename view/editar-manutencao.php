@@ -97,10 +97,25 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
                                 <label for="data_manutencao">Data da Manutenção</label>
                                 <i></i>
                             </div>
-                            <div class="readonly input-position-left">
-                                <label for="id_maquina_costura">Máquina de costura</label> <br>
-                                <input type="text" readonly name="id_maquina_costura" id="id_maquina_costura" value="<?php echo $maquina->codigo . " - " . $maquina->tipo ?>" required="required" autofocus="TRUE">
-                                <i></i>
+                            <div class="input-box input-position-left" style="margin-top: .15rem;">
+                                <select class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_maquina_costura" name="id_maquina_costura">
+                                    <option value="0">Selecione</option>
+                                    <?php foreach ($maquinas as $m) {
+                                    ?>
+                                        <option <?php if ($manutencao->id_maquina_costura && $m->id == $manutencao->id_maquina_costura) { ?> selected <?php }?> value="<?php echo $m->id ?>"><?php echo $m->tipo . " - " . $m->codigo ?></option>
+                                    <?php } ?>
+                                </select>
+                                <label for="id_maquina_costura">Máquinas de Costura</label>
+                            </div>
+                            <div class="input-box input-position-right">
+                                <select class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_compressor" name="id_compressor">
+                                    <option value="0">Selecione</option>
+                                    <?php foreach ($compressores as $c) {
+                                    ?>
+                                        <option <?php if ($manutencao->id_compressor && $m->id == $manutencao->id_compressor) { ?> selected <?php }?> value="<?php echo $c->id ?>"><?php echo $c->codigo ?></option>
+                                    <?php } ?>
+                                </select>
+                                <label for="id_compressor">Compressor</label>
                             </div>
                         </div>
                     </form>
@@ -119,6 +134,17 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
                 $(location).attr("href", "manutencoes.php");
             });
         });
+
+        function changeSelectPolimorph({
+            target
+        }) {
+            document.querySelectorAll(".component-polimorph").forEach(c => {
+                if (c.name == target.name) {
+                    return
+                }
+                c.value = 0
+            })
+        }
     </script>
 </body>
 

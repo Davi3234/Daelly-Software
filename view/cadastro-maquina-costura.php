@@ -108,7 +108,7 @@ $tipos = $controlTip->listar();
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <select class="form-control" id="id_tipo" name="id_tipo">
+                                <select id="id_tipo" name="id_tipo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($tipos as $t) { ?>
                                         <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>

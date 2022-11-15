@@ -118,12 +118,12 @@ $listaFun = $controlFun->listar();
                                 <?php foreach ($listaFun as $f) { ?>
                                     <div class="checkbox-box">
                                         <input name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                        <label for="flexCheckDefault"><?php echo $g->nome ?></label>
+                                        <label for="flexCheckDefault"><?php echo $f->nome ?></label>
                                     </div>
                                 <?php } ?>
                             </div>
                             <div class="input-box input-position-right">
-                                <select class="form-control" id="id_grupo" name="id_grupo">
+                                <select id="id_grupo" name="id_grupo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($listaGru as $g) { ?>
                                         <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>

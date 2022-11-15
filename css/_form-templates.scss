@@ -56,6 +56,10 @@
         select:focus~label {
             transform: translateY(-2.5rem) scale(.9);
         }
+        select:valid~label,
+        select:focus~label {
+            transform: translate(-.30rem, -2.5rem) scale(.9);
+        }
         input:valid~i,
         input:focus~i,
         select:valid~i,

@@ -98,22 +98,22 @@ $compressores = $controlCom->listar();
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left" style="margin-top: .15rem;">
-                                <select class="form-control" id="id_maquina_costura" name="id_maquina_costura">
+                                <select class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_maquina_costura" name="id_maquina_costura">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($maquinas as $m) {
-                                        ?>
-                                        <option value="<?php echo $m->id ?>"><?php echo $m->tipo . " - ". $m->codigo?></option>
-                                        <?php }?>
+                                    ?>
+                                        <option value="<?php echo $m->id ?>"><?php echo $m->tipo . " - " . $m->codigo ?></option>
+                                    <?php } ?>
                                 </select>
                                 <label for="id_maquina_costura">Máquinas de Costura</label>
                             </div>
                             <div class="input-box input-position-right">
-                                <select class="form-control" id="id_compressor" name="id_compressor">
+                                <select class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_compressor" name="id_compressor">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($compressores as $c) {
-                                        ?>
+                                    ?>
                                         <option value="<?php echo $c->id ?>"><?php echo $c->codigo ?></option>
-                                        <?php }?>
+                                    <?php } ?>
                                 </select>
                                 <label for="id_compressor">Compressor</label>
                             </div>
@@ -134,6 +134,17 @@ $compressores = $controlCom->listar();
                 $(location).attr("href", "manutencoes.php");
             });
         });
+
+        function changeSelectPolimorph({
+            target
+        }) {
+            document.querySelectorAll(".component-polimorph").forEach(c => {
+                if (c.name == target.name) {
+                    return
+                }
+                c.value = 0
+            })
+        }
     </script>
 </body>
 

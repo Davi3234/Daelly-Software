@@ -23,6 +23,8 @@ class ControlManutencao
         }
         if ($id_maquina_costura == 0 && $id_compressor == 0) {
             $this->erros[] = "Informe pelo menos uma máquina ou um compressor";
+        } else if ($id_maquina_costura != 0 && $id_compressor != 0) {
+            $this->erros[] = "Informe apenas uma máquina ou um compressor";
         }
         if (!$this->erros) {
             $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina_costura, $id_compressor);

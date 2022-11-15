@@ -32,7 +32,6 @@ class DaoGrupo
 
     function excluir($id)
     {
-        echo "delete from grupo where id=" . $id;
         try {
             return $this->conexao->exec("delete from grupo where id=" . $id);
         } catch (PDOException $exc) {

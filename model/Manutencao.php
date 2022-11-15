@@ -3,7 +3,7 @@
 class Manutencao {
     private $id;
     private $descricao;
-    private $id_maquina;
+    private $id_maquina_costura;
     private $id_compressor;
     private $data_manutencao;
     
@@ -46,7 +46,4 @@ class Manutencao {
     function setDataManutencao($data_manutencao) {
         $this->data_manutencao = $data_manutencao;
     }
-
-
-
 }

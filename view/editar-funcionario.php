@@ -125,16 +125,16 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                             <div class="input-box input-position-left">
                                 <?php foreach ($listaFun as $f) { ?>
                                     <div class="checkbox-box">
-                                        <input <?php if (true) { ?> <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                        <label for="flexCheckDefault"><?php echo $g->nome ?></label>
+                                        <input <?php if (array_column($listaFuncaInFunci, $funcionario->id)) { ?> checked <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                        <label for="flexCheckDefault"><?php echo $f->nome ?></label>
                                     </div>
                                 <?php } ?>
                             </div>
                             <div class="input-box input-position-right">
-                                <select class="form-control" id="id_grupo" name="id_grupo">
+                                <select id="id_grupo" name="id_grupo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($listaGru as $g) { ?>
-                                        <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
+                                        <option <?php if ($funcionario->id_grupo == $g->id) { ?> selected <?php } ?> value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_grupo">Grupo</label>
