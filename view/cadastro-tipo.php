@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <?php include "head.php" ?>
-    <title>Cadastro de Tipo - Daelly Conffecções</title>
+    <title>Cadastro de Tipo - Daelly Confecções</title>
 </head>
 
 <body>
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         $(document).ready(function() {
-            $('#i-nome').addClass("active")
+            $('#i-tipo').addClass("active")
             $('#carregando').fadeOut();
             $('#conteudo').fadeIn();
 

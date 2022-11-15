@@ -36,7 +36,7 @@ $funcionarios = $control->listar();
 
 <head>
     <?php include "head.php" ?>
-    <title>Lista de Funcionários - Daelly Conffecções</title>
+    <title>Lista de Funcionários - Daelly Conffecções </title>
 </head>
 
 <body>
@@ -56,7 +56,7 @@ $funcionarios = $control->listar();
 
             <div id="conteudo">
                 <div class="conteudo-header">
-                    <h2>Funcionários</h2>
+                    <h2>Funcionário <h2>
                 </div>
                 <div class="line-division"></div>
 

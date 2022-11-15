@@ -13,7 +13,7 @@ class ControlFuncao
         $this->erros = array();
     }
 
-    public function inserir($nome, $id_tipo = null)
+    public function inserir($nome, $id_tipo)
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
@@ -36,7 +36,7 @@ class ControlFuncao
         }
     }
 
-    public function editar($nome, $id_tipo = null, $id)
+    public function editar($nome, $id_tipo, $id)
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";

@@ -124,7 +124,7 @@ $funcoes = $control->listarByTipo($tipo->id);
                                                 <td>
                                                     <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
                                                     <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="ver-funcionarios" rel="<?php echo $f->id ?>">Funcion√°rios</a>
+                                                    <a href="#" class="ver-funcionarios" rel="<?php echo $f->id ?>">Funcion·rios</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>

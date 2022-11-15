@@ -84,7 +84,12 @@ $funcoes = $control->listar();
                                             <?php echo $f->nome ?>
                                         </td>
                                         <td>
-                                            <?php echo $f->tipo ?>
+                                            <?php if ($f->tipo == null) {
+                                                echo "Nenhum";
+                                            } else {
+                                                echo $f->tipo;
+                                            } ?>
+
                                         </td>
                                         <td>
                                             <div class="actions-form table">
@@ -121,4 +126,5 @@ $funcoes = $control->listar();
     </script>
 
 </body>
+
 </html>

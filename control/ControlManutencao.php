@@ -13,19 +13,19 @@ class ControlManutencao
         $this->erros = array();
     }
 
-    public function inserir($descricao = null, $data_manutencao = null, $id_maquina = null, $id_compressor = null)
+    public function inserir($descricao, $data_manutencao, $id_maquina_costura = null, $id_compressor = null)
     {
         if (strlen($descricao) == 0) {
             $this->erros[] = "Informe a descrição";
         }
         if (strlen($data_manutencao) == 0) {
-            $this->erros[] = "Informe a data da manutenção";
+            $this->erros[] = "Informe a data da Manutenção";
         }
-        if ($id_maquina == 0 && $id_compressor == 0) {
+        if ($id_maquina_costura == 0 && $id_compressor == 0) {
             $this->erros[] = "Informe pelo menos uma máquina ou um compressor";
         }
         if (!$this->erros) {
-            $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina, $id_compressor);
+            $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina_costura, $id_compressor);
             if ($this->daoManutencao->inserir($this->manutencao)) {
                 return true;
             } else {
@@ -37,16 +37,16 @@ class ControlManutencao
         }
     }
 
-    public function editar($descricao, $data_manutencao, $id_maquina, $id_compressor, $id)
+    public function editar($descricao, $data_manutencao, $id_maquina_costura, $id_compressor, $id)
     {
         if (strlen($descricao) == 0) {
             $this->erros[] = "Informe a descrição";
         }
         if (strlen($data_manutencao) == 0) {
-            $this->erros[] = "Informe a data da manutenção";
+            $this->erros[] = "Informe a data da Manutenção";
         }
         if (!$this->erros) {
-            $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina, $id_compressor, $id);
+            $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina_costura, $id_compressor, $id);
             if ($this->daoManutencao->editar($this->manutencao)) {
                 return true;
             }
@@ -66,9 +66,14 @@ class ControlManutencao
         }
     }
 
-    public function listar()
+    public function listarMaq()
     {
-        return $this->daoManutencao->listar();
+        return $this->daoManutencao->listarMaq();
+    }
+
+    public function listarCom()
+    {
+        return $this->daoManutencao->listarCom();
     }
 
     public function selecionar($id)

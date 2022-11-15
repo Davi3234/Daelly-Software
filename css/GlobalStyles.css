@@ -101,6 +101,7 @@ main {
   padding: 1rem 2rem;
   z-index: 5;
   color: #fff;
+  accent-color: #232a8d;
 }
 .fill-inputs .input-box select {
   background-color: #232a8d;

@@ -48,7 +48,7 @@ $data .= ']}';
 
 <head>
     <?php include "head.php" ?>
-    <title>Painel - Daelly Conffecções</title>
+    <title>Painel - Daelly Confecções</title>
 </head>
 
 <body>
@@ -164,11 +164,11 @@ $data .= ']}';
             }))
 
             document.querySelector(".close-alert").addEventListener("click", (ev) => {
-        document.querySelector(".alert-content").remove()
-    })
-    setTimeout(() => {
-        document.querySelector(".alert-content") && document.querySelector(".alert-content").remove()
-    }, 1000 * 10)
+                document.querySelector(".alert-content").remove()
+            })
+            setTimeout(() => {
+                document.querySelector(".alert-content") && document.querySelector(".alert-content").remove()
+            }, 1000 * 10)
         })
 
         function gravarMaquinasAlteradas() {

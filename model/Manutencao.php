@@ -7,12 +7,12 @@ class Manutencao {
     private $id_compressor;
     private $data_manutencao;
     
-    function __construct($descricao = null, $data_manutencao = null, $id_compressor = null, $id_maquina = null, $id = null) {
+    function __construct($descricao = null, $data_manutencao = null, $id_maquina_costura = null, $id_compressor = null,  $id = null) {
         $this->id = $id;
         $this->descricao = $descricao;
         $this->data_manutencao = $data_manutencao;
+        $this->id_maquina_costura = $id_maquina_costura;
         $this->id_compressor = $id_compressor;
-        $this->id_maquina = $id_maquina;
     }
     
     function getId() {
@@ -20,7 +20,7 @@ class Manutencao {
     }
 
     function getIdMaquina() {
-        return $this->id_maquina;
+        return $this->id_maquina_costura;
     }
 
     function getDataManutencao() {

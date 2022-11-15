@@ -86,13 +86,13 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Funcion√°rios</li>
+                    <li class="active">Funcion·rios</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Funcion√°rios do grupo <?php echo $grupo->numero; ?></h1>
+                    <h1 class="page-header">Funcion·rios do grupo <?php echo $grupo->numero; ?></h1>
                 </div>
             </div>
 

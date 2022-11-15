@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <head>
     <?php include "head.php" ?>
-    <title>Cadastro de Compressor - Daelly Conffecções</title>
+    <title>Cadastro de Compressor - Daelly Confecções</title>
 </head>
 
 <body>
@@ -52,6 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
