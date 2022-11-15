@@ -17,13 +17,14 @@ $controlTip = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar($_POST['codigo'], $_POST['modelo'],  $_POST['marca'], $_POST['chassi'], $_POST['aquisicao'],  $_POST['id_tipo'], addslashes($_GET['id']))) {
         $mensagem = "Máquina de Costura editado com sucesso";
-        unset($_POST);
     }
     if (count($control->getErros()) > 0) {
         $erros = "";
         foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
+    } else {
+        unset($_POST);
     }
 }
 $maquina = $control->selecionar(addslashes($_GET['id']));
@@ -60,12 +61,14 @@ $tipos = $controlTip->listar();
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
@@ -80,40 +83,40 @@ $tipos = $controlTip->listar();
                         <div class="line-division"></div>
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="codigo" id="codigo" value="<?php echo $maquina->codigo?>" required="required" autofocus="TRUE">
+                                <input type="text" name="codigo" id="codigo" value="<?php echo $maquina->codigo ?>" required="required" autofocus="TRUE">
                                 <label for="codigo">Código*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="text" name="modelo" value="<?php echo $maquina->modelo?>" id="modelo" required="required" autofocus="TRUE">
+                                <input type="text" name="modelo" value="<?php echo $maquina->modelo ?>" id="modelo" required="required" autofocus="TRUE">
                                 <label for="modelo">Modelo*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
-                                <input type="text" name="marca" value="<?php echo $maquina->marca?>" id="marca" required="required" autofocus="TRUE">
+                                <input type="text" name="marca" value="<?php echo $maquina->marca ?>" id="marca" required="required" autofocus="TRUE">
                                 <label for="marca">Marca*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="text" name="chassi" value="<?php echo $maquina->chassi?>" id="chassi" required="required" autofocus="TRUE">
+                                <input type="text" name="chassi" value="<?php echo $maquina->chassi ?>" id="chassi" required="required" autofocus="TRUE">
                                 <label for="chassi">Chassi*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
-                                <input type="date" name="aquisicao" value="<?php echo $maquina->aquisicao?>" id="aquisicao" required="required" autofocus="TRUE">
+                                <input type="date" name="aquisicao" value="<?php echo $maquina->aquisicao ?>" id="aquisicao" required="required" autofocus="TRUE">
                                 <label for="aquisicao">Data de aquisição*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
                                 <select class="form-control" id="id_tipo" name="id_tipo">
                                     <option value="0">Selecione</option>
-                                    <?php foreach ($tipos as $t) { 
-                                        if($t->id == $maquina->id_tipo){
-                                        ?>
-                                        <option selected value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
-                                        <?php }else {?>
-                                            <option value="<?php echo $t->id?>"><?php echo $t->nome?></option>
-                                            <?php }?>
+                                    <?php foreach ($tipos as $t) {
+                                        if ($t->id == $maquina->id_tipo) {
+                                    ?>
+                                            <option selected value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <?php } ?>
                                     <?php } ?>
                                 </select>
                                 <label for="id_tipo">Tipo*</label>

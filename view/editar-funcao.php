@@ -59,12 +59,14 @@ $tipos = $controlTip->listar();
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
@@ -88,13 +90,13 @@ $tipos = $controlTip->listar();
                             <div class="input-box input-position-right">
                                 <select class="form-control" id="id_tipo" name="id_tipo">
                                     <option value="0">Selecione</option>
-                                    <?php foreach ($tipos as $t) { 
-                                        if($t->nome == $tipo->nome){
-                                        ?>
-                                        <option selected value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
-                                        <?php }else{?>
-                                        <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
-                                        <?php }?>
+                                    <?php foreach ($tipos as $t) {
+                                        if ($t->nome == $tipo->nome) {
+                                    ?>
+                                            <option selected value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <?php } else { ?>
+                                            <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <?php } ?>
                                     <?php } ?>
                                 </select>
                                 <label for="id_tipo">Tipo</label>

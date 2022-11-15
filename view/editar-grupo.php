@@ -53,12 +53,14 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 

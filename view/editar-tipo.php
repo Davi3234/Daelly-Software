@@ -11,13 +11,14 @@ $control = new ControlTipo();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->editar($_POST['nome'], addslashes($_GET['id']))) {
         $mensagem = "Tipo editado com sucesso";
-        unset($_POST);
     }
     if (count($control->getErros()) > 0) {
         $erros = "";
         foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
+    } else {
+        unset($_POST);
     }
 }
 $tipo = $control->selecionar(addslashes($_GET['id']));
@@ -53,12 +54,14 @@ $tipo = $control->selecionar(addslashes($_GET['id']));
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 

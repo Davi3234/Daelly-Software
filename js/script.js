@@ -11,4 +11,11 @@ window.onload = () => {
         }
         tag.classList.toggle("active");
     }))
+
+    document.querySelector(".close-alert").addEventListener("click", (ev) => {
+        document.querySelector(".alert").remove()
+    })
+    setTimeout(() => {
+        document.querySelector(".alert") && document.querySelector(".alert").remove()
+    }, 1000 * 10)
 }

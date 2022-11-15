@@ -15,7 +15,7 @@ if (!isset($_SESSION['email'])) {
 $control = new ControlMaquinaCostura();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Máquina de costura exclu�da com sucesso";
+        $mensagem = "Máquina de costura excluída com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -63,12 +63,14 @@ $maquinas = $control->listar();
                         <?php if (isset($mensagem)) { ?>
                             <div class="alert alert-success">
                                 <?php echo $mensagem; ?>
+                                <div class="close-alert">X</div>
                             </div>
                         <?php } ?>
 
                         <?php if (isset($erros)) { ?>
                             <div class="alert alert-danger">
                                 <?php echo $erros; ?>
+                                <div class="close-alert">X</div>
                             </div>
                         <?php } ?>
 

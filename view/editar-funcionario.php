@@ -27,19 +27,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $mensagem = "Funcionário editado com sucesso";
 
         $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas)->id, $funcoesSelecionadas);
-        unset($_POST);
     }
     if (count($control->getErros()) > 0) {
         $erros = "";
         foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
+    } else {
+        unset($_POST);
     }
 }
 $listaGru = $controlGru->listar();
 $listaFun = $controlFun->listar();
 $listaFuncaInFunci = array();
-foreach($controlFF->listarByFuncionario(addslashes($_GET['id'])) as $f){
+foreach ($controlFF->listarByFuncionario(addslashes($_GET['id'])) as $f) {
     $listaFuncaInFunci[] = $f['id_funcao'];
 }
 $funcionario = $control->selecionar(addslashes($_GET['id']));
@@ -48,7 +49,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
 <html>
 
 <head>
-<?php include 'header.php' ?>
+    <?php include 'header.php' ?>
 </head>
 
 <body>

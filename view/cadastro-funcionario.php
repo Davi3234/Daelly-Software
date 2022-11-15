@@ -25,13 +25,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->inserir($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
         $mensagem = "Funcionário inserido com sucesso";
         $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"])->id, $funcoesSelecionadas);
-        unset($_POST);
     }
     if (count($control->getErros()) > 0) {
         $erros = "";
         foreach ($control->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
+    } else {
+        unset($_POST);
     }
 }
 $listaGru = $controlGru->listar();
@@ -68,12 +69,14 @@ $listaFun = $controlFun->listar();
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 

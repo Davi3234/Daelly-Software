@@ -9,7 +9,7 @@ if (!isset($_SESSION['email'])) {
 $control = new ControlCompressor();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->inserir($_POST['codigo'], $_POST['marca'], $_POST['modelo'], )) {
+    if ($control->inserir($_POST['codigo'], $_POST['marca'], $_POST['modelo'],)) {
         $mensagem = "Compressor inserido com sucesso";
         unset($_POST);
     }
@@ -58,6 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
+                        <div class="close-alert">X</div>
                     </div>
                 <?php } ?>
 

@@ -6,7 +6,7 @@
 }
 
 html {
-  font-size: 65.2% !important;
+  font-size: 62.5% !important;
 }
 
 body {
@@ -162,6 +162,7 @@ main {
 }
 
 .alert {
+  position: relative;
   padding: 1rem;
   margin: 1rem 0;
   width: 100%;
@@ -169,13 +170,20 @@ main {
 }
 .alert.alert-danger {
   border: 0.1rem solid #ff0000;
-  background-color: #ffcccc;
+  background-color: #ff9999;
   color: #ff0000;
 }
 .alert.alert-success {
   border: 0.1rem solid #3c763d;
-  background-color: #cce5cc;
+  background-color: #aad4ab;
   color: #3c763d;
+}
+.alert .close-alert {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .actions-form {
@@ -339,6 +347,7 @@ table thead {
 #barra-lateral {
   display: block;
   width: 25%;
+  max-width: 23rem;
   background-color: #fff;
   border-right: 1px solid #b8b8b8;
   z-index: 10;
@@ -417,8 +426,40 @@ table thead {
   font-size: 1.8rem;
 }
 
+.pc-mapa {
+  padding: 4rem;
+  overflow-y: auto;
+}
+.pc-mapa .conteudo-header {
+  padding: 3rem;
+  margin-bottom: 3rem;
+  letter-spacing: 0.01rem;
+  font-size: 1.8rem;
+  background-color: #fff;
+  border: 1px solid #b8b8b8;
+  border-radius: 0.3rem;
+}
+.pc-mapa .conteudo-header .bt-action {
+  background-color: #979ce5;
+  cursor: not-allowed;
+}
+.pc-mapa .conteudo-header .bt-action.valid {
+  background-color: #232a8d;
+  cursor: pointer;
+}
+.pc-mapa .conteudo-header .bt-action.valid:hover {
+  background-color: #1b216e;
+}
+.pc-mapa .conteudo-header .bt-action:hover {
+  background-color: #979ce5;
+}
 .pc-mapa #conteudo {
   overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 0 !important;
+}
+.pc-mapa #conteudo form {
   width: 100%;
   height: 100%;
 }
@@ -430,10 +471,12 @@ table thead {
   height: 100%;
 }
 .pc-mapa #conteudo #mapa-content .maquinas {
+  position: absolute;
   height: 50px;
   height: 50px;
   background-color: dodgerblue;
   cursor: move;
+  z-index: 150;
 }
 .pc-mapa #conteudo #mapa-content .maquinas .active {
   position: absolute;
@@ -464,6 +507,7 @@ table thead {
   overflow-x: auto;
 }
 .pc-mapa #conteudo #mapa-content #inventario .listas-maquinas .maquinas {
-  height: 4.5rem;
-  width: 4.5rem;
+  position: relative;
+  height: 4.45rem;
+  width: 4.45rem;
 }/*# sourceMappingURL=GlobalStyles.css.map */
