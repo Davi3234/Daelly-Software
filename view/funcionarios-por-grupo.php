@@ -86,13 +86,13 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                     <li><a href="index.php"><svg class="glyph stroked home">
                                 <use xlink:href="#stroked-home"></use>
                             </svg></a></li>
-                    <li class="active">Funcion�rios</li>
+                    <li class="active">Funcionários</li>
                 </ol>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Funcion�rios do grupo <?php echo $grupo->numero; ?></h1>
+                    <h1 class="page-header">Funcionários do grupo <?php echo $grupo->numero; ?></h1>
                 </div>
             </div>
 
@@ -118,31 +118,33 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                                     </div>
                                 <?php } ?>
 
-                                <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-                                    <thead>
-                                        <tr>
-                                            <th data-sortable="true">Nome</th>
-                                            <th data-sortable="true">CPF</th>
-                                            <th data-sortable="true">Entrada</th>
-                                            <th data-sortable="true">Sa�da</th>
-                                            <th data-sortable="true">A��es</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                                <div class="table-content">
+                                    <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+                                        <thead>
                                             <tr>
-                                                <td><?php echo $f->nome ?></td>
-                                                <td><?php echo $f->cpf ?></td>
-                                                <td><?php echo $f->entrada ?></td>
-                                                <td><?php echo $f->saida ?></td>
-                                                <td>
-                                                    <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                    <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
-                                                </td>
+                                                <th data-sortable="true">Nome</th>
+                                                <th data-sortable="true">CPF</th>
+                                                <th data-sortable="true">Entrada</th>
+                                                <th data-sortable="true">Saída</th>
+                                                <th data-sortable="true">Ações</th>
                                             </tr>
-                                        <?php } ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                                                <tr>
+                                                    <td><?php echo $f->nome ?></td>
+                                                    <td><?php echo $f->cpf ?></td>
+                                                    <td><?php echo $f->entrada ?></td>
+                                                    <td><?php echo $f->saida ?></td>
+                                                    <td>
+                                                        <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
+                                                        <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
+                                                    </td>
+                                                </tr>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </form>
                         </div>
                     </div>
