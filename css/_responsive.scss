@@ -15,4 +15,25 @@
         }
     }
 }
-@media screen and (max-width: 600px) {}
+@media screen and (max-width: 675px) {
+    .fill-inputs {
+        .input-box {
+            width: 100% !important;
+            float: none !important;
+        }
+    }
+}
+@media screen and (max-width: 550px) {
+    header {
+        h1 {
+            font-size: 1.8rem;
+        }
+    }
+}
+@media screen and (max-width: 437px) {
+    header {
+        h1 {
+            font-size: 1.6rem;
+        }
+    }
+}
