@@ -564,12 +564,18 @@ tr {
   }
 }
 @media screen and (max-width: 550px) {
+  html {
+    font-size: 58% !important;
+  }
   header h1 {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
   }
 }
-@media screen and (max-width: 437px) {
+@media screen and (max-width: 483px) {
+  html {
+    font-size: 53% !important;
+  }
   header h1 {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }/*# sourceMappingURL=GlobalStyles.css.map */
