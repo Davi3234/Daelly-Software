@@ -26,7 +26,7 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Editar Grupo - Daelly Conffecções</title>
 </head>
 

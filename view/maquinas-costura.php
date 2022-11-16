@@ -30,7 +30,7 @@ $maquinas = $control->listar();
 <html>
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Lista de Máquinas de Costura - Daelly Conffecções</title>
 </head>
 
@@ -74,7 +74,8 @@ $maquinas = $control->listar();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -110,13 +111,14 @@ $maquinas = $control->listar();
                                         <td>
                                             <div class="actions-form table">
                                                 <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>&nbsp;&nbsp;&nbsp;
+                                                <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>   
                                             </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

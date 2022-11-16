@@ -37,7 +37,7 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Editar Manutenção - Daelly Conffecções</title>
 </head>
 

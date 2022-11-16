@@ -34,7 +34,7 @@ $manutencoesCom = $control->listarCom();
 <html>
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Lista de Manutenções - Daelly Conffecções</title>
 </head>
 
@@ -78,7 +78,8 @@ $manutencoesCom = $control->listarCom();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Descrição</th>
@@ -105,13 +106,14 @@ $manutencoesCom = $control->listarCom();
                                         <td>
                                             <div class="actions-form table">
                                                 <a href="editar-manutencao.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>&nbsp;&nbsp;&nbsp;
+                                                <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>   
                                             </div>
                                         </td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

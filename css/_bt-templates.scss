@@ -27,13 +27,18 @@
         padding: .3rem;
         &.bt-remove {
             background-color: #ff00004f;
-            color: $bt-remove-edit-color;
-            border: .01rem solid $bt-remove-edit-color;
+            color: $bt-action-remove-color;
+            border: .01rem solid $bt-action-remove-color;
         }
-        &.table.bt-edit {
+        &.bt-edit {
             background-color: #1100ff41;
             color: $bt-action-edit-color;
             border: .01rem solid $bt-action-edit-color;
+        }
+        &.bt-list {
+            background-color: #1100ff41;
+            color: $bt-action-list-color;
+            border: .01rem solid $bt-action-list-color;
         }
     }
 }

@@ -32,7 +32,7 @@ $tipos = $controlTip->listar();
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Cadastro de Máquina de Costura - Daelly Conffecções</title>
 </head>
 

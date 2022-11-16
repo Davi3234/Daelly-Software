@@ -47,7 +47,7 @@ $data .= ']}';
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Painel - Daelly Confecções</title>
 </head>
 

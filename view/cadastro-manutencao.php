@@ -37,7 +37,7 @@ $compressores = $controlCom->listar();
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Cadastro Manutenção - Daelly Confecções</title>
 </head>
 

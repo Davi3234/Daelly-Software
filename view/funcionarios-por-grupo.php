@@ -40,39 +40,21 @@ $funcionarios = $control->listarByGrupo($grupo->id);
 <html>
 
 <head>
-    <?php include 'header.php' ?>
+    <?php include "header.php" ?>
+    <title>Lista de Funcionários - Daelly Conffecções </title>
 </head>
 
 <body>
+    <header id="header">
+        <?php include "cabecalho.php" ?>
+    </header>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
-                    <span class="sr-only">Menu</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="">Daelly Confec��es</a>
-                <ul class="user-menu">
-                    <li class="dropdown pull-right">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <svg class="glyph stroked male-user">
-                                <use xlink:href="#stroked-male-user"></use>
-                            </svg><span class="nome_usuario">Usuário Logado </span><span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="logout.php"><svg class="glyph stroked cancel">
-                                        <use xlink:href="#stroked-cancel"></use>
-                                    </svg> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+    <main>
+        <div id="barra-lateral">
+            <?php include "barra-lateral.php" ?>
         </div>
-    </nav>
 
+<<<<<<< HEAD
     <?php include 'nome.php' ?>
 
     <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
@@ -151,37 +133,87 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                 </div>
             </div>
 
+=======
+        <div id="painel-comando">
+            <div id="carregando">
+                Carregando...
+            </div>
+
+            <div id="conteudo">
+                <div class="conteudo-header">
+                    <h2>Funcionários do grupo <?php echo $grupo->numero ?><h2>
+                </div>
+                <div class="line-division"></div>
+
+                <div class="conteudo-main">
+                    <form action="" method="POST" id="form">
+                        <input type="hidden" value="" name="id" id="id" />
+                        <input type="hidden" value="" name="acao" id="acao" />
+
+                        <?php if (isset($mensagem)) { ?>
+                            <div class="alert alert-success">
+                                <?php echo $mensagem; ?>
+                                <div class="close-alert">X</div>
+                            </div>
+                        <?php } ?>
+
+                        <?php if (isset($erros)) { ?>
+                            <div class="alert alert-danger">
+                                <?php echo $erros; ?>
+                                <div class="close-alert">X</div>
+                            </div>
+                        <?php } ?>
+
+                        <div class="table-content">
+<table>
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Entrada</th>
+                                    <th>Saída</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo $f->nome ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->cpf ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->entrada ?>
+                                        </td>
+                                        <td>
+                                            <?php echo $f->saida ? $f->saida : "----/--/--" ?>
+                                        </td>
+                                        <td>
+                                            <div class="actions-form table">
+                                                <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+</div>
+                    </form>
+                </div>
+            </div>
+>>>>>>> views
         </div>
-    </div>
+    </main>
 
-    <script>
-        ! function($) {
-            $(document).on("click", "ul.nav li.parent > a > span.icon", function() {
-                $(this).find('em:first').toggleClass("glyphicon-minus");
-            });
-            $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
-            $(".parent#menu-item-funcionario").addClass("active");
-        }(window.jQuery);
 
-        $(window).on('resize', function() {
-            if ($(window).width() > 768)
-                $('#sidebar-collapse').collapse('show')
-        })
-        $(window).on('resize', function() {
-            if ($(window).width() <= 767)
-                $('#sidebar-collapse').collapse('hide')
-        })
-    </script>
     <script>
         $(document).ready(function() {
-            $('[data-toggle="tooltip"]').tooltip();
+            $('#i-funcionario').addClass("active")
             $('#carregando').fadeOut();
             $('#conteudo').fadeIn();
-
-            $(".editar").click(function() {
-                id = $(this).attr("rel");
-                $(location).attr("href", "editar-funcionario.php?id=" + id);
-            });
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente excluir o registro?")) {
