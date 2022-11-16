@@ -84,7 +84,8 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -119,6 +120,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

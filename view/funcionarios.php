@@ -79,7 +79,8 @@ $funcionarios = $control->listar();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -118,6 +119,7 @@ $funcionarios = $control->listar();
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

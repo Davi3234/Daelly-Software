@@ -75,7 +75,8 @@ $funcoes = $control->listarByTipo($tipo->id);
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -99,6 +100,7 @@ $funcoes = $control->listarByTipo($tipo->id);
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

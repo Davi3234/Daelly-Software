@@ -69,7 +69,8 @@ $funcoes = $control->listar();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -102,6 +103,7 @@ $funcoes = $control->listar();
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

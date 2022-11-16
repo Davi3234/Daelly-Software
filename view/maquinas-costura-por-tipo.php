@@ -78,7 +78,8 @@ $maquinas = $control->listarByTipo($tipo->id);
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -117,6 +118,7 @@ $maquinas = $control->listarByTipo($tipo->id);
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

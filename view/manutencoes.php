@@ -78,7 +78,8 @@ $manutencoesCom = $control->listarCom();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Descrição</th>
@@ -112,6 +113,7 @@ $manutencoesCom = $control->listarCom();
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

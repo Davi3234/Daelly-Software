@@ -81,7 +81,8 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Nome</th>
@@ -120,6 +121,7 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

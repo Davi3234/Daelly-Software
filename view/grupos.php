@@ -69,7 +69,8 @@ $grupos = $control->listar();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Número</th>
@@ -93,6 +94,7 @@ $grupos = $control->listar();
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

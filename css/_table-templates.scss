@@ -4,15 +4,19 @@ th,
 tr {
     border: $border;
 }
-table {
+.table-content {
     width: 100%;
-    border-radius: $border-radius;
-    border-collapse: collapse;
-    td,
-    th {
-        padding: .5rem 1rem;
-    }
-    thead {
-        background-color: darken($neutro-color, 7);
+    overflow-x: auto;
+    table {
+        width: 100%;
+        border-radius: $border-radius;
+        border-collapse: collapse;
+        td,
+        th {
+            padding: .5rem 1rem;
+        }
+        thead {
+            background-color: darken($neutro-color, 7);
+        }
     }
 }

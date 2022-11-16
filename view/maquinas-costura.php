@@ -74,7 +74,8 @@ $maquinas = $control->listar();
                             </div>
                         <?php } ?>
 
-                        <table>
+                        <div class="table-content">
+<table>
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -117,6 +118,7 @@ $maquinas = $control->listar();
                                 <?php } ?>
                             </tbody>
                         </table>
+</div>
                     </form>
                 </div>
             </div>

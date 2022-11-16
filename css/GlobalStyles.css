@@ -244,16 +244,20 @@ tr {
   border: 1px solid #b8b8b8;
 }
 
-table {
+.table-content {
+  width: 100%;
+  overflow-x: auto;
+}
+.table-content table {
   width: 100%;
   border-radius: 0.3rem;
   border-collapse: collapse;
 }
-table td,
-table th {
+.table-content table td,
+.table-content table th {
   padding: 0.5rem 1rem;
 }
-table thead {
+.table-content table thead {
   background-color: #d9d9d9;
 }
 
