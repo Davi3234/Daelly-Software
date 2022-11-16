@@ -21,13 +21,13 @@ if (isset($_SESSION["email"])) {
 <body>
     <div class="bg-image"></div>
     <div id="carregando" style="margin-top: 0;">
-        Efetuando login...
+        Efetuando acesso...
     </div>
 
     <div class="session-login">
         <form class="login-content" action="" method="post">
             <div class="form-header">
-                <h1>Login</h1>
+                <h1>Acesso ao Sistema</h1>
             </div>
 
             <div id="erro" class="alert alert-danger"></div>
@@ -46,7 +46,7 @@ if (isset($_SESSION["email"])) {
             </div>
 
             <div class="actions-form">
-                <button type="submit" id="logar" class="bt-action form primary">Logar</button>
+                <button type="submit" id="logar" class="bt-action form primary">Entrar</button>
             </div>
         </form>
     </div>
@@ -69,7 +69,6 @@ if (isset($_SESSION["email"])) {
                     if (resposta) {
                         $("#erro").html(resposta);
                         $("#erro").css("display", "block");
-                        $("body").css("padding-top", ($(window).height() - $(".login-panel").height()) / 2);
                     } else {
                         $(location).attr("href", "/view/painel.php");
                     }
