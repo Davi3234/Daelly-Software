@@ -34,7 +34,7 @@ $manutencoesCom = $control->listarCom();
 <html>
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Lista de Manutenções - Daelly Conffecções</title>
 </head>
 

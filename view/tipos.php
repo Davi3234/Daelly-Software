@@ -25,7 +25,7 @@ $tipos = $control->listar();
 <html>
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Lista de Tipos - Daelly Confecções</title>
 </head>
 

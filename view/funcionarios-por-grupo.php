@@ -40,7 +40,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
 <html>
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Lista de Funcionários - Daelly Conffecções </title>
 </head>
 

@@ -47,7 +47,7 @@ $data .= ']}';
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Painel - Daelly Confecções</title>
 </head>
 
@@ -129,6 +129,9 @@ $data .= ']}';
         </div>
     </main>
 
+    <script src="/js/jquery-3.1.0.min.js"></script>
+    <script src="/js/jquery-maskedinput.min.js"></script>
+    <script src="/js/script.js"></script>
     <script src="../js/ControlMapa.js"></script>
     <script>
         const {
@@ -160,15 +163,16 @@ $data .= ']}';
                 if (!tag) {
                     return
                 }
+                if (!tag.classList.contains("active")) {
+                    document.querySelectorAll(".item-children.itens.active").forEach(a => {
+                        a.classList.toggle("active", false)
+                    })
+                }
                 tag.classList.toggle("active");
             }))
 
-            document.querySelector(".close-alert").addEventListener("click", (ev) => {
-                document.querySelector(".alert-content").remove()
-            })
-            setTimeout(() => {
-                document.querySelector(".alert-content") && document.querySelector(".alert-content").remove()
-            }, 1000 * 10)
+            document.querySelector(".close-alert") && document.querySelector(".close-alert").addEventListener("click", closeAlert)
+            setTimeout(closeAlert, 1000 * 10)
         })
 
         function gravarMaquinasAlteradas() {
@@ -181,6 +185,10 @@ $data .= ']}';
             let data = `{"maquinas":${JSON.stringify(maquinasAlteradas)}}`
 
             tag.value = data
+        }
+
+        function closeAlert() {
+            document.querySelector(".alert") && document.querySelector(".alert").remove()
         }
     </script>
 </body>

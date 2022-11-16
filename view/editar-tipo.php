@@ -27,7 +27,7 @@ $tipo = $control->selecionar(addslashes($_GET['id']));
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Editar Tipo - Daelly Conffecções</title>
 </head>
 

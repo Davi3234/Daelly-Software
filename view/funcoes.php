@@ -25,7 +25,7 @@ $funcoes = $control->listar();
 <html>
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Lista de Funções - Daelly Conffecções</title>
 </head>
 

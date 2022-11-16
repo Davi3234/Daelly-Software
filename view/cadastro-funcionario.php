@@ -42,7 +42,7 @@ $listaFun = $controlFun->listar();
 <html lang="pt-br">
 
 <head>
-    <?php include "head.php" ?>
+    <?php include "header.php" ?>
     <title>Cadastro de Funcionário - Daelly Conffecções</title>
 </head>
 
