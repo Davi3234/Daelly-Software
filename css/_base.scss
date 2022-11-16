@@ -1,7 +1,7 @@
 $darkness-ammount: 50;
 $lightness-ammount: 40;
 $neutro-color: #ebebeb;
-$primary-color: #5e11b6;
+$primary-color: #1308a7;
 $primary-color-darkness: darken( $primary-color, $darkness-ammount * .15);
 $primary-color-lightness: lighten( $primary-color, $lightness-ammount);
 $secondary-color: darken( $neutro-color, 20);
@@ -13,7 +13,8 @@ $alert-danger-color: #ff0000;
 $alert-danger-color-darkness: darken( $alert-danger-color, $darkness-ammount);
 $alert-danger-color-lightness: lighten( $alert-danger-color, $lightness-ammount - 10);
 $bt-action-edit-color: #1100ff;
-$bt-remove-edit-color: #ff0000;
+$bt-action-remove-color: #ff0000;
+$bt-action-list-color: #1100ff;
 $border-radius: .3rem;
 $border: 1px solid $secondary-color;
 * {
