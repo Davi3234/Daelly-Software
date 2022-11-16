@@ -101,10 +101,10 @@ main {
   padding: 1rem 2rem;
   z-index: 5;
   color: #fff;
-  accent-color: #5e11b6;
+  accent-color: rgb(184, 19, 19);
 }
 .fill-inputs .input-box select {
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   border-radius: 0.3rem;
 }
 .fill-inputs .input-box label {
@@ -121,7 +121,7 @@ main {
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   border-radius: 0.3rem;
   transition: 0.3s;
 }
@@ -143,7 +143,7 @@ main {
 }
 .fill-inputs button {
   padding: 1rem 3rem;
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   color: #fff;
   transition: 0.3s;
   border-radius: 0.3rem;
@@ -151,7 +151,7 @@ main {
   font-size: 1.4rem;
 }
 .fill-inputs button:hover {
-  background-color: #4c0e93;
+  background-color: #950f0f;
 }
 .fill-inputs .checkbox-box {
   justify-content: left;
@@ -163,7 +163,7 @@ main {
   width: 1.5rem;
 }
 .fill-inputs .checkbox-box input:checked {
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
 }
 
 .alert {
@@ -208,11 +208,11 @@ main {
   padding: 1rem 1.5rem;
 }
 .bt-action.form.primary {
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   color: #fff;
 }
 .bt-action.form.primary:hover {
-  background-color: #4c0e93;
+  background-color: #950f0f;
   color: #fff;
 }
 .bt-action.table {
@@ -260,7 +260,7 @@ table thead {
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
-  color: #5e11b6;
+  color: rgb(184, 19, 19);
 }
 .session-login .login-content {
   position: relative;
@@ -270,7 +270,7 @@ table thead {
   width: 80%;
   max-width: 40rem;
   padding: 3rem;
-  background-color: #fff;
+  background-image: linear-gradient(rgb(23, 164, 196), #79dedb);
   border-radius: 0.3rem;
   border: 1px solid #b8b8b8;
 }
@@ -283,6 +283,15 @@ table thead {
   margin-bottom: 0;
 }
 
+.bg-image {
+  background-image: url("../assets/imgs/Malharia.jpeg");
+  filter: blur(7px);
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #header {
   display: flex;
   justify-content: center;
@@ -290,7 +299,7 @@ table thead {
   width: 100%;
   height: 10%;
   min-height: 6.3rem;
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   color: #fff;
   z-index: 10;
 }
@@ -331,19 +340,19 @@ table thead {
 #header .profile-parent .profile-item-children.itens .item {
   width: 100%;
   padding: 1rem 2rem;
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   text-align: center;
   transition: 0.3s;
 }
 #header .profile-parent .profile-item-children.itens .item:hover {
   padding: 1rem 2rem;
-  background-color: #4c0e93;
+  background-color: #950f0f;
 }
 #header .profile-parent .profile-item-children.itens a {
   color: #fff;
 }
 #header .profile-parent:hover .profile-item-children.header {
-  background-color: #4c0e93;
+  background-color: #950f0f;
 }
 #header .profile-parent:hover .profile-item-children.itens {
   display: flex;
@@ -378,11 +387,11 @@ table thead {
   transition: 0.3s;
 }
 .barra-lateral-content .item-parent .item-children.header.active {
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   color: #fff;
 }
 .barra-lateral-content .item-parent .item-children.header.active:hover {
-  background-color: #4c0e93 !important;
+  background-color: #950f0f !important;
 }
 .barra-lateral-content .item-parent .item-children.header:hover {
   background-color: #b8b8b8 !important;
@@ -406,7 +415,7 @@ table thead {
   background-color: #d2d2d2;
 }
 .barra-lateral-content .item-parent:hover .item-children.header.active {
-  background-color: #4c0e93;
+  background-color: #950f0f;
 }
 
 #painel-comando {
@@ -445,18 +454,18 @@ table thead {
   border-radius: 0.3rem;
 }
 .pc-mapa .conteudo-header .bt-action {
-  background-color: #c79df6;
+  background-color: #f5a2a2;
   cursor: not-allowed;
 }
 .pc-mapa .conteudo-header .bt-action.valid {
-  background-color: #5e11b6;
+  background-color: rgb(184, 19, 19);
   cursor: pointer;
 }
 .pc-mapa .conteudo-header .bt-action.valid:hover {
-  background-color: #4c0e93;
+  background-color: #950f0f;
 }
 .pc-mapa .conteudo-header .bt-action:hover {
-  background-color: #c79df6;
+  background-color: #f5a2a2;
 }
 .pc-mapa #conteudo {
   overflow: hidden;

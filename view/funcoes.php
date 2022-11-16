@@ -68,7 +68,7 @@ $funcoes = $control->listar();
                                 <div class="close-alert">X</div>
                             </div>
                         <?php } ?>
-
+                        <input type="text" id="myInput" autocomplete="off" placeholder="Search for names.." title="Type in a name" />
                         <table>
                             <thead>
                                 <tr>
@@ -77,7 +77,7 @@ $funcoes = $control->listar();
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="myTable">
                                 <?php if ($funcoes) foreach ($funcoes as $f) { ?>
                                     <tr>
                                         <td>

@@ -15,7 +15,7 @@
         width: 80%;
         max-width: 40rem;
         padding: 3rem;
-        background-color: #fff;
+        background-image: linear-gradient( rgb(23, 164, 196), #79dedb);
         border-radius: $border-radius;
         border: $border;
         .fill-inputs {
@@ -28,3 +28,11 @@
         }
     }
 }
+.bg-image {
+    background-image: url("../assets/imgs/Malharia.jpeg");
+    filter: blur(7px);
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
