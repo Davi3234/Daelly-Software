@@ -1,4 +1,18 @@
 @media screen and (max-width: 1200px) {}
 @media screen and (max-width: 992px) {}
-@media screen and (max-width: 768px) {}
+@media screen and (max-width: 768px) {
+    main {
+        display: block;
+        #barra-lateral {
+            display: none;
+            width: 100%;
+            height: auto;
+            border-right: none;
+            border-bottom: $border;
+            &.active {
+                display: flex;
+            }
+        }
+    }
+}
 @media screen and (max-width: 600px) {}

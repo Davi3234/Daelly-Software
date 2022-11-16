@@ -9,10 +9,15 @@ window.onload = () => {
         tag.classList.toggle("active");
     }))
 
+    document.querySelector("#active-side-bar").addEventListener("click", menuToggle)
     document.querySelector(".close-alert") && document.querySelector(".close-alert").addEventListener("click", closeAlert)
     setTimeout(closeAlert, 1000 * 10)
 }
 
 function closeAlert() {
     document.querySelector(".alert") && document.querySelector(".alert").remove()
+}
+
+function menuToggle() {
+    document.querySelector("#barra-lateral").classList.toggle("active")
 }

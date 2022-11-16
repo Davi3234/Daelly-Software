@@ -15,7 +15,6 @@ body {
   height: 100vh;
   font-size: 1.6rem !important;
   background-color: #ebebeb;
-  overflow: hidden;
 }
 
 a {
@@ -38,7 +37,7 @@ button {
 main {
   display: flex;
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
 ::-webkit-scrollbar {
@@ -297,8 +296,7 @@ tr {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 10%;
-  min-height: 6.3rem;
+  height: 6.3rem;
   background-color: #1308a7;
   color: #fff;
   z-index: 10;
@@ -313,24 +311,28 @@ tr {
 #header .header-content .logo {
   color: #fff;
 }
-#header .profile-parent {
+#header .header-actions {
+  display: flex;
+}
+#header .header-actions .profile-parent {
   position: relative;
   display: flex;
   flex-direction: column;
   font-size: 1.4rem;
 }
-#header .profile-parent .profile-item-children {
+#header .header-actions .profile-parent .profile-item-children {
   transition: 0.3s;
 }
-#header .profile-parent .profile-item-children.header {
+#header .header-actions .profile-parent .profile-item-children.header {
   position: relative;
   align-items: center;
-  padding: 1.5rem 4rem;
+  padding: 1.95rem 4rem;
 }
-#header .profile-parent .profile-item-children.header .icon {
-  position: absolute;
+#header .header-actions .profile-parent .profile-item-children.header p {
+  display: flex;
+  align-items: center;
 }
-#header .profile-parent .profile-item-children.itens {
+#header .header-actions .profile-parent .profile-item-children.itens {
   position: absolute;
   display: none;
   top: 100%;
@@ -338,84 +340,98 @@ tr {
   right: 0;
   box-shadow: 0 10px 1rem rgba(0, 0, 0, 0.2);
 }
-#header .profile-parent .profile-item-children.itens .item {
+#header .header-actions .profile-parent .profile-item-children.itens .item {
   width: 100%;
   padding: 1rem 2rem;
   background-color: #1308a7;
   text-align: center;
   transition: 0.3s;
 }
-#header .profile-parent .profile-item-children.itens .item:hover {
+#header .header-actions .profile-parent .profile-item-children.itens .item:hover {
   padding: 1rem 2rem;
   background-color: #0f0682;
 }
-#header .profile-parent .profile-item-children.itens a {
+#header .header-actions .profile-parent .profile-item-children.itens a {
   color: #fff;
 }
-#header .profile-parent:hover .profile-item-children.header {
+#header .header-actions .profile-parent:hover .profile-item-children.header {
   background-color: #0f0682;
 }
-#header .profile-parent:hover .profile-item-children.itens {
+#header .header-actions .profile-parent:hover .profile-item-children.itens {
   display: flex;
 }
+#header .header-actions .profile-parent.menu {
+  display: flex;
+  cursor: pointer;
+}
+#header .header-actions .profile-parent.menu .header {
+  padding: 1.65rem 2.5rem;
+}
 
+/*
+&.menu {
+                display: flex; //// 
+                cursor: pointer;
+                .header {
+                    padding: 1.95rem 2.5rem;
+                }
+            }
+*/
 #barra-lateral {
   display: block;
-  width: 25%;
   width: 23rem;
   background-color: #fff;
   border-right: 1px solid #b8b8b8;
-  z-index: 10;
+  z-index: 20;
   overflow-x: hidden;
   overflow-y: auto;
   font-size: 1.4rem;
 }
-
-.barra-lateral-content {
+#barra-lateral .barra-lateral-content {
   display: flex;
   flex-direction: column;
   width: 100%;
   overflow: auto !important;
 }
-.barra-lateral-content .item-parent .item-children {
+#barra-lateral .barra-lateral-content .item-parent .item-children {
   cursor: pointer;
 }
-.barra-lateral-content .item-parent .item-children.header {
+#barra-lateral .barra-lateral-content .item-parent .item-children.header {
   display: flex;
   gap: 0.5rem;
   padding: 1rem 1.5rem;
   position: relative;
   transition: 0.3s;
 }
-.barra-lateral-content .item-parent .item-children.header.active {
+#barra-lateral .barra-lateral-content .item-parent .item-children.header.active {
   background-color: #1308a7;
   color: #fff;
 }
-.barra-lateral-content .item-parent .item-children.header.active:hover {
+#barra-lateral .barra-lateral-content .item-parent .item-children.header.active:hover {
   background-color: #0f0682 !important;
 }
-.barra-lateral-content .item-parent .item-children.header:hover {
+#barra-lateral .barra-lateral-content .item-parent .item-children.header:hover {
   background-color: #b8b8b8 !important;
 }
-.barra-lateral-content .item-parent .item-children.itens {
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens {
   display: none;
   flex-direction: column;
   background-color: #f0f0f0;
 }
-.barra-lateral-content .item-parent .item-children.itens .item {
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens .item {
   padding: 1rem 2rem 1rem 5rem;
   transition: 0.3s;
 }
-.barra-lateral-content .item-parent .item-children.itens .item:hover {
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens .item:hover {
   background-color: #b8b8b8;
 }
-.barra-lateral-content .item-parent .item-children.itens.active {
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens.active {
   display: flex;
 }
-.barra-lateral-content .item-parent:hover .item-children.header {
+#barra-lateral .barra-lateral-content .item-parent:hover .item-children.header {
   background-color: #d2d2d2;
 }
-.barra-lateral-content .item-parent:hover .item-children.header.active {
+#barra-lateral .barra-lateral-content .item-parent:hover .item-children.header.active {
   background-color: #0f0682;
 }
 
@@ -423,7 +439,6 @@ tr {
   position: relative;
   padding: 4rem;
   width: 100%;
-  min-height: 100%;
   overflow-y: auto;
   z-index: 5;
 }
@@ -525,4 +540,20 @@ tr {
   position: relative;
   height: 4.45rem;
   width: 4.45rem;
+}
+
+@media screen and (max-width: 768px) {
+  main {
+    display: block;
+  }
+  main #barra-lateral {
+    display: none;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #b8b8b8;
+  }
+  main #barra-lateral.active {
+    display: flex;
+  }
 }/*# sourceMappingURL=GlobalStyles.css.map */
