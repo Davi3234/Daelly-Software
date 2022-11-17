@@ -69,14 +69,14 @@ $listaFun = $controlFun->listar();
                 <?php if (isset($mensagem)) { ?>
                     <div class="alert alert-success">
                         <?php echo $mensagem; ?>
-                        <div class="close-alert">X</div>
+                        <div class="close-alert material-symbols-outlined">close</div>
                     </div>
                 <?php } ?>
 
                 <?php if (isset($erros)) { ?>
                     <div class="alert alert-danger">
                         <?php echo $erros; ?>
-                        <div class="close-alert">X</div>
+                        <div class="close-alert material-symbols-outlined">close</div>
                     </div>
                 <?php } ?>
 
@@ -124,14 +124,15 @@ $listaFun = $controlFun->listar();
                                 <label for="id_grupo">Grupo</label>
                                 <i></i>
                             </div>
-                            <div class="input-box input-position-right">
+                            <fieldset class="input-box input-position-right checkbox">
+                                <legend>Funções</legend>
                                 <?php foreach ($listaFun as $f) { ?>
                                     <div class="checkbox-box">
                                         <input name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
                                         <label for="flexCheckDefault"><?php echo $f->nome ?></label>
                                     </div>
                                 <?php } ?>
-                            </div>
+                            </fieldset>
                         </div>
                     </form>
                 </div>

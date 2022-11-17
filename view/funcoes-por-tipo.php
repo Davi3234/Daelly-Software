@@ -64,14 +64,14 @@ $funcoes = $control->listarByTipo($tipo->id);
                         <?php if (isset($mensagem)) { ?>
                             <div class="alert alert-success">
                                 <?php echo $mensagem; ?>
-                                <div class="close-alert">X</div>
+                                <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
 
                         <?php if (isset($erros)) { ?>
                             <div class="alert alert-danger">
                                 <?php echo $erros; ?>
-                                <div class="close-alert">X</div>
+                                <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
 

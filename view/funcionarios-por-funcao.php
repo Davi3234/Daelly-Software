@@ -51,89 +51,6 @@ $funcionarios = $control->listarByFuncao($funcao->id);
             <?php include "barra-lateral.php" ?>
         </div>
 
-<<<<<<< HEAD
-
-    <?php include 'nome.php' ?>
-
-    <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
-        <div id="carregando">
-            Carregando...
-        </div>
-        <div id="conteudo">
-
-            <div class="row">
-                <ol class="breadcrumb">
-                    <li><a href="index.php"><svg class="glyph stroked home">
-                                <use xlink:href="#stroked-home"></use>
-                            </svg></a></li>
-                    <li class="active">Funcion�rios</li>
-                </ol>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Funcion�rios que exercem a Fun��o <?php echo $funcao->nome; ?></h1>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="panel panel-default">
-
-                        <div class="panel-body">
-                            <form action="" method="POST" id="form">
-                                <input type="hidden" value="" name="id" id="id" />
-                                <input type="hidden" value="" name="acao" id="acao" />
-
-                                <?php if (isset($mensagem)) { ?>
-                                    <div class="alert alert-success">
-                                        <a href="#" class="close" data-dismiss="alert" aria-label="close">X</a>
-                                        <?php echo $mensagem; ?>
-                                    </div>
-                                <?php } ?>
-
-                                <?php if (isset($erros)) { ?>
-                                    <div class="alert alert-danger">
-                                        <?php echo $erros; ?>
-                                    </div>
-                                <?php } ?>
-
-                                <div class="table-content">
-                                    <table data-toggle="table" data-show-refresh="true" data-id-field="1" data-show-toggle="true" data-show-columns="false" data-search="true" data-select-item-name="selecionados[]" data-pagination="true" data-sort-name="name" data-sort-order="desc">
-                                        <thead>
-                                            <tr>
-                                                <th data-sortable="true">Nome</th>
-                                                <th data-sortable="true">CPF</th>
-                                                <th data-sortable="true">Entrada</th>
-                                                <th data-sortable="true">Sa�da</th>
-                                                <th data-sortable="true">Grupo</th>
-                                                <th data-sortable="true">A��es</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
-                                                <tr>
-                                                    <td><?php echo $f->nome ?></td>
-                                                    <td><?php echo $f->cpf ?></td>
-                                                    <td><?php echo $f->entrada ?></td>
-                                                    <td><?php echo $f->saida ?></td>
-                                                    <td><?php echo $f->grupo ? $f->grupo : "Nenhum" ?></td>
-                                                    <td>
-                                                        <a href="#" class="editar" rel="<?php echo $f->id ?>">Editar</a>&nbsp;&nbsp;&nbsp;
-                                                        <a href="#" class="excluir" rel="<?php echo $f->id ?>">Excluir</a>
-                                                    </td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-=======
         <div id="painel-comando">
             <div id="carregando">
                 Carregando...
@@ -153,14 +70,14 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                         <?php if (isset($mensagem)) { ?>
                             <div class="alert alert-success">
                                 <?php echo $mensagem; ?>
-                                <div class="close-alert">X</div>
+                                <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
 
                         <?php if (isset($erros)) { ?>
                             <div class="alert alert-danger">
                                 <?php echo $erros; ?>
-                                <div class="close-alert">X</div>
+                                <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
 
@@ -208,7 +125,6 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                     </form>
                 </div>
             </div>
->>>>>>> views
         </div>
     </main>
 

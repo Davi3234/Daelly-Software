@@ -24,7 +24,7 @@ class ControlFuncao
             $id_tipo = null;
         }
         if (!$this->erros) {
-            $this->funcao = new Funcao($nome, $id_tipo == 0 ? null : $id_tipo);
+            $this->funcao = new Funcao($nome, $id_tipo);
             if ($this->daoFuncao->inserir($this->funcao)) {
                 return true;
             } else {
@@ -41,8 +41,13 @@ class ControlFuncao
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
         }
+        if (strlen($id_tipo) == 0) {
+            $this->erros[] = "Informe o tipo";
+        } else if ($id_tipo == 0) {
+            $id_tipo = null;
+        }
         if (!$this->erros) {
-            $this->funcao = new Funcao($nome, $id_tipo == 0 ? null : $id_tipo, $id);
+            $this->funcao = new Funcao($nome, $id_tipo, $id);
             if ($this->daoFuncao->editar($this->funcao)) {
                 return true;
             }

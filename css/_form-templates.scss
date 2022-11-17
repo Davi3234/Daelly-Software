@@ -10,6 +10,11 @@
         flex-direction: column;
         margin-bottom: 3rem;
         width: 100%;
+        &.checkbox {
+            border: $border;
+            border-radius: $border-radius;
+            padding: 2rem;
+        }
         &.input-position-left {
             float: left;
             width: 48%;

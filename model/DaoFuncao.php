@@ -21,7 +21,7 @@ class DaoFuncao
             if ($funcao->getIdTipo()) {
                 return $this->conexao->exec("insert into funcao (nome, id_tipo) values ('" . $funcao->getNome() . "', '" . $funcao->getIdTipo() . "' )");
             }
-            return $this->conexao->exec("insert into funcao (nome, id_tipo) values ('" . $funcao->getNome() . "', null)");
+            return $this->conexao->exec("insert into funcao (nome) values ('" . $funcao->getNome() . "')");
         } catch (PDOException $ex) {
             return false;
         }

@@ -49,6 +49,15 @@ $data .= ']}';
 <head>
     <?php include "header.php" ?>
     <title>Painel - Daelly Confecções</title>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .conteudo-header {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -75,7 +84,7 @@ $data .= ']}';
 
                         <div class="alert alert-success">
                             <?php echo $mensagem; ?>
-                            <div class="close-alert">X</div>
+                            <div class="close-alert material-symbols-outlined">close</div>
                         </div>
                     </div>
                 <?php } ?>
@@ -85,7 +94,7 @@ $data .= ']}';
 
                         <div class="alert alert-danger">
                             <?php echo $erro; ?>
-                            <div class="close-alert">X</div>
+                            <div class="close-alert material-symbols-outlined">close</div>
                         </div>
                     </div>
                 <?php } ?>
@@ -143,7 +152,7 @@ $data .= ']}';
             $('#i-inicio').addClass("active")
             $('#carregando').fadeOut()
             $('#conteudo').fadeIn()
-            $('.extra-header').fadeIn()
+            $('.conteudo-header').fadeIn()
             $('#editar-maquinas-mapa').submit((ev) => {
                 if (maquinasAlteradas.length <= 0) {
                     ev.preventDefault()
@@ -171,6 +180,7 @@ $data .= ']}';
                 tag.classList.toggle("active");
             }))
 
+            document.querySelector("#active-side-bar").addEventListener("click", menuToggle)
             document.querySelector(".close-alert") && document.querySelector(".close-alert").addEventListener("click", closeAlert)
             setTimeout(closeAlert, 1000 * 10)
         })
@@ -188,7 +198,11 @@ $data .= ']}';
         }
 
         function closeAlert() {
-            document.querySelector(".alert") && document.querySelector(".alert").remove()
+            document.querySelector(".alert-content") && document.querySelector(".alert-content").remove()
+        }
+
+        function menuToggle() {
+            document.querySelector("#barra-lateral").classList.toggle("active")
         }
     </script>
 </body>

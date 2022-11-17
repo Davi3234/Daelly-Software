@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-@media screen and (max-width: 998px) {}
-@media screen and (max-width: 762px) {}
-@media screen and (max-width: 678px) {}
-=======
 @media screen and (max-width: 1200px) {}
 @media screen and (max-width: 992px) {}
 @media screen and (max-width: 768px) {
@@ -17,6 +12,9 @@
             &.active {
                 display: flex;
             }
+        }
+        #mapa-content {
+            height: 50rem !important;
         }
     }
 }
@@ -48,4 +46,4 @@
         }
     }
 }
->>>>>>> views
+// min 303px
