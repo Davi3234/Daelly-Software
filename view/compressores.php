@@ -30,7 +30,7 @@ $compressores = $control->listar();
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -112,7 +112,7 @@ $compressores = $control->listar();
         $(document).ready(function() {
             $('#i-compressor').addClass("active")
             $('#carregando').fadeOut()
-            $('#conteudo').fadeIn()
+            $('.conteudo').fadeIn()
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente excluir o registro?")) {

@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $(document).ready(function() {
             $('#i-grupo').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "grupos.php");

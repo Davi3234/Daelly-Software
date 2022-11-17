@@ -36,7 +36,7 @@ $funcoes = $control->listarByTipo($tipo->id);
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -112,7 +112,7 @@ $funcoes = $control->listarByTipo($tipo->id);
         $(document).ready(function() {
             $('#i-funcao').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente excluir o registro?")) {

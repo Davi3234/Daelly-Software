@@ -43,6 +43,14 @@ main {
   overflow: auto;
 }
 
+header {
+  width: 100%;
+  height: 6.3rem;
+  background-color: #8b0d0d;
+  color: #fff;
+  z-index: 10;
+}
+
 ::-webkit-scrollbar {
   background: transparent;
   width: 6.5px;
@@ -71,6 +79,17 @@ main {
   width: 100%;
   margin: 2rem auto;
   background-color: #b8b8b8;
+}
+
+.icon-content {
+  display: flex;
+  align-items: center;
+}
+.icon-content.rigth .material-symbols-outlined {
+  margin-left: 0.3rem;
+}
+.icon-content.left .material-symbols-outlined {
+  margin-right: 0.3rem;
 }
 
 .fill-inputs {
@@ -201,6 +220,7 @@ main {
 .actions-form {
   display: flex;
   gap: 1rem;
+  overflow: auto;
 }
 .actions-form.table {
   position: relative;
@@ -221,6 +241,9 @@ main {
 .bt-action.form.primary:hover {
   background-color: #680a0a;
   color: #fff;
+}
+.bt-action.form.primary:active {
+  background-color: #510808;
 }
 .bt-action.table {
   display: flex;
@@ -299,92 +322,72 @@ tr {
   margin-bottom: 0;
 }
 
-#header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 6.3rem;
-  background-color: #8b0d0d;
-  color: #fff;
-  z-index: 10;
-}
-#header .header-content {
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
+  height: 100%;
+  padding: 0 5rem;
   font-size: 1.4rem;
 }
-#header .header-content .logo {
+.header-content .logo {
   color: #fff;
 }
-#header .header-actions {
+.header-content .header-actions {
   display: flex;
+  height: 100%;
 }
-#header .header-actions .profile-parent {
+.header-content .header-actions .profile-parent {
   position: relative;
   display: flex;
   flex-direction: column;
   font-size: 1.4rem;
+  height: 100%;
 }
-#header .header-actions .profile-parent .profile-item-children {
+.header-content .header-actions .profile-parent .profile-item-children {
   transition: 0.3s;
 }
-#header .header-actions .profile-parent .profile-item-children.header {
+.header-content .header-actions .profile-parent .profile-item-children.header {
+  display: flex;
   position: relative;
   align-items: center;
-  padding: 1.95rem 4rem;
+  height: 100%;
+  padding: 0 2.5rem;
 }
-#header .header-actions .profile-parent .profile-item-children.header p {
-  display: flex;
-  align-items: center;
-}
-#header .header-actions .profile-parent .profile-item-children.itens {
+.header-content .header-actions .profile-parent .profile-item-children.itens {
   position: absolute;
   display: none;
   top: 100%;
   left: 0;
-  right: 0;
+  width: 100%;
   box-shadow: 0 10px 1rem rgba(0, 0, 0, 0.2);
 }
-#header .header-actions .profile-parent .profile-item-children.itens .item {
+.header-content .header-actions .profile-parent .profile-item-children.itens .item {
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1.5rem 2rem;
   background-color: #8b0d0d;
   text-align: center;
   transition: 0.3s;
 }
-#header .header-actions .profile-parent .profile-item-children.itens .item:hover {
-  padding: 1rem 2rem;
+.header-content .header-actions .profile-parent .profile-item-children.itens .item:hover {
   background-color: #680a0a;
 }
-#header .header-actions .profile-parent .profile-item-children.itens a {
+.header-content .header-actions .profile-parent .profile-item-children.itens a {
+  width: 100%;
   color: #fff;
 }
-#header .header-actions .profile-parent:hover .profile-item-children.header {
+.header-content .header-actions .profile-parent:hover .profile-item-children.header {
   background-color: #680a0a;
 }
-#header .header-actions .profile-parent:hover .profile-item-children.itens {
+.header-content .header-actions .profile-parent:hover .profile-item-children.itens {
   display: flex;
 }
-#header .header-actions .profile-parent.menu {
+.header-content .header-actions .profile-parent.menu {
   display: flex;
   cursor: pointer;
 }
-#header .header-actions .profile-parent.menu .header {
-  padding: 1.65rem 2.5rem;
-}
 
-/*
-&.menu {
-                display: flex; //// 
-                cursor: pointer;
-                .header {
-                    padding: 1.95rem 2.5rem;
-                }
-            }
-*/
 #barra-lateral {
   display: block;
   width: 23rem;
@@ -450,7 +453,7 @@ tr {
   overflow-y: auto;
   z-index: 5;
 }
-#painel-comando #conteudo {
+#painel-comando .conteudo {
   width: 100%;
   background-color: #fff;
   border-radius: 0.3rem;
@@ -458,84 +461,75 @@ tr {
   display: none;
   border: 1px solid #b8b8b8;
 }
-#painel-comando #conteudo .conteudo-header {
+#painel-comando .conteudo .conteudo-header {
   margin-bottom: 1rem;
   letter-spacing: 0.01rem;
   font-size: 1.8rem;
+}
+
+.pc-header .bt-action.toggle {
+  background-color: #f27272;
+  cursor: not-allowed;
+}
+.pc-header .bt-action.toggle.valid {
+  background-color: #8b0d0d;
+  cursor: pointer;
+}
+.pc-header .bt-action.toggle.valid:hover {
+  background-color: #680a0a;
+}
+.pc-header .bt-action.toggle:hover {
+  background-color: #f27272;
 }
 
 .pc-mapa {
   padding: 4rem;
   overflow-y: auto;
 }
-.pc-mapa .conteudo-header {
-  display: none;
-  padding: 3rem;
-  margin-bottom: 3rem;
-  letter-spacing: 0.01rem;
-  font-size: 1.8rem;
-  background-color: #fff;
-  border: 1px solid #b8b8b8;
-  border-radius: 0.3rem;
-}
-.pc-mapa .conteudo-header .bt-action {
-  background-color: #f27272;
-  cursor: not-allowed;
-}
-.pc-mapa .conteudo-header .bt-action.valid {
-  background-color: #8b0d0d;
-  cursor: pointer;
-}
-.pc-mapa .conteudo-header .bt-action.valid:hover {
-  background-color: #680a0a;
-}
-.pc-mapa .conteudo-header .bt-action:hover {
-  background-color: #f27272;
-}
-.pc-mapa #conteudo {
+.pc-mapa .pc-conteudo {
   overflow: hidden;
   width: 100%;
   height: 100%;
   padding: 0 !important;
 }
-.pc-mapa #conteudo form {
+.pc-mapa .pc-conteudo form {
   width: 100%;
   height: 100%;
 }
-.pc-mapa #conteudo #mapa-content {
+.pc-mapa .pc-conteudo #mapa-content {
   position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 }
-.pc-mapa #conteudo #mapa-content .maquinas {
+.pc-mapa .pc-conteudo #mapa-content .maquinas {
   position: absolute;
   background-color: dodgerblue;
   cursor: move;
   z-index: 150;
 }
-.pc-mapa #conteudo #mapa-content .maquinas .active {
+.pc-mapa .pc-conteudo #mapa-content .maquinas .active {
   position: absolute;
   opacity: 0.7;
 }
-.pc-mapa #conteudo #mapa-content .listas-maquinas {
+.pc-mapa .pc-conteudo #mapa-content .listas-maquinas {
   position: relative;
   width: 100%;
   height: 100%;
 }
-.pc-mapa #conteudo #mapa-content #mapa-box {
+.pc-mapa .pc-conteudo #mapa-content #mapa-box {
   height: 100%;
   overflow-y: auto;
   overflow-x: auto;
   z-index: 90;
   padding: 3rem;
 }
-.pc-mapa #conteudo #mapa-content #mapa-box #mapa {
+.pc-mapa .pc-conteudo #mapa-content #mapa-box #mapa {
   border: 1px solid #b8b8b8;
   border-radius: 0.3rem;
 }
-.pc-mapa #conteudo #mapa-content #mapa-box #maquina-info-content {
+.pc-mapa .pc-conteudo #mapa-content #mapa-box #maquina-info-content {
   position: absolute;
   display: none;
   flex-direction: column;
@@ -546,21 +540,21 @@ tr {
   border: 1px solid #b8b8b8;
   border-radius: 0.3rem;
 }
-.pc-mapa #conteudo #mapa-content #mapa-box #maquina-info-content.active {
+.pc-mapa .pc-conteudo #mapa-content #mapa-box #maquina-info-content.active {
   display: flex;
 }
-.pc-mapa #conteudo #mapa-content #mapa-box #maquina-info-content .close-info {
+.pc-mapa .pc-conteudo #mapa-content #mapa-box #maquina-info-content .close-info {
   position: absolute;
   right: 1rem;
   top: 1rem;
   cursor: pointer;
 }
-.pc-mapa #conteudo #mapa-content #inventario {
+.pc-mapa .pc-conteudo #mapa-content #inventario {
   border-top: 1px solid #b8b8b8;
   z-index: 100;
   background-color: #fff;
 }
-.pc-mapa #conteudo #mapa-content #inventario .listas-maquinas {
+.pc-mapa .pc-conteudo #mapa-content #inventario .listas-maquinas {
   position: relative;
   padding: 1rem;
   align-items: center;
@@ -568,7 +562,7 @@ tr {
   gap: 10px;
   overflow-x: auto;
 }
-.pc-mapa #conteudo #mapa-content #inventario .listas-maquinas .maquinas {
+.pc-mapa .pc-conteudo #mapa-content #inventario .listas-maquinas .maquinas {
   position: relative;
   height: 4.45rem;
   width: 4.45rem;
@@ -598,12 +592,9 @@ tr {
     float: none !important;
   }
 }
-@media screen and (max-width: 550px) {
-  html {
-    font-size: 58% !important;
-  }
+@media screen and (max-width: 588px) {
   header h1 {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
   }
 }
 @media screen and (max-width: 483px) {

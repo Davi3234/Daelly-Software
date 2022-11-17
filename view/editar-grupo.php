@@ -31,7 +31,7 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -92,7 +92,7 @@ $grupo = $control->selecionar(addslashes($_GET['id']));
         $(document).ready(function() {
             $('#i-grupo').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "grupos.php");

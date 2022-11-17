@@ -37,7 +37,7 @@ $tipos = $controlTip->listar();
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -112,7 +112,7 @@ $tipos = $controlTip->listar();
         $(document).ready(function() {
             $('#i-funcao').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "funcoes.php");

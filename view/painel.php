@@ -53,15 +53,11 @@ $data .= ']}';
         body {
             height: 100vh;
         }
-
-        .conteudo-header {
-            display: none;
-        }
     </style>
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -75,40 +71,32 @@ $data .= ']}';
                 Carregando...
             </div>
 
-            <div class="conteudo-header">
+            <div class="conteudo pc-header">
                 <h2>Mapeamento das máquinas de costura</h2>
 
                 <?php if (isset($mensagem)) { ?>
-                    <div class="alert-content">
-                        <div class="line-division"></div>
-
                         <div class="alert alert-success">
                             <?php echo $mensagem; ?>
                             <div class="close-alert material-symbols-outlined">close</div>
                         </div>
-                    </div>
                 <?php } ?>
                 <?php if (isset($erro)) { ?>
-                    <div class="alert-content">
-                        <div class="line-division"></div>
-
                         <div class="alert alert-danger">
                             <?php echo $erro; ?>
                             <div class="close-alert material-symbols-outlined">close</div>
                         </div>
-                    </div>
                 <?php } ?>
 
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary" onclick="gravarMaquinasAlteradas()">Gravar</button>
-                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary voltar" onclick="resetarMaquinasAlteradas()">Resetar</button>
-                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary valid" onclick="guardarMaquinas()">Guardar máquinas no inventário</button>
+                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary toggle" onclick="gravarMaquinasAlteradas()">Gravar</button>
+                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary toggle voltar" onclick="resetarMaquinasAlteradas()">Resetar</button>
+                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle valid" onclick="guardarMaquinas()">Guardar máquinas no inventário</button>
                 </div>
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo pc-conteudo" style="margin-top: 4rem;">
                 <form action="" method="post" id="editar-maquinas-mapa">
                     <input id="maquinas-input" name="maquinas" type="text" hidden value='{"maquinas":[]}'>
 
@@ -155,8 +143,7 @@ $data .= ']}';
         $(document).ready(function() {
             $('#i-inicio').addClass("active")
             $('#carregando').fadeOut()
-            $('#conteudo').fadeIn()
-            $('.conteudo-header').fadeIn()
+            $('.conteudo').fadeIn()
             $('#editar-maquinas-mapa').submit((ev) => {
                 if (maquinasAlteradas.length <= 0) {
                     ev.preventDefault()
@@ -202,7 +189,7 @@ $data .= ']}';
         }
 
         function closeAlert() {
-            document.querySelector(".alert-content") && document.querySelector(".alert-content").remove()
+            document.querySelector(".alert") && document.querySelector(".alert").remove()
         }
 
         function menuToggle() {

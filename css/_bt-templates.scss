@@ -1,6 +1,7 @@
 .actions-form {
     display: flex;
     gap: 1rem;
+    overflow: auto;
     &.table {
         position: relative;
         height: 100%;
@@ -17,6 +18,9 @@
             &:hover {
                 background-color: $primary-color-darkness;
                 color: #fff;
+            }
+            &:active {
+                background-color: darken($primary-color-darkness, 5);
             }
         }
     }

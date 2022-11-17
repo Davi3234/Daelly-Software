@@ -47,7 +47,7 @@ $listaFun = $controlFun->listar();
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -144,7 +144,7 @@ $listaFun = $controlFun->listar();
         $(document).ready(function() {
             $('#i-funcionario').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "funcionarios.php");

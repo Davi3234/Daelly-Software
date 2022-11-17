@@ -37,7 +37,7 @@ $tipos = $controlTip->listar();
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -127,7 +127,7 @@ $tipos = $controlTip->listar();
         $(document).ready(function() {
             $('#i-maquina-costura').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "maquinas-costura.php");

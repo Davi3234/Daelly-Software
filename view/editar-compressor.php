@@ -31,7 +31,7 @@ $compressor = $control->selecionar(addslashes($_GET['id']));
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -102,7 +102,7 @@ $compressor = $control->selecionar(addslashes($_GET['id']));
         $(document).ready(function() {
             $('#i-compressor').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "compressores.php");

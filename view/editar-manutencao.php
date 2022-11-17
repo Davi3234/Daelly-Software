@@ -42,7 +42,7 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
 </head>
 
 <body>
-    <header id="header">
+    <header>
         <?php include "cabecalho.php" ?>
     </header>
 
@@ -128,7 +128,7 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
         $(document).ready(function() {
             $('#i-manutencao').addClass("active")
             $('#carregando').fadeOut();
-            $('#conteudo').fadeIn();
+            $('.conteudo').fadeIn();
 
             $(".voltar").click(function() {
                 $(location).attr("href", "manutencoes.php");
