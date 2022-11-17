@@ -80,8 +80,8 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
                 <div class="conteudo-main">
                     <form action="" method="post" id="form">
                         <div class="actions-form">
-                            <button type="submit" id="gravar" class="bt-action form primary">Gravar</button>
-                            <button type="button" class="bt-action form primary voltar">Voltar</button>
+                            <button type="submit" id="gravar" class="bt-action form primary icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
+                            <button type="button" class="bt-action form primary voltar icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></button>
                         </div>
 
                         <div class="line-division"></div>

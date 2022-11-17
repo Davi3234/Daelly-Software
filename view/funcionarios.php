@@ -58,6 +58,13 @@ $funcionarios = $control->listar();
                 <div class="conteudo-header">
                     <h2>Funcionário <h2>
                 </div>
+
+                <div class="line-division"></div>
+
+                <div class="actions-form">
+                    <a href="cadastro-funcionario.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                </div>
+
                 <div class="line-division"></div>
 
                 <div class="conteudo-main">

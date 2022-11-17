@@ -50,6 +50,11 @@ $grupos = $control->listar();
                 </div>
                 <div class="line-division"></div>
 
+                <div class="actions-form">
+                    <a href="cadastro-grupo.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                </div>
+                <div class="line-division"></div>
+
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
                         <input type="hidden" value="" name="id" id="id" />
@@ -70,31 +75,31 @@ $grupos = $control->listar();
                         <?php } ?>
 
                         <div class="table-content">
-<table>
-                            <thead>
-                                <tr>
-                                    <th>Número</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($grupos) foreach ($grupos as $g) { ?>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <?php echo $g->numero ?>
-                                        </td>
-                                        <td>
-                                            <div class="actions-form table">
-                                                <a href="editar-grupo.php?id=<?php echo $g->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" rel="<?php echo $g->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
-                                                <a href="funcionarios-por-grupo.php?id=<?php echo $g->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">person</span></a>
-                                            </div>
-                                        </td>
+                                        <th>Número</th>
+                                        <th>Ações</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-</div>
+                                </thead>
+                                <tbody>
+                                    <?php if ($grupos) foreach ($grupos as $g) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $g->numero ?>
+                                            </td>
+                                            <td>
+                                                <div class="actions-form table">
+                                                    <a href="editar-grupo.php?id=<?php echo $g->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="#" rel="<?php echo $g->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                                    <a href="funcionarios-por-grupo.php?id=<?php echo $g->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">groups</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -120,4 +125,5 @@ $grupos = $control->listar();
     </script>
 
 </body>
+
 </html>

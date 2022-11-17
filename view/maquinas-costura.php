@@ -55,6 +55,11 @@ $maquinas = $control->listar();
                 </div>
                 <div class="line-division"></div>
 
+                <div class="actions-form">
+                    <a href="cadastro-maquina-costura.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                </div>
+                <div class="line-division"></div>
+
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
                         <input type="hidden" value="" name="id" id="id" />

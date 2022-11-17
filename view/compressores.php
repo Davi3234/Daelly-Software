@@ -48,6 +48,13 @@ $compressores = $control->listar();
                 <div class="conteudo-header">
                     <h2>Compressores</h2>
                 </div>
+
+                <div class="line-division"></div>
+
+                <div class="actions-form">
+                    <a href="cadastro-compressor.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                </div>
+
                 <div class="line-division"></div>
 
                 <div class="conteudo-main">
@@ -81,24 +88,24 @@ $compressores = $control->listar();
                                 </thead>
                                 <tbody>
                                     <?php if ($compressores) foreach ($compressores as $c) { ?>
-                                            <tr>
-                                                <td>
-                                                    <?php echo $c->codigo ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $c->marca ?>
-                                                </td>
-                                                <td>
-                                                    <?php echo $c->modelo ?>
-                                                </td>
-                                                <td>
-                                                    <div class="actions-form table">
-                                                        <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                        <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        <?php } ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $c->codigo ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $c->marca ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $c->modelo ?>
+                                            </td>
+                                            <td>
+                                                <div class="actions-form table">
+                                                    <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

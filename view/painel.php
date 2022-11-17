@@ -75,24 +75,24 @@ $data .= ']}';
                 <h2>Mapeamento das máquinas de costura</h2>
 
                 <?php if (isset($mensagem)) { ?>
-                        <div class="alert alert-success">
-                            <?php echo $mensagem; ?>
-                            <div class="close-alert material-symbols-outlined">close</div>
-                        </div>
+                    <div class="alert alert-success">
+                        <?php echo $mensagem; ?>
+                        <div class="close-alert material-symbols-outlined">close</div>
+                    </div>
                 <?php } ?>
                 <?php if (isset($erro)) { ?>
-                        <div class="alert alert-danger">
-                            <?php echo $erro; ?>
-                            <div class="close-alert material-symbols-outlined">close</div>
-                        </div>
+                    <div class="alert alert-danger">
+                        <?php echo $erro; ?>
+                        <div class="close-alert material-symbols-outlined">close</div>
+                    </div>
                 <?php } ?>
 
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary toggle" onclick="gravarMaquinasAlteradas()">Gravar</button>
-                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary toggle voltar" onclick="resetarMaquinasAlteradas()">Resetar</button>
-                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle valid" onclick="guardarMaquinas()">Guardar máquinas no inventário</button>
+                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary toggle icon-content rigth" onclick="gravarMaquinasAlteradas()">Gravar<span class="material-symbols-outlined">done</span></button>
+                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary toggle voltar icon-content rigth" onclick="resetarMaquinasAlteradas()">Resetar<span class="material-symbols-outlined">restart_alt</span></button>
+                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle valid icon-content rigth" onclick="guardarMaquinas()">Guardar máquinas no inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
                 </div>
             </div>
 
@@ -113,7 +113,7 @@ $data .= ']}';
                                 <div class="close-info material-symbols-outlined">close</div>
                                 <strong>Máquina <span id="mc-info-codigo">0</span></strong>
                                 <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
-                                <button type="button" id="bt-guardar-maquina" class="bt-action form primary">Adicionar a máquina ao inventário</button>
+                                <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
                             </div>
                         </div>
                         <div id="inventario">
