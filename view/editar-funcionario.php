@@ -71,7 +71,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Cadastro de Funcionário</h2>
                 </div>

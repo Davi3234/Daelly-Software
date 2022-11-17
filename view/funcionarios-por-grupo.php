@@ -59,7 +59,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Funcionários do grupo <?php echo $grupo->numero ?><h2>
                 </div>

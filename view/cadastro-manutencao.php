@@ -56,7 +56,7 @@ $compressores = $controlCom->listar();
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Cadastro de Manutenção</h2>
                 </div>

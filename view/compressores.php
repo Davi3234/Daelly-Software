@@ -44,7 +44,7 @@ $compressores = $control->listar();
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Compressores</h2>
                 </div>

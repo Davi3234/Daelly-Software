@@ -56,7 +56,7 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Funcionários que exercem a função <?php echo $funcao->nome ?><h2>
                 </div>

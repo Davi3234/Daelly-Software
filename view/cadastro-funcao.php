@@ -48,7 +48,7 @@ $tipos = $controlTip->listar();
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Cadastro de Função</h2>
                 </div>

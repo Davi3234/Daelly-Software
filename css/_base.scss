@@ -1,12 +1,12 @@
 $darkness-ammount: 50;
 $lightness-ammount: 40;
 $neutro-color: #ebebeb;
-$primary-color: #8b0d0d;
+$primary-color: #7f00c9;
 $primary-color-darkness: darken( $primary-color, $darkness-ammount * .15);
 $primary-color-lightness: lighten( $primary-color, $lightness-ammount);
 $secondary-color: darken( $neutro-color, 20);
 $terciary-color: #00000033;
-$alert-sucess-color: #3c763d;
+$alert-sucess-color: #45bd47;
 $alert-sucess-color-darkness: darken( $alert-sucess-color, $darkness-ammount);
 $alert-sucess-color-lightness: lighten( $alert-sucess-color, $lightness-ammount);
 $alert-danger-color: #ff0000;

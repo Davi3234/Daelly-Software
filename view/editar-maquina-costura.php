@@ -53,7 +53,7 @@ $tipos = $controlTip->listar();
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Editar Máquina de Costura</h2>
                 </div>

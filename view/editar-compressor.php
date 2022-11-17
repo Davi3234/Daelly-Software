@@ -45,7 +45,7 @@ $compressor = $control->selecionar(addslashes($_GET['id']));
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Editar Compressor</h2>
                 </div>

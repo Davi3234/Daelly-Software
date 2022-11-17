@@ -56,7 +56,7 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Editar Manutenção</h2>
                 </div>

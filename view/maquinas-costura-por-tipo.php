@@ -53,7 +53,7 @@ $maquinas = $control->listarByTipo($tipo->id);
                 Carregando...
             </div>
 
-            <div id="conteudo">
+            <div class="conteudo">
                 <div class="conteudo-header">
                     <h2>Máquinas de Costura do tipo <?php echo $tipo->nome ?></h2>
                 </div>
