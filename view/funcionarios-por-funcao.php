@@ -62,6 +62,11 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                 </div>
                 <div class="line-division"></div>
 
+                <div class="actions-form">
+                    <a href="funcoes.php" type="submit" class="bt-action form primary icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></a>
+                </div>
+                <div class="line-division"></div>
+
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
                         <input type="hidden" value="" name="id" id="id" />
@@ -131,7 +136,7 @@ $funcionarios = $control->listarByFuncao($funcao->id);
 
     <script>
         $(document).ready(function() {
-            $('#i-funcionario').addClass("active")
+            $('#i-funcao').addClass("active")
             $('#carregando').fadeOut();
             $('.conteudo').fadeIn();
 

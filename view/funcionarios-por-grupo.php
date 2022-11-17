@@ -65,6 +65,11 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                 </div>
                 <div class="line-division"></div>
 
+                <div class="actions-form">
+                    <a href="grupos.php" type="submit" class="bt-action form primary icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></a>
+                </div>
+                <div class="line-division"></div>
+
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
                         <input type="hidden" value="" name="id" id="id" />
@@ -85,42 +90,42 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                         <?php } ?>
 
                         <div class="table-content">
-<table>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Entrada</th>
-                                    <th>Saída</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <?php echo $f->nome ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->cpf ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->entrada ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->saida ? $f->saida : "----/--/--" ?>
-                                        </td>
-                                        <td>
-                                            <div class="actions-form table">
-                                                <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
-                                            </div>
-                                        </td>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Entrada</th>
+                                        <th>Saída</th>
+                                        <th>Ações</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-</div>
+                                </thead>
+                                <tbody>
+                                    <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $f->nome ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->cpf ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->entrada ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->saida ? $f->saida : "----/--/--" ?>
+                                            </td>
+                                            <td>
+                                                <div class="actions-form table">
+                                                    <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -130,7 +135,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
 
     <script>
         $(document).ready(function() {
-            $('#i-funcionario').addClass("active")
+            $('#i-grupo').addClass("active")
             $('#carregando').fadeOut();
             $('.conteudo').fadeIn();
 

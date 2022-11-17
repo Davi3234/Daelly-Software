@@ -1,7 +1,7 @@
 $darkness-ammount: 50;
 $lightness-ammount: 40;
 $neutro-color: #ebebeb;
-$primary-color: #7f00c9;
+$primary-color: #0d00c9;
 $primary-color-darkness: darken( $primary-color, $darkness-ammount * .15);
 $primary-color-lightness: lighten( $primary-color, $lightness-ammount);
 $secondary-color: darken( $neutro-color, 20);

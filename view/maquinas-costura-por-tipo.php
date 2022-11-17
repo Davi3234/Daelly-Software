@@ -59,6 +59,11 @@ $maquinas = $control->listarByTipo($tipo->id);
                 </div>
                 <div class="line-division"></div>
 
+                <div class="actions-form">
+                    <a href="funcoes.php" type="submit" class="bt-action form primary icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></a>
+                </div>
+                <div class="line-division"></div>
+
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
                         <input type="hidden" value="" name="id" id="id" />
@@ -79,46 +84,45 @@ $maquinas = $control->listarByTipo($tipo->id);
                         <?php } ?>
 
                         <div class="table-content">
-<table>
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Modelo</th>
-                                    <th>Marca</th>
-                                    <th>Chassi</th>
-                                    <th>Data de Aquisição</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($maquinas) foreach ($maquinas as $m) { ?>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <?php echo $m->codigo ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $m->modelo ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $m->marca ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $m->chassi ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $m->aquisicao ?>
-                                        </td>
-                                        <td>
-                                            <div class="actions-form table">
-                                                <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>   
-                                            </div>
-                                        </td>
+                                        <th>Código</th>
+                                        <th>Modelo</th>
+                                        <th>Marca</th>
+                                        <th>Chassi</th>
+                                        <th>Data de Aquisição</th>
+                                        <th>Ações</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-</div>
+                                </thead>
+                                <tbody>
+                                    <?php if ($maquinas) foreach ($maquinas as $m) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $m->codigo ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->modelo ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->marca ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->chassi ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $m->aquisicao ?>
+                                            </td>
+                                            <td>
+                                                <div class="actions-form table">
+                                                    <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -128,7 +132,7 @@ $maquinas = $control->listarByTipo($tipo->id);
 
     <script>
         $(document).ready(function() {
-            $('#i-maquina-costura').addClass("active")
+            $('#i-tipo').addClass("active")
             $('#carregando').fadeOut();
             $('.conteudo').fadeIn();
 
@@ -144,4 +148,5 @@ $maquinas = $control->listarByTipo($tipo->id);
     </script>
 
 </body>
+
 </html>
