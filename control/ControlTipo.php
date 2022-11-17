@@ -17,6 +17,8 @@ class ControlTipo
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
+        } else if ($this->selecionarByNome($nome)) {
+            $this->erros[] = "Nome de tipo já existe";
         }
         if (!$this->erros) {
             $this->tipo = new Tipo($nome);
@@ -35,6 +37,8 @@ class ControlTipo
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
+        } else if ($this->selecionar($id)->nome != $nome && $this->selecionarByNome($nome)) {
+            $this->erros[] = "Nome de tipo já existe";
         }
         if (!$this->erros) {
             $this->tipo = new tipo($nome, $id);
@@ -65,6 +69,11 @@ class ControlTipo
     public function selecionar($id)
     {
         return $this->daoTipo->selecionar($id);
+    }
+
+    public function selecionarByNome($nome)
+    {
+        return $this->daoTipo->selecionarByNome($nome);
     }
 
     function getErros()

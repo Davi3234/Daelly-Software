@@ -30,11 +30,6 @@ class ControlMaquinaCostura
             $this->erros[] = "Informe o código";
         } else if ($this->maquina->getCodigo() <= 0) {
             $this->erros[] = "Informe um código maior que 0";
-        } else {
-            $_m = $this->selecionarByCodigo($this->maquina->getCodigo());
-            if ($_m && $_m->id != $this->maquina->getId()) {
-                $this->erros[] = "Código já existe";
-            }
         }
         if (strlen($this->maquina->getModelo()) == 0) {
             $this->erros[] = "Informe o modelo";
@@ -63,6 +58,11 @@ class ControlMaquinaCostura
             return false;
         }
 
+        if ($this->selecionarByCodigo($codigo)) {
+            $this->erros[] = "Código de máquina de costura já existe";
+            return false;
+        }
+
         if (!$this->daoMaquina->inserir($this->maquina)) {
             $this->erros[] = "Erro ao inserir o registro";
             return false;
@@ -83,6 +83,11 @@ class ControlMaquinaCostura
     {
         $this->setValores($codigo, $modelo, $marca, $chassi, $aquisicao, $id_tipo, $id);
         if (!$this->verificarValores()) {
+            return false;
+        }
+
+        if ($this->selecionar($id)->codigo != $codigo && $this->selecionarByCodigo($codigo)) {
+            $this->erros[] = "Código de máquina de costura já existe";
             return false;
         }
 

@@ -17,6 +17,8 @@ class ControlFuncao
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
+        } else if ($this->selecionarByNome($nome)) {
+            $this->erros[] = "Nome de compressor já existe";
         }
         if (strlen($id_tipo) == 0) {
             $this->erros[] = "Informe o tipo";
@@ -40,6 +42,8 @@ class ControlFuncao
     {
         if (strlen($nome) == 0) {
             $this->erros[] = "Informe o nome";
+        } else if ($this->selecionar($id)->nome != $nome && $this->selecionarByNome($nome)) {
+            $this->erros[] = "Nome de compressor já existe";
         }
         if (strlen($id_tipo) == 0) {
             $this->erros[] = "Informe o tipo";
@@ -80,6 +84,11 @@ class ControlFuncao
     public function selecionar($id)
     {
         return $this->daoFuncao->selecionar($id);
+    }
+
+    public function selecionarByNome($nome)
+    {
+        return $this->daoFuncao->selecionarByNome($nome);
     }
 
     function getErros()

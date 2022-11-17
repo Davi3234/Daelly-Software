@@ -70,42 +70,38 @@ $compressores = $control->listar();
                         <?php } ?>
 
                         <div class="table-content">
-<table>
-                            <thead>
-                                <tr>
-                                    <th>Código</th>
-                                    <th>Marca</th>
-                                    <th>Modelo</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if (is_array($compressores) && count($compressores) > 0) {
-                                    foreach ($compressores as $c) { ?>
-                                        <tr>
-                                            <td>
-                                                <?php echo $c->codigo ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $c->marca ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $c->modelo ?>
-                                            </td>
-                                            <td>
-                                                <div class="actions-form table">
-                                                    <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                    <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>   
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    <?php }
-                                } else { ?>
-                                    <tr>Nenhum registro cadastrado</tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-</div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Marca</th>
+                                        <th>Modelo</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php if ($compressores) foreach ($compressores as $c) { ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $c->codigo ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $c->marca ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $c->modelo ?>
+                                                </td>
+                                                <td>
+                                                    <div class="actions-form table">
+                                                        <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                        <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>

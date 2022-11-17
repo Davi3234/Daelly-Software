@@ -88,12 +88,12 @@ $compressores = $controlCom->listar();
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left" style="margin-top: .2rem;">
-                                <input type="text" name="descricao" id="descricao" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['descricao']) ? $_POST['descricao'] : "" ?>" type="text" name="descricao" id="descricao" required="required" autofocus="TRUE">
                                 <label for="descricao">Descrição*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="date" name="data_manutencao" id="data_manutencao" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['data_manutencao']) ? $_POST['data_manutencao'] : "" ?>" type="date" name="data_manutencao" id="data_manutencao" required="required" autofocus="TRUE">
                                 <label for="data_manutencao">Data da manutenção*</label>
                                 <i></i>
                             </div>
@@ -102,7 +102,7 @@ $compressores = $controlCom->listar();
                                     <option value="0">Selecione</option>
                                     <?php foreach ($maquinas as $m) {
                                     ?>
-                                        <option value="<?php echo $m->id ?>"><?php echo $m->tipo . " - " . $m->codigo ?></option>
+                                        <option <?php if (isset($_POST["id_maquina_costura"]) && $_POST["id_maquina_costura"] == $m->id) { ?> selected <?php } ?> value="<?php echo $m->id ?>"><?php echo $m->tipo . " - " . $m->codigo ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_maquina_costura">Máquinas de Costura</label>
@@ -112,7 +112,7 @@ $compressores = $controlCom->listar();
                                     <option value="0">Selecione</option>
                                     <?php foreach ($compressores as $c) {
                                     ?>
-                                        <option value="<?php echo $c->id ?>"><?php echo $c->codigo ?></option>
+                                        <option <?php if (isset($_POST["id_compressor"]) && $_POST["id_compressor"] == $c->id) { ?> selected <?php } ?> value="<?php echo $c->id ?>"><?php echo $c->codigo ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_compressor">Compressor</label>

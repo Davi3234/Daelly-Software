@@ -20,7 +20,7 @@ $controlFuncao = new ControlFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Funcion�rio exclu�do com sucesso";
+        $mensagem = "Funcionário excluído com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -82,46 +82,46 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                         <?php } ?>
 
                         <div class="table-content">
-<table>
-                            <thead>
-                                <tr>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Entrada</th>
-                                    <th>Saída</th>
-                                    <th>Grupo</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <?php echo $f->nome ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->cpf ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->entrada ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->saida ? $f->saida : "----/--/--" ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $f->grupo ? $f->grupo : "Nenhum" ?>
-                                        </td>
-                                        <td>
-                                            <div class="actions-form table">
-                                                <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
-                                            </div>
-                                        </td>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Entrada</th>
+                                        <th>Saída</th>
+                                        <th>Grupo</th>
+                                        <th>Ações</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-</div>
+                                </thead>
+                                <tbody>
+                                    <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
+                                        <tr>
+                                            <td>
+                                                <?php echo $f->nome ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->cpf ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->entrada ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->saida ? $f->saida : "----/--/--" ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $f->grupo ? $f->grupo : "Nenhum" ?>
+                                            </td>
+                                            <td>
+                                                <div class="actions-form table">
+                                                    <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>

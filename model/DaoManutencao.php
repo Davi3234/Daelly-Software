@@ -43,18 +43,10 @@ class DaoManutencao
         }
     }
 
-    function listarMaq()
+    function listar()
     {
         try {
-            return $this->conexao->query("select m.*, maq.codigo as maquina, t.nome as tipo from manutencao m join maquina_costura maq on maq.id = m.id_maquina_costura join tipo t on t.id = maq.id_tipo", PDO::FETCH_OBJ);
-        } catch (PDOException $e) {
-            return false;
-        }
-    }
-    function listarCom()
-    {
-        try {
-            return $this->conexao->query("select com.codigo as compressor from manutencao m join compressor com on com.id = m.id_compressor", PDO::FETCH_OBJ);
+            return $this->conexao->query("select m.*, maq.codigo as maquina, t.nome as tipo, c.codigo as compressor from manutencao m left join maquina_costura maq on maq.id = m.id_maquina_costura left join tipo t on t.id = maq.id_tipo left join compressor c on c.id = m.id_compressor", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }

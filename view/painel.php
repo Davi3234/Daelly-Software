@@ -31,7 +31,7 @@ $maquinasMapa = $control->listarMCMapa();
 $maquinasInventario = $control->listarMCInventario();
 $mapa = $controlMapa->selecionar();
 
-$data = '{"maquinas":[';
+$data = '{"dimensao":{"maquina":{"altura":' . $mapa->altura_mc . ',"largura":' . $mapa->largura_mc . '},"mapa":{"altura":' . $mapa->altura_mapa . ',"largura":' . $mapa->largura_mapa . '}},"maquinas":[';
 $i = 0;
 if ($maquinas) foreach ($maquinas as $mc) {
     if ($i > 0) {
@@ -102,8 +102,9 @@ $data .= ']}';
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <button id="bt-salvar-maquinas" type="submit" id="bt-salvar-maquinas" class="bt-action form primary" onclick="gravarMaquinasAlteradas()">Gravar</button>
-                    <button id="bt-resetar-maquinas" type="button" id="bt-resetar-maquinas" class="bt-action form primary voltar" onclick="resetarMaquinasAlteradas()">Resetar</button>
+                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary" onclick="gravarMaquinasAlteradas()">Gravar</button>
+                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary voltar" onclick="resetarMaquinasAlteradas()">Resetar</button>
+                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary valid" onclick="guardarMaquinas()">Guardar máquinas no inventário</button>
                 </div>
             </div>
 
@@ -116,24 +117,26 @@ $data .= ']}';
                             <div id="mapa" style="width: <?php echo $mapa->largura_mapa ?>px; height: <?php echo $mapa->altura_mapa ?>px;">
                                 <div id="lista-maquinas-mapa" class="listas-maquinas" ondrop="dropMapa(event)" ondragover="allowDrop(event)">
                                     <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
-                                        <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;"><?php echo $mc->codigo ?></div>
+                                        <div draggable="true" ondrop="return false" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;"><?php echo $mc->codigo ?></div>
                                     <?php } ?>
                                 </div>
                             </div>
+                            <div id="maquina-info-content" style="bottom: calc(<?php echo $mapa->altura_mc ?>px + 4rem);">
+                                <div class="close-info material-symbols-outlined">close</div>
+                                <strong>Máquina <span id="mc-info-codigo">0</span></strong>
+                                <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
+                                <button type="button" id="bt-guardar-maquina" class="bt-action form primary">Adicionar a máquina ao inventário</button>
+                            </div>
                         </div>
                         <div id="inventario">
-                            <div id="lista-maquinas-inventario" class="listas-maquinas" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
+                            <div id="lista-maquinas-inventario" style="height: calc(<?php echo $mapa->altura_mc ?>px + 2rem);" class="listas-maquinas" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
                                 <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
-                                    <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
+                                    <div style="width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;" draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
                                 <?php } ?>
                             </div>
                         </div>
                     </div>
                 </form>
-                <div id="maquina-info-content" style="display: none !important;">
-                    <strong>Máquina <span id="mc-info-codigo"></span></strong>
-                    <button>Adicionar a máquina ao inventário</button>
-                </div>
             </div>
         </div>
     </main>
@@ -144,6 +147,7 @@ $data .= ']}';
     <script src="../js/ControlMapa.js"></script>
     <script>
         const {
+            dimensao,
             maquinas
         } = JSON.parse(JSON.stringify(<?php echo $data ?>))
         const maquinasAlteradas = []

@@ -23,7 +23,7 @@ $controlGrupo = new ControlGrupo();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Funcion�rio exclu�do com sucesso";
+        $mensagem = "Funcionário excluído com sucesso";
         unset($_POST);
     } else {
         $erros = "";

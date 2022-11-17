@@ -56,4 +56,13 @@ class DaoGrupo
             return false;
         }
     }
+
+    function selecionarByNumero($numero)
+    {
+        try {
+            return $this->conexao->query("select * from grupo where numero = " . $numero)->fetchObject();
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
 }

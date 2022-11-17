@@ -95,22 +95,22 @@ $listaFun = $controlFun->listar();
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left" style="margin-top: .2rem;">
-                                <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : "" ?>" type="text" name="nome" id="nome" required="required" autofocus="TRUE">
                                 <label for="nome">Nome*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="date" name="entrada" id="entrada" required="required">
+                                <input value="<?php echo isset($_POST['entrada']) ? $_POST['entrada'] : "" ?>" type="date" name="entrada" id="entrada" required="required">
                                 <label for="entrada">Entrada*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left" style="margin-top: .2rem;">
-                                <input type="text" name="cpf" id="cpf" required="required">
+                                <input value="<?php echo isset($_POST['cpf']) ? $_POST['cpf'] : "" ?>" type="text" name="cpf" id="cpf" required="required">
                                 <label for="cpf">CPF*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="date" name="saida" id="saida">
+                                <input value="<?php echo isset($_POST['saida']) ? $_POST['saida'] : "" ?>" type="date" name="saida" id="saida">
                                 <label for="saida">Saída</label>
                                 <i></i>
                             </div>
@@ -118,7 +118,7 @@ $listaFun = $controlFun->listar();
                                 <select id="id_grupo" name="id_grupo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($listaGru as $g) { ?>
-                                        <option value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
+                                        <option <?php if (isset($_POST["id_grupo"]) && $_POST["id_grupo"] == $g->id) { ?> selected <?php } ?> value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_grupo">Grupo</label>
@@ -128,7 +128,7 @@ $listaFun = $controlFun->listar();
                                 <legend>Funções</legend>
                                 <?php foreach ($listaFun as $f) { ?>
                                     <div class="checkbox-box">
-                                        <input name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                        <input <?php if (isset($_POST["funcoes"]) && in_array($f->id, $_POST["funcoes"])) { ?> checked <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
                                         <label for="flexCheckDefault"><?php echo $f->nome ?></label>
                                     </div>
                                 <?php } ?>

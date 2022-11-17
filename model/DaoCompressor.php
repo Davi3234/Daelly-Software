@@ -60,4 +60,13 @@ class DaoCompressor
             return false;
         }
     }
+
+    function selecionarByCodigo($codigo)
+    {
+        try {
+            return $this->conexao->query("select * from compressor where codigo = " . $codigo)->fetchObject();
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
 }

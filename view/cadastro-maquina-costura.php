@@ -83,27 +83,27 @@ $tipos = $controlTip->listar();
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="codigo" id="codigo" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['codigo']) ? $_POST['codigo'] : "" ?>" type="text" name="codigo" id="codigo" required="required" autofocus="TRUE">
                                 <label for="codigo">Código*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="text" name="modelo" id="modelo" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['modelo']) ? $_POST['modelo'] : "" ?>" type="text" name="modelo" id="modelo" required="required" autofocus="TRUE">
                                 <label for="modelo">Modelo*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
-                                <input type="text" name="marca" id="marca" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['marca']) ? $_POST['marca'] : "" ?>" type="text" name="marca" id="marca" required="required" autofocus="TRUE">
                                 <label for="marca">Marca*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-right">
-                                <input type="text" name="chassi" id="chassi" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['chassi']) ? $_POST['chassi'] : "" ?>" type="text" name="chassi" id="chassi" required="required" autofocus="TRUE">
                                 <label for="chassi">Chassi*</label>
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
-                                <input type="date" name="aquisicao" id="aquisicao" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['aquisicao']) ? $_POST['aquisicao'] : "" ?>" type="date" name="aquisicao" id="aquisicao" required="required" autofocus="TRUE">
                                 <label for="aquisicao">Data de aquisição*</label>
                                 <i></i>
                             </div>
@@ -111,7 +111,7 @@ $tipos = $controlTip->listar();
                                 <select id="id_tipo" name="id_tipo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($tipos as $t) { ?>
-                                        <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <option <?php if (isset($_POST["id_tipo"]) && $_POST["id_tipo"] == $t->id) { ?> selected <?php } ?> value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_tipo">Tipo*</label>

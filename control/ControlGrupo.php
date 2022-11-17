@@ -16,7 +16,9 @@ class ControlGrupo
     public function inserir($numero)
     {
         if (strlen($numero) == 0) {
-            $this->erros[] = "Informe o n�mero";
+            $this->erros[] = "Informe o número";
+        } else if ($this->selecionarByNumero($numero)) {
+            $this->erros[] = "Número de grupo já cadastrado";
         }
         if (!$this->erros) {
             $this->grupo = new Grupo($numero);
@@ -34,7 +36,9 @@ class ControlGrupo
     public function editar($numero, $id)
     {
         if (strlen($numero) == 0) {
-            $this->erros[] = "Informe o n�mero";
+            $this->erros[] = "Informe o número";
+        } else if ($this->selecionar($id)->numero != $numero && $this->selecionarByNumero($numero)) {
+            $this->erros[] = "Número de grupo já cadastrado";
         }
         if (!$this->erros) {
             $this->grupo = new Grupo($numero, $id);
@@ -65,6 +69,11 @@ class ControlGrupo
     public function selecionar($id)
     {
         return $this->daoGrupo->selecionar($id);
+    }
+
+    public function selecionarByNumero($id)
+    {
+        return $this->daoGrupo->selecionarByNumero($id);
     }
 
     function getErros()

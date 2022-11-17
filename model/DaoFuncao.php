@@ -54,7 +54,7 @@ class DaoFuncao
     function listar()
     {
         try {
-            return $this->conexao->query("select f.*, t.nome as tipo from funcao f join tipo t on t.id = f.id_tipo", PDO::FETCH_OBJ);
+            return $this->conexao->query("select f.*, t.nome as tipo from funcao f left join tipo t on t.id = f.id_tipo", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -73,6 +73,15 @@ class DaoFuncao
     {
         try {
             return $this->conexao->query("select * from funcao where id = " . $id)->fetchObject();
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+
+    function selecionarByNome($nome)
+    {
+        try {
+            return $this->conexao->query("select * from funcao where nome = '" . $nome . "'")->fetchObject();
         } catch (PDOException $ex) {
             return false;
         }

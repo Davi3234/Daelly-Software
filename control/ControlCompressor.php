@@ -17,6 +17,8 @@ class ControlCompressor
     {
         if (strlen($codigo) == 0) {
             $this->erros[] = "Informe o código";
+        } else if ($this->selecionarByCodigo($codigo)) {
+            $this->erros[] = "Código de compressor já existe";
         }
         if (strlen($marca) == 0) {
             $this->erros[] = "Informe a marca";
@@ -41,6 +43,8 @@ class ControlCompressor
     {
         if (strlen($codigo) == 0) {
             $this->erros[] = "Informe o código";
+        } else if ($this->selecionar($id)->codigo != $codigo && $this->selecionarByCodigo($codigo)) {
+            $this->erros[] = "Código de compressor já existe";
         }
         if (strlen($marca) == 0) {
             $this->erros[] = "Informe a marca";
@@ -77,6 +81,11 @@ class ControlCompressor
     public function selecionar($id)
     {
         return $this->daoCompressor->selecionar($id);
+    }
+
+    public function selecionarByCodigo($nome)
+    {
+        return $this->daoCompressor->selecionarByCodigo($nome);
     }
 
     function getErros()

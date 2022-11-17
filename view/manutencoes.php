@@ -18,7 +18,7 @@ if (!isset($_SESSION['email'])) {
 $control = new ControlManutencao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Manuten��o exclu�da com sucesso";
+        $mensagem = "Manutenção excluída com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -27,8 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-$manutencoesMaq = $control->listarMaq();
-$manutencoesCom = $control->listarCom();
+
+$manutencoes = $control->listar();
 ?>
 
 <html>
@@ -79,41 +79,43 @@ $manutencoesCom = $control->listarCom();
                         <?php } ?>
 
                         <div class="table-content">
-<table>
-                            <thead>
-                                <tr>
-                                    <th>Descrição</th>
-                                    <th>Data Manutenção</th>
-                                    <th>Máquina de costura</th>
-                                    <th>Compressor</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php if ($manutencoesMaq) foreach ($manutencoesMaq as $m) { ?>
+                            <table>
+                                <thead>
                                     <tr>
-                                        <td>
-                                            <?php echo $m->descricao ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $m->data_manutencao ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $m->maquina ." - ". $m->tipo?>
-                                        </td>
-                                        <td>
-                                        </td>
-                                        <td>
-                                            <div class="actions-form table">
-                                                <a href="editar-manutencao.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>   
-                                            </div>
-                                        </td>
+                                        <th>Descrição</th>
+                                        <th>Data Manutenção</th>
+                                        <th>Máquina de costura</th>
+                                        <th>Compressor</th>
+                                        <th>Ações</th>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-</div>
+                                </thead>
+                                <tbody>
+                                   <?php
+                                        foreach ($manutencoes as $m) { ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $m->descricao ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $m->data_manutencao ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $m->maquina ? $m->maquina . " - " . $m->tipo : "Nenhum" ?>
+                                                </td>
+                                                <td>
+                                                    <?php echo $m->compressor ? $m->compressor : "Nenhum" ?>
+                                                </td>
+                                                <td>
+                                                    <div class="actions-form table">
+                                                        <a href="editar-manutencao.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                        <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -139,4 +141,5 @@ $manutencoesCom = $control->listarCom();
     </script>
 
 </body>
+
 </html>

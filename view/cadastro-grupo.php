@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="numero" id="numero" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['numero']) ? $_POST['numero'] : "" ?>" type="text" name="numero" id="numero" required="required" autofocus="TRUE">
                                 <label for="numero">Número*</label>
                                 <i></i>
                             </div>

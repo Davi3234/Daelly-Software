@@ -80,7 +80,7 @@ $tipos = $controlTip->listar();
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="nome" id="nome" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['nome']) ? $_POST['nome'] : "" ?>" type="text" name="nome" id="nome" required="required" autofocus="TRUE">
                                 <label for="nome">Nome*</label>
                                 <i></i>
                             </div>
@@ -88,7 +88,7 @@ $tipos = $controlTip->listar();
                                 <select id="id_tipo" name="id_tipo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($tipos as $t) { ?>
-                                        <option value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <option <?php if (isset($_POST["id_tipo"]) && $_POST["id_tipo"] == $t->id) { ?> selected <?php } ?> value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_tipo">Tipo</label>

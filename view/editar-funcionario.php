@@ -23,7 +23,7 @@ $controlFF = new ControlFuncionarioFuncao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $funcoesSelecionadas = json_decode($_POST["funcoes-selecionadas"])->funcoes;
 
-    if ($control->editar(addslashes($_GET['id']), $_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'])) {
+    if ($control->editar($_POST['cpf'], $_POST['nome'], $_POST['entrada'], $_POST['saida'], $_POST['id_grupo'], addslashes($_GET['id']))) {
         $mensagem = "Funcionário editado com sucesso";
 
         $control->vincularFuncoes($control->selecionarByCpf($_POST["cpf"], $funcoesSelecionadas)->id, $funcoesSelecionadas);
@@ -43,7 +43,9 @@ $listaFuncaInFunci = array();
 foreach ($controlFF->listarByFuncionario(addslashes($_GET['id'])) as $f) {
     $listaFuncaInFunci[] = $f['id_funcao'];
 }
+
 $funcionario = $control->selecionar(addslashes($_GET['id']));
+
 ?>
 
 <!DOCTYPE html>
@@ -123,14 +125,6 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left">
-                                <?php foreach ($listaFun as $f) { ?>
-                                    <div class="checkbox-box">
-                                        <input <?php if (array_column($listaFuncaInFunci, $funcionario->id)) { ?> checked <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
-                                        <label for="flexCheckDefault"><?php echo $f->nome ?></label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                            <div class="input-box input-position-right">
                                 <select id="id_grupo" name="id_grupo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($listaGru as $g) { ?>
@@ -140,6 +134,15 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
                                 <label for="id_grupo">Grupo</label>
                                 <i></i>
                             </div>
+                            <fieldset class="input-box input-position-right checkbox">
+                                <legend>Funções</legend>
+                                <?php foreach ($listaFun as $f) { ?>
+                                    <div class="checkbox-box">
+                                        <input <?php if (in_array($f->id, $listaFuncaInFunci)) { ?> checked <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                        <label for="flexCheckDefault"><?php echo $f->nome ?></label>
+                                    </div>
+                                <?php } ?>
+                            </fieldset>
                         </div>
                     </form>
                 </div>

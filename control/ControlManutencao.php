@@ -68,14 +68,9 @@ class ControlManutencao
         }
     }
 
-    public function listarMaq()
+    public function listar()
     {
-        return $this->daoManutencao->listarMaq();
-    }
-
-    public function listarCom()
-    {
-        return $this->daoManutencao->listarCom();
+        return $this->daoManutencao->listar();
     }
 
     public function selecionar($id)

@@ -56,4 +56,13 @@ class DaoTipo
             return false;
         }
     }
+
+    function selecionarByNome($nome)
+    {
+        try {
+            return $this->conexao->query("select * from tipo where nome = '" . $nome . "'")->fetchObject();
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
 }
