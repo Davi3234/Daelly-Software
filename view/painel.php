@@ -105,7 +105,12 @@ $data .= ']}';
                             <div id="mapa" style="width: <?php echo $mapa->largura_mapa ?>px; height: <?php echo $mapa->altura_mapa ?>px;">
                                 <div id="lista-maquinas-mapa" class="listas-maquinas" ondrop="dropMapa(event)" ondragover="allowDrop(event)">
                                     <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
-                                        <div draggable="true" ondrop="return false" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;"><?php echo $mc->codigo ?></div>
+                                        <div draggable="true" ondrop="return false" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;">
+                                            <div class="mc-content">
+                                                <img src="../img/mc-medium.png" alt="">
+                                                <p><?php echo $mc->codigo ?> - <?php echo $mc->tipo ?></p>
+                                            </div>
+                                        </div>
                                     <?php } ?>
                                 </div>
                             </div>
@@ -113,7 +118,12 @@ $data .= ']}';
                         <div id="inventario">
                             <div id="lista-maquinas-inventario" style="height: calc(<?php echo $mapa->altura_mc ?>px + 2rem);" class="listas-maquinas" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
                                 <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
-                                    <div style="width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;" draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>"><?php echo $mc->codigo ?></div>
+                                    <div style="width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;" draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>">
+                                        <div class="mc-content">
+                                            <img src="../img/mc-medium.png" alt="">
+                                            <p><?php echo $mc->codigo ?></p>
+                                        </div>
+                                    </div>
                                 <?php } ?>
                             </div>
                         </div>

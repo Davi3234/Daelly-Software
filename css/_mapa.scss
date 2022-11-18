@@ -46,6 +46,7 @@
 
         #bt-guardar-maquina {
             display: none;
+
             &.active {
                 display: flex;
             }
@@ -80,9 +81,19 @@
 
             .maquinas {
                 position: absolute;
-                background-color: dodgerblue;
+                justify-content: center;
                 cursor: move;
                 z-index: 150;
+
+                .mc-content {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    width: 100%;
+                    pointer-events: none;
+                }
 
                 .active {
                     position: absolute;

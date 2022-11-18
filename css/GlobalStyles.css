@@ -537,9 +537,18 @@ tr {
 }
 .pc-mapa .pc-conteudo #mapa-content .maquinas {
   position: absolute;
-  background-color: dodgerblue;
+  justify-content: center;
   cursor: move;
   z-index: 150;
+}
+.pc-mapa .pc-conteudo #mapa-content .maquinas .mc-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
 }
 .pc-mapa .pc-conteudo #mapa-content .maquinas .active {
   position: absolute;
