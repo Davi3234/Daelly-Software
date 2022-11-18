@@ -135,15 +135,6 @@ $maquinas = $control->listarByTipo($tipo->id);
             $('#i-tipo').addClass("active")
             $('#carregando').fadeOut();
             $('.conteudo').fadeIn();
-
-            $(".excluir").click(function() {
-                if (confirm("Deseja realmente excluir o registro?")) {
-                    id = $(this).attr("rel");
-                    $("#id").val(id);
-                    $("#form").submit();
-                }
-            });
-
         });
     </script>
 

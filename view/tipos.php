@@ -2,6 +2,12 @@
 require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
+require_once '../model/FuncionarioFuncao.php';
+require_once '../model/DaoFuncionarioFuncao.php';
+require_once '../control/ControlFuncionarioFuncao.php';
 require_once '../model/Funcao.php';
 require_once '../model/DaoFuncao.php';
 require_once '../control/ControlFuncao.php';
@@ -18,6 +24,7 @@ if (!isset($_SESSION['email'])) {
 $control = new ControlTipo();
 $controlMC = new ControlMaquinaCostura();
 $controlFunca = new ControlFuncao();
+$controlFF = new ControlFuncionarioFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!$controlMC->isMcByTipo(addslashes($_POST['id'])) > 0) {

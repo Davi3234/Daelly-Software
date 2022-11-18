@@ -19,8 +19,8 @@ $control = new ControlFuncionario();
 $controlFuncao = new ControlFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Funcionário excluído com sucesso";
+    if ($control->excluirFuncaoFuncionario(addslashes($_POST['id']), addslashes($_GET["id"]))) {
+        $mensagem = "Função desvinculada do funcionário excluído com sucesso";
         unset($_POST);
     } else {
         $erros = "";
@@ -119,7 +119,7 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                                             <td>
                                                 <div class="actions-form table">
                                                     <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                    <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">delete</span></a>
+                                                    <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">person_remove</span></a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -141,7 +141,7 @@ $funcionarios = $control->listarByFuncao($funcao->id);
             $('.conteudo').fadeIn();
 
             $(".excluir").click(function() {
-                if (confirm("Deseja realmente excluir o registro?")) {
+                if (confirm("Deseja realmente desvincular esse funcionário da função?")) {
                     id = $(this).attr("rel");
                     $("#id").val(id);
                     $("#form").submit();

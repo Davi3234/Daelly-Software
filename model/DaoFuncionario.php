@@ -53,6 +53,16 @@ class DaoFuncionario
         }
     }
 
+    function desvincularFuncionarioGrupo($id)
+    {
+        try {
+            $this->conexao->exec("update funcionario set id_grupo = null where id = " . $id);
+            return true;
+        } catch (PDOException $ex) {
+            return false;
+        }
+    }
+
     function excluir($id)
     {
         try {

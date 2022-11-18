@@ -81,6 +81,14 @@ class ControlFuncionario
         return true;
     }
 
+    public function desvincularFuncionarioGrupo($id) {
+        if (!$this->daoFuncionario->desvincularFuncionarioGrupo($id)) {
+            $this->erros[] = "Não foi possível desvincular o funcionário desse grupo";
+            return false;
+        }
+        return true;
+    }
+
     public function excluir($id)
     {
         if ($this->daoFuncionario->excluir($id) && $this->controlFuncaFunci->excluirByFuncionario($id)) {
@@ -94,6 +102,11 @@ class ControlFuncionario
     public function excluirByFuncao($id_funcao)
     {
         return $this->controlFuncaFunci->excluirByFuncao($id_funcao);
+    }
+
+    public function excluirFuncaoFuncionario($id_funci, $id_funcao)
+    {
+        return $this->controlFuncaFunci->excluir($id_funci, $id_funcao);
     }
 
     public function listar()
