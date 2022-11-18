@@ -123,7 +123,7 @@ $tipos = $control->listar();
                                                 <div class="actions-form table">
                                                     <a href="editar-tipo.php?id=<?php echo $t->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
                                                     <a href="#" rel="<?php echo $t->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
-                                                    <a href="maquinas-costura-por-tipo.php?id=<?php echo $t->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">person</span></a>
+                                                    <a href="maquinas-costura-por-tipo.php?id=<?php echo $t->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined"><img src="../img/icons/mc-medium.png" alt=""></span></a>
                                                     <a href="funcoes-por-tipo.php?id=<?php echo $t->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">psychology</span></a>
                                                 </div>
                                             </td>
