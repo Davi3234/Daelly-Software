@@ -90,9 +90,9 @@ $data .= ']}';
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary toggle icon-content rigth" onclick="gravarMaquinasAlteradas()">Gravar<span class="material-symbols-outlined">done</span></button>
-                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary toggle voltar icon-content rigth" onclick="resetarMaquinasAlteradas()">Resetar<span class="material-symbols-outlined">restart_alt</span></button>
-                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle valid icon-content rigth" onclick="guardarMaquinas()">Guardar máquinas no inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
+                    <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary toggle icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
+                    <button id="bt-resetar-maquinas" type="button" class="bt-action form primary toggle icon-content rigth">Resetar<span class="material-symbols-outlined">restart_alt</span></button>
+                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle valid icon-content rigth">Guardar máquinas no inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
                 </div>
             </div>
 
@@ -127,7 +127,8 @@ $data .= ']}';
                 <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
                 <div class="actions-form">
                     <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
-                    <button onclick="cadastrarmanutencao()" type="button" class="bt-action form primary icon-content rigth">Manutenção<span class="material-symbols-outlined">dynamic_feed</span></button>
+                    <button id="bt-cadastrar-manutencao" type="button" class="bt-action form primary icon-content rigth">Manutenção<span class="material-symbols-outlined">dynamic_feed</span></button>
+                    <button id="bt-editar-maquina" type="button" class="bt-action form primary icon-content rigth">Editar máquina<span class="material-symbols-outlined">edit_square</span></button>
                 </div>
             </div>
         </div>
@@ -148,6 +149,9 @@ $data .= ']}';
             $('#i-inicio').addClass("active")
             $('#carregando').fadeOut()
             $('.conteudo').fadeIn()
+            $('#bt-guardar-maquinas').click(guardarMaquinas)
+            $('#bt-salvar-maquinas').click(gravarMaquinasAlteradas)
+            $('#bt-resetar-maquinas').click(resetarMaquinasAlteradas)
             $('#editar-maquinas-mapa').submit((ev) => {
                 if (maquinasAlteradas.length <= 0) {
                     ev.preventDefault()
@@ -155,6 +159,14 @@ $data .= ']}';
                 }
 
                 editarMaquinasAlteradas()
+            })
+            $('#bt-editar-maquina').click((ev) => {
+                const id = Number(document.getElementById("id_maquina_costura").value)
+                $(location).attr("href", "editar-maquina-costura.php?id=" + id);
+            })
+            $('#bt-cadastrar-manutencao').click((ev) => {
+                const id = Number(document.getElementById("id_maquina_costura").value)
+                $(location).attr("href", "cadastro-manutencao.php?maquina-costura=" + id);
             })
 
             document.querySelectorAll(".item-children.header").forEach(a => a.addEventListener("click", ({
@@ -190,11 +202,6 @@ $data .= ']}';
             let data = `{"maquinas":${JSON.stringify(maquinasAlteradas)}}`
 
             tag.value = data
-        }
-
-        function cadastrarmanutencao() {
-            const id = Number(document.getElementById("id_maquina_costura").value)
-            $(location).attr("href", "cadastro-manutencao.php?maquina-costura=" + id);
         }
 
         function closeAlert() {

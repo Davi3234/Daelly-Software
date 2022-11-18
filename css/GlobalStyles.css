@@ -46,7 +46,7 @@ main {
 header {
   width: 100%;
   height: 6.3rem;
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   color: #fff;
   z-index: 10;
 }
@@ -127,10 +127,10 @@ header {
   padding: 1rem 2rem;
   z-index: 5;
   color: #fff;
-  accent-color: #a00c0c;
+  accent-color: #4e4e4e;
 }
 .fill-inputs .input-box select {
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   border-radius: 0.3rem;
 }
 .fill-inputs .input-box label {
@@ -147,7 +147,7 @@ header {
   left: 0;
   right: 0;
   height: 2px;
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   border-radius: 0.3rem;
   transition: 0.3s;
 }
@@ -169,7 +169,7 @@ header {
 }
 .fill-inputs button {
   padding: 1rem 3rem;
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   color: #fff;
   transition: 0.3s;
   border-radius: 0.3rem;
@@ -177,7 +177,7 @@ header {
   font-size: 1.4rem;
 }
 .fill-inputs button:hover {
-  background-color: #7c0909;
+  background-color: #3b3b3b;
 }
 .fill-inputs .checkbox-box {
   justify-content: left;
@@ -189,7 +189,7 @@ header {
   width: 1.5rem;
 }
 .fill-inputs .checkbox-box input:checked {
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
 }
 
 .alert {
@@ -235,15 +235,15 @@ header {
   padding: 1rem 1.5rem;
 }
 .bt-action.form.primary {
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   color: #fff;
 }
 .bt-action.form.primary:hover {
-  background-color: #7c0909;
+  background-color: #3b3b3b;
   color: #fff;
 }
 .bt-action.form.primary:active {
-  background-color: #650808;
+  background-color: #2e2e2e;
 }
 .bt-action.table {
   display: flex;
@@ -299,7 +299,7 @@ tr {
   left: 50%;
   width: 100%;
   transform: translate(-50%, -50%);
-  color: #a00c0c;
+  color: #4e4e4e;
 }
 .session-login .login-content {
   position: relative;
@@ -366,19 +366,19 @@ tr {
 .header-content .header-actions .profile-parent .profile-item-children.itens .item {
   width: 100%;
   padding: 1.5rem 2rem;
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   text-align: center;
   transition: 0.3s;
 }
 .header-content .header-actions .profile-parent .profile-item-children.itens .item:hover {
-  background-color: #7c0909;
+  background-color: #3b3b3b;
 }
 .header-content .header-actions .profile-parent .profile-item-children.itens a {
   width: 100%;
   color: #fff;
 }
 .header-content .header-actions .profile-parent:hover .profile-item-children.header {
-  background-color: #7c0909;
+  background-color: #3b3b3b;
 }
 .header-content .header-actions .profile-parent:hover .profile-item-children.itens {
   display: flex;
@@ -415,11 +415,11 @@ tr {
   transition: 0.3s;
 }
 #barra-lateral .barra-lateral-content .item-parent .item-children.header.active {
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   color: #fff;
 }
 #barra-lateral .barra-lateral-content .item-parent .item-children.header.active:hover {
-  background-color: #7c0909 !important;
+  background-color: #3b3b3b !important;
 }
 #barra-lateral .barra-lateral-content .item-parent .item-children.header:hover {
   background-color: #b8b8b8 !important;
@@ -443,7 +443,7 @@ tr {
   background-color: #d2d2d2;
 }
 #barra-lateral .barra-lateral-content .item-parent:hover .item-children.header.active {
-  background-color: #7c0909;
+  background-color: #3b3b3b;
 }
 
 #painel-comando {
@@ -468,18 +468,18 @@ tr {
 }
 
 .pc-header .bt-action.toggle {
-  background-color: #f68282;
+  background-color: #b4b4b4;
   cursor: not-allowed;
 }
 .pc-header .bt-action.toggle.valid {
-  background-color: #a00c0c;
+  background-color: #4e4e4e;
   cursor: pointer;
 }
 .pc-header .bt-action.toggle.valid:hover {
-  background-color: #7c0909;
+  background-color: #3b3b3b;
 }
 .pc-header .bt-action.toggle:hover {
-  background-color: #f68282;
+  background-color: #b4b4b4;
 }
 
 .pc-mapa {
