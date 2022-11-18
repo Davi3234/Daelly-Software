@@ -49,14 +49,6 @@ $compressores = $control->listar();
                     <h2>Compressores</h2>
                 </div>
 
-                <div class="line-division"></div>
-
-                <div class="actions-form">
-                    <a href="cadastro-compressor.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
-                </div>
-
-                <div class="line-division"></div>
-
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
                         <input type="hidden" value="" name="id" id="id" />
@@ -75,6 +67,14 @@ $compressores = $control->listar();
                                 <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
+
+                        <div class="line-division"></div>
+
+                        <div class="actions-form">
+                            <a href="cadastro-compressor.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                        </div>
+
+                        <div class="line-division"></div>
 
                         <div class="table-content">
                             <table>

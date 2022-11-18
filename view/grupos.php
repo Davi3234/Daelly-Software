@@ -2,21 +2,35 @@
 require_once '../model/Grupo.php';
 require_once '../model/DaoGrupo.php';
 require_once '../control/ControlGrupo.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
+require_once '../model/FuncionarioFuncao.php';
+require_once '../model/DaoFuncionarioFuncao.php';
+require_once '../control/ControlFuncionarioFuncao.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlGrupo();
+$controlFunci = new ControlFuncionario();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Grupo excluído com sucesso";
-        unset($_POST);
+    if ($controlFunci->desvincularGrupo(addslashes($_POST["id"]))) {
+        if ($control->excluir(addslashes($_POST['id']))) {
+            $mensagem = "Grupo excluído com sucesso";
+            unset($_POST);
+        } else {
+            $erros = "";
+            foreach ($control->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
+        }
     } else {
         $erros = "";
-        foreach ($control->getErros() as $e) {
-            $erros = $erros . $e . "<br />";
-        }
+            foreach ($controlFunci->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
     }
 }
 $grupos = $control->listar();
@@ -48,12 +62,6 @@ $grupos = $control->listar();
                 <div class="conteudo-header">
                     <h2>Grupos</h2>
                 </div>
-                <div class="line-division"></div>
-
-                <div class="actions-form">
-                    <a href="cadastro-grupo.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
-                </div>
-                <div class="line-division"></div>
 
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
@@ -73,6 +81,14 @@ $grupos = $control->listar();
                                 <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
+
+                        <div class="line-division"></div>
+
+                        <div class="actions-form">
+                            <a href="cadastro-grupo.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                        </div>
+
+                        <div class="line-division"></div>
 
                         <div class="table-content">
                             <table>

@@ -57,6 +57,15 @@ class DaoMaquinaCostura
         }
     }
 
+    function isMcByTipo($id_tipo)
+    {
+        try {
+            return $this->conexao->query("select count(mc.id) as cont from maquina_costura mc join tipo tip on mc.id_tipo = tip.id where tip.id = " . $id_tipo)->fetchColumn();
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     function selecionar($id)
     {
         try {

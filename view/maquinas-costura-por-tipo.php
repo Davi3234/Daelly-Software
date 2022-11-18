@@ -60,7 +60,7 @@ $maquinas = $control->listarByTipo($tipo->id);
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <a href="funcoes.php" type="submit" class="bt-action form primary icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></a>
+                    <a href="tipos.php" type="submit" class="bt-action form primary icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></a>
                 </div>
                 <div class="line-division"></div>
 

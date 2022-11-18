@@ -2,21 +2,43 @@
 require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
+require_once '../model/Funcao.php';
+require_once '../model/DaoFuncao.php';
+require_once '../control/ControlFuncao.php';
+require_once '../model/MaquinaCostura.php';
+require_once '../model/DaoMaquinaCostura.php';
+require_once '../control/ControlMaquinaCostura.php';
+require_once '../model/MaquinaCosturaMapa.php';
+require_once '../model/DaoMaquinaCosturaMapa.php';
+require_once '../control/ControlMaquinaCosturaMapa.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlTipo();
+$controlMC = new ControlMaquinaCostura();
+$controlFunca = new ControlFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Tipo excluído com sucesso";
-        unset($_POST);
-    } else {
-        $erros = "";
-        foreach ($control->getErros() as $e) {
-            $erros = $erros . $e . "<br />";
+    if (!$controlMC->isMcByTipo(addslashes($_POST['id'])) > 0) {
+        if ($controlFunca->desvincularByTipo(addslashes($_POST['id']))) {
+            if ($control->excluir(addslashes($_POST['id']))) {
+                $mensagem = "Tipo excluído com sucesso";
+                unset($_POST);
+            } else {
+                $erros = "";
+                foreach ($controlFunca->getErros() as $e) {
+                    $erros = $erros . $e . "<br />";
+                }
+            }
+        } else {
+            $erros = "";
+            foreach ($control->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
         }
+    } else {
+        $erros = "Não foi possível excluir esse tipo pois há máquinas de costura vinculadas à ele";
     }
 }
 $tipos = $control->listar();
@@ -48,12 +70,6 @@ $tipos = $control->listar();
                 <div class="conteudo-header">
                     <h2>Tipos</h2>
                 </div>
-                <div class="line-division"></div>
-
-                <div class="actions-form">
-                    <a href="cadastro-tipo.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
-                </div>
-                <div class="line-division"></div>
 
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
@@ -73,6 +89,14 @@ $tipos = $control->listar();
                                 <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
+
+                        <div class="line-division"></div>
+
+                        <div class="actions-form">
+                            <a href="cadastro-tipo.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                        </div>
+
+                        <div class="line-division"></div>
 
                         <div class="table-content">
                             <table>

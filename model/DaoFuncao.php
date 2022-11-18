@@ -41,6 +41,16 @@ class DaoFuncao
         }
     }
 
+    function desvincularByTipo($id)
+    {
+        try {
+            $this->conexao->exec("update funcao set id_tipo = null where id_tipo = " . $id);
+            return true;
+        } catch (PDOException) {
+            return false;
+        }
+    }
+
     function excluir($id)
     {
         try {

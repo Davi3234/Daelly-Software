@@ -71,6 +71,16 @@ class ControlFuncao
         }
     }
 
+    public function desvincularByTipo($id)
+    {
+        if ($this->daoFuncao->desvincularByTipo($id)) {
+            return true;
+        } else {
+            $this->erros[] = "Erro ao desvincular as funções do tipo";
+            return false;
+        }
+    }
+
     public function listar()
     {
         return $this->daoFuncao->listar();

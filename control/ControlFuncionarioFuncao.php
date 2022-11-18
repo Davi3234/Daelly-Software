@@ -19,7 +19,7 @@ class ControlFuncionarioFuncao
         if ($this->daoFuncionarioFuncao->inserir($this->funcionariofuncao)) {
             return true;
         }
-        $this->erro = "Erro ao atualizar as funÁıes do Funcion·rio";
+        $this->erro = "Erro ao atualizar as fun√ß√µes do Funcion√°rio";
         return false;
     }
 
@@ -49,7 +49,7 @@ class ControlFuncionarioFuncao
         if ($this->daoFuncionarioFuncao->excluir($id_funca, $id_funcionario)) {
             return true;
         } else {
-            $this->erro = "Erro ao atualizar as funÁıes do Funcion·rio";
+            $this->erro = "Erro ao atualizar as fun√ß√µes do Funcion√°rio";
             return false;
         }
     }
@@ -59,7 +59,17 @@ class ControlFuncionarioFuncao
         if ($this->daoFuncionarioFuncao->excluirByFuncionario($id_funcionario)) {
             return true;
         } else {
-            $this->erro = "Erro ao atualizar as funÁıes do Funcion·rio";
+            $this->erro = "Erro ao atualizar as fun√ß√µes do Funcion√°rio";
+            return false;
+        }
+    }
+
+    public function excluirByFuncao($id_funcao)
+    {
+        if ($this->daoFuncionarioFuncao->excluirByFuncao($id_funcao)) {
+            return true;
+        } else {
+            $this->erro = "Erro ao atualizar as fun√ß√µes do Funcion√°rio";
             return false;
         }
     }

@@ -59,6 +59,16 @@ class DaoFuncionarioFuncao
         }
     }
 
+    function excluirByFuncao($id_funcao)
+    {
+        try {
+            $this->conexao->exec("delete from funca_funci where id_funcao = " . $id_funcao);
+            return true;
+        } catch (PDOException $exc) {
+            return false;
+        }
+    }
+
     function listar()
     {
         try {

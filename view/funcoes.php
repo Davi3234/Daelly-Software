@@ -2,19 +2,33 @@
 require_once '../model/Funcao.php';
 require_once '../model/DaoFuncao.php';
 require_once '../control/ControlFuncao.php';
+require_once '../model/Funcionario.php';
+require_once '../model/DaoFuncionario.php';
+require_once '../control/ControlFuncionario.php';
+require_once '../model/FuncionarioFuncao.php';
+require_once '../model/DaoFuncionarioFuncao.php';
+require_once '../control/ControlFuncionarioFuncao.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlFuncao();
+$controlFunci = new ControlFuncionario();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Função excluída com sucesso";
-        unset($_POST);
+    if ($controlFunci->excluirByFuncao(addslashes($_POST['id']))) {
+        if ($control->excluir(addslashes($_POST['id']))) {
+            $mensagem = "Função excluída com sucesso";
+            unset($_POST);
+        } else {
+            $erros = "";
+            foreach ($control->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
+        }
     } else {
         $erros = "";
-        foreach ($control->getErros() as $e) {
+        foreach ($controlFunci->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
     }
@@ -48,12 +62,6 @@ $funcoes = $control->listar();
                 <div class="conteudo-header">
                     <h2>Funções</h2>
                 </div>
-                <div class="line-division"></div>
-
-                <div class="actions-form">
-                    <a href="cadastro-funcao.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
-                </div>
-                <div class="line-division"></div>
 
                 <div class="conteudo-main">
                     <form action="" method="POST" id="form">
@@ -73,6 +81,14 @@ $funcoes = $control->listar();
                                 <div class="close-alert material-symbols-outlined">close</div>
                             </div>
                         <?php } ?>
+
+                        <div class="line-division"></div>
+
+                        <div class="actions-form">
+                            <a href="cadastro-funcao.php" type="submit" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                        </div>
+
+                        <div class="line-division"></div>
 
                         <div class="table-content">
                             <table>
