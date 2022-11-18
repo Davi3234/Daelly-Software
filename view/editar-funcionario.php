@@ -94,7 +94,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
 
                 <div class="conteudo-main">
                     <form action="" method="post" id="form">
-                        <input hidden type="text" name="funcoes-selecionadas" id="funcoes-input" value='{"funcoes":[]}'>
+                        <input type="hidden" name="funcoes-selecionadas" id="funcoes-input" value='{"funcoes":[]}'>
 
                         <div class="actions-form">
                             <button type="submit" id="gravar" class="bt-action form primary icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>

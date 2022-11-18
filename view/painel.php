@@ -96,7 +96,7 @@ $data .= ']}';
                 </div>
             </div>
 
-            <div class="conteudo pc-conteudo" style="margin-top: 4rem;">
+            <div class="conteudo pc-conteudo">
                 <form action="" method="post" id="editar-maquinas-mapa">
                     <input id="maquinas-input" name="maquinas" type="text" hidden value='{"maquinas":[]}'>
 
@@ -109,12 +109,6 @@ $data .= ']}';
                                     <?php } ?>
                                 </div>
                             </div>
-                            <div id="maquina-info-content" style="bottom: calc(<?php echo $mapa->altura_mc ?>px + 4rem);">
-                                <div class="close-info material-symbols-outlined">close</div>
-                                <strong>Máquina <span id="mc-info-codigo">0</span></strong>
-                                <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
-                                <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
-                            </div>
                         </div>
                         <div id="inventario">
                             <div id="lista-maquinas-inventario" style="height: calc(<?php echo $mapa->altura_mc ?>px + 2rem);" class="listas-maquinas" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
@@ -125,6 +119,16 @@ $data .= ']}';
                         </div>
                     </div>
                 </form>
+            </div>
+            <div id="maquina-info-content">
+                <input type="hidden" value="" name="id_maquina_costura" id="id_maquina_costura">
+                <div class="close-info material-symbols-outlined">close</div>
+                <strong>Máquina <span id="mc-info-codigo">0</span></strong>
+                <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
+                <div class="actions-form">
+                    <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
+                    <button onclick="cadastrarmanutencao()" type="button" class="bt-action form primary icon-content rigth">Manutenção<span class="material-symbols-outlined">dynamic_feed</span></button>
+                </div>
             </div>
         </div>
     </main>
@@ -186,6 +190,11 @@ $data .= ']}';
             let data = `{"maquinas":${JSON.stringify(maquinasAlteradas)}}`
 
             tag.value = data
+        }
+
+        function cadastrarmanutencao() {
+            const id = Number(document.getElementById("id_maquina_costura").value)
+            $(location).attr("href", "cadastro-manutencao.php?maquina-costura=" + id);
         }
 
         function closeAlert() {

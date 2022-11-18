@@ -110,6 +110,7 @@ function ControlMapa() {
 
         document.getElementById("mc-info-codigo").innerHTML = maquina.codigo
         document.getElementById("mc-info-tipo").innerHTML = maquina.tipo
+        document.getElementById("id_maquina_costura").value = maquina.id
 
         maquinaInfo.classList.toggle("active", true)
     }

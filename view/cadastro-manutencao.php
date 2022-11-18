@@ -102,7 +102,7 @@ $compressores = $controlCom->listar();
                                     <option value="0">Selecione</option>
                                     <?php foreach ($maquinas as $m) {
                                     ?>
-                                        <option <?php if (isset($_POST["id_maquina_costura"]) && $_POST["id_maquina_costura"] == $m->id) { ?> selected <?php } ?> value="<?php echo $m->id ?>"><?php echo $m->tipo . " - " . $m->codigo ?></option>
+                                        <option <?php if ((isset($_POST["id_maquina_costura"]) && $_POST["id_maquina_costura"] == $m->id) || (isset($_GET["maquina-costura"]) && $_GET["maquina-costura"] == $m->id)) { ?> selected <?php } ?> value="<?php echo $m->id ?>"><?php echo $m->tipo . " - " . $m->codigo ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_maquina_costura">Máquinas de Costura</label>
