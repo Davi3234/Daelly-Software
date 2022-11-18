@@ -112,6 +112,9 @@ function ControlMapa() {
         document.getElementById("mc-info-tipo").innerHTML = maquina.tipo
         document.getElementById("id_maquina_costura").value = maquina.id
 
+        const mc = maquinasAlteradas.find(({ codigo }) => { return codigo == maquina.codigo })
+        document.getElementById("bt-guardar-maquina").classList.toggle("active", mc ? mc.posicionado == 1 : maquina.posicionado == 1)
+
         maquinaInfo.classList.toggle("active", true)
     }
 
@@ -159,6 +162,7 @@ function ControlMapa() {
 
         atualizarListaMaquinasAlteradas(maquina)
         toggleBtActions()
+        maquinaInfo.classList.contains("active") && showMaquinaInfo({ target: tag })
     }
 
     const addMaquinaInventario = (tag) => {
@@ -173,6 +177,7 @@ function ControlMapa() {
 
         atualizarListaMaquinasAlteradas(maquina)
         toggleBtActions()
+        maquinaInfo.classList.contains("active") && showMaquinaInfo({ target: tag })
     }
 
     const updatePosition = (tag, maquina, x, y) => {

@@ -44,6 +44,13 @@
             display: flex;
         }
 
+        #bt-guardar-maquina {
+            display: none;
+            &.active {
+                display: flex;
+            }
+        }
+
         .close-info {
             position: absolute;
             right: 1rem;
