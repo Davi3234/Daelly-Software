@@ -37,7 +37,6 @@ button {
 main {
   position: absolute;
   bottom: 0;
-  display: flex;
   width: 100%;
   height: calc(100% - 6.3rem);
   overflow: auto;
@@ -390,26 +389,31 @@ tr {
 .header-content .header-actions .profile-parent:hover .profile-item-children.itens {
   display: flex;
 }
-.header-content .header-actions .profile-parent.menu {
-  display: flex;
-  cursor: pointer;
-}
 
 #barra-lateral {
-  display: block;
-  width: 26rem;
+  position: absolute;
+  width: 5rem;
+  height: 100%;
+  left: 0;
   background-color: #fff;
   border-right: 1px solid #b8b8b8;
   z-index: 20;
-  overflow-x: hidden;
   overflow-y: auto;
+  overflow-x: hidden;
   font-size: 1.4rem;
+  transition: 0.3s;
 }
 #barra-lateral .barra-lateral-content {
+  position: absolute;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  overflow: auto !important;
+  width: 27rem;
+  overflow-y: auto !important;
+  overflow-x: none;
+}
+#barra-lateral .barra-lateral-content .material-symbols-outlined {
+  font-size: 2.4rem;
+  margin-right: 1rem;
 }
 #barra-lateral .barra-lateral-content .item-parent .item-children {
   cursor: pointer;
@@ -417,7 +421,8 @@ tr {
 #barra-lateral .barra-lateral-content .item-parent .item-children.header {
   display: flex;
   gap: 0.5rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
+  padding-left: 1.1rem;
   position: relative;
   transition: 0.3s;
 }
@@ -437,14 +442,11 @@ tr {
   background-color: #f0f0f0;
 }
 #barra-lateral .barra-lateral-content .item-parent .item-children.itens .item {
-  padding: 1rem 2rem 1rem 5rem;
+  padding: 1rem 0 1rem 3rem;
   transition: 0.3s;
 }
 #barra-lateral .barra-lateral-content .item-parent .item-children.itens .item:hover {
   background-color: #b8b8b8;
-}
-#barra-lateral .barra-lateral-content .item-parent .item-children.itens.active {
-  display: flex;
 }
 #barra-lateral .barra-lateral-content .item-parent:hover .item-children.header {
   background-color: #d2d2d2;
@@ -452,11 +454,20 @@ tr {
 #barra-lateral .barra-lateral-content .item-parent:hover .item-children.header.active {
   background-color: #3b3b3b;
 }
+#barra-lateral:hover {
+  width: 27rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+}
+#barra-lateral:hover .item-children.itens.active {
+  display: flex;
+}
 
 #painel-comando {
   position: relative;
   padding: 4rem;
+  padding-left: 10rem;
   width: 100%;
+  height: 100%;
   overflow-y: auto;
   z-index: 5;
 }
@@ -596,24 +607,6 @@ tr {
   width: 4.45rem;
 }
 
-@media screen and (max-width: 768px) {
-  main {
-    display: block;
-  }
-  main #barra-lateral {
-    display: none;
-    width: 100%;
-    height: auto;
-    border-right: none;
-    border-bottom: 1px solid #b8b8b8;
-  }
-  main #barra-lateral.active {
-    display: flex;
-  }
-  main #mapa-content {
-    height: 50rem !important;
-  }
-}
 @media screen and (max-width: 675px) {
   .fill-inputs .input-box {
     width: 100% !important;

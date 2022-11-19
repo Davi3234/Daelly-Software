@@ -11,15 +11,10 @@ window.onload = () => {
         }
         tag.classList.toggle("active");
     })
-    $("#active-side-bar").click(menuToggle)
     $(".close-alert").click(closeAlert)
     setTimeout(closeAlert, 1000 * 10)
 }
 
 function closeAlert() {
     document.querySelector(".alert") && document.querySelector(".alert").remove()
-}
-
-function menuToggle() {
-    document.querySelector("#barra-lateral").classList.toggle("active")
 }

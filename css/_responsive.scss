@@ -1,46 +1,29 @@
-@media screen and (max-width: 1200px) {}
-@media screen and (max-width: 992px) {}
-@media screen and (max-width: 768px) {
-    main {
-        display: block;
-        #barra-lateral {
-            display: none;
-            width: 100%;
-            height: auto;
-            border-right: none;
-            border-bottom: $border;
-            &.active {
-                display: flex;
+    @media screen and (max-width: 1200px) {}
+    @media screen and (max-width: 992px) {}
+    @media screen and (max-width: 768px) {}
+    @media screen and (max-width: 675px) {
+        .fill-inputs {
+            .input-box {
+                width: 100% !important;
+                float: none !important;
             }
         }
-        #mapa-content {
-            height: 50rem !important;
+    }
+    @media screen and (max-width: 588px) {
+        header {
+            h1 {
+                font-size: 2.1rem;
+            }
         }
     }
-}
-@media screen and (max-width: 675px) {
-    .fill-inputs {
-        .input-box {
-            width: 100% !important;
-            float: none !important;
+    @media screen and (max-width: 483px) {
+        html {
+            font-size: 53% !important;
+        }
+        header {
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     }
-}
-@media screen and (max-width: 588px) {
-    header {
-        h1 {
-            font-size: 2.1rem;
-        }
-    }
-}
-@media screen and (max-width: 483px) {
-    html {
-        font-size: 53% !important;
-    }
-    header {
-        h1 {
-            font-size: 1.8rem;
-        }
-    }
-}
-// min 303px
+    // min 303px

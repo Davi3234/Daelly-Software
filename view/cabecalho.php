@@ -14,8 +14,5 @@
                 <a href="logout.php"><p class="item icon-content rigth">Sair<span class="material-symbols-outlined">logout</span></p></a>
             </div>
         </div>
-        <div id="active-side-bar" class="profile-parent menu">
-            <div class="profile-item-children header icon-content"><span class="material-symbols-outlined">menu</span></div>
-        </div>
     </div>
 </div>
