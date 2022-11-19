@@ -57,8 +57,8 @@ $funcoes = $control->listarByTipo($tipo->id);
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <button type="submit" class="bt-action form primary icon-content rigth voltar">Voltar<span class="material-symbols-outlined">redo</span></button>
                     <a href="cadastro-funcao.php?tipo=<?php echo $tipo->id ?>" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
+                    <button type="submit" class="bt-action form primary icon-content rigth voltar">Voltar<span class="material-symbols-outlined">redo</span></button>
                 </div>
                 <div class="line-division"></div>
 
