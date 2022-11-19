@@ -3,10 +3,10 @@ $menuItens = [
     ["inicio", "painel.php", "#", "Início", "home", false],
     ["funcionario", "cadastro-funcionario.php", "funcionarios.php", "Funcionário", "group", true],
     ["funcao", "cadastro-funcao.php", "funcoes.php", "Função", "psychology", true],
-    ["tipo", "cadastro-tipo.php", "tipos.php", "Tipo", "", true],
+    ["tipo", "cadastro-tipo.php", "tipos.php", "Tipo", "category", true],
     ["grupo", "cadastro-grupo.php", "grupos.php", "Grupo", "groups", true],
-    ["maquina-costura", "cadastro-maquina-costura.php", "maquinas-costura.php", "Máquina de Costura", '<img src="../img/icons/mc-medium.png" alt="">', true],
-    ["compressor", "cadastro-compressor.php", "compressores.php", "Compressor", "", true],
+    ["maquina-costura", "cadastro-maquina-costura.php", "maquinas-costura.php", "Máquina de Costura", "tag", true],
+    ["compressor", "cadastro-compressor.php", "compressores.php", "Compressor", "iron", true],
     ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", "build", true]
 ];
 ?>

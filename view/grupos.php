@@ -108,7 +108,7 @@ $grupos = $control->listar();
                                                 <div class="actions-form table">
                                                     <a href="editar-grupo.php?id=<?php echo $g->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
                                                     <a href="#" rel="<?php echo $g->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
-                                                    <a href="funcionarios-por-grupo.php?id=<?php echo $g->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">groups</span></a>
+                                                    <a href="funcionarios-por-grupo.php?id=<?php echo $g->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">group</span></a>
                                                 </div>
                                             </td>
                                         </tr>
