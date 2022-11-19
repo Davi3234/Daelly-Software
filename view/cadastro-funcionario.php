@@ -88,6 +88,7 @@ $listaFun = $controlFun->listar();
 
                         <div class="actions-form">
                             <button type="submit" id="gravar" class="bt-action form primary icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
+                            <a href="funcionarios.php" class="bt-action form primary icon-content rigth">Funcionários<span class="material-symbols-outlined">list</span></a>
                             <button type="button" class="bt-action form primary voltar icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></button>
                         </div>
 
@@ -118,7 +119,7 @@ $listaFun = $controlFun->listar();
                                 <select id="id_grupo" name="id_grupo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($listaGru as $g) { ?>
-                                        <option <?php if (isset($_POST["id_grupo"]) && $_POST["id_grupo"] == $g->id) { ?> selected <?php } ?> value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
+                                        <option <?php if ((isset($_POST["id_grupo"]) && $_POST["id_grupo"] == $g->id) || (isset($_GET["grupo"]) && $_GET["grupo"] == $g->id)) { ?> selected <?php } ?> value="<?php echo $g->id ?>"><?php echo $g->numero ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_grupo">Grupo</label>
@@ -128,7 +129,7 @@ $listaFun = $controlFun->listar();
                                 <legend>Funções</legend>
                                 <?php foreach ($listaFun as $f) { ?>
                                     <div class="checkbox-box">
-                                        <input <?php if (isset($_POST["funcoes"]) && in_array($f->id, $_POST["funcoes"])) { ?> checked <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
+                                        <input <?php if ((isset($_POST["funcoes"]) && in_array($f->id, $_POST["funcoes"])) || (isset($_GET["funcao"]) && $_GET["funcao"] == $f->id)) { ?> checked <?php } ?> name="funcoes[]" type="checkbox" value="<?php echo $f->id ?>" id="flexCheckDefault">
                                         <label for="flexCheckDefault"><?php echo $f->nome ?></label>
                                     </div>
                                 <?php } ?>

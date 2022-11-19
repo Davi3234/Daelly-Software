@@ -8,18 +8,29 @@ require_once '../control/ControlMaquinaCosturaMapa.php';
 require_once '../model/Tipo.php';
 require_once '../model/DaoTipo.php';
 require_once '../control/ControlTipo.php';
+require_once '../model/Manutencao.php';
+require_once '../model/DaoManutencao.php';
+require_once '../control/ControlManutencao.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlMaquinaCostura();
+$controlMan = new ControlManutencao();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Máquina de costura excluída com sucesso";
-        unset($_POST);
+    if ($controlMan->excluirByMaquina(addslashes($_POST['id']))) {
+        if ($control->excluir(addslashes($_POST['id']))) {
+            $mensagem = "Máquina de costura excluída com sucesso";
+            unset($_POST);
+        } else {
+            $erros = "";
+            foreach ($control->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
+        }
     } else {
         $erros = "";
-        foreach ($control->getErros() as $e) {
+        foreach ($controlMan->getErros() as $e) {
             $erros = $erros . $e . "<br />";
         }
     }

@@ -76,6 +76,7 @@ $tipos = $controlTip->listar();
                     <form action="" method="post" id="form">
                         <div class="actions-form">
                             <button type="submit" id="gravar" class="bt-action form primary icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
+                            <a href="maquinas-costura.php" class="bt-action form primary icon-content rigth">Máquinas de Costura<span class="material-symbols-outlined">list</span></a>
                             <button type="button" class="bt-action form primary voltar icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></button>
                         </div>
 
@@ -111,7 +112,7 @@ $tipos = $controlTip->listar();
                                 <select id="id_tipo" name="id_tipo">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($tipos as $t) { ?>
-                                        <option <?php if (isset($_POST["id_tipo"]) && $_POST["id_tipo"] == $t->id) { ?> selected <?php } ?> value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
+                                        <option <?php if ((isset($_POST["id_tipo"]) && $_POST["id_tipo"] == $t->id)  || (isset($_GET["tipo"]) && $_GET["tipo"] == $t->id)) { ?> selected <?php } ?> value="<?php echo $t->id ?>"><?php echo $t->nome ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_tipo">Tipo*</label>

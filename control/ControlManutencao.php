@@ -68,6 +68,16 @@ class ControlManutencao
         }
     }
 
+    public function excluirByMaquina($id)
+    {
+        if ($this->daoManutencao->excluirByMaquina($id)) {
+            return true;
+        } else {
+            $this->erros[] = "Erro eo excluir as manutenções dessa máquina";
+            return false;
+        }
+    }
+
     public function listar()
     {
         return $this->daoManutencao->listar();

@@ -76,6 +76,7 @@ $tipos = $controlTip->listar();
                     <form action="" method="post" id="form">
                         <div class="actions-form">
                             <button type="submit" id="gravar" class="bt-action form primary icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
+                            <a href="funcoes.php" class="bt-action form primary icon-content rigth">Funções<span class="material-symbols-outlined">list</span></a>
                             <button type="button" class="bt-action form primary voltar icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></button>
                         </div>
 

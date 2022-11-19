@@ -82,6 +82,7 @@ function ControlMapa() {
             a.addEventListener("mouseout", maquinaHoverOut)
             a.addEventListener("click", showMaquinaInfo)
         })
+        toggleBtActions()
     }
 
     const resetarMaquinas = () => {
@@ -123,6 +124,7 @@ function ControlMapa() {
 
         btSalvarMaquinas.classList.toggle("valid", isMaquinasAlteradas)
         btResetarMaquinas.classList.toggle("valid", isMaquinasAlteradas)
+        btGuardarMaquinas.classList.toggle("valid", document.querySelectorAll("#lista-maquinas-mapa .maquinas").length > 0)
     }
 
     const hiddenMaquinaInfo = () => {

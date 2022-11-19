@@ -66,7 +66,8 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                 <div class="line-division"></div>
 
                 <div class="actions-form">
-                    <a href="grupos.php" type="submit" class="bt-action form primary icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></a>
+                    <button type="submit" class="bt-action form primary icon-content rigth voltar">Voltar<span class="material-symbols-outlined">redo</span></button>
+                    <a href="cadastro-funcionario.php?grupo=<?php echo $grupo->id ?>" class="bt-action form primary icon-content rigth">Novo<span class="material-symbols-outlined">library_add</span></a>
                 </div>
                 <div class="line-division"></div>
 

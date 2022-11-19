@@ -92,7 +92,7 @@ $data .= ']}';
                 <div class="actions-form">
                     <button id="bt-salvar-maquinas" type="submit" class="bt-action form primary toggle icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
                     <button id="bt-resetar-maquinas" type="button" class="bt-action form primary toggle icon-content rigth">Resetar<span class="material-symbols-outlined">restart_alt</span></button>
-                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle valid icon-content rigth">Guardar máquinas no inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
+                    <button id="bt-guardar-maquinas" type="button" class="bt-action form primary toggle icon-content rigth">Guardar máquinas no inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
                 </div>
             </div>
 
@@ -108,7 +108,7 @@ $data .= ']}';
                                         <div draggable="true" ondrop="return false" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;">
                                             <div class="mc-content">
                                                 <img src="../img/mc-mapa/mc-medium.png" alt="">
-                                                <p><?php echo $mc->codigo ?> - <?php echo $mc->tipo ?></p>
+                                                <p><?php echo $mc->codigo ?></p>
                                             </div>
                                         </div>
                                     <?php } ?>
@@ -116,7 +116,7 @@ $data .= ']}';
                             </div>
                         </div>
                         <div id="inventario">
-                            <div id="lista-maquinas-inventario" style="height: calc(<?php echo $mapa->altura_mc ?>px + 2rem);" class="listas-maquinas" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
+                            <div id="lista-maquinas-inventario" style="height: calc(<?php echo $mapa->altura_mc ?>px + 3rem);" class="listas-maquinas" ondrop="dropInventario(event)" ondragover="allowDrop(event)">
                                 <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
                                     <div style="width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;" draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>">
                                         <div class="mc-content">
@@ -137,7 +137,7 @@ $data .= ']}';
                 <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
                 <div class="actions-form">
                     <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
-                    <button id="bt-cadastrar-manutencao" type="button" class="bt-action form primary icon-content rigth">Manutenção<span class="material-symbols-outlined">dynamic_feed</span></button>
+                    <button id="bt-cadastrar-manutencao" type="button" class="bt-action form primary icon-content rigth">Manutenção<span class="material-symbols-outlined">build</span></button>
                     <button id="bt-editar-maquina" type="button" class="bt-action form primary icon-content rigth">Editar máquina<span class="material-symbols-outlined">edit_square</span></button>
                 </div>
             </div>
@@ -179,7 +179,7 @@ $data .= ']}';
                 $(location).attr("href", "cadastro-manutencao.php?maquina-costura=" + id);
             })
 
-            document.querySelectorAll(".item-children.header").forEach(a => a.addEventListener("click", ({
+            $(".item-children.header").click(({
                 target
             }) => {
                 if (target.classList.contains("no-expansive")) {
@@ -195,10 +195,10 @@ $data .= ']}';
                     })
                 }
                 tag.classList.toggle("active");
-            }))
+            })
 
-            document.querySelector("#active-side-bar").addEventListener("click", menuToggle)
-            document.querySelector(".close-alert") && document.querySelector(".close-alert").addEventListener("click", closeAlert)
+            $("#active-side-bar").click(menuToggle)
+            $(".close-alert").click(closeAlert)
             setTimeout(closeAlert, 1000 * 10)
         })
 

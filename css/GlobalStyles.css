@@ -85,6 +85,9 @@ header {
   display: flex;
   align-items: center;
 }
+.icon-content .material-symbols-outlined {
+  font-size: 2rem;
+}
 .icon-content.rigth .material-symbols-outlined {
   margin-left: 0.3rem;
 }
@@ -225,6 +228,10 @@ header {
 .actions-form.table {
   position: relative;
   height: 100%;
+}
+.actions-form button,
+.actions-form a {
+  font-size: 1.4rem;
 }
 
 .bt-action {
@@ -390,7 +397,7 @@ tr {
 
 #barra-lateral {
   display: block;
-  width: 23rem;
+  width: 26rem;
   background-color: #fff;
   border-right: 1px solid #b8b8b8;
   z-index: 20;

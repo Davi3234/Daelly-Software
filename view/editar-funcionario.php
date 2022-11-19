@@ -98,6 +98,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
 
                         <div class="actions-form">
                             <button type="submit" id="gravar" class="bt-action form primary icon-content rigth">Gravar<span class="material-symbols-outlined">done</span></button>
+                            <a href="funcionarios.php" class="bt-action form primary icon-content rigth">Funcionários<span class="material-symbols-outlined">list</span></a>
                             <button type="button" class="bt-action form primary voltar icon-content rigth">Voltar<span class="material-symbols-outlined">redo</span></button>
                         </div>
 

@@ -91,7 +91,7 @@ $manutencoes = $control->listar();
                                     <tr>
                                         <th>Descrição</th>
                                         <th>Data Manutenção</th>
-                                        <th>Máquina de costura</th>
+                                        <th>Máquina de costura/Tipo</th>
                                         <th>Compressor</th>
                                         <th>Ações</th>
                                     </tr>

@@ -19,6 +19,9 @@
 .icon-content {
     display: flex;
     align-items: center;
+    .material-symbols-outlined {
+        font-size: 2rem;
+    }
     &.rigth {
         .material-symbols-outlined {
             margin-left: .3rem

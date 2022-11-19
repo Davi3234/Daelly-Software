@@ -50,7 +50,7 @@ class DaoMaquinaCosturaMapa
 
     function listar()
     {
-        try {
+        try { // select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipo, funci.nome as funcionario from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id join funcao funca on funca.id_tipo = tip.id join funca_funci ff on ff.id_funcao = funca.id join funcionario funci on funci.id = ff.id_funcionario
             return $this->conexao->query("select mcm.id, mcm.id_maquina_costura, mcm.posicionado, mcm.x, mcm.y, mc.codigo, mc.modelo, mc.marca, mc.chassi, mc.aquisicao, tip.nome as tipo from maquina_costura_mapa mcm join maquina_costura mc on mc.id = mcm.id_maquina_costura join tipo tip on mc.id_tipo = tip.id", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
