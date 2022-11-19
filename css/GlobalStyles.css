@@ -331,6 +331,16 @@ tr {
   margin-bottom: 0;
 }
 
+.bg-image {
+  background-image: url("../assets/imgs/Malharia.jpeg") !important;
+  filter: blur(7px);
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100vw;
+}
+
 .header-content {
   display: flex;
   justify-content: space-between;

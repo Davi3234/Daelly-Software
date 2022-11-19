@@ -7,6 +7,7 @@
     width: 100%;
     transform: translate(-50%, -50%);
     color: $primary-color;
+    
     .login-content {
         position: relative;
         display: flex;
@@ -27,4 +28,14 @@
             }
         }
     }
+    
 }
+.bg-image {
+    background-image: url("../assets/imgs/Malharia.jpeg") !important;
+    filter: blur(7px);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+  }
