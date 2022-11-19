@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -101,12 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         $(document).ready(function() {
             $('#i-compressor').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "compressores.php");
-            });
         });
     </script>
 </body>

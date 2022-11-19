@@ -57,7 +57,7 @@ $listaFun = $controlFun->listar();
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -144,12 +144,6 @@ $listaFun = $controlFun->listar();
     <script>
         $(document).ready(function() {
             $('#i-funcionario').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "funcionarios.php");
-            });
 
             $('#form').submit((ev) => {
                 const funcoesSelecionadas = []

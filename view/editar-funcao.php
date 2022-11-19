@@ -47,7 +47,7 @@ $tipos = $controlTip->listar();
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -112,12 +112,6 @@ $tipos = $controlTip->listar();
     <script>
         $(document).ready(function() {
             $('#i-funcao').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "funcoes.php");
-            });
         });
     </script>
 </body>

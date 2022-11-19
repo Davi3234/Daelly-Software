@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -91,12 +91,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script>
         $(document).ready(function() {
             $('#i-tipo').addClass("active")
-            $('#carregando').fadeOut();
+            $('.carregando').fadeOut();
             $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "tipos.php");
-            });
         });
     </script>
 </body>

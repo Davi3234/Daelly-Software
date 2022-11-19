@@ -67,7 +67,7 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -154,12 +154,6 @@ $funcionario = $control->selecionar(addslashes($_GET['id']));
     <script>
         $(document).ready(function() {
             $('#i-funcionario').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "funcionarios.php");
-            });
 
             $('#form').submit((ev) => {
                 const funcoesSelecionadas = []

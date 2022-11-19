@@ -49,7 +49,7 @@ $tipos = $controlTip->listar();
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -132,12 +132,6 @@ $tipos = $controlTip->listar();
     <script>
         $(document).ready(function() {
             $('#i-maquina-costura').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "maquinas-costura.php");
-            });
         });
     </script>
 </body>

@@ -67,7 +67,7 @@ $data .= ']}';
         </div>
 
         <div id="painel-comando" class="pc-mapa">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -157,7 +157,7 @@ $data .= ']}';
 
         $(document).ready(function() {
             $('#i-inicio').addClass("active")
-            $('#carregando').fadeOut()
+            $('.carregando').fadeOut()
             $('.conteudo').fadeIn()
             $('#bt-guardar-maquinas').click(guardarMaquinas)
             $('#bt-salvar-maquinas').click(gravarMaquinasAlteradas)

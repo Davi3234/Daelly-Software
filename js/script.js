@@ -1,4 +1,6 @@
-window.onload = () => {
+$(document).ready(function() {
+    $('.carregando').fadeOut();
+    $('.conteudo').fadeIn();
     $(".voltar").click(() => {
         window.history.back()
     })
@@ -12,8 +14,8 @@ window.onload = () => {
         tag.classList.toggle("active");
     })
     $(".close-alert").click(closeAlert)
-    setTimeout(closeAlert, 1000 * 10)
-}
+    setTimeout(closeAlert, 1000 * 5)
+})
 
 function closeAlert() {
     document.querySelector(".alert") && document.querySelector(".alert").remove()

@@ -11,7 +11,7 @@ if (isset($_SESSION["email"])) {
     <?php include "header.php" ?>
     <title>Acesso ao Sistema - Daelly Conffecções</title>
     <style>
-        #carregando,
+        .carregando,
         #erro {
             display: none;
         }
@@ -20,7 +20,7 @@ if (isset($_SESSION["email"])) {
 
 <body>
     <div class="bg-image"></div>
-    <div id="carregando">
+    <div class="carregando">
         Efetuando acesso...
     </div>
 
@@ -53,7 +53,7 @@ if (isset($_SESSION["email"])) {
 
     <script>
         $("#logar").click(function() {
-            $('#carregando').fadeIn();
+            $('.carregando').fadeIn();
             var email = $("#email").val();
             var senha = $("#senha").val();
             $.ajax({
@@ -65,7 +65,7 @@ if (isset($_SESSION["email"])) {
                 },
                 type: 'POST',
                 success: function(resposta) {
-                    $('#carregando').fadeOut();
+                    $('.carregando').fadeOut();
                     if (resposta) {
                         $("#erro").html(resposta);
                         $("#erro").css("display", "block");

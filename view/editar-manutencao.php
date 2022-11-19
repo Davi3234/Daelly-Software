@@ -52,7 +52,7 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -128,12 +128,6 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
     <script>
         $(document).ready(function() {
             $('#i-manutencao').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
-
-            $(".voltar").click(function() {
-                $(location).attr("href", "manutencoes.php");
-            });
         });
 
         function changeSelectPolimorph({

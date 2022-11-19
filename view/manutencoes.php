@@ -49,7 +49,7 @@ $manutencoes = $control->listar();
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -133,8 +133,6 @@ $manutencoes = $control->listar();
     <script>
         $(document).ready(function() {
             $('#i-manutencao').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente excluir o registro?")) {

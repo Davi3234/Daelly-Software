@@ -55,7 +55,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
         </div>
 
         <div id="painel-comando">
-            <div id="carregando">
+            <div class="carregando">
                 Carregando...
             </div>
 
@@ -137,8 +137,6 @@ $funcionarios = $control->listarByGrupo($grupo->id);
     <script>
         $(document).ready(function() {
             $('#i-grupo').addClass("active")
-            $('#carregando').fadeOut();
-            $('.conteudo').fadeIn();
 
             $(".excluir").click(function() {
                 if (confirm("Deseja realmente desvincular esse funcionário do grupo?")) {
