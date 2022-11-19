@@ -18,8 +18,8 @@ $menuItens = [
             <?php if ($item[7]) { ?>
                 <div id="i-<?php echo $item[0] ?>" class="item-children header icon-content left"><span class="material-symbols-outlined"><?php echo $item[4] ?></span><?php echo $item[3] ?></div>
                 <div id="i-expansive-<?php echo $item[0] ?>" class="item-children itens">
-                    <a href="<?php echo $item[1] ?>" class="item icon-content left"><span class="material-symbols-outlined">library_add</span><span><?php echo $item[5] ?></span></a>
                     <a href="<?php echo $item[2] ?>" class="item icon-content left"><span class="material-symbols-outlined">list</span><span><?php echo $item[6] ?></span></a>
+                    <a href="<?php echo $item[1] ?>" class="item icon-content left"><span class="material-symbols-outlined">library_add</span><span><?php echo $item[5] ?></span></a>
                 </div>
             <?php } else { ?>
                 <a href="<?php echo $item[1] ?>" id="i-<?php echo $item[0] ?>" class="item-children header no-expansive icon-content left"><span class="material-symbols-outlined"><?php echo $item[4] ?></span><?php echo $item[3] ?></a>

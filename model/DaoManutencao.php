@@ -46,7 +46,8 @@ class DaoManutencao
     function excluirByMaquina($id)
     {
         try {
-            return $this->conexao->exec("delete from manutencao where id_maquina_costura=" . $id);
+            $this->conexao->exec("delete from manutencao where id_maquina_costura=" . $id);
+            return true;
         } catch (PDOException $exc) {
             return false;
         }

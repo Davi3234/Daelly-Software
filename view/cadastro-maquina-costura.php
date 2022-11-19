@@ -84,7 +84,7 @@ $tipos = $controlTip->listar();
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input value="<?php echo isset($_POST['codigo']) ? $_POST['codigo'] : "" ?>" type="text" name="codigo" id="codigo" required="required" autofocus="TRUE">
+                                <input value="<?php echo isset($_POST['codigo']) ? $_POST['codigo'] : "" ?>" type="number" name="codigo" id="codigo" required="required" autofocus="TRUE">
                                 <label for="codigo">Código*</label>
                                 <i></i>
                             </div>

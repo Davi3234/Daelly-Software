@@ -84,7 +84,7 @@ $tipos = $controlTip->listar();
                         <div class="line-division"></div>
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="codigo" id="codigo" value="<?php echo $maquina->codigo ?>" required="required" autofocus="TRUE">
+                                <input type="number" name="codigo" id="codigo" value="<?php echo $maquina->codigo ?>" required="required" autofocus="TRUE">
                                 <label for="codigo">Código*</label>
                                 <i></i>
                             </div>
