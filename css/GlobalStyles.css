@@ -383,6 +383,9 @@ tr {
   width: 100%;
   color: #fff;
 }
+.header-content .header-actions .profile-parent .profile-item-children.itens a p {
+  justify-content: center;
+}
 .header-content .header-actions .profile-parent:hover .profile-item-children.header {
   background-color: #3f3f3f;
 }
