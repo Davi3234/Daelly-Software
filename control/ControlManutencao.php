@@ -25,6 +25,12 @@ class ControlManutencao
             $this->erros[] = "Informe pelo menos uma máquina ou um compressor";
         } else if ($id_maquina_costura != 0 && $id_compressor != 0) {
             $this->erros[] = "Informe apenas uma máquina ou um compressor";
+        } else {
+            if ($id_maquina_costura == 0) {
+                $id_maquina_costura = null;
+            } else {
+                $id_compressor = 0;
+            }
         }
         if (!$this->erros) {
             $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina_costura, $id_compressor);
@@ -39,7 +45,7 @@ class ControlManutencao
         }
     }
 
-    public function editar($descricao, $data_manutencao, $id_maquina_costura, $id_compressor, $id)
+    public function editar($descricao, $data_manutencao, $id)
     {
         if (strlen($descricao) == 0) {
             $this->erros[] = "Informe a descrição";
@@ -48,14 +54,14 @@ class ControlManutencao
             $this->erros[] = "Informe a data da Manutenção";
         }
         if (!$this->erros) {
-            $this->manutencao = new Manutencao($descricao, $data_manutencao, $id_maquina_costura, $id_compressor, $id);
+            $this->manutencao = new Manutencao($descricao, $data_manutencao, null, null, $id);
             if ($this->daoManutencao->editar($this->manutencao)) {
                 return true;
             }
-        } else {
             $this->erros[] = "Erro ao editar o registro";
             return false;
         }
+        return false;
     }
 
     public function excluir($id)
@@ -78,9 +84,29 @@ class ControlManutencao
         }
     }
 
+    public function excluirByCompressor($id)
+    {
+        if ($this->daoManutencao->excluirByCompressor($id)) {
+            return true;
+        } else {
+            $this->erros[] = "Erro eo excluir as manutenções desse compressor";
+            return false;
+        }
+    }
+
     public function listar()
     {
         return $this->daoManutencao->listar();
+    }
+
+    public function listarByMaquina($id)
+    {
+        return $this->daoManutencao->listarByMaquina($id);
+    }
+
+    public function listarByCompressor($id)
+    {
+        return $this->daoManutencao->listarByCompressor($id);
     }
 
     public function selecionar($id)

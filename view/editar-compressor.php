@@ -78,7 +78,7 @@ $compressor = $control->selecionar(addslashes($_GET['id']));
 
                         <div class="fill-inputs">
                             <div class="input-box input-position-left">
-                                <input type="text" name="codigo" id="codigo" value="<?php echo $compressor->codigo ?>" required="required" autofocus="TRUE">
+                                <input type="number" name="codigo" id="codigo" value="<?php echo $compressor->codigo ?>" required="required" autofocus="TRUE">
                                 <label for="codigo">Código*</label>
                                 <i></i>
                             </div>

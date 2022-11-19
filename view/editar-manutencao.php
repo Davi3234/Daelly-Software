@@ -19,7 +19,7 @@ $control = new ControlManutencao();
 $controlMaq = new ControlMaquinaCostura();
 $controlCom = new ControlCompressor();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->editar($_POST['descricao'], $_POST['data_manutencao'], $_POST['id_maquina_costura'], $_POST['id_compressor'], addslashes($_GET['id']))) {
+    if ($control->editar($_POST['descricao'], $_POST['data_manutencao'], addslashes($_GET['id']))) {
         $mensagem = "Manutenção editada com sucesso";
         unset($_POST);
     }
@@ -32,6 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 $manutencao = $control->selecionar(addslashes($_GET['id']));
 $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
+
+$maquinas = $controlMaq->listar();
+$compressores = $controlCom->listar();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -99,7 +102,7 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
                                 <i></i>
                             </div>
                             <div class="input-box input-position-left" style="margin-top: .15rem;">
-                                <select class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_maquina_costura" name="id_maquina_costura">
+                                <select disabled class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_maquina_costura" name="id_maquina_costura">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($maquinas as $m) {
                                     ?>
@@ -109,11 +112,11 @@ $maquina = $controlMaq->selecionar($manutencao->id_maquina_costura);
                                 <label for="id_maquina_costura">Máquinas de Costura</label>
                             </div>
                             <div class="input-box input-position-right">
-                                <select class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_compressor" name="id_compressor">
+                                <select disabled class="component-polimorph" onchange="changeSelectPolimorph(event)" id="id_compressor" name="id_compressor">
                                     <option value="0">Selecione</option>
                                     <?php foreach ($compressores as $c) {
                                     ?>
-                                        <option <?php if ($manutencao->id_compressor && $m->id == $manutencao->id_compressor) { ?> selected <?php }?> value="<?php echo $c->id ?>"><?php echo $c->codigo ?></option>
+                                        <option <?php if ($manutencao->id_compressor && $c->id == $manutencao->id_compressor) { ?> selected <?php }?> value="<?php echo $c->id ?>"><?php echo $c->codigo ?></option>
                                     <?php } ?>
                                 </select>
                                 <label for="id_compressor">Compressor</label>

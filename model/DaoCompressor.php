@@ -18,7 +18,7 @@ class DaoCompressor
     function inserir(Compressor $compressor)
     {
         try {
-            return $this->conexao->exec("insert into compressor (codigo, marca, modelo) values ('" . $compressor->getCodigo() . "', '" . $compressor->getMarca() . "', '" . $compressor->getModelo() . "' )");
+            return $this->conexao->exec("insert into compressor (codigo, marca, modelo) values (" . $compressor->getCodigo() . ", '" . $compressor->getMarca() . "', '" . $compressor->getModelo() . "')");
         } catch (PDOException $ex) {
             return false;
         }
@@ -27,7 +27,7 @@ class DaoCompressor
     function editar(Compressor $compressor)
     {
         try {
-            $this->conexao->exec("update grupo set codigo='" . $compressor->getCodigo() . "' marca = '" . $compressor->getMarca() . "' modelo = '" . $compressor->getModelo() . "'where id=" . $compressor->getId());
+            $this->conexao->exec("update grupo set codigo=" . $compressor->getCodigo() . " marca = '" . $compressor->getMarca() . "' modelo = '" . $compressor->getModelo() . "'where id=" . $compressor->getId());
             return true;
         } catch (PDOException $exe) {
             return false;

@@ -31,9 +31,9 @@ class DaoFuncao
     {
         try {
             if ($funcao->getIdTipo()) {
-                $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "' id_tipo = '" . $funcao->getIdTipo() . "'where id=" . $funcao->getId());
+                $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "', id_tipo = " . $funcao->getIdTipo() . " where id=" . $funcao->getId());
             } else {
-                $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "' where id=" . $funcao->getId());
+                $this->conexao->exec("update funcao set nome='" . $funcao->getNome() . "', id_tipo = null where id=" . $funcao->getId());
             }
             return true;
         } catch (PDOException) {

@@ -52,13 +52,13 @@ class ControlFuncao
         }
         if (!$this->erros) {
             $this->funcao = new Funcao($nome, $id_tipo, $id);
-            if ($this->daoFuncao->editar($this->funcao)) {
-                return true;
+            if (!$this->daoFuncao->editar($this->funcao)) {
+                $this->erros[] = "Erro ao editar o registro";
+                return false;
             }
-        } else {
-            $this->erros[] = "Erro ao editar o registro";
-            return false;
+            return true;
         }
+        return false;
     }
 
     public function excluir($id)

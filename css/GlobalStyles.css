@@ -155,11 +155,14 @@ header {
 }
 .fill-inputs .input-box input:valid ~ label,
 .fill-inputs .input-box input:focus ~ label,
+.fill-inputs .input-box input:disabled ~ label,
 .fill-inputs .input-box select:valid ~ label,
+.fill-inputs .input-box select:disabled ~ label,
 .fill-inputs .input-box select:focus ~ label {
   transform: translateY(-2.5rem) scale(0.9);
 }
 .fill-inputs .input-box select:valid ~ label,
+.fill-inputs .input-box select:disabled ~ label,
 .fill-inputs .input-box select:focus ~ label {
   transform: translate(-0.3rem, -2.5rem) scale(0.9);
 }

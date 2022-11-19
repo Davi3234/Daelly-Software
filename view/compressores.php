@@ -1,22 +1,39 @@
 <?php
+require_once '../model/MaquinaCostura.php';
+require_once '../model/DaoMaquinaCostura.php';
+require_once '../control/ControlMaquinaCostura.php';
+require_once '../model/MaquinaCosturaMapa.php';
+require_once '../model/DaoMaquinaCosturaMapa.php';
+require_once '../control/ControlMaquinaCosturaMapa.php';
 require_once '../model/Compressor.php';
 require_once '../model/DaoCompressor.php';
 require_once '../control/ControlCompressor.php';
+require_once '../model/Manutencao.php';
+require_once '../model/DaoManutencao.php';
+require_once '../control/ControlManutencao.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");
 }
 $control = new ControlCompressor();
+$controlMan = new ControlManutencao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if ($control->excluir(addslashes($_POST['id']))) {
-        $mensagem = "Compressor excluído com sucesso";
-        unset($_POST);
+    if ($controlMan->excluirByCompressor(addslashes($_POST['id']))) {
+        if ($control->excluir(addslashes($_POST['id']))) {
+            $mensagem = "Compressor excluído com sucesso";
+            unset($_POST);
+        } else {
+            $erros = "";
+            foreach ($control->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
+        }
     } else {
         $erros = "";
-        foreach ($control->getErros() as $e) {
-            $erros = $erros . $e . "<br />";
-        }
+            foreach ($controlMan->getErros() as $e) {
+                $erros = $erros . $e . "<br />";
+            }
     }
 }
 $compressores = $control->listar();
@@ -102,6 +119,7 @@ $compressores = $control->listar();
                                                 <div class="actions-form table">
                                                     <a href="editar-compressor.php?id=<?php echo $c->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
                                                     <a href="#" rel="<?php echo $c->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
+                                                    <a href="manutencoes-por-compressor.php?id=<?php echo $c->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">build</span></a>
                                                 </div>
                                             </td>
                                         </tr>

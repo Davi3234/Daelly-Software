@@ -14,7 +14,6 @@ $(document).ready(function() {
         tag.classList.toggle("active");
     })
     $(".close-alert").click(closeAlert)
-    setTimeout(closeAlert, 1000 * 5)
 })
 
 function closeAlert() {

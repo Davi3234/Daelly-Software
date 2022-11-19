@@ -57,11 +57,14 @@
         }
         input:valid~label,
         input:focus~label,
+        input:disabled~label,
         select:valid~label,
+        select:disabled~label,
         select:focus~label {
             transform: translateY(-2.5rem) scale(.9);
         }
         select:valid~label,
+        select:disabled~label,
         select:focus~label {
             transform: translate(-.30rem, -2.5rem) scale(.9);
         }
