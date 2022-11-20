@@ -78,6 +78,13 @@ $manutencoes = $control->listarByMaquina($maquina->id);
                         <div class="line-division"></div>
 
                         <div class="table-content">
+                            <div class="fill-inputs">
+                                <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
+                                    <label for="filter-table">Filtro</label>
+                                    <i></i>
+                                </div>
+                            </div>
                             <table>
                                 <thead>
                                     <tr>
@@ -86,7 +93,7 @@ $manutencoes = $control->listarByMaquina($maquina->id);
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-results">
                                     <?php
                                     foreach ($manutencoes as $m) { ?>
                                         <tr>
@@ -111,7 +118,6 @@ $manutencoes = $control->listarByMaquina($maquina->id);
             </div>
         </div>
     </main>
-
 
     <script>
         $(document).ready(function() {

@@ -82,6 +82,13 @@ $funcoes = $control->listarByTipo($tipo->id);
                         <?php } ?>
 
                         <div class="table-content">
+                            <div class="fill-inputs">
+                                <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
+                                    <label for="filter-table">Filtro</label>
+                                    <i></i>
+                                </div>
+                            </div>
                             <table>
                                 <thead>
                                     <tr>
@@ -89,7 +96,7 @@ $funcoes = $control->listarByTipo($tipo->id);
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-results">
                                     <?php if ($funcoes) foreach ($funcoes as $f) { ?>
                                         <tr>
                                             <td>
@@ -112,7 +119,6 @@ $funcoes = $control->listarByTipo($tipo->id);
             </div>
         </div>
     </main>
-
 
     <script>
         $(document).ready(function() {

@@ -91,6 +91,13 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                         <?php } ?>
 
                         <div class="table-content">
+                            <div class="fill-inputs">
+                                <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
+                                    <label for="filter-table">Filtro</label>
+                                    <i></i>
+                                </div>
+                            </div>
                             <table>
                                 <thead>
                                     <tr>
@@ -101,7 +108,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-results">
                                     <?php if ($funcionarios) foreach ($funcionarios as $f) { ?>
                                         <tr>
                                             <td>
@@ -132,7 +139,6 @@ $funcionarios = $control->listarByGrupo($grupo->id);
             </div>
         </div>
     </main>
-
 
     <script>
         $(document).ready(function() {

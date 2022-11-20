@@ -14,6 +14,12 @@ $(document).ready(function() {
         tag.classList.toggle("active");
     })
     $(".close-alert").click(closeAlert)
+    $("#filter-table").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#table-results tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 })
 
 function closeAlert() {

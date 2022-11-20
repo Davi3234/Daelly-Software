@@ -31,9 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         $erros = "";
-            foreach ($controlMan->getErros() as $e) {
-                $erros = $erros . $e . "<br />";
-            }
+        foreach ($controlMan->getErros() as $e) {
+            $erros = $erros . $e . "<br />";
+        }
     }
 }
 $compressores = $control->listar();
@@ -94,6 +94,13 @@ $compressores = $control->listar();
                         <div class="line-division"></div>
 
                         <div class="table-content">
+                            <div class="fill-inputs">
+                                <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
+                                    <label for="filter-table">Filtro</label>
+                                    <i></i>
+                                </div>
+                            </div>
                             <table>
                                 <thead>
                                     <tr>
@@ -103,7 +110,7 @@ $compressores = $control->listar();
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-results">
                                     <?php if ($compressores) foreach ($compressores as $c) { ?>
                                         <tr>
                                             <td>

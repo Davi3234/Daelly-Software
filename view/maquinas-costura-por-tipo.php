@@ -85,6 +85,13 @@ $maquinas = $control->listarByTipo($tipo->id);
                         <?php } ?>
 
                         <div class="table-content">
+                            <div class="fill-inputs">
+                                <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
+                                    <label for="filter-table">Filtro</label>
+                                    <i></i>
+                                </div>
+                            </div>
                             <table>
                                 <thead>
                                     <tr>
@@ -96,7 +103,7 @@ $maquinas = $control->listarByTipo($tipo->id);
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="table-results">
                                     <?php if ($maquinas) foreach ($maquinas as $m) { ?>
                                         <tr>
                                             <td>
@@ -117,6 +124,7 @@ $maquinas = $control->listarByTipo($tipo->id);
                                             <td>
                                                 <div class="actions-form table">
                                                     <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="manutencoes-por-maquina.php?id=<?php echo $m->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">build</span></a>
                                                 </div>
                                             </td>
                                         </tr>
