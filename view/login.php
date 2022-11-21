@@ -15,10 +15,11 @@ if (isset($_SESSION["email"])) {
         #erro {
             display: none;
         }
+        
     </style>
 </head>
 
-<body>
+<body id="login">
     <div class="bg-image"></div>
     <div class="carregando">
         Efetuando acesso...
@@ -27,7 +28,7 @@ if (isset($_SESSION["email"])) {
     <div class="session-login">
         <form class="login-content" action="" method="post">
             <div class="form-header">
-                <h1>Acesso ao Sistema</h1>
+                <img src="../assets/imgs/Logo.png" alt="">
             </div>
 
             <div id="erro" class="alert alert-danger"></div>
@@ -46,7 +47,7 @@ if (isset($_SESSION["email"])) {
             </div>
 
             <div class="actions-form">
-                <button type="submit" id="logar" class="bt-action form primary icon-content rigth">Entrar<span class="material-symbols-outlined">login</span></button>
+                <button type="submit" id="logar" class="bt-action form secondary icon-content rigth">Entrar<span class="material-symbols-outlined">login</span></button>
             </div>
         </form>
     </div>

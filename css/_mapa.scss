@@ -69,6 +69,7 @@
                 justify-content: center;
                 cursor: move;
                 z-index: 150;
+                border: $border;
                 .mc-content {
                     display: flex;
                     flex-direction: column;
@@ -99,6 +100,13 @@
                     border-radius: $border-radius;
                     #lista-maquinas-mapa {
                         overflow: hidden;
+                        .maquinas {
+                            padding: 1rem;
+                        }
+                    }
+                    img{
+                        width: 100%;
+                        pointer-events: none;
                     }
                 }
             }
@@ -115,8 +123,6 @@
                     overflow-x: auto;
                     .maquinas {
                         position: relative;
-                        height: 4.45rem;
-                        width: 4.45rem;
                     }
                 }
             }

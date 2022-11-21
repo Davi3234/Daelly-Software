@@ -23,10 +23,20 @@
             color: #fff;
             &:hover {
                 background-color: $primary-color-darkness;
+                box-shadow: 0 0 1rem $primary-color;
                 color: #fff;
             }
             &:active {
                 background-color: darken($primary-color-darkness, 5);
+            }
+        }
+        &.secondary{
+            border: $border;
+            &:hover{
+                box-shadow: 0 0 1rem $primary-color;
+                background-color: $primary-color;
+                color: #fff;
+                transform: translateY(-0.3rem);
             }
         }
     }

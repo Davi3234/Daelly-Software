@@ -71,12 +71,10 @@ function atualizarListaMaquinasAlteradas(mcChanged) {
 
 function ControlMapa() {
     let maquinaInfoToggle = false
-    let mcSelecionada = null
 
     const iniciarComponents = () => {
         maquinaInfoToggle = false
         document.querySelector(".close-info").addEventListener("click", hiddenMaquinaInfo)
-        document.getElementById("bt-guardar-maquina").addEventListener("click", ev => addMaquinaInventario(mcSelecionada))
         document.querySelectorAll("#lista-maquinas-mapa .maquinas").forEach(a => a.style.position = "absolute")
         document.querySelectorAll(".maquinas").forEach(a => {
             a.addEventListener("mouseout", maquinaHoverOut)
@@ -106,7 +104,6 @@ function ControlMapa() {
     }
 
     const showMaquinaInfo = ({ target }) => {
-        mcSelecionada = target
         const { maquina } = getMaquina({ codigo: target.id.substring(8) })
 
         document.getElementById("mc-info-codigo").innerHTML = maquina.codigo
@@ -115,6 +112,7 @@ function ControlMapa() {
 
         const mc = maquinasAlteradas.find(({ codigo }) => { return codigo == maquina.codigo })
         document.getElementById("bt-guardar-maquina").classList.toggle("active", mc ? mc.posicionado == 1 : maquina.posicionado == 1)
+        console.log(mc ? mc.posicionado == 1 : maquina.posicionado == 1, mc.posicionado == 1);
 
         maquinaInfo.classList.toggle("active", true)
     }
@@ -128,7 +126,6 @@ function ControlMapa() {
     }
 
     const hiddenMaquinaInfo = () => {
-        mcSelecionada = null
         maquinaInfo.classList.toggle("active", maquinaInfoToggle)
     }
 
@@ -139,6 +136,7 @@ function ControlMapa() {
     const maquinaDragClickUpMapa = (ev) => {
         ev.preventDefault()
         const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
+        console.log(tag);
         addMaquinaMapa(tag, ev.offsetX - (dimensao.maquina.largura / 2), ev.offsetY - (dimensao.maquina.altura / 2))
     }
 
@@ -149,7 +147,7 @@ function ControlMapa() {
     }
 
     const addMaquinaMapa = (tag, x, y) => {
-        if (x <= 0 || x >= dimensao.mapa.largura + tag.clientWidth || y <= 0 || y >= dimensao.mapa.altura + tag.clientHeight) {
+        if (x <= 0 || x >= dimensao.mapa.largura - tag.clientWidth || y <= 0 || y >= dimensao.mapa.altura - tag.clientHeight) {
             addMaquinaInventario(tag)
             return
         }
