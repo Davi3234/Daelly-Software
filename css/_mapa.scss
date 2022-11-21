@@ -97,6 +97,9 @@
                 #mapa {
                     border: $border;
                     border-radius: $border-radius;
+                    #lista-maquinas-mapa {
+                        overflow: hidden;
+                    }
                 }
             }
             #inventario {

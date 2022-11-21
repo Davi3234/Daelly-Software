@@ -89,7 +89,7 @@ CREATE TABLE `mapa` (
   `altura_mc` INT NOT NULL,
   PRIMARY KEY (`id`)
 );
-INSERT INTO `mapa` (`largura_mapa`, `altura_mapa`, `largura_mc`, `altura_mc`)  VALUES (1000, 1000, 75, 75);
+INSERT INTO `mapa` (`largura_mapa`, `altura_mapa`, `largura_mc`, `altura_mc`)  VALUES (2694, 5531, 75, 75);
 
 DROP TABLE IF EXISTS `manutencao`;
 CREATE TABLE `manutencao` (

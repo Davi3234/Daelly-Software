@@ -104,6 +104,7 @@ $data .= ']}';
                         <div id="mapa-box">
                             <div id="mapa" style="width: <?php echo $mapa->largura_mapa ?>px; height: <?php echo $mapa->altura_mapa ?>px;">
                                 <div id="lista-maquinas-mapa" class="listas-maquinas" ondrop="dropMapa(event)" ondragover="allowDrop(event)">
+                                    <img src="../assets/imgs/Mapa.png" alt="Mapa" style="position: absolute;">
                                     <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
                                         <div draggable="true" ondrop="return false" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;">
                                             <div class="mc-content">
