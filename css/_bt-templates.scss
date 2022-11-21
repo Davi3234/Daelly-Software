@@ -5,6 +5,7 @@
     &.table {
         position: relative;
         height: 100%;
+        overflow: visible !important;
     }
     button,
     a {
@@ -14,6 +15,7 @@
 .bt-action {
     border-radius: $border-radius;
     transition: .3s;
+    cursor: pointer;
     &.form {
         padding: 1rem 1.5rem;
         &.primary {

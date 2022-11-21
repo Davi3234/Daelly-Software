@@ -89,9 +89,9 @@ $funcionarios = $control->listarByFuncao($funcao->id);
 
                         <div class="table-content">
                             <div class="fill-inputs">
-                                <div class="input-box input-position-left">
-                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
-                                    <label for="filter-table">Filtro</label>
+                                  <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" />
+                                    <label for="filter-table">Busca</label>
                                     <i></i>
                                 </div>
                             </div>
@@ -126,8 +126,8 @@ $funcionarios = $control->listarByFuncao($funcao->id);
                                             </td>
                                             <td>
                                                 <div class="actions-form table">
-                                                    <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                    <a href="#" class="excluir bt-action table bt-remove" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">person_remove</span></a>
+                                                    <a href="editar-funcionario.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">Editar funcionário</span></a>
+                                                    <button class="excluir bt-action table bt-remove tooltip-content" rel="<?php echo $f->id ?>"><span class="material-symbols-outlined">person_remove</span><span class="tooltip">Desvincular desta função</span></button>
                                                 </div>
                                             </td>
                                         </tr>

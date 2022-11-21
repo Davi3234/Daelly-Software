@@ -83,9 +83,9 @@ $funcoes = $control->listarByTipo($tipo->id);
 
                         <div class="table-content">
                             <div class="fill-inputs">
-                                <div class="input-box input-position-left">
-                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
-                                    <label for="filter-table">Filtro</label>
+                                  <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" />
+                                    <label for="filter-table">Busca</label>
                                     <i></i>
                                 </div>
                             </div>
@@ -104,9 +104,9 @@ $funcoes = $control->listarByTipo($tipo->id);
                                             </td>
                                             <td>
                                                 <div class="actions-form table">
-                                                    <a href="editar-funcao.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                    <a href="#" rel="<?php echo $f->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">do_not_disturb_on</span></a>
-                                                    <a href="funcionarios-por-funcao.php?id=<?php echo $f->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">group</span></a>
+                                                    <a href="editar-funcao.php?id=<?php echo $f->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">Editar Função</span></a>
+                                                    <button rel="<?php echo $f->id ?>" class="excluir bt-action table bt-remove tooltip-content"><span class="material-symbols-outlined">do_not_disturb_on</span><span class="tooltip">Desvincular deste tipo</span></button>
+                                                    <a href="funcionarios-por-funcao.php?id=<?php echo $f->id ?>" class="bt-action table bt-list tooltip-content"><span class="material-symbols-outlined">group</span><span class="tooltip">Funcionários desta função</span></a>
                                                 </div>
                                             </td>
                                         </tr>

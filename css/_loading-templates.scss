@@ -1,0 +1,12 @@
+.carregando {
+    position: absolute;
+    margin: 5rem auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    background-color: #fff;
+    border-radius: $border-radius;
+    border: $border;
+    padding: 1rem 0;
+    text-align: center;
+}

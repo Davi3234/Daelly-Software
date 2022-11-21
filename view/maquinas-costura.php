@@ -94,9 +94,9 @@ $maquinas = $control->listar();
 
                         <div class="table-content">
                             <div class="fill-inputs">
-                                <div class="input-box input-position-left">
-                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
-                                    <label for="filter-table">Filtro</label>
+                                  <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" />
+                                    <label for="filter-table">Busca</label>
                                     <i></i>
                                 </div>
                             </div>
@@ -134,10 +134,10 @@ $maquinas = $control->listar();
                                                 <?php echo $m->tipo ?>
                                             </td>
                                             <td>
-                                                <div class="actions-form table">
-                                                    <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
-                                                    <a href="#" rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove"><span class="material-symbols-outlined">delete</span></a>
-                                                    <a href="manutencoes-por-maquina.php?id=<?php echo $m->id ?>" class="bt-action table bt-list"><span class="material-symbols-outlined">build</span></a>
+                                                <div class="actions-form table" style="min-width: 14rem;">
+                                                    <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">Editar máquina de costura</span></a>
+                                                    <button rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove tooltip-content"><span class="material-symbols-outlined">delete</span><span class="tooltip">Excluir máquina de costura</span></button>
+                                                    <a href="manutencoes-por-maquina.php?id=<?php echo $m->id ?>" class="bt-action table bt-list tooltip-content"><span class="material-symbols-outlined">build</span><span class="tooltip">Manutenções dessa máquina de costura</span></a>
                                                 </div>
                                             </td>
                                         </tr>

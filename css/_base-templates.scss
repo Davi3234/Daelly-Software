@@ -1,35 +1,6 @@
-.carregando {
-    position: absolute;
-    margin: 5rem auto;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    background-color: #fff;
-    border-radius: $border-radius;
-    border: $border;
-    padding: 1rem 0;
-    text-align: center;
-}
 .line-division {
     height: 1px;
     width: 100%;
     margin: 2rem auto;
     background-color: $secondary-color;
-}
-.icon-content {
-    display: flex;
-    align-items: center;
-    .material-symbols-outlined {
-        font-size: 2rem;
-    }
-    &.rigth {
-        .material-symbols-outlined {
-            margin-left: .3rem
-        }
-    }
-    &.left {
-        .material-symbols-outlined {
-            margin-right: .3rem
-        }
-    }
 }

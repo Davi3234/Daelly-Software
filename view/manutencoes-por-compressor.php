@@ -79,9 +79,9 @@ $manutencoes = $control->listarByCompressor($compressor->id);
 
                         <div class="table-content">
                             <div class="fill-inputs">
-                                <div class="input-box input-position-left">
-                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" placeholder="Digite o seu filtro" />
-                                    <label for="filter-table">Filtro</label>
+                                  <div class="input-box input-position-left">
+                                    <input type="text" name="filter-table" id="filter-table" autocomplete="off" />
+                                    <label for="filter-table">Busca</label>
                                     <i></i>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@ $manutencoes = $control->listarByCompressor($compressor->id);
                                             </td>
                                             <td>
                                                 <div class="actions-form table">
-                                                    <a href="editar-manutencao.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit"><span class="material-symbols-outlined">edit_square</span></a>
+                                                    <a href="editar-manutencao.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">Editar manutenção</span></a>
                                                 </div>
                                             </td>
                                         </tr>

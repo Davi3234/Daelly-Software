@@ -57,20 +57,7 @@ header {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #b8b8b8;
-}
-
-.carregando {
-  position: absolute;
-  margin: 5rem auto;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  background-color: #fff;
-  border-radius: 0.3rem;
-  border: 1px solid #b8b8b8;
-  padding: 1rem 0;
-  text-align: center;
+  background-color: #525252;
 }
 
 .line-division {
@@ -92,6 +79,54 @@ header {
 }
 .icon-content.left .material-symbols-outlined {
   margin-right: 0.3rem;
+}
+
+.carregando {
+  position: absolute;
+  margin: 5rem auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background-color: #fff;
+  border-radius: 0.3rem;
+  border: 1px solid #b8b8b8;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.tooltip-content {
+  position: relative;
+}
+.tooltip-content .tooltip {
+  position: absolute;
+  text-align: center;
+  visibility: hidden;
+  bottom: 150%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-radius: 0.3rem;
+  background-color: #525252;
+  color: #fff;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+  z-index: 500;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tooltip-content .tooltip::after {
+  content: "";
+  position: absolute;
+  background-color: #525252;
+  width: 15px;
+  height: 15px;
+  left: 50%;
+  transform: translate(-50%, 140%) rotate(45deg);
+}
+.tooltip-content:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .fill-inputs {
@@ -230,6 +265,7 @@ header {
 .actions-form.table {
   position: relative;
   height: 100%;
+  overflow: visible !important;
 }
 .actions-form button,
 .actions-form a {
@@ -239,6 +275,7 @@ header {
 .bt-action {
   border-radius: 0.3rem;
   transition: 0.3s;
+  cursor: pointer;
 }
 .bt-action.form {
   padding: 1rem 1.5rem;
@@ -380,7 +417,7 @@ tr {
   top: 100%;
   left: 0;
   width: 100%;
-  box-shadow: 0 10px 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 1rem rgba(0, 0, 0, 0.3);
 }
 .header-content .header-actions .profile-parent .profile-item-children.itens .item {
   width: 100%;
@@ -472,7 +509,7 @@ tr {
 }
 #barra-lateral:hover {
   width: 27rem;
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
 }
 #barra-lateral:hover .item-children.itens.active {
   display: flex;

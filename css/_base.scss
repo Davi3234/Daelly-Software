@@ -16,6 +16,7 @@ $bt-action-edit-color: #1100ff;
 $bt-action-remove-color: #ff0000;
 $bt-action-list-color: #1100ff;
 $border-radius: .3rem;
+$box-shadow-rgba: rgba(0, 0, 0, .3);
 $border: 1px solid $secondary-color;
 * {
     margin: 0;
@@ -67,5 +68,5 @@ header {
     height: 6.5px;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: $secondary-color;
+    background-color: $primary-color;
 }
