@@ -135,8 +135,18 @@ $data .= ']}';
                 <input type="hidden" value="" name="id_maquina_costura" id="id_maquina_costura">
                 <input type="hidden" value="" name="id_maquina_costura_mapa" id="id_maquina_costura_mapa">
                 <div class="close-info material-symbols-outlined">close</div>
-                <strong>Máquina <span id="mc-info-codigo">0</span></strong>
-                <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
+                <div class="mc-info">
+                    <div class="info-left">
+                        <strong>Máquina <span id="mc-info-codigo">0</span></strong>
+                        <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
+                        <p>Aquisição: <span id="mc-info-aquisicao">Nenhum</p>
+                    </div>
+                    <div class="info-right">
+                        <p>Modelo: <span id="mc-info-modelo">Nenhum</p>
+                        <p>Marca: <span id="mc-info-marca">Nenhum</p>
+                        <p>Chassi: <span id="mc-info-chassi">Nenhum</p>
+                    </div>
+                </div>
                 <div class="actions-form">
                     <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
                     <button id="bt-cadastrar-manutencao" type="button" class="bt-action form primary icon-content rigth">Manutenções<span class="material-symbols-outlined">build</span></button>

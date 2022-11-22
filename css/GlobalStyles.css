@@ -600,6 +600,18 @@ tr {
   z-index: 200;
   overflow: auto;
 }
+.pc-mapa #maquina-info-content .mc-info {
+  display: flex;
+  margin: 1rem 0;
+  min-width: 35rem;
+  gap: 1rem;
+}
+.pc-mapa #maquina-info-content .mc-info div {
+  display: flex;
+  flex-direction: column;
+  min-width: 46%;
+  gap: 4%;
+}
 .pc-mapa #maquina-info-content.active {
   display: flex;
 }
@@ -611,7 +623,7 @@ tr {
 }
 .pc-mapa #maquina-info-content .close-info {
   position: absolute;
-  right: 1rem;
+  left: 1rem;
   top: 1rem;
   cursor: pointer;
 }

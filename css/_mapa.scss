@@ -32,6 +32,18 @@
         border-radius: $border-radius;
         z-index: 200;
         overflow: auto;
+        .mc-info {
+            display: flex;
+            margin: 1rem 0;
+            min-width: 35rem;
+            div {
+                display: flex;
+                flex-direction: column;
+                min-width: 46%;
+                gap: 4%;
+            }
+            gap: 1rem;
+        }
         &.active {
             display: flex;
         }
@@ -43,7 +55,7 @@
         }
         .close-info {
             position: absolute;
-            right: 1rem;
+            left: 1rem;
             top: 1rem;
             cursor: pointer;
         }

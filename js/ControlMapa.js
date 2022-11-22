@@ -7,10 +7,10 @@ const btResetarMaquinas = document.getElementById("bt-resetar-maquinas")
 const btGuardarMaquinas = document.getElementById("bt-guardar-maquinas")
 
 function getMaquina({ codigo: cod1 }) {
-    const { id, codigo, posicionado, x, y, tipo, id_maquina_costura } = maquinas.find(({ codigo: cod2 }) => { return cod2 == cod1 })
+    const { id, codigo, posicionado, x, y, tipo, id_maquina_costura, chassi, modelo, marca, aquisicao } = maquinas.find(({ codigo: cod2 }) => { return cod2 == cod1 })
     const tag = document.getElementById("maquina-" + codigo)
 
-    return { maquina: { id, codigo, posicionado, x, y, tipo, id_maquina_costura }, tag }
+    return { maquina: { id, codigo, posicionado, x, y, tipo, id_maquina_costura, chassi, modelo, marca, aquisicao }, tag }
 }
 
 function addMaquinaAtualizada({ id, codigo, posicionado, x, y }) {
@@ -109,6 +109,10 @@ function ControlMapa() {
 
         document.getElementById("mc-info-codigo").innerHTML = maquina.codigo
         document.getElementById("mc-info-tipo").innerHTML = maquina.tipo
+        document.getElementById("mc-info-chassi").innerHTML = maquina.chassi
+        document.getElementById("mc-info-modelo").innerHTML = maquina.modelo
+        document.getElementById("mc-info-marca").innerHTML = maquina.marca
+        document.getElementById("mc-info-aquisicao").innerHTML = maquina.aquisicao
         document.getElementById("id_maquina_costura").value = maquina.id_maquina_costura
         document.getElementById("id_maquina_costura_mapa").value = maquina.id
 
