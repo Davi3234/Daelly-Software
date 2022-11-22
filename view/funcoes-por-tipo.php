@@ -93,7 +93,7 @@ $funcoes = $control->listarByTipo($tipo->id);
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        <th>Ações</th>
+                                        <th style="width: 17rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">

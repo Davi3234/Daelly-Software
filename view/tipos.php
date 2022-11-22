@@ -117,7 +117,7 @@ $tipos = $control->listar();
                                 <thead>
                                     <tr>
                                         <th>Nome</th>
-                                        <th>Ações</th>
+                                        <th style="width: 20rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">
@@ -126,7 +126,7 @@ $tipos = $control->listar();
                                             <td>
                                                 <?php echo $t->nome ?>
                                             </td>
-                                            <td style="width: 19rem;">
+                                            <td>
                                                 <div class="actions-form table">
                                                     <a href="editar-tipo.php?id=<?php echo $t->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">editar tipo</span></a>
                                                     <button rel="<?php echo $t->id ?>" class="excluir bt-action table bt-remove tooltip-content"><span class="material-symbols-outlined">delete</span><span class="tooltip">Excluir tipo</span></button>

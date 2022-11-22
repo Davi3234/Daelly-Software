@@ -100,7 +100,7 @@ $manutencoes = $control->listar();
                                         <th>Data Manutenção</th>
                                         <th>Máquina de costura/Tipo</th>
                                         <th>Compressor</th>
-                                        <th>Ações</th>
+                                        <th style="width: 13rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">
@@ -120,7 +120,7 @@ $manutencoes = $control->listar();
                                                 <?php echo $m->compressor ? $m->compressor : "Nenhum" ?>
                                             </td>
                                             <td>
-                                                <div class="actions-form table" style="min-width: 9rem;">
+                                                <div class="actions-form table">
                                                     <a href="editar-manutencao.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">Editar manutenção</span></a>
                                                     <button rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove tooltip-content"><span class="material-symbols-outlined">delete</span><span class="tooltip">Excluir manutenção</span></button>
                                                 </div>

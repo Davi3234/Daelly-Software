@@ -105,7 +105,7 @@ $funcionarios = $control->listarByGrupo($grupo->id);
                                         <th>CPF</th>
                                         <th>Entrada</th>
                                         <th>Saída</th>
-                                        <th>Ações</th>
+                                        <th style="width: 12rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">

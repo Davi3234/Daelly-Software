@@ -100,7 +100,7 @@ $maquinas = $control->listarByTipo($tipo->id);
                                         <th>Marca</th>
                                         <th>Chassi</th>
                                         <th>Data de Aquisição</th>
-                                        <th>Ações</th>
+                                        <th style="width: 13rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">

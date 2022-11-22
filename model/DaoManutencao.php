@@ -70,7 +70,7 @@ class DaoManutencao
     function listar()
     {
         try {
-            return $this->conexao->query("select m.*, maq.codigo as maquina, t.nome as tipo, c.codigo as compressor from manutencao m left join maquina_costura maq on maq.id = m.id_maquina_costura left join tipo t on t.id = maq.id_tipo left join compressor c on c.id = m.id_compressor", PDO::FETCH_OBJ);
+            return $this->conexao->query("select m.*, maq.codigo as maquina, t.nome as tipo, c.codigo as compressor from manutencao m left join maquina_costura maq on maq.id = m.id_maquina_costura left join tipo t on t.id = maq.id_tipo left join compressor c on c.id = m.id_compressor order by m.data_manutencao desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -79,7 +79,7 @@ class DaoManutencao
     function listarByMaquina($id)
     {
         try {
-            return $this->conexao->query("select * from manutencao where id_maquina_costura = " . $id, PDO::FETCH_OBJ);
+            return $this->conexao->query("select * from manutencao where id_maquina_costura = " . $id . " order by data_manutencao desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -88,7 +88,7 @@ class DaoManutencao
     function listarByCompressor($id)
     {
         try {
-            return $this->conexao->query("select * from manutencao where id_compressor = " . $id, PDO::FETCH_OBJ);
+            return $this->conexao->query("select * from manutencao where id_compressor = " . $id . " order by data_manutencao desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }

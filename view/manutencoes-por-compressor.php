@@ -90,7 +90,7 @@ $manutencoes = $control->listarByCompressor($compressor->id);
                                     <tr>
                                         <th>Descrição</th>
                                         <th>Data Manutenção</th>
-                                        <th>Ações</th>
+                                        <th style="width: 8rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">

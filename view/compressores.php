@@ -107,7 +107,7 @@ $compressores = $control->listar();
                                         <th>Código</th>
                                         <th>Marca</th>
                                         <th>Modelo</th>
-                                        <th>Ações</th>
+                                        <th style="width: 17.5rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">

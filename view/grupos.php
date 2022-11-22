@@ -102,7 +102,7 @@ $grupos = $control->listar();
                                 <thead>
                                     <tr>
                                         <th>Número</th>
-                                        <th>Ações</th>
+                                        <th style="width: 17rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">

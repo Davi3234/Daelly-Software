@@ -109,7 +109,7 @@ $maquinas = $control->listar();
                                         <th>Chassi</th>
                                         <th>Data de Aquisição</th>
                                         <th>Tipo</th>
-                                        <th>Ações</th>
+                                        <th style="width: 17rem;">Ações</th>
                                     </tr>
                                 </thead>
                                 <tbody id="table-results">
@@ -134,7 +134,7 @@ $maquinas = $control->listar();
                                                 <?php echo $m->tipo ?>
                                             </td>
                                             <td>
-                                                <div class="actions-form table" style="min-width: 14rem;">
+                                                <div class="actions-form table">
                                                     <a href="editar-maquina-costura.php?id=<?php echo $m->id ?>" class="editar bt-action table bt-edit tooltip-content"><span class="material-symbols-outlined">edit_square</span><span class="tooltip">Editar máquina de costura</span></a>
                                                     <button rel="<?php echo $m->id ?>" class="excluir bt-action table bt-remove tooltip-content"><span class="material-symbols-outlined">delete</span><span class="tooltip">Excluir máquina de costura</span></button>
                                                     <a href="manutencoes-por-maquina.php?id=<?php echo $m->id ?>" class="bt-action table bt-list tooltip-content"><span class="material-symbols-outlined">build</span><span class="tooltip">Manutenções dessa máquina de costura</span></a>
