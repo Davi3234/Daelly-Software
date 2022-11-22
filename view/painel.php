@@ -108,7 +108,7 @@ $data .= ']}';
                                     <?php if ($maquinasMapa) foreach ($maquinasMapa as $mc) { ?>
                                         <div draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>" style="left: <?php echo $mc->x ?>px; top: <?php echo $mc->y ?>px; width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;">
                                             <div class="mc-content">
-                                                <img src="../img/mc-mapa/mc-medium.png" alt="">
+                                                <img src="../assets/imgs/icons/mc-mapa/mc-medium.png" alt="">
                                                 <p><?php echo $mc->codigo ?></p>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@ $data .= ']}';
                                 <?php if ($maquinasInventario) foreach ($maquinasInventario as $mc) { ?>
                                     <div style="width: <?php echo $mapa->largura_mc ?>px; height: <?php echo $mapa->altura_mc ?>px;" draggable="true" ondragstart="drag(event)" class="maquinas" id="maquina-<?php echo $mc->codigo ?>">
                                         <div class="mc-content">
-                                            <img src="../img/mc-mapa/mc-medium.png" alt="">
+                                            <img src="../assets/imgs/icons/mc-mapa/mc-medium.png" alt="">
                                             <p><?php echo $mc->codigo ?></p>
                                         </div>
                                     </div>
