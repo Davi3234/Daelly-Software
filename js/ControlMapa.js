@@ -7,18 +7,18 @@ const btResetarMaquinas = document.getElementById("bt-resetar-maquinas")
 const btGuardarMaquinas = document.getElementById("bt-guardar-maquinas")
 
 function getMaquina({ codigo: cod1 }) {
-    const { id, codigo, posicionado, x, y, tipo } = maquinas.find(({ codigo: cod2 }) => { return cod2 == cod1 })
+    const { id, codigo, posicionado, x, y, tipo, id_maquina_costura } = maquinas.find(({ codigo: cod2 }) => { return cod2 == cod1 })
     const tag = document.getElementById("maquina-" + codigo)
 
-    return { maquina: { id, codigo, posicionado, x, y, tipo }, tag }
+    return { maquina: { id, codigo, posicionado, x, y, tipo, id_maquina_costura }, tag }
 }
 
 function addMaquinaAtualizada({ id, codigo, posicionado, x, y }) {
     maquinasAlteradas.push({ id, codigo, posicionado, x, y })
 }
 
-function removerMaquinaAtualizada(mc) {
-    maquinasAlteradas.splice(mc, 1)
+function removerMaquinaAtualizada({ codigo }) {
+    maquinasAlteradas.splice(maquinasAlteradas.map(m => m.codigo).indexOf(codigo), 1)
 }
 
 function atualizarListaMaquinasAlteradas(mcChanged) {
@@ -39,13 +39,14 @@ function atualizarListaMaquinasAlteradas(mcChanged) {
             if (mcChanged.x != mcOrigin.x || mcChanged.y != mcOrigin.y) { // Alterou a posição
                 mcInUpdate.x = mcChanged.x
                 mcInUpdate.y = mcChanged.y
+                mcInUpdate.posicionado = 1
                 return
             }
             // Mesma posição do mapa
             removerMaquinaAtualizada(mcInUpdate)
             return
         }
-        // Do mapa/inventario para o inventário
+        // Do inventario para o inventário
         removerMaquinaAtualizada(mcInUpdate)
         return
     }
@@ -108,11 +109,11 @@ function ControlMapa() {
 
         document.getElementById("mc-info-codigo").innerHTML = maquina.codigo
         document.getElementById("mc-info-tipo").innerHTML = maquina.tipo
-        document.getElementById("id_maquina_costura").value = maquina.id
+        document.getElementById("id_maquina_costura").value = maquina.id_maquina_costura
+        document.getElementById("id_maquina_costura_mapa").value = maquina.id
 
         const mc = maquinasAlteradas.find(({ codigo }) => { return codigo == maquina.codigo })
         document.getElementById("bt-guardar-maquina").classList.toggle("active", mc ? mc.posicionado == 1 : maquina.posicionado == 1)
-        console.log(mc ? mc.posicionado == 1 : maquina.posicionado == 1, mc.posicionado == 1);
 
         maquinaInfo.classList.toggle("active", true)
     }
@@ -136,7 +137,6 @@ function ControlMapa() {
     const maquinaDragClickUpMapa = (ev) => {
         ev.preventDefault()
         const tag = document.getElementById("" + ev.dataTransfer.getData("text"))
-        console.log(tag);
         addMaquinaMapa(tag, ev.offsetX - (dimensao.maquina.largura / 2), ev.offsetY - (dimensao.maquina.altura / 2))
     }
 
@@ -190,6 +190,11 @@ function ControlMapa() {
 
     const guardarMaquinas = () => {
         document.querySelectorAll(".maquinas").forEach(a => addMaquinaInventario(a))
+        maquinaInfo.classList.toggle("active", false)
+    }
+
+    const guardarMaquina = () => {
+        addMaquinaInventario(document.querySelector(".maquinas#maquina-" + String(document.getElementById("mc-info-codigo").innerHTML)))
     }
 
     iniciarComponents()
@@ -200,7 +205,8 @@ function ControlMapa() {
         maquinaDragClickUpMapa,
         maquinaDragClickUpInventario,
         resetarMaquinas,
-        guardarMaquinas
+        guardarMaquinas,
+        guardarMaquina,
     }
 }
 
@@ -232,4 +238,8 @@ function resetarMaquinasAlteradas() {
 
 function guardarMaquinas() {
     control && control.guardarMaquinas()
+}
+
+function guardarMaquina() {
+    control && control.guardarMaquina()
 }

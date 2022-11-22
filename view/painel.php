@@ -133,12 +133,13 @@ $data .= ']}';
             </div>
             <div id="maquina-info-content">
                 <input type="hidden" value="" name="id_maquina_costura" id="id_maquina_costura">
+                <input type="hidden" value="" name="id_maquina_costura_mapa" id="id_maquina_costura_mapa">
                 <div class="close-info material-symbols-outlined">close</div>
                 <strong>Máquina <span id="mc-info-codigo">0</span></strong>
                 <p>Tipo: <span id="mc-info-tipo">Nenhum</p>
                 <div class="actions-form">
                     <button type="button" id="bt-guardar-maquina" class="bt-action form primary icon-content rigth">Adicionar a máquina ao inventário<span class="material-symbols-outlined">dynamic_feed</span></button>
-                    <button id="bt-cadastrar-manutencao" type="button" class="bt-action form primary icon-content rigth">Manutenção<span class="material-symbols-outlined">build</span></button>
+                    <button id="bt-cadastrar-manutencao" type="button" class="bt-action form primary icon-content rigth">Manutenções<span class="material-symbols-outlined">build</span></button>
                     <button id="bt-editar-maquina" type="button" class="bt-action form primary icon-content rigth">Editar máquina<span class="material-symbols-outlined">edit_square</span></button>
                 </div>
             </div>
@@ -161,6 +162,7 @@ $data .= ']}';
             $('.carregando').fadeOut()
             $('.conteudo').fadeIn()
             $('#bt-guardar-maquinas').click(guardarMaquinas)
+            $('#bt-guardar-maquina').click(guardarMaquina)
             $('#bt-salvar-maquinas').click(gravarMaquinasAlteradas)
             $('#bt-resetar-maquinas').click(resetarMaquinasAlteradas)
             $('#editar-maquinas-mapa').submit((ev) => {
@@ -177,7 +179,7 @@ $data .= ']}';
             })
             $('#bt-cadastrar-manutencao').click((ev) => {
                 const id = Number(document.getElementById("id_maquina_costura").value)
-                $(location).attr("href", "cadastro-manutencao.php?maquina-costura=" + id);
+                $(location).attr("href", "manutencoes-por-maquina.php?id=" + id);
             })
 
             $(".item-children.header").click(({
