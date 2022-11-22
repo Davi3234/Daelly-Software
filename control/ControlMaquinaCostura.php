@@ -135,8 +135,8 @@ class ControlMaquinaCostura
         return $this->daoMaquina->listarByTipo($id_tipo);
     }
 
-    public function isMcByTipo($id_tipo)
+    public function listarMCByTipo($id_tipo)
     {
-        return $this->daoMaquina->isMcByTipo($id_tipo);
+        return $this->daoMaquina->listarMCByTipo($id_tipo);
     }
 }

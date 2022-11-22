@@ -27,7 +27,7 @@ $controlFunca = new ControlFuncao();
 $controlFF = new ControlFuncionarioFuncao();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!$controlMC->isMcByTipo(addslashes($_POST['id'])) > 0) {
+    if (!$controlMC->listarMCByTipo(addslashes($_POST['id'])) > 0) {
         if ($controlFunca->desvincularByTipo(addslashes($_POST['id']))) {
             if ($control->excluir(addslashes($_POST['id']))) {
                 $mensagem = "Tipo excluído com sucesso";

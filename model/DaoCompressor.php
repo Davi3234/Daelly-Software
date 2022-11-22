@@ -46,7 +46,7 @@ class DaoCompressor
     function listar()
     {
         try {
-            return $this->conexao->query("select * from compressor", PDO::FETCH_OBJ);
+            return $this->conexao->query("select * from compressor order by id desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }

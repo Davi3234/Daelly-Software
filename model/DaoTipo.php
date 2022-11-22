@@ -42,7 +42,7 @@ class DaoTipo
     function listar()
     {
         try {
-            return $this->conexao->query("select * from tipo", PDO::FETCH_OBJ);
+            return $this->conexao->query("select * from tipo order by id desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }

@@ -42,7 +42,7 @@ class DaoMaquinaCostura
     function listar()
     {
         try {
-            return $this->conexao->query("select mc.*, tip.nome as tipo from maquina_costura mc join tipo tip on mc.id_tipo = tip.id", PDO::FETCH_OBJ);
+            return $this->conexao->query("select mc.*, tip.nome as tipo from maquina_costura mc join tipo tip on mc.id_tipo = tip.id order by mc.aquisicao desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
@@ -51,16 +51,16 @@ class DaoMaquinaCostura
     function listarByTipo($id_tipo)
     {
         try {
-            return $this->conexao->query("select mc.*, tip.nome as tipo from maquina_costura mc join tipo tip on mc.id_tipo = tip.id where tip.id = " . $id_tipo, PDO::FETCH_OBJ);
+            return $this->conexao->query("select mc.*, tip.nome as tipo from maquina_costura mc join tipo tip on mc.id_tipo = tip.id where tip.id = " . $id_tipo . " order by mc.aquisicao desc", PDO::FETCH_OBJ);
         } catch (PDOException $e) {
             return false;
         }
     }
 
-    function isMcByTipo($id_tipo)
+    function listarMCByTipo($id_tipo)
     {
         try {
-            return $this->conexao->query("select count(mc.id) as cont from maquina_costura mc join tipo tip on mc.id_tipo = tip.id where tip.id = " . $id_tipo)->fetchColumn();
+            return $this->conexao->query("select count(mc.id) as cont from maquina_costura mc join tipo tip on mc.id_tipo = tip.id where tip.id = " . $id_tipo . " order by mc.aquisicao desc")->fetchColumn();
         } catch (PDOException $e) {
             return false;
         }
