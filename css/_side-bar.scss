@@ -24,10 +24,17 @@
         .item-parent {
             .item-children {
                 &.header {
+                    &.active {
 
+                    }
                 }
                 &.itens {
-                    padding-inline: 2rem;
+                    .item {
+
+                    }
+                    &.active {
+
+                    }
                 }
             }
         }
