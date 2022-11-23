@@ -23,6 +23,9 @@
         }
         .item-parent {
             .item-children {
+                span {
+                    pointer-events: none;
+                }
                 cursor: pointer;
                 &.header {
                     display: flex;
