@@ -1,17 +1,21 @@
 <?php
 $menuItens = [
     ["inicio", "painel.php", "#", "Início", "home", "", "", false],
-    ["funcionario", "cadastro-funcionario.php", "funcionarios.php", "Funcionário", "group", "Novo funcionário", "Funcionários", true],
-    ["funcao", "cadastro-funcao.php", "funcoes.php", "Função", "psychology", "Nova função", "Funções", true],
     ["tipo", "cadastro-tipo.php", "tipos.php", "Tipo", "category", "Novo tipo", "Tipos", true],
+    ["funcao", "cadastro-funcao.php", "funcoes.php", "Função", "psychology", "Nova função", "Funções", true],
     ["grupo", "cadastro-grupo.php", "grupos.php", "Grupo", "groups", "Novo grupo", "Grupos", true],
+    ["funcionario", "cadastro-funcionario.php", "funcionarios.php", "Funcionário", "group", "Novo funcionário", "Funcionários", true],
     ["maquina-costura", "cadastro-maquina-costura.php", "maquinas-costura.php", "Máquina de Costura", "tag", "Nova máquina de costura", "Máquinas de Costura", true],
     ["compressor", "cadastro-compressor.php", "compressores.php", "Compressor", "iron", "Novo compressor", "Compressores", true],
-    ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", "build", "Nova manutenção", "Manutenções", true]
+    ["manutencao", "cadastro-manutencao.php", "manutencoes.php", "Manutenção", "build", "Nova manutenção", "Manutenções", true],
 ];
 ?>
 
 <div class="barra-lateral-content">
+    <i class="line-division"></i>
+    <div class="item-parent menu">
+            <div id="i-menu" class="item-children header no-expansive icon-content left"><span class="material-symbols-outlined">menu</span></div>
+    </div>
     <i class="line-division"></i>
     <?php foreach ($menuItens as $item) { ?>
         <div class="item-parent">

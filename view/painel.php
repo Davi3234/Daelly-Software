@@ -169,6 +169,9 @@ $data .= ']}';
 
         $(document).ready(function() {
             $('#i-inicio').addClass("active")
+            $("#i-menu").click(() => {
+                $("#barra-lateral").toggleClass("active")
+            })
             $('.carregando').fadeOut()
             $('.conteudo').fadeIn()
             $('#bt-guardar-maquinas').click(guardarMaquinas)
