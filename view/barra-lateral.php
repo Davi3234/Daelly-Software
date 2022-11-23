@@ -13,20 +13,16 @@ $menuItens = [
 
 <div class="barra-lateral-content">
     <i class="line-division"></i>
-    <div class="item-parent menu">
-            <div id="i-menu" class="item-children header no-expansive icon-content left"><span class="material-symbols-outlined">menu</span></div>
-    </div>
-    <i class="line-division"></i>
     <?php foreach ($menuItens as $item) { ?>
         <div class="item-parent">
             <?php if ($item[7]) { ?>
-                <div id="i-<?php echo $item[0] ?>" class="item-children header icon-content left"><span class="material-symbols-outlined"><?php echo $item[4] ?></span><?php echo $item[3] ?></div>
+                <div id="i-<?php echo $item[0] ?>" class="item-children header icon-content left"><span class="material-symbols-outlined"><?php echo $item[4] ?></span><span><?php echo $item[3] ?></span></div>
                 <div id="i-expansive-<?php echo $item[0] ?>" class="item-children itens">
                     <a href="<?php echo $item[2] ?>" class="item icon-content left"><span class="material-symbols-outlined">list</span><span><?php echo $item[6] ?></span></a>
                     <a href="<?php echo $item[1] ?>" class="item icon-content left"><span class="material-symbols-outlined">library_add</span><span><?php echo $item[5] ?></span></a>
                 </div>
             <?php } else { ?>
-                <a href="<?php echo $item[1] ?>" id="i-<?php echo $item[0] ?>" class="item-children header no-expansive icon-content left"><span class="material-symbols-outlined"><?php echo $item[4] ?></span><?php echo $item[3] ?></a>
+                <a href="<?php echo $item[1] ?>" id="i-<?php echo $item[0] ?>" class="item-children header no-expansive icon-content left"><span class="material-symbols-outlined"><?php echo $item[4] ?></span><span><?php echo $item[3] ?></span></a>
             <?php } ?>
         </div>
     <?php } ?>

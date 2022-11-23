@@ -13,17 +13,6 @@ $(document).ready(function() {
         }
         tag.classList.toggle("active");
     })
-    $(".item-children.header").hover(({ target }) => {
-        if (target.classList.contains("no-expansive")) { return }
-        const tagI = document.querySelector(".item-children.itens#i-expansive-" + (target.id.substr(2)))
-        if (!tagI) { return }
-        tagI.classList.toggle("show", true);
-        const tagH = document.querySelector(".item-children.header#i-" + (target.id.substr(2)))
-        if (!tagH) { return }
-        tagH.classList.toggle("show", true);
-    }, ({ target }) => {
-        document.querySelectorAll(".item-children.itens.show").forEach(a => { a.classList.toggle("show", false) })
-    })
     $(".close-alert").click(closeAlert)
     $("#i-menu").click(() => {
         $("#barra-lateral").toggleClass("active")

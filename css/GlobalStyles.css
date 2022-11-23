@@ -495,6 +495,53 @@ tr {
   font-size: 2.4rem;
   margin-right: 1rem;
 }
+#barra-lateral .barra-lateral-content .item-parent .item-children {
+  cursor: pointer;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.header {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  padding-left: 1.1rem;
+  position: relative;
+  transition: 0.3s;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.header.active {
+  background-color: #1c9397;
+  color: #fff;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.header.active:hover {
+  background-color: #167477 !important;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.header:hover {
+  background-color: #b8b8b8 !important;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens {
+  display: none;
+  flex-direction: column;
+  background-color: #f0f0f0;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens .item {
+  padding: 1rem 0 1rem 3rem;
+  transition: 0.3s;
+}
+#barra-lateral .barra-lateral-content .item-parent .item-children.itens .item:hover {
+  background-color: #b8b8b8;
+}
+#barra-lateral .barra-lateral-content .item-parent:hover .item-children.header {
+  background-color: #d2d2d2;
+}
+#barra-lateral .barra-lateral-content .item-parent:hover .item-children.header.active {
+  background-color: #167477;
+}
+#barra-lateral:hover {
+  width: 27rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3);
+}
+#barra-lateral:hover .item-children.itens.active {
+  display: flex;
+}
+
 #painel-comando {
   position: relative;
   padding: 4rem;

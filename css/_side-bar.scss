@@ -23,114 +23,57 @@
         }
         .item-parent {
             .item-children {
+                cursor: pointer;
                 &.header {
+                    display: flex;
+                    gap: .5rem;
+                    padding: 1rem;
+                    padding-left: 1.1rem;
+                    position: relative;
+                    transition: .3s;
                     &.active {
-
+                        background-color: $primary-color;
+                        color: #fff;
+                        &:hover {
+                            background-color: $primary-color-darkness !important;
+                        }
+                    }
+                    &:hover {
+                        background-color: darken($neutro-color, 20) !important;
                     }
                 }
                 &.itens {
+                    display: none;
+                    flex-direction: column;
+                    background-color: #f0f0f0;
                     .item {
-
+                        padding: 1rem 0 1rem 3rem;
+                        transition: .3s;
+                        &:hover {
+                            background-color: darken($neutro-color, 20);
+                        }
                     }
+                }
+            }
+            &:hover {
+                .item-children.header {
+                    background-color: darken($neutro-color, 10);
                     &.active {
-
+                        background-color: $primary-color-darkness;
                     }
                 }
             }
         }
     }
+    &:hover {
+        width: 27rem;
+        box-shadow: 0 0 1rem $box-shadow-rgba;
+        .item-children {
+            &.itens {
+                &.active {
+                    display: flex;
+                }
+            }
+        }
+    }
 }
-
-// #barra-lateral {
-//     position: absolute;
-//     width: 5rem;
-//     height: 100%;
-//     left: 0;
-//     background-color: #fff;
-//     border-right: $border;
-//     z-index: 20;
-//     overflow-y: auto;
-//     overflow-x: hidden;
-//     font-size: 1.4rem;
-//     transition: .3s;
-//     .barra-lateral-content {
-//         position: absolute;
-//         display: flex;
-//         flex-direction: column;
-//         width: 27rem;
-//         overflow-y: auto !important;
-//         overflow-x: none;
-//         .material-symbols-outlined {
-//             font-size: 2.4rem;
-//             margin-right: 1rem;
-//         }
-//         .item-parent {
-//             .item-children {
-//                 cursor: pointer;
-//                 &.header {
-//                     display: flex;
-//                     gap: .5rem;
-//                     padding: 1rem;
-//                     padding-left: 1.1rem;
-//                     position: relative;
-//                     transition: .3s;
-//                     &.active {
-//                         background-color: $primary-color;
-//                         color: #fff;
-//                         &:hover {
-//                             background-color: $primary-color-darkness !important;
-//                         }
-//                     }
-//                     &:hover {
-//                         background-color: darken($neutro-color, 20) !important;
-//                     }
-//                 }
-//                 &.itens {
-//                     display: none;
-//                     flex-direction: column;
-//                     background-color: #f0f0f0;
-//                     .item {
-//                         padding: 1rem 0 1rem 3rem;
-//                         transition: background-color .3s max-height .3s;
-//                         &:hover {
-//                             background-color: darken($neutro-color, 20);
-//                         }
-//                     }
-//                 }
-//             }
-//             &:hover {
-//                 .item-children {
-//                     position: relative;
-//                     &.header {
-//                         background-color: darken($neutro-color, 10);
-//                         &.active {
-//                             background-color: $primary-color-darkness;
-//                         }
-//                     }
-//                 }
-//             }
-//         }
-//     }
-//     &.active {
-//         width: 27rem;
-//         box-shadow: 0 0 1rem $box-shadow-rgba;
-//         .show {
-//             position: relative;
-//         }
-//         .item-parent.menu {
-//             .item-children {
-//                 &.header {
-//                     display: flex;
-//                     justify-content: center;
-//                 }
-//             }
-//         }
-//         .item-children {
-//             &.itens {
-//                 &.active {
-//                     display: flex;
-//                 }
-//             }
-//         }
-//     }
-// }
