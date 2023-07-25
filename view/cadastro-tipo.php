@@ -82,6 +82,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <i></i>
                             </div>
                         </div>
+                        <div class="fill-inputs">
+                            <div class="input-box input-position-left">
+                                <input value=""  type="text" name="" id="">
+                                <label for="nome">Teste1</label>
+                                <i></i>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
