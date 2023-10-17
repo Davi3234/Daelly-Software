@@ -1,7 +1,7 @@
 <?php
 
 class AuthRouters {
-    static routers = [
-        "hello" => "world"
+    public static $routers = [
+        "sign-in" => "sign-in"
     ];
 }
