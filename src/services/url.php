@@ -31,4 +31,8 @@ class URL {
     static function getRouterArgs() {
         return explode("/", substr(URL::getRouterURL(), 1));
     }
+
+    static function getRouterArgsByIndex($index) {
+        return explode("/", substr(URL::getRouterURL(), 1))[$index];
+    }
 }

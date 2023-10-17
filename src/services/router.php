@@ -1,17 +1,17 @@
 <?php
 
 class Router {
-    static function mergeRouters(array ...$arrays) {
-        return array_merge(...$arrays);
+    static function getRoutersParamsByIndex($index = 0, $baseDir = "public") {
+        return array_keys(Router::getRoutersParams($baseDir)[$index])[$index];
     }
 
-    static function getPathsRouter($path) {
+    static function getRoutersParams($baseDir = "public") {
         $paths = [];
 
-        foreach (new DirectoryIterator($path) as $fileInfo) {
+        foreach (new DirectoryIterator($baseDir) as $fileInfo) {
             if (!$fileInfo->isDot()) {
                 if ($fileInfo->isDir()) {
-                    $paths[] = [$fileInfo->getFilename() => Router::getPathsRouter($fileInfo->getPathname())];
+                    $paths[] = [$fileInfo->getFilename() => Router::getRoutersParams($fileInfo->getPathname())];
                 }
             }
         }
