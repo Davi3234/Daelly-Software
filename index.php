@@ -1,26 +1,9 @@
 <?php
 
-require_once "src/services/router.php";
+require_once "src/services/url.php";
+require_once "src/services/navigation.php";
 
-$words = Router::getRouterArgs();
+// var_dump($_GET);
 
-echo Router::getRouterURL() . "<br>";
-
-foreach ($words as $currentWord) {
-    echo $currentWord . "<br>";
-}
-
-// $url = $_GET['url'] ?? '/';
-
-// $routes = [
-//     '/' => 'public/index.php',
-//     '/about' => 'about.php',
-//     '/contact' => 'contact.php',
-//     '/auth/sign-in' => '/public/auth/sign-in.php',
-// ];
-
-// if (array_key_exists($url, $routes)) {
-//     // include $routes[$url];
-// } else {
-//     include 'public/page-404.php';
-// }
+echo filter_input(INPUT_GET, "url", FILTER_DEFAULT);
+?>
