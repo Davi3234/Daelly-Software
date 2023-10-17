@@ -9,3 +9,4 @@ echo "<br>";
 print_r(URL::getRouterArgsByIndex(1));
 echo "<br>";
 print_r(URL::getRouterArgsByIndex(2));
+echo "<br>";
