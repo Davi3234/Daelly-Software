@@ -1,12 +1,7 @@
 <?php
 require_once "src/services/router.php";
 require_once "src/services/url.php";
+require_once "src/services/navigation.php";
+require_once "src/util/index.php";
 
-print_r(Router::getRoutersParams());
-echo "<br>";
-print_r(URL::getRouterArgsByIndex(0));
-echo "<br>";
-print_r(URL::getRouterArgsByIndex(1));
-echo "<br>";
-print_r(URL::getRouterArgsByIndex(2));
-echo "<br>";
+include "public/index.php";

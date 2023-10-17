@@ -20,4 +20,18 @@ class Router {
 
         return $paths;
     }
+
+    static function getRoutersParams($baseDir = "public") {
+        $paths = [];
+
+        foreach (new DirectoryIterator($baseDir) as $fileInfo) {
+            if (!$fileInfo->isDot()) {
+                if ($fileInfo->isDir()) {
+                    $path = $baseDir . "/" . $fileInfo->getFilename();
+                }
+            }
+        }
+
+        return $paths;
+    }
 }
