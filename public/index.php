@@ -1,6 +1,6 @@
 <?php
 function RenderPaths() {
-    $path = URL::getRoutersParams()[0];
+    $path = URL::getRouterArgs()[0];
 
     if (!isset($path) || $path == "/" || $path == "/home") {
         return;

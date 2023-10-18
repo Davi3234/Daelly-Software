@@ -21,7 +21,7 @@ class Router {
         return $paths;
     }
 
-    static function getRoutersParams($baseDir = "public") {
+    static function getChildrenRoutersParams($baseDir = "public") {
         $paths = [];
 
         foreach (new DirectoryIterator($baseDir) as $fileInfo) {
