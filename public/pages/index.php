@@ -1,3 +1,3 @@
 <?php
-
-echo 'Public:';
+echo "<br>PAGES<br>";
+Render::getInstance()->include(__DIR__);

@@ -37,10 +37,13 @@ class URL
 
     function getURLRouters()
     {
-        $router = str_replace('//', '/', str_replace('/' . $this->getBaseRouter(), '', $_SERVER['REQUEST_URI']));
+        $router = str_replace('//', '/', $this->getBaseRouter() ? str_replace('/' . $this->getBaseRouter(), '', $_SERVER['REQUEST_URI']) : $_SERVER['REQUEST_URI']);
 
         while (substr($router, -1) == '/') {
             $router = substr($router, 0, -1);
+        }
+        while (substr($router, 0, 1) == '/') {
+            $router = substr($router, 1);
         }
 
         return $router;
@@ -48,16 +51,16 @@ class URL
 
     function getBaseRouter()
     {
-        return $GLOBALS['BASE_PATH_ROUTER_IGNORE'];
+        return $GLOBALS['GLOBAL_PREFIX_ROUTER'];
     }
 
     function getURLRoutersPaths()
     {
-        return explode('/', substr($this->getURLRouters(), 1));
+        return explode('/', $this->getURLRouters());
     }
 
     function getURLRoutersPathsByIndex($index)
     {
-        return explode('/', substr($this->getURLRouters(), 1))[$index];
+        return explode('/', $this->getURLRouters())[$index];
     }
 }

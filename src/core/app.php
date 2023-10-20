@@ -18,11 +18,11 @@ class App
     function factory($publicBasePath)
     {
         Render::getInstance()->initComponents($publicBasePath);
-        $this->redirect();
+        $this->loadIndexRouter();
     }
 
-    function redirect()
+    function loadIndexRouter()
     {
-        Render::getInstance()->performRedirect();
+        Render::getInstance()->loadIndexRouter();
     }
 }

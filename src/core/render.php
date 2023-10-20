@@ -48,51 +48,65 @@ class Render
         return $path;
     }
 
-    function renderFiles()
-    {
-        $path = $this->getPath();
-
-        $basePath = $this->basePath;
-
-        $pathInArray = ["/"];
-
-        if ($path) {
-            $pathInArray = explode('/', $path);
-        }
-
-        foreach ($pathInArray as $key => $arg) {
-            $basePath .= $arg . '/';
-
-            $this->defineFilesToRouter($basePath, $arg);
+    function loadIndexRouter() {
+        if (is_file($this->basePath . '/index.php')) {
+            include $this->basePath . '/index.php';
         }
     }
 
-    function defineFilesToRouter($base, $router)
-    {
-        if (is_file($base . 'layout.php')) {
-            include $base . 'layout.php';
+    function isValidInclude($dir, $target) {
+        $path = str_replace($_SERVER["DOCUMENT_ROOT"] . "/", "", $dir) . "/" . $target;
+
+        if (is_dir($path)) {
+            return true;
+        }
+
+        if (is_file($path . ".php")) {
+            return true;
+        }
+
+        return false;
+    }
+
+    function include($dir, $target = null) {
+        if (!$target) {
+            $this->includeNextRouter($dir);
 
             return;
         }
 
-        if (!is_dir($base)) {
-            if (is_file($base . 'page-404.php')) {
-                include $base . 'page-404.php';
-
-                return;
-            }
-
-            if (is_file($this->basePath . '/page-404.php')) {
-                include $this->basePath . '/page-404.php';
-            } else {
-                header(substr($base, -strlen($router . '/')));
-            }
-
+        if (!$this->isValidInclude($dir, $target)) {
             return;
         }
 
-        if (is_file($base . 'index.php')) {
-            include $base . 'index.php';
+        $base = str_replace($_SERVER["DOCUMENT_ROOT"] . "/", "", $dir);
+
+        $path = $base . "/" . $target;
+
+        if (is_dir($path)) {
+            include $path . "/index.php";
+            return;
+        }
+
+        include $path . ".php";
+    }
+
+    function includeNextRouter($dir) {
+        $path = substr($this->getPath(), 1);
+
+        $base = str_replace($_SERVER["DOCUMENT_ROOT"] . "/", "", $dir);
+        
+        $fullPath = $base . "/" . explode("/", str_replace(str_replace($this->basePath, "", $base), "", $path))[0];
+
+        echo "<br>" . $this->basePath;
+        echo "<br>" . $base;
+        echo "<br>" . $path;
+        echo "<br>!" . str_replace($this->basePath, "", $base);
+        echo "<br>!" . str_replace(str_replace($this->basePath . "/", "", $base), "", $path);
+        echo "<br>" . $fullPath;
+
+        if (is_dir($fullPath)) {
+            include $fullPath . "/index.php";
         }
     }
 }

@@ -1,3 +1,4 @@
 <?php
 
-echo 'User:';
+echo "<br>USER<br>";
+Render::getInstance()->include(__DIR__);
