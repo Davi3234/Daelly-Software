@@ -98,6 +98,10 @@ class Render
 
         $fullPath = $base . explode("/", str_replace(str_replace($this->basePath . "/", "", $base), "", $path))[0];
 
+        if ($base === $fullPath) {
+            return;
+        }
+
         if (is_dir($fullPath)) {
             include $fullPath . "/index.php";
         }
