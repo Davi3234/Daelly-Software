@@ -6,8 +6,16 @@ echo "<br>PAGES<br>";
 
 Render::getInstance()->include(__DIR__);
 
-if (Render::getInstance()->existsRouter("user")) {
-    echo "!!!!";
-} else {
-    echo "????";
-}
+?>
+
+<script>
+    window.onload = () => {
+        async function App() {
+            const response = await API.post("src/index.php", {hello: "world"})
+
+            console.log(response)
+        }
+
+        App()
+    }
+</script>
