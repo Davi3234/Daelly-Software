@@ -54,7 +54,7 @@ class Render
         }
     }
 
-    function isValidInclude($dir, $target) {
+    function isValidInclude($dir, $target = "") {
         $path = str_replace($_SERVER["DOCUMENT_ROOT"] . "/", "", $dir) . "/" . $target;
 
         if (is_dir($path)) {
@@ -66,6 +66,10 @@ class Render
         }
 
         return false;
+    }
+
+    function existsRouter($router) {
+        return $this->isValidInclude($this->basePath, $router);
     }
 
     function include($dir, $target = null) {

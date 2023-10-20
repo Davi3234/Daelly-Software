@@ -1,10 +1,18 @@
+<?php
+$routers = [
+    "/" => "Home",
+    "/user" => "User",
+    "/user/create" => "User - Create",
+    "/user/list" => "User - List",
+    "/user/update" => "User - Update",
+    "/auth" => "Auth",
+    "/auth/sign-up" => "Auth - Sign-Up",
+    "/auth/sign-in" => "Auth - Sign-In",
+]
+?>
+
 <nav>
-    <a href="/">Home</a><br />
-    <a href="/user">User</a><br />
-    <a href="/user/create">User - Create</a><br />
-    <a href="/user/list">User - List</a><br />
-    <a href="/user/update">User - Update</a><br />
-    <a href="/auth">Auth</a><br />
-    <a href="/auth/sign-up">Auth - Sign-Up</a><br />
-    <a href="/auth/sign-in">Auth - Sign-In</a><br />
+    <? foreach($routers as $router => $content) { if (!Render::getInstance()->existsRouter($router)) {continue;} ?>
+        <a href="<?= $router ?>"><?= $content ?></a><br />
+    <? } ?>
 </nav>
