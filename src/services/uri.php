@@ -1,6 +1,7 @@
 <?php
 
-class URI {
+class URI
+{
 
     /**
      * $protocolo
@@ -35,12 +36,13 @@ class URI {
      * @return string | Ex: http://... - https://...
      * @access protected
      */
-    protected static function Protocolo() {
+    protected static function Protocolo()
+    {
         /**
          * Faz a verificação se for
          * diferente de https
          */
-        if(strpos(strtolower($_SERVER['SERVER_PROTOCOL']),'https') === false) {
+        if (strpos(strtolower($_SERVER['SERVER_PROTOCOL']), 'https') === false) {
             self::$protocolo = 'http://'; //Atribui o valor http
         } else {
             self::$protocolo = 'https://'; //Atribui o valor https
@@ -59,7 +61,8 @@ class URI {
      * @return string | Ex: www.example.com.br
      * @access protected
      */
-    protected static function Host() {
+    protected static function Host()
+    {
         self::$host = $_SERVER['HTTP_HOST']; //Atribui o valor www.example.com.br
         /**
          * Retorna o host em formato string
@@ -75,7 +78,8 @@ class URI {
      * @return string | Ex: .../dir/index.php
      * @access protected
      */
-    protected static function scriptName() {
+    protected static function scriptName()
+    {
         /**
          * $scr
          * Atribui o valor do SCRIPT_NAME em uma
@@ -89,8 +93,8 @@ class URI {
          * o objetivo aqui é pegar o nível de pasta onde hospeda-se o diretório
          * caso ele exista.
          */
-        if(!empty($scr) || substr_count($scr, '/') > 1) {
-            self::$scriptName = $scr; //atribui o valor do diretório com uma "/" na sequência
+        if (!empty($scr) || substr_count($scr, '/') > 1) {
+            self::$scriptName = $scr; //atribui o valor do diretório com uma '/' na sequência
         } else {
             self::$scriptName = ''; //atribui um valor vazio
         }
@@ -108,7 +112,8 @@ class URI {
      * @return [type] [description]
      * @access public
      */
-    public static function base() {
+    public static function base()
+    {
         //Concatena os valores
         self::$finalBase = self::Protocolo() . self::Host() . self::scriptName();
         /**

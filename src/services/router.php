@@ -13,7 +13,7 @@ class Router
         return self::$instance;
     }
 
-    function getNextRouters($baseDir = "public")
+    function getNextRouters($baseDir = 'public')
     {
         $paths = [];
 
@@ -30,7 +30,7 @@ class Router
         return $paths;
     }
 
-    function getRouters($baseDir = "public")
+    function getRouters($baseDir = 'public')
     {
         $paths = [];
 
@@ -39,7 +39,7 @@ class Router
                 if ($fileInfo->isDir()) {
                     $path = $fileInfo->getFilename();
 
-                    $paths[$path] = $this->getRouters($baseDir . "/" . $path);
+                    $paths[$path] = $this->getRouters($baseDir . '/' . $path);
                 }
             }
         }

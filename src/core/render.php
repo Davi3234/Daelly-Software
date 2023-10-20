@@ -1,18 +1,11 @@
 <?php
-require_once __DIR__ . "/../services/router.php";
-require_once __DIR__ . "/../services/url.php";
+require_once __DIR__ . '/../services/router.php';
+require_once __DIR__ . '/../services/url.php';
 
 class Render
 {
-
     private static $instance;
     private $basePath;
-    private $pathsRouters;
-
-    private function __constructor()
-    {
-        $this->pathsRouters = [];
-    }
 
     static function getInstance()
     {
@@ -26,79 +19,80 @@ class Render
     function initComponents($basePath)
     {
         $this->basePath = $basePath;
-
-        $this->pathsRouters = Router::getInstance()->getRouters();
     }
 
     function performRedirect()
     {
-        $path = $this->getPath();
+        $this->renderFiles();
+    }
 
-        $this->renderFiles($path);
+    function getBasePath()
+    {
+        return $this->basePath;
     }
 
     function getPath()
     {
         $routers = URL::getInstance()->getURLRoutersPaths();
 
-        $path = $this->basePath;
-        foreach ($routers as $router) {
-            $path .= "/" . $router;
+        $path = '';
+
+        if (count($routers) > 0) {
+            foreach ($routers as $router) {
+                if ($router) {
+                    $path .= '/' . $router;
+                }
+            }
         }
 
         return $path;
     }
 
-    function getPathsRouters()
+    function renderFiles()
     {
-        return $this->pathsRouters;
+        $path = $this->getPath();
+
+        $basePath = $this->basePath;
+
+        $pathInArray = ["/"];
+
+        if ($path) {
+            $pathInArray = explode('/', $path);
+        }
+
+        foreach ($pathInArray as $key => $arg) {
+            $basePath .= $arg . '/';
+
+            $this->defineFilesToRouter($basePath, $arg);
+        }
     }
 
-    function renderFiles($path)
+    function defineFilesToRouter($base, $router)
     {
-        if (!$this->validDirExists($path)) {
+        if (is_file($base . 'layout.php')) {
+            include $base . 'layout.php';
+
             return;
         }
 
-        $basePath = "";
-
-        $pathInArray = explode("/", $path);
-
-        foreach ($pathInArray as $arg) {
-            $basePath .= $arg . "/";
-
-            if (!is_dir($basePath)) {
-                if (is_file($basePath . "page-404.php")) {
-                    include $basePath . "page-404.php";
-
-                    return;
-                }
-
-                if (is_file($this->basePath . "/page-404.php")) {
-                    include $this->basePath . "/page-404.php";
-                } else {
-                    header(substr($basePath, -strlen($arg . "/")));
-                }
+        if (!is_dir($base)) {
+            if (is_file($base . 'page-404.php')) {
+                include $base . 'page-404.php';
 
                 return;
             }
 
-            if (is_file($basePath . "index.php")) {
-                include $basePath . "index.php";
+            if (is_file($this->basePath . '/page-404.php')) {
+                include $this->basePath . '/page-404.php';
+            } else {
+                header(substr($base, -strlen($router . '/')));
             }
-        }
-    }
 
-    function validDirExists($path)
-    {
-        $basePath = "";
-
-        $pathInArray = explode("/", $path);
-
-        foreach ($pathInArray as $arg) {
-            $basePath .= $arg . "/";
+            return;
         }
 
-        return true;
+        if (is_file($base . 'index.php')) {
+            include $base . 'index.php';
+        }
     }
 }

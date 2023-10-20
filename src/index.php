@@ -1,3 +1,3 @@
 <?php
 
-echo "Private";
+echo 'Private';
