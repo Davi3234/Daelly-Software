@@ -1,3 +1,3 @@
 <?php
 
-echo 'Sign-up:';
+echo "<br>SIGN-UP<br>";

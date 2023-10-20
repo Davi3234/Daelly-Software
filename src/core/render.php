@@ -94,16 +94,9 @@ class Render
     function includeNextRouter($dir) {
         $path = substr($this->getPath(), 1);
 
-        $base = str_replace($_SERVER["DOCUMENT_ROOT"] . "/", "", $dir);
-        
-        $fullPath = $base . "/" . explode("/", str_replace(str_replace($this->basePath, "", $base), "", $path))[0];
+        $base = str_replace($_SERVER["DOCUMENT_ROOT"] . "/", "", $dir . "/");
 
-        echo "<br>" . $this->basePath;
-        echo "<br>" . $base;
-        echo "<br>" . $path;
-        echo "<br>!" . str_replace($this->basePath, "", $base);
-        echo "<br>!" . str_replace(str_replace($this->basePath . "/", "", $base), "", $path);
-        echo "<br>" . $fullPath;
+        $fullPath = $base . explode("/", str_replace(str_replace($this->basePath . "/", "", $base), "", $path))[0];
 
         if (is_dir($fullPath)) {
             include $fullPath . "/index.php";
