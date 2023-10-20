@@ -1,5 +1,7 @@
 <?php
 
+include "config/global-config.php";
+
 class URL {
     private static $instance;
 
@@ -30,7 +32,7 @@ class URL {
     }
 
     function getURLRouters() {
-        $router = $_SERVER["REQUEST_URI"];
+        $router = str_replace("/" . $this->getBaseRouter(), "", $_SERVER["REQUEST_URI"]);
 
         if (substr($router, -1) == "/") {
             $router = substr($router, 0, -1);
@@ -39,11 +41,15 @@ class URL {
         return $router;
     }
 
-    function getRouterArgs() {
+    function getBaseRouter() {
+        return $GLOBALS["BASE_PATH_ROUTER_IGNORE"];
+    }
+
+    function getURLRoutersPaths() {
         return explode("/", substr($this->getURLRouters(), 1));
     }
 
-    function getRouterArgsByIndex($index) {
+    function getURLRoutersPathsByIndex($index) {
         return explode("/", substr($this->getURLRouters(), 1))[$index];
     }
 }

@@ -1,6 +1,7 @@
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
+ErrorDocument 403 http://localhost/Daelly-Software/
 Options -Indexes
 RewriteRule ^src/ -[F]
 RewriteRule ^public/ -[F]

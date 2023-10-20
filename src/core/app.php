@@ -15,10 +15,10 @@ class App {
 
     function factory($publicBasePath) {
         Render::getInstance()->initComponents($publicBasePath);
-        Render::getInstance()->performRedirect();
+        $this->redirect();
     }
 
     function redirect() {
-
+        Render::getInstance()->performRedirect();
     }
 }
