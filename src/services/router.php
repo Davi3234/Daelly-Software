@@ -1,21 +1,20 @@
 <?php
 
-class Router {
+class Router
+{
     private static $instance;
 
-    static function getInstance() {
-        if(!isset(self::$instance)) {
+    static function getInstance()
+    {
+        if (!isset(self::$instance)) {
             self::$instance = new Router();
         }
 
         return self::$instance;
     }
 
-    function getRouter($index = 0) {
-        return $this->getRouterArgsByIndex($index);
-    }
-
-    function getNextRouters($baseDir = "public") {
+    function getNextRouters($baseDir = "public")
+    {
         $paths = [];
 
         foreach (new DirectoryIterator($baseDir) as $fileInfo) {
@@ -31,7 +30,8 @@ class Router {
         return $paths;
     }
 
-    function getRouters($baseDir = "public") {
+    function getRouters($baseDir = "public")
+    {
         $paths = [];
 
         foreach (new DirectoryIterator($baseDir) as $fileInfo) {
@@ -39,7 +39,7 @@ class Router {
                 if ($fileInfo->isDir()) {
                     $path = $fileInfo->getFilename();
 
-                    $paths[$path] = $this->getRouters($baseDir."/".$path);
+                    $paths[$path] = $this->getRouters($baseDir . "/" . $path);
                 }
             }
         }

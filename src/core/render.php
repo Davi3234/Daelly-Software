@@ -77,7 +77,7 @@ class Render
                 if (is_file($this->basePath . "/page-404.php")) {
                     include $this->basePath . "/page-404.php";
                 } else {
-                    echo "Not Found!";
+                    header(substr($basePath, -strlen($arg . "/")));
                 }
 
                 return;
