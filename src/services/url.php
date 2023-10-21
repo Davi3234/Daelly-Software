@@ -20,6 +20,20 @@ class URL
         return $this->getURLBase() . $this->getURLRouters();
     }
 
+    function redirect($url)
+    {
+        header($this->getURLRedirect($url));
+    }
+
+    function getURLRedirect($url)
+    {
+        if (substr($url, 0, 1) != '/') {
+            $url = '/' . $url;
+        }
+
+        return '/' . $GLOBALS['GLOBAL_PREFIX_ROUTER'] . $url;
+    }
+
     function getURLBase()
     {
         $pageURL = 'http';

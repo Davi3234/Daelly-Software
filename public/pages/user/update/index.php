@@ -1,3 +1,3 @@
 <?php
 
-echo "<br>UPDATE<br>";
+echo '<br>UPDATE<br>';

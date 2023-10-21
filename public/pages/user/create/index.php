@@ -1,3 +1,3 @@
 <?php
 
-echo "<br>CREATE<br>";
+echo '<br>CREATE<br>';

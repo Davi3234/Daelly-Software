@@ -1,3 +1,3 @@
 <?php
 
-echo "<br>LIST<br>";
+echo '<br>LIST<br>';

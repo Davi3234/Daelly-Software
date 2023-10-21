@@ -1,21 +1,25 @@
 <?php
 
-include __DIR__ . "/../components/menu.php";
+include __DIR__ . '/../components/menu.php';
 
-echo "<br>PAGES<br>";
+echo '<br>PAGES<br>';
 
 Render::getInstance()->include(__DIR__);
 
+// include "user/index.php";
+
 ?>
 
-<script>
+<!-- <script>
     window.onload = () => {
         async function App() {
-            const response = await API.post("src/index.php", {hello: "world"})
+            const response = await API.post('src/index.php', {
+                hello: 'world'
+            })
 
             console.log(response)
         }
 
-        App()
+        // App()
     }
-</script>
+</script> -->
