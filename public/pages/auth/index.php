@@ -2,4 +2,4 @@
 
 echo '<br>AUTH<br>';
 
-Render::getInstance()->include(__DIR__);
+Render::getInstance()->includeNext(__DIR__);

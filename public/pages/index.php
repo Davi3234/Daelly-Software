@@ -29,16 +29,15 @@
 <body>
     <main>
         <?php
-        include __DIR__ . '/../components/menu.php';
+        Render::getInstance()->include('components/menu');
 
         echo '<br>PAGES<br>';
 
         if (!Render::getInstance()->isPageNotFound()) {
-            Render::getInstance()->include(__DIR__);
+            Render::getInstance()->includeNext(__DIR__);
         } else {
-            Render::getInstance()->include(__DIR__, 'page-404');
+            Render::getInstance()->includeNext(__DIR__, 'page-404');
         }
-
         ?>
     </main>
 </body>

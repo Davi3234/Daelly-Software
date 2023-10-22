@@ -17,3 +17,8 @@ function printObject($obj)
         line();
     }
 }
+
+function remove_string($search, $subject)
+{
+    return str_replace($search, '', $subject);
+}
