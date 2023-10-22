@@ -47,6 +47,9 @@ class Render
     {
         if (is_file($this->basePath . '/' . 'index.php')) {
             include $this->basePath . '/' . 'index.php';
+        } else {
+            echo '"' . $this->basePath . '" not contain "index.php" file';
+            exit(1);
         }
     }
 
