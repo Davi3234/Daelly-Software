@@ -94,30 +94,31 @@ class Render
         $dir = str_replace('\\', '/', $dir);
 
         if (!$target) {
-            $this->includeNextParam($dir);
-
-            return;
+            return $this->includeNextParam($dir);
         }
 
         if (!$this->isValidInclude($dir, $target)) {
-            return;
+            return false;
         }
 
         $path = $this->getBaseFolder($dir) . '/' . $target;
 
         if (is_dir($path)) {
             include $path . '/' . 'index.php';
-            return;
+            return true;
         }
 
         if (is_file($path)) {
             include $path;
-            return;
+            return true;
         }
 
         if (is_file($path . '.php')) {
             include $path . '.php';
+            return true;
         }
+
+        return false;
     }
 
 
@@ -129,17 +130,20 @@ class Render
 
         if (is_dir($path)) {
             include $path . '/' . 'index.php';
-            return;
+            return true;
         }
 
         if (is_file($path)) {
             include $path;
-            return;
+            return true;
         }
 
         if (is_file($path . '.php')) {
             include $path . '.php';
+            return true;
         }
+
+        return false;
     }
 
     function getBaseFolder($dir)
@@ -157,10 +161,12 @@ class Render
         $state = $this->getNextParam($dir);
 
         if (!$state['ok'] || !is_dir($state['fullPath'])) {
-            return;
+            return false;
         }
 
         include $state['fullPath'] . '/' . 'index.php';
+
+        return true;
     }
 
     function getNextParam($dir)

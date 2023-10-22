@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../services/api/index.php';
 
 
 ?>
@@ -29,16 +30,20 @@
 <body>
     <main>
         <?php
-        Render::getInstance()->include('components/menu');
+        // Render::getInstance()->include('components/menu');
 
-        echo '<br>PAGES<br>';
+        // echo '<br>PAGES<br>';
 
-        if (!Render::getInstance()->isPageNotFound()) {
-            Render::getInstance()->includeNext(__DIR__);
-        } else {
-            Render::getInstance()->includeNext(__DIR__, 'page-404');
-        }
+        // if (!Render::getInstance()->isPageNotFound()) {
+        //     Render::getInstance()->includeNext(__DIR__);
+        // } else {
+        //     Render::getInstance()->includeNext(__DIR__, 'page-404');
+        // }
         ?>
+
+        <script>
+
+        </script>
     </main>
 </body>
 

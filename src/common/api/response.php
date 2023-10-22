@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class Response {
+class Response
+{
     private static $instance;
 
     static function getInstance()
@@ -12,12 +13,9 @@ class Response {
         return self::$instance;
     }
 
-    static function status($status = 200) {
+    static function send($data = [], $status = 200)
+    {
         http_response_code($status);
-    }
-
-    static function send($data = [], $status = 200) {
-        self::status($status);
         echo json_encode($data);
     }
 }
