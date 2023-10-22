@@ -2,11 +2,23 @@
 
 include __DIR__ . '/../components/menu.php';
 
+function printObject($obj)
+{
+    foreach ($obj as $key => $value) {
+        echo '"' . $key . '": "' . $value . '"';
+        line();
+    }
+}
+
 echo '<br>PAGES<br>';
 
-Render::getInstance()->include(__DIR__);
-
-// include "user/index.php";
+printObject(Render::getInstance()->getNextRouter(__DIR__));
+line();
+line();
+printObject(Render::getInstance()->getNextRouter(__DIR__ . '/user'));
+line();
+line();
+printObject(Render::getInstance()->getNextRouter(__DIR__ . '/user/create'));
 
 ?>
 

@@ -100,85 +100,104 @@ class Render
 
     function includeNextRouter($dir)
     {
-        $baseFolder = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
-        $baseRouterURL = URL::getInstance()->getBaseRouter();
-        $baseRouterFolder = $this->basePath;
-        $router = substr($this->getPath(), 1);
+        $state = $this->getNextRouter($dir);
 
-        if (!$router) {
+        if (!$state['ok'] && !is_dir($state['fullPath'])) {
             return;
         }
 
-        $dirWithoutBaseFolder = str_replace($baseFolder, "", $dir); // "/Daelly-Software/public/pages"
-        $pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder); // "/public/pages"
-        $pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // ""
+        include $state['fullPath'] . '/' . 'index.php';
+    }
 
-        $restFolderPath = $router; // "user/create"
+    function getNextRouter($dir)
+    {
+        $STATE = [];
 
-        if ($pathCurrentFolderWithoutRoot) {
-            $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user/create"
+        $STATE['dir'] = str_replace('\\', '/', $dir);
+        $STATE['baseFolder'] = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
+        $STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
+        $STATE['baseRouterFolder'] = $this->basePath;
+        $STATE['router'] = substr($this->getPath(), 1);
+
+        $STATE['dirWithoutBaseFolder'] = str_replace($STATE['baseFolder'], "", $STATE['dir']);
+        $STATE['pathCurrentFolder'] = str_replace("/" . $STATE['baseRouterURL'], "", $STATE['dirWithoutBaseFolder']);
+        $STATE['pathCurrentFolderWithoutRoot'] = str_replace("/" . $STATE['baseRouterFolder'], "", $STATE['pathCurrentFolder']);
+
+        $STATE['restFolderPath'] = $STATE['router'];
+
+        if ($STATE['pathCurrentFolderWithoutRoot']) {
+            echo $STATE['pathCurrentFolderWithoutRoot'];
+            line();
+            echo $STATE['router'];
+            line();
+            line();
+
+            $STATE['restFolderPath'] = str_replace("/" . $STATE['pathCurrentFolderWithoutRoot'], "", $STATE['router']);
         }
 
-        $nextFolderPath = explode("/", $restFolderPath)[0]; // ""
+        $STATE['nextFolderPath'] = explode("/", $STATE['restFolderPath'])[0];
 
-        var_dump($pathCurrentFolderWithoutRoot);
-        line();
-        var_dump($nextFolderPath);
+        $STATE['fullPath'] = substr($STATE['pathCurrentFolder'], 1) . ($STATE['nextFolderPath'] ? "/" . $STATE['nextFolderPath'] : "");
+        $STATE['ok'] = $this->validNextRouter($STATE);
 
-        if (str_replace("/", "", $pathCurrentFolderWithoutRoot) === str_replace("/", "", $nextFolderPath)) {
-            return;
+        return $STATE;
+    }
+
+    private function validNextRouter($state = [])
+    {
+        if (str_replace('/', '', $state['pathCurrentFolderWithoutRoot']) === $state['nextFolderPath']) {
+            return false;
         }
 
-        $fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages/"
-
-        var_dump($baseFolder);
-        line();
-        var_dump($baseRouterURL);
-        line();
-        var_dump($baseRouterFolder);
-        line();
-        var_dump($router);
-        line();
-        var_dump("--------");
-        line();
-        var_dump($dirWithoutBaseFolder);
-        line();
-        var_dump($pathCurrentFolder);
-        line();
-        var_dump($pathCurrentFolderWithoutRoot);
-        line();
-        var_dump($restFolderPath);
-        line();
-        var_dump($nextFolderPath);
-        line();
-        var_dump($fullPath);
-        line();
-
-        if (is_dir($fullPath)) {
-            include $fullPath . '/' . 'index.php';
-        }
+        return is_dir($state['fullPath']);
     }
 }
 
 /*
 # /
+
+{
+    dir: "C:/xampp/htdocs/Daelly-Software/public/pages",
+    baseFolder: "C:/xampp/htdocs",
+    baseRouterURL: "Daelly-Software",
+    baseRouterFolder: "public/pages",
+    router: "",
+    dirWithoutBaseFolder: "/Daelly-Software/public/pages",
+    pathCurrentFolder: "/public/pages",
+    pathCurrentFolderWithoutRoot: "",
+    restFolderPath: "",
+    nextFolderPath: "",
+    fullPath: "public/pages/"
+},
+
 $dir = "C:/xampp/htdocs/Daelly-Software/public/pages";
-$baseFolder = "C:/xampp/htdocs";
+$baseFolder = "C:/xampp/htdocs;
 $baseRouterURL = "Daelly-Software";
 $baseRouterFolder = "public/pages";
 $router = "";
 
-// return function, because $fullPath is equal $pathCurrentFolder => recursive load
+$dirWithoutBaseFolder = str_replace($baseFolder, "", $dir); // "/Daelly-Software/public/pages"
+$pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder); // "/public/pages"
+$pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // ""
+$restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // ""
 
+$restFolderPath = $router; // ""
 
+if ($pathCurrentFolderWithoutRoot) {
+    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // ""
+}
 
+$nextFolderPath = explode("/", $restFolderPath)[0]; // ""
+
+$fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages/"
 
 
 
 
 # /user
+
 $dir = "C:/xampp/htdocs/Daelly-Software/public/pages";
-$baseFolder = "C:/xampp/htdocs";
+$baseFolder = "C:/xampp/htdocs;
 $baseRouterURL = "Daelly-Software";
 $baseRouterFolder = "public/pages";
 $router = "user";
@@ -188,81 +207,13 @@ $pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder
 $pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // ""
 $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user"
 
-$restFolderPath = $router; // "user/create"
+$restFolderPath = $router; // "user"
 
 if ($pathCurrentFolderWithoutRoot) {
-    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user/create"
+    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // ""
 }
 
 $nextFolderPath = explode("/", $restFolderPath)[0]; // "user"
-
-if (str_replace("/", "", $pathCurrentFolderWithoutRoot) === str_replace("/", "", $nextFolderPath)) {
-    return;
-}
 
 $fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages/user"
-
-
-
-
-
-
-
-
-
-# /user
-$dir = "C:/xampp/htdocs/Daelly-Software/public/pages/user";
-$baseFolder = "C:/xampp/htdocs";
-$baseRouterURL = "Daelly-Software";
-$baseRouterFolder = "public/pages";
-$router = "user";
-
-$dirWithoutBaseFolder = str_replace($baseFolder, "", $dir); // "/Daelly-Software/public/pages/user"
-$pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder); // "/public/pages/user"
-$pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // "/user"
-$restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user"
-
-$restFolderPath = $router; // "user/create"
-
-if ($pathCurrentFolderWithoutRoot) {
-    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user/create"
-}
-
-$nextFolderPath = explode("/", $restFolderPath)[0]; // "user"
-
-if (str_replace("/", "", $pathCurrentFolderWithoutRoot) === str_replace("/", "", $nextFolderPath)) {
-    return;
-}
-
-$fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages/user"
-
-
-
-
-
-
-# /
-$dir = "C:/xampp/htdocs/Daelly-Software/public/pages";
-$baseFolder = "C:/xampp/htdocs";
-$baseRouterURL = "Daelly-Software";
-$baseRouterFolder = "public/pages";
-$router = "user/create";
-
-$dirWithoutBaseFolder = str_replace($baseFolder, "", $dir); // "/Daelly-Software/public/pages"
-$pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder); // "/public/pages"
-$pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // ""
-
-$restFolderPath = $router; // "user/create"
-
-if ($pathCurrentFolderWithoutRoot) {
-    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user/create"
-}
-
-$nextFolderPath = explode("/", $restFolderPath)[0]; // "user"
-
-if (str_replace("/", "", $pathCurrentFolderWithoutRoot) === str_replace("/", "", $nextFolderPath)) {
-    return;
-}
-
-$fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages"
 */
