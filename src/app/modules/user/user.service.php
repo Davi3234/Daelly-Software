@@ -1,14 +1,14 @@
 <?php
-require_once 'user.service.php';
+require_once 'use-case/create.php';
 
-class UserController extends Controller
+class UserService
 {
     private static $instance;
 
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new UserController();
+            self::$instance = new UserService();
         }
 
         return self::$instance;
@@ -16,10 +16,12 @@ class UserController extends Controller
 
     private function __construct()
     {
-        parent::__construct();
     }
 
-    function initComponents()
+    function create()
     {
+        $response = UserCreateUseCase::getInstance()->perform();
+
+        return $response;
     }
 }
