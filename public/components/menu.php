@@ -8,13 +8,12 @@ $routers = [
     '/auth' => 'Auth',
     '/auth/sign-up' => 'Auth - Sign-Up',
     '/auth/sign-in' => 'Auth - Sign-In',
+    '/not-found-test' => 'Not Found',
 ]
 ?>
 
 <nav>
-    <?php foreach ($routers as $router => $content) {
-        if (Render::getInstance()->existsRouter($router)) { ?>
-            <a href='<?php echo URL::getInstance()->getURLRedirect($router) ?>'><?php echo $content ?></a><br />
-    <?php }
-    } ?>
+    <?php foreach ($routers as $router => $content) { ?>
+        <a href='<?php echo URL::getInstance()->getURLRedirect($router) ?>'><?php echo $content ?></a><br />
+    <?php } ?>
 </nav>

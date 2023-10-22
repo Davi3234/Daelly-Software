@@ -1,6 +1,5 @@
 <?php
 
-include __DIR__ . '/../components/menu.php';
 
 ?>
 
@@ -30,9 +29,16 @@ include __DIR__ . '/../components/menu.php';
 <body>
     <main>
         <?php
+        include __DIR__ . '/../components/menu.php';
+
         echo '<br>PAGES<br>';
 
-        Render::getInstance()->include(__DIR__);
+        if (!Render::getInstance()->isPageNotFound()) {
+            Render::getInstance()->include(__DIR__);
+        } else {
+            Render::getInstance()->include(__DIR__, 'page-404');
+        }
+
         ?>
     </main>
 </body>

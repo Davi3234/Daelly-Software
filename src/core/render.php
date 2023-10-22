@@ -52,13 +52,13 @@ class Render
 
     function isValidInclude($dir, $target = '')
     {
-        $path = str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', $dir) . '/' . $target;
+        $path  = $this->getBaseFolder($dir) . '/' . $target;
 
         if (is_dir($path)) {
             return true;
         }
 
-        if (is_file($path . '.php')) {
+        if (is_file($path) || is_file($path . '.php')) {
             return true;
         }
 
@@ -70,6 +70,13 @@ class Render
         $router = str_replace('\\', '/', $router);
 
         return $this->isValidInclude($this->basePath, $router);
+    }
+
+    function isPageNotFound()
+    {
+        $router = substr($this->getPath(), 1);
+
+        return !$this->existsRouter($router);
     }
 
     function include($dir, $target = null)
@@ -86,16 +93,31 @@ class Render
             return;
         }
 
-        $base = str_replace($_SERVER['DOCUMENT_ROOT'] . '/', '', $dir);
-
-        $path = $base . '/' . $target;
+        $path = $this->getBaseFolder($dir) . '/' . $target;
 
         if (is_dir($path)) {
             include $path . '/' . 'index.php';
             return;
         }
 
-        include $path . '.php';
+        if (is_file($path)) {
+            include $path;
+            return;
+        }
+
+        if (is_file($path . '.php')) {
+            include $path . '.php';
+        }
+    }
+
+    function getBaseFolder($dir)
+    {
+        $baseFolder = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
+        $baseRouterURL = URL::getInstance()->getBaseRouter();
+
+        $basePath  = str_replace('/' . $baseRouterURL . '/', '', str_replace($baseFolder, "", $dir));
+
+        return $basePath;
     }
 
     function includeNextRouter($dir)
