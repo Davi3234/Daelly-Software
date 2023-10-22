@@ -102,7 +102,7 @@ class Render
     {
         $state = $this->getNextRouter($dir);
 
-        if (!$state['ok'] && !is_dir($state['fullPath'])) {
+        if (!$state['ok'] || !is_dir($state['fullPath'])) {
             return;
         }
 
@@ -126,13 +126,13 @@ class Render
         $STATE['restFolderPath'] = $STATE['router'];
 
         if ($STATE['pathCurrentFolderWithoutRoot']) {
-            echo $STATE['pathCurrentFolderWithoutRoot'];
-            line();
-            echo $STATE['router'];
-            line();
-            line();
+            $pathCurrentFolderWithoutRootAndStarBar = substr($STATE['pathCurrentFolderWithoutRoot'], 1);
 
-            $STATE['restFolderPath'] = str_replace("/" . $STATE['pathCurrentFolderWithoutRoot'], "", $STATE['router']);
+            $STATE['restFolderPath'] = str_replace($pathCurrentFolderWithoutRootAndStarBar, "", $STATE['router']);
+
+            if (substr($STATE['restFolderPath'], 0, 1) == "/") {
+                $STATE['restFolderPath'] = substr($STATE['restFolderPath'], 1);
+            }
         }
 
         $STATE['nextFolderPath'] = explode("/", $STATE['restFolderPath'])[0];
@@ -149,71 +149,12 @@ class Render
             return false;
         }
 
+        if ($state['pathCurrentFolderWithoutRoot']) {
+            if (!$state['nextFolderPath']) {
+                return false;
+            }
+        }
+
         return is_dir($state['fullPath']);
     }
 }
-
-/*
-# /
-
-{
-    dir: "C:/xampp/htdocs/Daelly-Software/public/pages",
-    baseFolder: "C:/xampp/htdocs",
-    baseRouterURL: "Daelly-Software",
-    baseRouterFolder: "public/pages",
-    router: "",
-    dirWithoutBaseFolder: "/Daelly-Software/public/pages",
-    pathCurrentFolder: "/public/pages",
-    pathCurrentFolderWithoutRoot: "",
-    restFolderPath: "",
-    nextFolderPath: "",
-    fullPath: "public/pages/"
-},
-
-$dir = "C:/xampp/htdocs/Daelly-Software/public/pages";
-$baseFolder = "C:/xampp/htdocs;
-$baseRouterURL = "Daelly-Software";
-$baseRouterFolder = "public/pages";
-$router = "";
-
-$dirWithoutBaseFolder = str_replace($baseFolder, "", $dir); // "/Daelly-Software/public/pages"
-$pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder); // "/public/pages"
-$pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // ""
-$restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // ""
-
-$restFolderPath = $router; // ""
-
-if ($pathCurrentFolderWithoutRoot) {
-    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // ""
-}
-
-$nextFolderPath = explode("/", $restFolderPath)[0]; // ""
-
-$fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages/"
-
-
-
-
-# /user
-
-$dir = "C:/xampp/htdocs/Daelly-Software/public/pages";
-$baseFolder = "C:/xampp/htdocs;
-$baseRouterURL = "Daelly-Software";
-$baseRouterFolder = "public/pages";
-$router = "user";
-
-$dirWithoutBaseFolder = str_replace($baseFolder, "", $dir); // "/Daelly-Software/public/pages"
-$pathCurrentFolder = str_replace("/" . $baseRouterURL, "", $dirWithoutBaseFolder); // "/public/pages"
-$pathCurrentFolderWithoutRoot = str_replace("/" . $baseRouterFolder, "", $pathCurrentFolder); // ""
-$restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // "user"
-
-$restFolderPath = $router; // "user"
-
-if ($pathCurrentFolderWithoutRoot) {
-    $restFolderPath = str_replace("/" . $pathCurrentFolderWithoutRoot, "", $router); // ""
-}
-
-$nextFolderPath = explode("/", $restFolderPath)[0]; // "user"
-
-$fullPath = substr($pathCurrentFolder, 1) . "/" . $nextFolderPath; // "public/pages/user"
-*/
