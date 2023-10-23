@@ -1,7 +1,8 @@
 <?php
+$render = RenderClient::createInstance(__DIR__);
 
-echo '<br>USER<br>';
+echo '<br>USERS<br>';
 
-Render::getInstance()->includeNext(__DIR__);
-
-// include "create/index.php";
+if (!$render->include()) {
+    echo $render->include('page-found');
+}

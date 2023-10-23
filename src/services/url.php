@@ -25,9 +25,7 @@ class URL
 
     function getURLRedirect($url)
     {
-        if (substr($url, 0, 1) != '/') {
-            $url = '/' . $url;
-        }
+        $url = remove_start_str('/', $url);
 
         return '/' . $GLOBALS['GLOBAL_PREFIX_ROUTER'] . $url;
     }
@@ -55,11 +53,11 @@ class URL
     {
         $router = str_replace('//', '/', $this->getBaseRouter() ? str_replace('/' . $this->getBaseRouter(), '', $_SERVER['REQUEST_URI']) : $_SERVER['REQUEST_URI']);
 
-        while (substr($router, -1) == '/') {
-            $router = substr($router, 0, -1);
+        while (str_starts_with($router, '/')) {
+            $router = remove_start_str('/', $router);
         }
-        while (substr($router, 0, 1) == '/') {
-            $router = substr($router, 1);
+        while (str_ends_with($router, '/')) {
+            $router = remove_end_str('/', $router);
         }
 
         return $router;

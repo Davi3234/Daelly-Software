@@ -5,7 +5,7 @@ require_once __DIR__ . '/../url.php';
 class Render
 {
     private static $instance;
-    private $basePath;
+    private $publicBasePath;
 
     static function getInstance()
     {
@@ -16,106 +16,43 @@ class Render
         return self::$instance;
     }
 
-    function initComponents($basePath)
+    function initComponents($publicBasePath)
     {
-        $this->basePath = $basePath;
-    }
-
-    function getBasePath()
-    {
-        return $this->basePath;
-    }
-
-    function getPath()
-    {
-        if ($_GET['url']) {
-            return '/' . $_GET['url'];
-        }
-
-        $routers = URL::getInstance()->getURLRoutersPaths();
-
-        $path = '';
-
-        if (count($routers) > 0) {
-            foreach ($routers as $router) {
-                if ($router) {
-                    $path .= '/' . $router;
-                }
-            }
-        }
-
-        return $path;
+        $this->publicBasePath = $publicBasePath;
     }
 
     function loadIndexRouter()
     {
-        if (is_file($this->basePath . '/' . 'index.php')) {
-            include $this->basePath . '/' . 'index.php';
+        if (is_file($this->publicBasePath . '/' . 'index.php')) {
+            include $this->publicBasePath . '/' . 'index.php';
         } else {
-            echo 'Public static folder "' . $this->basePath . '" not found';
+            echo 'Public static folder "' . $this->publicBasePath . '" not found';
             exit(1);
         }
+    }
+
+    function isPageNotFound()
+    {
+        $router = remove_start_str('/', $this->getRouters());
+
+        return !$this->existsRouter($router);
     }
 
     function existsRouter($router)
     {
         $router = str_replace('\\', '/', $router);
 
-        return $this->isValidInclude($this->basePath, $router);
+        return $this->validInclude($router);
     }
 
-    function isPageNotFound()
+    function include($target = '')
     {
-        $router = substr($this->getPath(), 1);
-
-        return !$this->existsRouter($router);
-    }
-
-    function isPageNotFoundNext($dir)
-    {
-        $state = $this->getNextParam($dir);
-
-        return $state['ok'];
-    }
-
-    function includeNext($dir, $target = null)
-    {
-        $dir = str_replace('\\', '/', $dir);
-
-        if (!$target) {
-            return $this->includeNextParam($dir);
-        }
-
-        if (!$this->isValidInclude($dir, $target)) {
+        if (!$this->validInclude($target)) {
             return false;
         }
 
-        $path = $this->getBaseFolder($dir) . '/' . $target;
-
-        if (is_dir($path)) {
-            include $path . '/' . 'index.php';
-            return true;
-        }
-
-        if (is_file($path)) {
-            include $path;
-            return true;
-        }
-
-        if (is_file($path . '.php')) {
-            include $path . '.php';
-            return true;
-        }
-
-        return false;
-    }
-
-    function include($target)
-    {
         if ($target) {
-            if (str_starts_with($target, '/')) {
-                $target = substr($target, 1);
-            }
+            $target = remove_start_str('/', $target);
         }
 
         if (is_file($target)) {
@@ -140,114 +77,99 @@ class Render
         return false;
     }
 
-    function getBaseFolder($dir)
-    {
-        $baseFolder = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
-        $baseRouterURL = URL::getInstance()->getBaseRouter();
+    function validInclude($target) {
+        if ($target) {
+            $target = remove_start_str('/', $target);
+        }
 
-        $basePath  = remove_string('/' . $baseRouterURL . '/', str_replace($baseFolder, "", $dir));
+        if (is_file($target)) {
+            return true;
+        }
 
-        return $basePath;
-    }
+        if (is_dir($target)) {
+            if (is_file($target . '/' . 'index.php')) {
+                return true;
+            }
 
-    function includeNextParam($dir)
-    {
-        $state = $this->getNextParam($dir);
-
-        if (!$state['ok'] || !is_dir($state['fullPath'])) {
             return false;
         }
 
-        include $state['fullPath'] . '/' . 'index.php';
+        if (is_file($target . '.php')) {
+            return true;
+        }
+
+        return $this->isQueryParamNextRouter($target);
+    }
+
+    function isQueryParamNextRouter($path) {
+        $currentPathRouter = $this->publicBasePath;
+
+        foreach (explode('/', $path) as $key => $value) {
+            $pathRouter = $currentPathRouter . '/' . $value;
+
+            if (!is_dir($pathRouter) && !is_file($pathRouter . '.php')) {
+                $isQuery = false;
+
+                foreach ($this->getNamesNextRouterFolder($currentPathRouter) as $keyFolder => $valueFolder) {
+                    if ($this->isQueryParam($valueFolder)) {
+                        $isQuery = true;
+                    }
+                }
+
+                if (!$isQuery) {
+                    return false;
+                }
+            }
+
+            $currentPathRouter = $pathRouter;
+        }
 
         return true;
     }
 
-    function getNextParam($dir)
-    {
-        $STATE = [];
-
-        $STATE['dir'] = str_replace('\\', '/', $dir);
-        $STATE['baseFolder'] = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
-        $STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
-        $STATE['baseRouterFolder'] = $this->basePath;
-        $STATE['router'] = substr($this->getPath(), 1);
-
-        $STATE['dirWithoutBaseFolder'] = remove_string($STATE['baseFolder'], $STATE['dir']);
-        $STATE['pathCurrentFolder'] = remove_string("/" . $STATE['baseRouterURL'], $STATE['dirWithoutBaseFolder']);
-        $STATE['pathCurrentFolderWithoutRoot'] = remove_string("/" . $STATE['baseRouterFolder'], $STATE['pathCurrentFolder']);
-
-        $STATE['restFolderPath'] = $STATE['router'];
-
-        if ($STATE['pathCurrentFolderWithoutRoot']) {
-            $pathCurrentFolderWithoutRootAndStarBar = substr($STATE['pathCurrentFolderWithoutRoot'], 1);
-
-            $STATE['restFolderPath'] = remove_string($pathCurrentFolderWithoutRootAndStarBar, $STATE['router']);
-
-            if (substr($STATE['restFolderPath'], 0, 1) == "/") {
-                $STATE['restFolderPath'] = substr($STATE['restFolderPath'], 1);
-            }
-        }
-
-        $STATE['nextFolderPath'] = explode("/", $STATE['restFolderPath'])[0];
-
-        $STATE['fullPath'] = substr($STATE['pathCurrentFolder'], 1) . ($STATE['nextFolderPath'] ? "/" . $STATE['nextFolderPath'] : "");
-        $STATE['ok'] = $this->validNextParam($STATE);
-        $STATE['queries'] = [];
-
-        if ($this->isQueryParam(substr($STATE['pathCurrentFolder'], 1))) {
-            $STATE['queries'][$this->getNextNameRouter(substr($STATE['pathCurrentFolder'], 1))] = $STATE['nextFolderPath'];
-        }
-
-        return $STATE;
-    }
-
-    function isValidInclude($dir, $target = '')
-    {
-        $path  = $this->getBaseFolder($dir) . '/' . $target;
-
-        if (is_dir($path)) {
-            return true;
-        }
-
-        if (is_file($path) || is_file($path . '.php')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    function validNextParam($state = [])
-    {
-        if (remove_string('/', $state['pathCurrentFolderWithoutRoot']) === $state['nextFolderPath']) {
-            return false;
-        }
-
-        if ($state['pathCurrentFolderWithoutRoot']) {
-            if (!$state['nextFolderPath']) {
-                return false;
-            }
-        }
-
-        return is_dir($state['fullPath']) || $this->isQueryParam(substr($state['pathCurrentFolder'], 1));
-    }
-
-    function getQueriesParams($dir)
-    {
-        $state = $this->getNextParam($dir);
-
-        if (!$state['queries']) {
-            return [];
-        }
-
-        return $state['queries'];
-    }
-
-    function isQueryParam($path)
+    function hasQueryParamNextRouter($path)
     {
         $foldersNames = $this->getNamesNextQueryRouter($path);
 
         return !!count($foldersNames);
+    }
+
+    function hasQueryParam()
+    {
+        $params = $this->getQueryParam();
+
+        return !!count($params);
+    }
+
+    function getQueryParam()
+    {
+        $routers = explode('/', remove_start_str('/', $this->getRouters()));
+        $structureFolders = $this->getAllNamesRouter();
+
+        $queries = [];
+
+        $currentPath = '';
+        foreach ($routers as $key => $value) {
+            if (!is_array($value)) {
+                if (isset($structureFolders[$value])) {
+                    $structureFolders = $structureFolders[$value];
+                } else {
+                    foreach ($structureFolders as $keyS => $valueS) {
+                        if ($this->isQueryParam($keyS)) {
+                            if (!isset($queries[substr($keyS, 1, -1)])) {
+                                $queries[substr($keyS, 1, -1)] = $value;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $queries;
+    }
+
+    function isQueryParam($nameFolder = '') {
+        return str_starts_with($nameFolder, '[') && str_ends_with($nameFolder, ']');
     }
 
     function getNextNameRouter($dir)
@@ -257,7 +179,50 @@ class Render
         return $foldersNames[0];
     }
 
-    function getNamesNextRouter($dir)
+    function getNamesNextQueryRouter($dir)
+    {
+        $foldersNames = $this->getNamesNextRouterFolder($dir);
+
+        $queryNames = [];
+
+        foreach ($foldersNames as $name) {
+            if (str_starts_with($name, '[') && str_ends_with($name, ']')) {
+                $queryNames[] = substr($name, 1, strlen($name) - 2);
+            }
+        }
+
+        return $queryNames;
+    }
+
+    function getAllNamesRouter($dir = '') {
+        if (!$dir) {
+            $dir = $this->publicBasePath;
+        }
+
+        $files = scandir($dir);
+
+        $folders = [];
+
+        foreach ($files as $file) {
+            if ($file == '.' || $file == '..') {
+                continue;
+            }
+
+            if (is_file($dir . '/' . $file)) {
+                continue;
+            }
+
+            if (!is_dir(($dir . '/' . $file))) {
+                continue;
+            }
+
+            $folders[$file] = $this->getAllNamesRouter($dir . '/' . $file);
+        }
+
+        return $folders;
+    }
+
+    function getNamesNextRouterFolder($dir)
     {
         if (!is_dir($dir)) {
             return [];
@@ -286,18 +251,39 @@ class Render
         return $folders;
     }
 
-    function getNamesNextQueryRouter($dir)
+    function getPublicBasePath()
     {
-        $foldersNames = $this->getNamesNextRouter($dir);
+        return $this->publicBasePath;
+    }
 
-        $queryNames = [];
+    function getRouters()
+    {
+        if (isset($_GET['url'])) {
+            return '/' . $_GET['url'];
+        }
 
-        foreach ($foldersNames as $name) {
-            if (str_starts_with($name, '[') && str_ends_with($name, ']')) {
-                $queryNames[] = substr($name, 1, strlen($name) - 2);
+        $routers = URL::getInstance()->getURLRoutersPaths();
+
+        $path = '';
+
+        if (count($routers) > 0) {
+            foreach ($routers as $router) {
+                if ($router) {
+                    $path .= '/' . $router;
+                }
             }
         }
 
-        return $queryNames;
+        return $path;
+    }
+
+    function getBaseFolder($dir)
+    {
+        $baseFolder = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
+        $baseRouterURL = URL::getInstance()->getBaseRouter();
+
+        $publicBasePath  = remove_string('/' . $baseRouterURL . '/', str_replace($baseFolder, "", $dir));
+
+        return $publicBasePath;
     }
 }

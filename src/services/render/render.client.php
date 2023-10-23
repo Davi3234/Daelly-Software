@@ -8,7 +8,7 @@ class RenderClient
      */
     private $STATE;
 
-    function __construct($directory)
+    private function __construct($directory)
     {
         $this->STATE = [
             'directory' => str_replace('\\', '/', $directory)
@@ -17,51 +17,97 @@ class RenderClient
         $this->loadState();
     }
 
+    static function createInstance($directory) {
+        return new RenderClient($directory);
+    }
+
     private function loadState()
     {
         $this->STATE['rootFolderServer'] = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
         $this->STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
-        $this->STATE['publicFolder'] = Render::getInstance()->getBasePath();
-        $this->STATE['router'] = substr(Render::getInstance()->getPath(), 1);
+        $this->STATE['publicFolder'] = Render::getInstance()->getPublicBasePath();
+        $this->STATE['router'] = remove_start_str('/', Render::getInstance()->getRouters());
 
-        $this->STATE['rootFolderProject'] = remove_string($this->STATE['rootFolderServer'], $this->STATE['directory']);
-        $this->STATE['pathCurrentFolder'] = remove_string("/" . $this->STATE['baseRouterURL'], $this->STATE['rootFolderProject']);
-        $this->STATE['currentFolder'] = remove_string("/" . $this->STATE['publicFolder'], $this->STATE['pathCurrentFolder']);
-
+        $this->STATE['rootFolderProject'] = remove_start_str($this->STATE['rootFolderServer'], $this->STATE['directory']);
+        $this->STATE['pathCurrentFolder'] = remove_start_str("/" . $this->STATE['publicFolder'], $this->STATE['rootFolderProject']);
+        $this->STATE['currentFolder'] = remove_start_str("/" . $this->STATE['publicFolder'], $this->STATE['pathCurrentFolder']);
+        $this->STATE['currentFolder'] = remove_start_str("/", $this->STATE['currentFolder']);
         $this->STATE['nextFolderPath'] = $this->STATE['router'];
 
         if ($this->STATE['currentFolder']) {
-            $pathCurrentFolderWithoutRootAndStarBar = substr($this->STATE['currentFolder'], 1);
+            $pathCurrentFolderWithoutRootAndStarBar = remove_start_str('/', $this->STATE['currentFolder']);
 
-            $this->STATE['nextFolderPath'] = remove_string($pathCurrentFolderWithoutRootAndStarBar, $this->STATE['router']);
-
-            if (substr($this->STATE['nextFolderPath'], 0, 1) == "/") {
-                $this->STATE['nextFolderPath'] = substr($this->STATE['nextFolderPath'], 1);
-            }
+            $this->STATE['nextFolderPath'] = remove_start_str($pathCurrentFolderWithoutRootAndStarBar, $this->STATE['router']);
+            $this->STATE['nextFolderPath'] = remove_start_str('/', $this->STATE['nextFolderPath']);
         }
 
         $this->STATE['nextFolderName'] = explode("/", $this->STATE['nextFolderPath'])[0];
+        $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? "/" . $this->STATE['nextFolderName'] : "");
+        $this->getQueries();
 
-        $this->STATE['nextRouterFolder'] = substr($this->STATE['pathCurrentFolder'], 1) . ($this->STATE['nextFolderName'] ? "/" . $this->STATE['nextFolderName'] : "");
-        $this->STATE['ok'] = true;
+        if (!is_dir($this->STATE['nextRouterFolder'])) {
+            if ($this->hasQueryParamNextRouter(remove_start_str('/', $this->STATE['rootFolderProject']))) {
+                $nameQueryparamFolder = Render::getInstance()->getNextNameRouter(remove_start_str('/', $this->STATE['rootFolderProject']));
+                $this->STATE['nextFolderName'] = '[' . $nameQueryparamFolder . ']';
+
+                $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? "/" . $this->STATE['nextFolderName'] : "");
+            }
+        }
+    }
+
+    function getQueries() {
         $this->STATE['queries'] = [];
 
-        if (Render::getInstance()->isQueryParam(substr($this->STATE['pathCurrentFolder'], 1))) {
-            $this->STATE['queries'][Render::getInstance()->getNextNameRouter(substr($this->STATE['pathCurrentFolder'], 1))] = $this->STATE['nextFolderName'];
+        if ($this->hasQueryParamNextRouter(remove_start_str('/', $this->STATE['pathCurrentFolder']))) {
+            $this->STATE['queries'][Render::getInstance()->getNextNameRouter(remove_start_str('/', $this->STATE['pathCurrentFolder']))] = $this->STATE['nextFolderName'];
+        } else {
+            $this->STATE['queries'] = Render::getInstance()->getQueryParam();
         }
+
+        return $this->STATE['queries'];
+    }
+
+    function hasQueryParamNextRouter($dir) {
+        return Render::getInstance()->hasQueryParamNextRouter($dir);
+    }
+
+    function getQueryParam() {
+        return $this->STATE['queries'];
     }
 
     function include($target = '')
     {
+        $target = remove_start_str('/', $target);
+
         if (!$target) {
-            return false;
+            $target = $this->STATE['nextRouterFolder'];
+
+            if (remove_start_str('/', $this->STATE['rootFolderProject']) == $this->STATE['nextRouterFolder']) {
+                return false;
+            }
+        } else {
+            $target = $this->STATE['publicFolder'] . '/' . $target;
         }
 
-        if (!str_starts_with($target, '/')) {
-            $target = '/' . $target;
+        return Render::getInstance()->include($target);
+    }
+
+    function isPageNotFound() {
+        return Render::getInstance()->isPageNotFound();
+    }
+
+    function validInclude($target = '') {
+        $target = remove_start_str('/', $target);
+
+        if (!$target) {
+            $target = $this->STATE['nextRouterFolder'];
+        } else {
+            $target = $this->STATE['publicFolder'] . '/' . $target;
         }
 
-        return Render::getInstance()->include($this->STATE['pathCurrentFolder'] . $target);
+        $target = remove_start_str('/', $target);
+
+        return Render::getInstance()->validInclude($target);
     }
 
     function getState()

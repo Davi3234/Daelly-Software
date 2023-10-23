@@ -10,19 +10,30 @@ function formatterPath($path)
     return str_replace("/", DIRECTORY_SEPARATOR, $path);
 }
 
-function printObject($obj, $prefix = '')
+function printObject($obj)
 {
-    foreach ($obj as $key => $value) {
-        if (!is_array($value)) {
-            echo $prefix . '"' . $key . '": "' . $value . '"';
-        } else {
-            printObject($value, '"' . $key . '": ');
-        }
-        line();
-    }
+    ?> <script>console.log(<?= json_encode($obj) ?>)</script> <?php
 }
 
 function remove_string($search, $subject)
 {
     return str_replace($search, '', $subject);
+}
+
+function remove_start_str($search, $subject)
+{
+    if (str_starts_with($subject, $search)) {
+        return substr($subject, strlen($search));
+    }
+
+    return $subject;
+}
+
+function remove_end_str($search, $subject)
+{
+    if (str_ends_with($subject, $search)) {
+        return substr($subject, 0, -strlen($search));
+    }
+
+    return $subject;
 }
