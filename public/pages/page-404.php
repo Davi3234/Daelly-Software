@@ -1,5 +1,5 @@
 <?php
 
 line();
-echo "Page not found";
+echo 'Page not found';
 line();

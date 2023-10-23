@@ -48,7 +48,7 @@
 
         static async performRequest(method = '', url = '', body = {}, headers = {}) {
             return {
-                hello: "world"
+                hello: 'world'
             }
         }
     }

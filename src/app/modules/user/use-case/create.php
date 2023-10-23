@@ -16,6 +16,6 @@ class UserCreateUseCase
 
     function perform()
     {
-        return "User Create";
+        return 'User Create';
     }
 }

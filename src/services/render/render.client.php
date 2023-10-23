@@ -17,21 +17,22 @@ class RenderClient
         $this->loadState();
     }
 
-    static function createInstance($directory) {
+    static function createInstance($directory)
+    {
         return new RenderClient($directory);
     }
 
     private function loadState()
     {
-        $this->STATE['rootFolderServer'] = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
+        $this->STATE['rootFolderServer'] = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
         $this->STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
         $this->STATE['publicFolder'] = Render::getInstance()->getPublicBasePath();
         $this->STATE['router'] = remove_start_str('/', Render::getInstance()->getRouters());
 
         $this->STATE['rootFolderProject'] = remove_start_str($this->STATE['rootFolderServer'], $this->STATE['directory']);
-        $this->STATE['pathCurrentFolder'] = remove_start_str("/" . $this->STATE['publicFolder'], $this->STATE['rootFolderProject']);
-        $this->STATE['currentFolder'] = remove_start_str("/" . $this->STATE['publicFolder'], $this->STATE['pathCurrentFolder']);
-        $this->STATE['currentFolder'] = remove_start_str("/", $this->STATE['currentFolder']);
+        $this->STATE['pathCurrentFolder'] = remove_start_str('/' . $this->STATE['publicFolder'], $this->STATE['rootFolderProject']);
+        $this->STATE['currentFolder'] = remove_start_str('/' . $this->STATE['publicFolder'], $this->STATE['pathCurrentFolder']);
+        $this->STATE['currentFolder'] = remove_start_str('/', $this->STATE['currentFolder']);
         $this->STATE['nextFolderPath'] = $this->STATE['router'];
 
         if ($this->STATE['currentFolder']) {
@@ -41,8 +42,8 @@ class RenderClient
             $this->STATE['nextFolderPath'] = remove_start_str('/', $this->STATE['nextFolderPath']);
         }
 
-        $this->STATE['nextFolderName'] = explode("/", $this->STATE['nextFolderPath'])[0];
-        $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? "/" . $this->STATE['nextFolderName'] : "");
+        $this->STATE['nextFolderName'] = explode('/', $this->STATE['nextFolderPath'])[0];
+        $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? '/' . $this->STATE['nextFolderName'] : '');
         $this->getQueries();
 
         if (!is_dir($this->STATE['nextRouterFolder'])) {
@@ -50,12 +51,13 @@ class RenderClient
                 $nameQueryparamFolder = Render::getInstance()->getNextNameRouter(remove_start_str('/', $this->STATE['rootFolderProject']));
                 $this->STATE['nextFolderName'] = '[' . $nameQueryparamFolder . ']';
 
-                $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? "/" . $this->STATE['nextFolderName'] : "");
+                $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? '/' . $this->STATE['nextFolderName'] : '');
             }
         }
     }
 
-    function getQueries() {
+    function getQueries()
+    {
         $this->STATE['queries'] = [];
 
         if ($this->hasQueryParamNextRouter(remove_start_str('/', $this->STATE['pathCurrentFolder']))) {
@@ -67,11 +69,13 @@ class RenderClient
         return $this->STATE['queries'];
     }
 
-    function hasQueryParamNextRouter($dir) {
+    function hasQueryParamNextRouter($dir)
+    {
         return Render::getInstance()->hasQueryParamNextRouter($dir);
     }
 
-    function getQueryParam() {
+    function getQueryParam()
+    {
         return $this->STATE['queries'];
     }
 
@@ -92,11 +96,13 @@ class RenderClient
         return Render::getInstance()->include($target);
     }
 
-    function isPageNotFound() {
+    function isPageNotFound()
+    {
         return Render::getInstance()->isPageNotFound();
     }
 
-    function validInclude($target = '') {
+    function validInclude($target = '')
+    {
         $target = remove_start_str('/', $target);
 
         if (!$target) {

@@ -1,6 +1,7 @@
 <?php
 
-class ApiRepository {
+class ApiRepository
+{
     private static $instance;
 
     private $endpoints;
@@ -14,17 +15,20 @@ class ApiRepository {
         return self::$instance;
     }
 
-    private function __construct() {
+    private function __construct()
+    {
         $this->endpoints = [];
     }
 
-    function add($instance, $name, ...$handlers) {
+    function add($instance, $name, ...$handlers)
+    {
         $this->endpoints[$name] = ['handlers' => $handlers, 'instance' => $instance];
 
         $this->handler($name, ['hello' => 'world']);
     }
 
-    function handler($name, $body = []) {
+    function handler($name, $body = [])
+    {
         $endpoint = $this->getHandler($name);
 
         if (!isset($endpoint)) {
@@ -32,19 +36,19 @@ class ApiRepository {
         }
 
         if (!isset($endpoint['instance'])) {
-            return ;
+            return;
         }
 
         foreach ($endpoint['handlers'] as $handler) {
             if (is_callable([$endpoint['instance'], $handler])) {
                 return call_user_func_array([$endpoint['instance'], $handler], $body);
             } else {
-                echo '!!';
             }
         }
     }
 
-    function getHandler($name) {
+    function getHandler($name)
+    {
         if (isset($this->endpoints[$name])) {
             return $this->endpoints[$name];
         }

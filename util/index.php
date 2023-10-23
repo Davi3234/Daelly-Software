@@ -7,7 +7,7 @@ function line()
 
 function formatterPath($path)
 {
-    return str_replace("/", DIRECTORY_SEPARATOR, $path);
+    return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
 function printObject($obj)

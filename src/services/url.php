@@ -27,7 +27,7 @@ class URL
     {
         $url = remove_start_str('/', $url);
 
-        return '/' . $GLOBALS['GLOBAL_PREFIX_ROUTER'] . $url;
+        return '/' . $GLOBALS['GLOBAL_PREFIX_ROUTER'] . '/' . $url;
     }
 
     function getURLBase()

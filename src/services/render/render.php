@@ -77,7 +77,8 @@ class Render
         return false;
     }
 
-    function validInclude($target) {
+    function validInclude($target)
+    {
         if ($target) {
             $target = remove_start_str('/', $target);
         }
@@ -101,7 +102,8 @@ class Render
         return $this->isQueryParamNextRouter($target);
     }
 
-    function isQueryParamNextRouter($path) {
+    function isQueryParamNextRouter($path)
+    {
         $currentPathRouter = $this->publicBasePath;
 
         foreach (explode('/', $path) as $key => $value) {
@@ -168,7 +170,8 @@ class Render
         return $queries;
     }
 
-    function isQueryParam($nameFolder = '') {
+    function isQueryParam($nameFolder = '')
+    {
         return str_starts_with($nameFolder, '[') && str_ends_with($nameFolder, ']');
     }
 
@@ -194,7 +197,8 @@ class Render
         return $queryNames;
     }
 
-    function getAllNamesRouter($dir = '') {
+    function getAllNamesRouter($dir = '')
+    {
         if (!$dir) {
             $dir = $this->publicBasePath;
         }
@@ -279,10 +283,10 @@ class Render
 
     function getBaseFolder($dir)
     {
-        $baseFolder = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
+        $baseFolder = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
         $baseRouterURL = URL::getInstance()->getBaseRouter();
 
-        $publicBasePath  = remove_string('/' . $baseRouterURL . '/', str_replace($baseFolder, "", $dir));
+        $publicBasePath  = remove_string('/' . $baseRouterURL . '/', str_replace($baseFolder, '', $dir));
 
         return $publicBasePath;
     }

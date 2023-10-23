@@ -1,5 +1,5 @@
 <?php
-require_once "user.controller.php";
+require_once 'user.controller.php';
 
 class UserModule extends Module
 {

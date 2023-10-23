@@ -31,15 +31,10 @@ $render = RenderClient::createInstance(__DIR__);
     <main>
         <?php
         $render->include('../components/menu');
-        
+
         echo '<br>PAGES<br>';
 
-        if ($render->validInclude()) {
-            $render->include();
-        }
-        if ($render->isPageNotFound()) {
-            $render->include('page-404');
-        }
+        $render->include();
         ?>
 
         <script>
