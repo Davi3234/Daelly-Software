@@ -1,6 +1,11 @@
 <?php
 require_once __DIR__ . '/../services/api/index.php';
 
+$render = new RenderClient(__DIR__);
+
+printObject($render->getState());
+
+$render->include();
 
 ?>
 
@@ -30,16 +35,16 @@ require_once __DIR__ . '/../services/api/index.php';
 <body>
     <main>
         <?php
-        Render::getInstance()->include('components/menu');
+        // Render::getInstance()->include('components/menu');
 
-        echo '<br>PAGES<br>';
+        // echo '<br>PAGES<br>';
 
-        Render::getInstance()->includeNext(__DIR__);
-        if (Render::getInstance()->isPageNotFound()) {
-            Render::getInstance()->includeNext(__DIR__, 'page-404');
-        }
+        // Render::getInstance()->includeNext(__DIR__);
+        // if (Render::getInstance()->isPageNotFound()) {
+        //     Render::getInstance()->includeNext(__DIR__, 'page-404');
+        // }
 
-        var_dump(Render::getInstance()->getQueriesParams(__DIR__ . '/user'));
+        // var_dump(Render::getInstance()->getQueriesParams(__DIR__ . '/user'));
         ?>
 
         <script>
