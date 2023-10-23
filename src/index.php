@@ -1,6 +1,7 @@
 <?php
 require_once 'src/common/module.php';
 require_once 'src/common/controller.php';
+require_once 'src/services/api/index.php';
 require_once 'src/app/index.php';
 
 class App
