@@ -10,10 +10,14 @@ function formatterPath($path)
     return str_replace("/", DIRECTORY_SEPARATOR, $path);
 }
 
-function printObject($obj)
+function printObject($obj, $prefix = '')
 {
     foreach ($obj as $key => $value) {
-        echo '"' . $key . '": "' . $value . '"';
+        if (!is_array($value)) {
+            echo $prefix . '"' . $key . '": "' . $value . '"';
+        } else {
+            printObject($value, '"' . $key . '": ');
+        }
         line();
     }
 }

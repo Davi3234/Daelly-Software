@@ -1,7 +1,5 @@
 <?php
 
-include 'config/global-config.php';
-
 class URL
 {
     private static $instance;
