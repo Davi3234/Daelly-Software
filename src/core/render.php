@@ -28,21 +28,23 @@ class Render
 
     function getPath()
     {
-        return $_GET['url'];
+        if ($_GET['url']) {
+            return '/' . $_GET['url'];
+        }
 
-        // $routers = URL::getInstance()->getURLRoutersPaths();
+        $routers = URL::getInstance()->getURLRoutersPaths();
 
-        // $path = '';
+        $path = '';
 
-        // if (count($routers) > 0) {
-        //     foreach ($routers as $router) {
-        //         if ($router) {
-        //             $path .= '/' . $router;
-        //         }
-        //     }
-        // }
+        if (count($routers) > 0) {
+            foreach ($routers as $router) {
+                if ($router) {
+                    $path .= '/' . $router;
+                }
+            }
+        }
 
-        // return $path;
+        return $path;
     }
 
     function loadIndexRouter()
@@ -50,7 +52,7 @@ class Render
         if (is_file($this->basePath . '/' . 'index.php')) {
             include $this->basePath . '/' . 'index.php';
         } else {
-            echo '"' . $this->basePath . '" not contain "index.php" file';
+            echo 'Public static folder "' . $this->basePath . '" not found';
             exit(1);
         }
     }
@@ -64,7 +66,7 @@ class Render
 
     function isPageNotFound()
     {
-        $router = $this->getPath();
+        $router = substr($this->getPath(), 1);
 
         return !$this->existsRouter($router);
     }
@@ -163,7 +165,7 @@ class Render
         $STATE['baseFolder'] = str_replace("\\", "/", $_SERVER['DOCUMENT_ROOT']);
         $STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
         $STATE['baseRouterFolder'] = $this->basePath;
-        $STATE['router'] = $this->getPath();
+        $STATE['router'] = substr($this->getPath(), 1);
 
         $STATE['dirWithoutBaseFolder'] = remove_string($STATE['baseFolder'], $STATE['dir']);
         $STATE['pathCurrentFolder'] = remove_string("/" . $STATE['baseRouterURL'], $STATE['dirWithoutBaseFolder']);
