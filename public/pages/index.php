@@ -38,7 +38,13 @@ $render = RenderClient::createInstance(__DIR__);
         ?>
 
         <script>
+            async function App() {
+               const response =  await API.post('/users', {hello: 'world'})
 
+               console.log(response)
+            }
+
+            App()
         </script>
     </main>
 </body>

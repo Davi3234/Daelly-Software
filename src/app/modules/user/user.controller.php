@@ -16,15 +16,11 @@ class UserController extends Controller
 
     private function __construct()
     {
-        parent::__construct();
+        parent::__construct('/users');
     }
 
     function initComponents()
     {
-        ApiServer::getInstance()->post(self::$instance, 'user/create', 'create');
-    }
 
-    private function create($args) {
-        echo $args;
     }
 }
