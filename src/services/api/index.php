@@ -1,13 +1,14 @@
 <?php
-require_once 'repository.php';
+require_once 'request.php';
+require_once 'response.php';
 
-class ApiServer {
+class Api {
     private static $instance;
 
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new ApiServer();
+            self::$instance = new Api();
         }
 
         return self::$instance;
@@ -15,7 +16,21 @@ class ApiServer {
 
     private function __construct() {}
 
-    function post($instance, $name, ...$handlers) {
-        ApiRepository::getInstance()->add($instance, 'POST:' . $name, ...$handlers);
+    function performHandler($request, $response) {
+        $router = $request->getParam('router');
+
+        $nameModule = explode('/', remove_start_str('/', $router))[0];
+
+        str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+
+        $path =  $GLOBALS['CONTROLLERS'][$nameModule];
+
+        if (isset($path)) {
+            $path = remove_start_str(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/', $path);
+
+            if (is_file($path)) {
+                include $path;
+            }
+        }
     }
 }

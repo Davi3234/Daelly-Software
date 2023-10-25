@@ -20,19 +20,39 @@ class App
 
     function factory($publicBasePath, Module $appModule)
     {
-        $this->appModule = $appModule;
-        Render::getInstance()->initComponents($publicBasePath);
-        $this->loadModule();
-        $this->loadIndexRouter();
+        $this->loadModule($appModule);
+        $this->loadRouter($publicBasePath);
     }
 
-    function loadIndexRouter()
+    function loadModule($appModule)
     {
+        $this->appModule = $appModule;
+        $this->appModule->initComponents();
+    }
+
+    function loadRouter($publicBasePath)
+    {
+        Render::getInstance()->initComponents($publicBasePath);
         Render::getInstance()->loadIndexRouter();
     }
 
-    function loadModule()
-    {
-        $this->appModule->initComponents();
+    function getAppModule() {
+        return $this->appModule;
+    }
+
+    function getControllerByName($name) {
+        return $this->appModule->getControllerByName($name);
+    }
+
+    function getRelationControllers() {
+        $controllers = $this->appModule->getControllers();
+
+        foreach($this->appModule->getImports() as $import) {
+            foreach ($import->getControllers() as $key => $controller) {
+                $controllers[$key] = $controller;
+            }
+        }
+
+        return $controllers;
     }
 }

@@ -17,7 +17,7 @@ class UserModule extends Module
     private function __construct()
     {
         parent::__construct([
-            'controllers' => [UserController::getInstance()]
+            'controllers' => ['users' => 'src/app/modules/user/user.controller.php']
         ]);
     }
 }

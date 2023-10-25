@@ -16,9 +16,6 @@ abstract class Module
         foreach ($this->getImports() as $import) {
             $import->initComponents();
         }
-        foreach ($this->getController() as $controller) {
-            $controller->initComponents();
-        }
     }
 
     function getImports()
@@ -26,8 +23,19 @@ abstract class Module
         return $this->imports;
     }
 
-    function getController()
+    function getControllers()
     {
         return $this->controllers;
+    }
+
+    function getControllerByName($name)
+    {
+        foreach($this->getControllers() as $controller) {
+            if ($controller->getName() == $name) {
+                return $controller;
+            }
+        }
+
+        return null;
     }
 }

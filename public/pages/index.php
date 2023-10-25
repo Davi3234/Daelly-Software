@@ -44,14 +44,14 @@ console($render->getState());
 
         <script>
             async function App() {
-                const response = await fetch('api.php', {
-                    method: 'POST'
-                }).then(res => res.text()).then(res => res).catch(err => err)
+                const response = await API.post('/users', {
+                    hello: 'world'
+                })
 
                 console.log(response)
             }
 
-            // App()
+            App()
         </script>
     </main>
 </body>
