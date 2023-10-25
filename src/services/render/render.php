@@ -99,7 +99,11 @@ class Render
             return true;
         }
 
-        return $this->isQueryParamNextRouter($target);
+        // if ($this->isQueryParamNextRouter($target)) {
+        //     return true;
+        // }
+
+        return false;
     }
 
     function isQueryParamNextRouter($path)

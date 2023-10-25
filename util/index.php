@@ -10,30 +10,37 @@ function formatterPath($path)
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
-function printObject($obj)
+function console($obj)
 {
-    ?> <script>console.log(<?= json_encode($obj) ?>)</script> <?php
-}
+?> <script>
+        console.log(<?= json_encode($obj) ?>)
+    </script> <?php
 
-function remove_string($search, $subject)
-{
-    return str_replace($search, '', $subject);
-}
+            }
 
-function remove_start_str($search, $subject)
-{
-    if (str_starts_with($subject, $search)) {
-        return substr($subject, strlen($search));
-    }
+            function remove_string($search, $subject)
+            {
+                return str_replace($search, '', $subject);
+            }
 
-    return $subject;
-}
+            function remove_start_str($search, $subject)
+            {
+                if (!$search) {
+                    return $subject;
+                }
 
-function remove_end_str($search, $subject)
-{
-    if (str_ends_with($subject, $search)) {
-        return substr($subject, 0, -strlen($search));
-    }
+                if (str_starts_with($subject, $search)) {
+                    return substr($subject, strlen($search));
+                }
 
-    return $subject;
-}
+                return $subject;
+            }
+
+            function remove_end_str($search, $subject)
+            {
+                if (str_ends_with($subject, $search)) {
+                    return substr($subject, 0, -strlen($search));
+                }
+
+                return $subject;
+            }

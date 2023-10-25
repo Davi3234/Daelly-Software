@@ -2,6 +2,8 @@
 require_once __DIR__ . '/../services/api/index.php';
 
 $render = RenderClient::createInstance(__DIR__);
+
+console($render->getState());
 ?>
 
 <!DOCTYPE html>
@@ -35,10 +37,21 @@ $render = RenderClient::createInstance(__DIR__);
         echo '<br>PAGES<br>';
 
         $render->include();
+        if ($render->isPageNotFound()) {
+            $render->include('page-404');
+        }
         ?>
 
         <script>
+            async function App() {
+                const response = await fetch('api.php', {
+                    method: 'POST'
+                }).then(res => res.text()).then(res => res).catch(err => err)
 
+                console.log(response)
+            }
+
+            // App()
         </script>
     </main>
 </body>
