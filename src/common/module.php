@@ -16,9 +16,6 @@ abstract class Module
         foreach ($this->getImports() as $import) {
             $import->initComponents();
         }
-        foreach ($this->getControllers() as $controller) {
-            $controller->initComponents();
-        }
     }
 
     function getImports()

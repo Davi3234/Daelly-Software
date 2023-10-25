@@ -1,12 +1,12 @@
 <?php
 include 'config/global-config.php';
+include 'src/app/modules/controllers.php';
 require_once 'util/index.php';
-require_once 'src/index.php';
 require_once 'src/services/api/index.php';
+require_once 'src/common/controller.php';
 
 $request = new Request();
 
-App::getInstance()->loadModule(AppModule::getInstance());
 Response::getInstance()->startSend();
 
 $dataJson = file_get_contents("php://input");
@@ -18,5 +18,4 @@ $request->loadHeaders($_SERVER);
 
 Api::getInstance()->performHandler($request, Response::getInstance());
 
-Response::getInstance()->status(200)->send(["hello" => 'Hello World']);
 Response::getInstance()->endSend();

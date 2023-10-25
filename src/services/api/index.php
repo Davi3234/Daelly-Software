@@ -19,6 +19,18 @@ class Api {
     function performHandler($request, $response) {
         $router = $request->getParam('router');
 
-        echo !$router;
+        $nameModule = explode('/', remove_start_str('/', $router))[0];
+
+        str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+
+        $path =  $GLOBALS['CONTROLLERS'][$nameModule];
+
+        if (isset($path)) {
+            $path = remove_start_str(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/', $path);
+
+            if (is_file($path)) {
+                include $path;
+            }
+        }
     }
 }

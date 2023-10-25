@@ -67,7 +67,13 @@
                 requestOptions['body'] = JSON.stringify(body)
             }
 
-            const response = await fetch(`/api.php?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => (res || "{}").json()).then(res => res)
+            const response = await fetch(`/api.php?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => {
+                try {
+                    return (res || "{}").json()
+                }catch(err) {
+                    return (res || "{}").text()
+                }
+            }).then(res => res)
 
             return response
         }

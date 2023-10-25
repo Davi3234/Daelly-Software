@@ -43,4 +43,16 @@ class App
     function getControllerByName($name) {
         return $this->appModule->getControllerByName($name);
     }
+
+    function getRelationControllers() {
+        $controllers = $this->appModule->getControllers();
+
+        foreach($this->appModule->getImports() as $import) {
+            foreach ($import->getControllers() as $key => $controller) {
+                $controllers[$key] = $controller;
+            }
+        }
+
+        return $controllers;
+    }
 }
