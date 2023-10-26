@@ -176,7 +176,7 @@ class Render
 
     function isQueryParam($nameFolder = '')
     {
-        return str_starts_with($nameFolder, '[') && str_ends_with($nameFolder, ']');
+        return isStartsWith('[', $nameFolder) && isEndsWith(']', $nameFolder);
     }
 
     function getNextNameRouter($dir)
@@ -193,7 +193,7 @@ class Render
         $queryNames = [];
 
         foreach ($foldersNames as $name) {
-            if (str_starts_with($name, '[') && str_ends_with($name, ']')) {
+            if (isStartsWith('[', $name) && isEndsWith(']', $name)) {
                 $queryNames[] = substr($name, 1, strlen($name) - 2);
             }
         }

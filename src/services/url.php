@@ -57,10 +57,10 @@ class URL
     {
         $router = str_replace('//', '/', $this->getBaseRouter() ? str_replace('/' . $this->getBaseRouter(), '', $_SERVER['REQUEST_URI']) : $_SERVER['REQUEST_URI']);
 
-        while (str_starts_with($router, '/')) {
+        while (isStartsWith('/', $router)) {
             $router = remove_start_str('/', $router);
         }
-        while (str_ends_with($router, '/')) {
+        while (isEndsWith('/', $router)) {
             $router = remove_end_str('/', $router);
         }
 

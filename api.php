@@ -2,6 +2,7 @@
 include 'config/global-config.php';
 require_once 'util/index.php';
 require_once 'src/services/api/index.php';
+require_once 'src/app/app.controller.php';
 
 $request = new Request();
 
@@ -14,7 +15,7 @@ $request->loadBody($data);
 $request->loadParams($_REQUEST);
 $request->loadHeaders($_SERVER);
 
-Api::getInstance()->performHandler($request, Response::getInstance());
+$responseData = Api::getInstance()->performHandler($request, Response::getInstance());
 
-Response::getInstance()->send([]);
+Response::getInstance()->send($responseData);
 Response::getInstance()->endSend();

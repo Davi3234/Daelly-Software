@@ -19,12 +19,8 @@ class Api
     {
     }
 
-    function performHandler($request, $response)
+    function performHandler(Request $request, Response $response)
     {
-        $router = $request->getParam('router');
-
-        $nameModule = explode('/', remove_start_str('/', $router))[0];
-
-        AppController::getInstance()->perform($nameModule, $request, $response);
+        return AppController::getInstance()->perform($request, $response);
     }
 }

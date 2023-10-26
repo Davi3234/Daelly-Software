@@ -37,14 +37,14 @@ console($render->getState());
         echo '<br>PAGES<br>';
 
         $render->include();
-        if ($render->isPageNotFound()) {
-            $render->include('page-404');
-        }
+        // if ($render->isPageNotFound()) {
+        //     $render->include('page-404');
+        // }
         ?>
 
         <script>
             async function App() {
-                const response = await API.post('/users', {
+                const response = await API.post('/users/create', {
                     hello: 'world'
                 })
 
