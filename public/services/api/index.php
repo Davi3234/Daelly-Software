@@ -4,6 +4,8 @@
 
 <script>
     class API {
+        static GLOBAL_PREFIX_ROUTER = '<?= $GLOBALS['GLOBAL_PREFIX_ROUTER'] ?>'
+
         static async get(url, body = {}, headers = {}) {
             const response = await API.performRequest('GET', url, body, headers)
 
@@ -62,17 +64,20 @@
                     ...(options.headers || {})
                 }
             }
+            const baseUrl = API.GLOBAL_PREFIX_ROUTER ? `/${API.GLOBAL_PREFIX_ROUTER}/api.php` : '/api.php'
+
+            console.log(baseUrl)
 
             if (method != "GET") {
                 requestOptions['body'] = JSON.stringify(body)
             }
 
-            const response = await fetch(`/api.php?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => {
-                try {
-                    return (res || "{}").json()
-                }catch(err) {
-                    return (res || "{}").text()
-                }
+            const response = await fetch(`${baseUrl}?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => {
+                // try {
+                // return (res || "{}").json()
+                // } catch (err) {
+                return (res || "{}").text()
+                // }
             }).then(res => res)
 
             return response

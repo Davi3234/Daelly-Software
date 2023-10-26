@@ -2,7 +2,8 @@
 require_once 'request.php';
 require_once 'response.php';
 
-class Api {
+class Api
+{
     private static $instance;
 
     static function getInstance()
@@ -14,23 +15,16 @@ class Api {
         return self::$instance;
     }
 
-    private function __construct() {}
+    private function __construct()
+    {
+    }
 
-    function performHandler($request, $response) {
+    function performHandler($request, $response)
+    {
         $router = $request->getParam('router');
 
         $nameModule = explode('/', remove_start_str('/', $router))[0];
 
-        str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
-
-        $path =  $GLOBALS['CONTROLLERS'][$nameModule];
-
-        if (isset($path)) {
-            $path = remove_start_str(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/', $path);
-
-            if (is_file($path)) {
-                include $path;
-            }
-        }
+        AppController::getInstance()->perform($nameModule, $request, $response);
     }
 }

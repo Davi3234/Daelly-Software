@@ -1,14 +1,13 @@
 <?php
-require_once 'user.service.php';
 
-class UserController extends Controller
+class UserController
 {
     private static $instance;
 
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new UserController();
+            self::$instance = new Router();
         }
 
         return self::$instance;
@@ -16,11 +15,10 @@ class UserController extends Controller
 
     private function __construct()
     {
-        parent::__construct('/users');
     }
 
-    function initComponents()
+    public function perform($request, $response)
     {
-
+        echo '!';
     }
 }

@@ -1,21 +1,20 @@
 <?php
 
-class UserCreateUseCase
+class AppController
 {
-
     private static $instance;
 
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new UserCreateUseCase();
+            self::$instance = new AppController();
         }
 
         return self::$instance;
     }
 
-    function perform()
+    function perform($name, $request, $perform)
     {
-        return 'User Create';
+        echo $name;
     }
 }
