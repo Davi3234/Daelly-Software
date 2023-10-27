@@ -26,10 +26,12 @@ class UserController
         $action = remove_start_str($this->getBaseRouter(), $router);
 
         if (str_starts_with(USER_ACTION_ROUTERS::Create->value, $action) && USER_METHODS_ROUTERS::Create->value == $request->getHeader('REQUEST_METHOD')) {
-            return UserService::getInstance()->create($request->getAllBody());
+            $responseData = UserService::getInstance()->create($request->getAllBody());
+
+            return $response->send($responseData);
         }
 
-        return "Cannot found action";
+        $response->send("Cannot found action");
     }
 
     private function getBaseRouter()

@@ -21,6 +21,6 @@ class Api
 
     function performHandler(Request $request, Response $response)
     {
-        return AppController::getInstance()->perform($request, $response);
+        AppController::getInstance()->perform($request, $response);
     }
 }

@@ -26,19 +26,19 @@ class AppController
             return $this->perforAuthController($request, $response);
         }
 
-        return "Cannot found controller";
+        $response->send("Cannot found controller");
     }
 
     private function perforUserController(Request $request, Response $response) {
         include $this->getPathController('user');
 
-        return UserController::getInstance()->perform($request, $response);
+        UserController::getInstance()->perform($request, $response);
     }
 
     private function perforAuthController(Request $request, Response $response) {
         include $this->getPathController('auth');
 
-        return AuthController::getInstance()->perform($request, $response);
+        AuthController::getInstance()->perform($request, $response);
     }
 
     private function getPathController($name) {

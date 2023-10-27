@@ -25,10 +25,12 @@ class AuthController {
         $action = remove_start_str($this->getBaseRouter(), $router);
 
         if (str_starts_with(AUTH_ACTION_ROUTERS::Login->value, $action) && AUTH_METHODS_ROUTERS::Login->value == $request->getHeader('REQUEST_METHOD')) {
-            return AuthService::getInstance()->login($request->getAllBody());
+            $responseData = AuthService::getInstance()->login($request->getAllBody());
+            
+            return $response->send($responseData);
         }
 
-        return "Cannot found action";
+        $response->send("Cannot found action");
     }
 
     private function getBaseRouter()

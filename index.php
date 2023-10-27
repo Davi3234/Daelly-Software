@@ -26,9 +26,8 @@ function performRequest()
     $request->loadParams($_REQUEST);
     $request->loadHeaders($_SERVER);
 
-    $responseData = Api::getInstance()->performHandler($request, Response::getInstance());
+    Api::getInstance()->performHandler($request, Response::getInstance());
 
-    Response::getInstance()->send($responseData);
     Response::getInstance()->endSend();
 }
 
