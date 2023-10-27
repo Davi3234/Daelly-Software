@@ -27,7 +27,7 @@ class AuthController {
         if (str_starts_with(AUTH_ACTION_ROUTERS::Login->value, $action) && AUTH_METHODS_ROUTERS::Login->value == $request->getHeader('REQUEST_METHOD')) {
             $responseData = AuthService::getInstance()->login($request->getAllBody());
             
-            return $response->send($responseData);
+            return $response->send($responseData, 400);
         }
 
         $response->send("Cannot found action");
