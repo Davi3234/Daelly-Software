@@ -2,6 +2,9 @@
 require_once 'util/index.php';
 include 'config/global-config.php';
 
+echo json_encode($_SERVER);
+echo $GLOBALS['GLOBAL_PREFIX_ROUTER'];
+
 function performDocument()
 {
     require_once 'src/index.php';

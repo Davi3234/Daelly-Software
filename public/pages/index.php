@@ -31,7 +31,7 @@ $render = RenderClient::createInstance(__DIR__);
 <body>
     <main>
         <?php
-        $render->include('../components/menu');
+        // $render->include('../components/menu');
 
         echo '<br>PAGES<br>';
 

@@ -73,11 +73,7 @@
             }
 
             const response = await fetch(`${baseUrl}?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => {
-                try {
-                    return (res || "{}").json()
-                } catch (err) {
-                    return (res || "{}").text()
-                }
+                return (res || "{}").text()
             }).then(res => res)
 
             return response

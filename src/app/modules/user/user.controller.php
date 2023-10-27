@@ -32,7 +32,8 @@ class UserController
         return "Cannot found action";
     }
 
-    private function getBaseRouter() {
+    private function getBaseRouter()
+    {
         return PREFIX_CONTROLLERS::User->value;
     }
 }
