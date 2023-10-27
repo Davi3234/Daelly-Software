@@ -35,14 +35,16 @@ class Render
     {
         $router = remove_start_str('/', $this->getRouters());
 
-        return !$this->existsRouter($router);
+        return !$this->existsRouter($this->publicBasePath . '/' . $router);
     }
 
     function existsRouter($router)
     {
         $router = str_replace('\\', '/', $router);
 
-        return $this->validInclude($router);
+        $existsRouter = $this->validInclude($router);
+
+        return $existsRouter;
     }
 
     function include($target = '')
@@ -99,15 +101,17 @@ class Render
             return true;
         }
 
-        // if ($this->isQueryParamNextRouter($target)) {
-        //     return true;
-        // }
+        if ($this->isQueryParamNextRouter($target)) {
+            return true;
+        }
 
         return false;
     }
 
     function isQueryParamNextRouter($path)
     {
+        $path = remove_start_str('/', remove_start_str($this->publicBasePath, $path));
+
         $currentPathRouter = $this->publicBasePath;
 
         foreach (explode('/', $path) as $key => $value) {

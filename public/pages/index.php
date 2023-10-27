@@ -1,7 +1,17 @@
 <?php
 require_once __DIR__ . '/../services/api/index.php';
 
-$render = RenderClient::createInstance(__DIR__);
+function getRender($dir, $consoleState = false) {
+    $render = RenderClient::createInstance($dir);
+
+    if ($consoleState) {
+        console($render->getState());
+    }
+
+    return $render;
+}
+
+$render = getRender(__DIR__);
 
 ?>
 
@@ -31,14 +41,15 @@ $render = RenderClient::createInstance(__DIR__);
 <body>
     <main>
         <?php
-        // $render->include('../components/menu');
+        $render->include('../components/menu');
 
         echo '<br>PAGES<br>';
 
         $render->include();
-        // if ($render->isPageNotFound()) {
-        //     $render->include('page-404');
-        // }
+
+        if ($render->isPageNotFound()) {
+            $render->include('page-404');
+        }
         ?>
 
         <script>

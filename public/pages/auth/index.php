@@ -2,6 +2,6 @@
 
 echo '<br>AUTH<br>';
 
-$render = RenderClient::createInstance(__DIR__);
+$render = getRender(__DIR__);
 
 $render->include();
