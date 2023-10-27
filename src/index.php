@@ -15,14 +15,14 @@ class App
         return self::$instance;
     }
 
-    function factory($publicBasePath)
+    function factory($publicBasePath = '', $componentBasePath = '')
     {
-        $this->loadRouter($publicBasePath);
+        $this->loadRouter($publicBasePath, $componentBasePath);
     }
 
-    function loadRouter($publicBasePath)
+    function loadRouter($publicBasePath, $componentBasePath)
     {
-        Render::getInstance()->initComponents($publicBasePath);
+        Render::getInstance()->initComponents($publicBasePath, $componentBasePath);
         Render::getInstance()->loadIndexRouter();
     }
 }

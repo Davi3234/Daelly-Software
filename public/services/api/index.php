@@ -65,8 +65,7 @@
                 }
             }
 
-            const file = '';
-            const baseUrl = API.GLOBAL_PREFIX_ROUTER ? `/${API.GLOBAL_PREFIX_ROUTER}${file}` : file
+            const baseUrl = API.GLOBAL_PREFIX_ROUTER ? `/${API.GLOBAL_PREFIX_ROUTER}` : '/'
 
             if (method != "GET") {
                 requestOptions['body'] = JSON.stringify(body)

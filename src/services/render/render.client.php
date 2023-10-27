@@ -79,6 +79,10 @@ class RenderClient
         return $this->STATE['queries'];
     }
 
+    function includeComponent($target) {
+        return Render::getInstance()->includeComponent($target);
+    }
+
     function include($target = '')
     {
         $target = remove_start_str('/', $target);

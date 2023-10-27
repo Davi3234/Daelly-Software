@@ -1,8 +1,12 @@
 <?php
+$render = getRender(__DIR__);
 
-echo 'Login'
+echo 'Login';
+
 ?>
 
 <script>
-    API.post('/auth/login', {username: 'Dan Ruan', password: '123'})
+    setTimeout(() => {
+        API.post('/auth/login', {username: 'Dan Ruan', password: '123'})
+    }, 1000*2)
 </script>

@@ -6,6 +6,7 @@ class Render
 {
     private static $instance;
     private $publicBasePath;
+    private $componentBasePath;
 
     static function getInstance()
     {
@@ -16,9 +17,10 @@ class Render
         return self::$instance;
     }
 
-    function initComponents($publicBasePath)
+    function initComponents($publicBasePath, $componentBasePath)
     {
         $this->publicBasePath = $publicBasePath;
+        $this->componentBasePath = $componentBasePath;
     }
 
     function loadIndexRouter()
@@ -45,6 +47,12 @@ class Render
         $existsRouter = $this->validInclude($router);
 
         return $existsRouter;
+    }
+
+    function includeComponent($target) {
+        $target = $this->componentBasePath ? $this->componentBasePath . '/' . remove_start_str('/', $target) : remove_start_str('/', $target);
+
+        return $this->include($target);
     }
 
     function include($target = '')

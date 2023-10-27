@@ -7,7 +7,7 @@ function performDocument()
     require_once 'src/index.php';
     require_once 'src/services/render/render.client.php';
 
-    App::getInstance()->factory('public/pages');
+    App::getInstance()->factory('public/pages', 'public/components');
 }
 
 function performRequest()
