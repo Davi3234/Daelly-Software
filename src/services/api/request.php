@@ -27,7 +27,7 @@ class Request {
     }
 
     function getParams() {
-        return $_REQUEST;
+        return $this->params;
     }
 
     function getParam($name) {
@@ -39,7 +39,7 @@ class Request {
     }
 
     function getHeaders() {
-        return getallheaders();
+        return $this->headers;
     }
 
     function getHeader($name) {
