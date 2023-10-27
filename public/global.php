@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../services/api/index.php';
+require_once 'services/api/index.php';
 
 function getRender($dir, $consoleState = false) {
     $render = RenderClient::createInstance($dir);
