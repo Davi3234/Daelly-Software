@@ -49,7 +49,8 @@ class Render
         return $existsRouter;
     }
 
-    function includeComponent($target) {
+    function includeComponent($target)
+    {
         $target = $this->componentBasePath ? $this->componentBasePath . '/' . remove_start_str('/', $target) : remove_start_str('/', $target);
 
         return $this->include($target);

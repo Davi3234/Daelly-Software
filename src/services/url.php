@@ -20,10 +20,10 @@ class URL
 
     function redirect($url)
     {
-        header($this->getURLRedirect($url));
+        header($this->createURLPath($url));
     }
 
-    function getURLRedirect($url)
+    function createURLPath($url)
     {
         $url = remove_start_str('/', $url);
 

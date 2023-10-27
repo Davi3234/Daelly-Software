@@ -3,6 +3,8 @@ require_once __DIR__ . '/../global.php';
 
 $render = getRender(__DIR__);
 
+
+
 ?>
 
 <!DOCTYPE html>
@@ -15,19 +17,23 @@ $render = getRender(__DIR__);
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <title>Document</title>
-    <link rel="stylesheet" href="/public/pages/style.css">
+    <link rel="stylesheet" href="<?= URL::getInstance()->createURLPath('/public/pages/style.css') ?>">
 </head>
 
 <body>
     <main>
-        <?php 
-            $render->include();
+        <?php
+        $render->include();
 
-            if (!Render::getInstance()->getRouters()) {
-                $render->include('home');
+        if (!Render::getInstance()->getRouters()) {
+            $render->include('home');
 
-                ?> <script>window.history.pushState({}, '', "/home")</script> <?php 
-            }
+
+        ?>
+            <script>
+                URL.changeUrl('/home')
+            </script>
+        <?php }
         ?>
     </main>
 </body>

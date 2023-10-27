@@ -19,29 +19,32 @@ class AppController
         $router = $request->getParam('router');
 
         if (isStartsWith(PREFIX_CONTROLLERS::User->value, $router)) {
-            return $this->perforUserController($request, $response);
+            return $this->performUserController($request, $response);
         }
 
         if (isStartsWith(PREFIX_CONTROLLERS::Auth->value, $router)) {
-            return $this->perforAuthController($request, $response);
+            return $this->performAuthController($request, $response);
         }
 
-        $response->send("Cannot found controller");
+        $response->send("Cannot found controller", 404);
     }
 
-    private function perforUserController(Request $request, Response $response) {
+    private function performUserController(Request $request, Response $response)
+    {
         include $this->getPathController('user');
 
         UserController::getInstance()->perform($request, $response);
     }
 
-    private function perforAuthController(Request $request, Response $response) {
+    private function performAuthController(Request $request, Response $response)
+    {
         include $this->getPathController('auth');
 
         AuthController::getInstance()->perform($request, $response);
     }
 
-    private function getPathController($name) {
+    private function getPathController($name)
+    {
         $path = 'modules/' . $name . '/' . $name . '.controller.php';
 
         return $path;
