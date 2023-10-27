@@ -1,15 +1,5 @@
 <?php
-require_once __DIR__ . '/../services/api/index.php';
-
-function getRender($dir, $consoleState = false) {
-    $render = RenderClient::createInstance($dir);
-
-    if ($consoleState) {
-        console($render->getState());
-    }
-
-    return $render;
-}
+require_once 'global.php';
 
 $render = getRender(__DIR__);
 
@@ -40,29 +30,7 @@ $render = getRender(__DIR__);
 
 <body>
     <main>
-        <?php
-        $render->include('../components/menu');
 
-        echo '<br>PAGES<br>';
-
-        $render->include();
-
-        if ($render->isPageNotFound()) {
-            $render->include('page-404');
-        }
-        ?>
-
-        <script>
-            async function App() {
-                const response = await API.post('/users/create', {
-                    hello: 'world'
-                })
-
-                console.log(response)
-            }
-
-            App()
-        </script>
     </main>
 </body>
 
