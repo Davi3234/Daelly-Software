@@ -25,7 +25,7 @@ class UserController
 
         $action = remove_start_str($this->getBaseRouter(), $router);
 
-        if (str_starts_with(ACTION_ROUTERS::Create->value, $action)) {
+        if (str_starts_with(USER_ACTION_ROUTERS::Create->value, $action) && USER_METHODS_ROUTERS::Create->value == $request->getHeader('REQUEST_METHOD')) {
             return UserService::getInstance()->create($request->getAllBody());
         }
 

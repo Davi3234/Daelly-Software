@@ -22,6 +22,10 @@ class AppController
             return $this->perforUserController($request, $response);
         }
 
+        if (isStartsWith(PREFIX_CONTROLLERS::Auth->value, $router)) {
+            return $this->perforAuthController($request, $response);
+        }
+
         return "Cannot found controller";
     }
 
@@ -29,6 +33,12 @@ class AppController
         include $this->getPathController('user');
 
         return UserController::getInstance()->perform($request, $response);
+    }
+
+    private function perforAuthController(Request $request, Response $response) {
+        include $this->getPathController('auth');
+
+        return AuthController::getInstance()->perform($request, $response);
     }
 
     private function getPathController($name) {
