@@ -64,20 +64,20 @@
                     ...(options.headers || {})
                 }
             }
-            const baseUrl = API.GLOBAL_PREFIX_ROUTER ? `/${API.GLOBAL_PREFIX_ROUTER}/api.php` : '/api.php'
 
-            console.log(baseUrl)
+            const file = '';
+            const baseUrl = API.GLOBAL_PREFIX_ROUTER ? `/${API.GLOBAL_PREFIX_ROUTER}${file}` : file
 
             if (method != "GET") {
                 requestOptions['body'] = JSON.stringify(body)
             }
 
             const response = await fetch(`${baseUrl}?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => {
-                // try {
-                // return (res || "{}").json()
-                // } catch (err) {
-                return (res || "{}").text()
-                // }
+                try {
+                    return (res || "{}").json()
+                } catch (err) {
+                    return (res || "{}").text()
+                }
             }).then(res => res)
 
             return response

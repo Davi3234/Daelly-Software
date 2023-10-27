@@ -28,11 +28,13 @@ function remove_start_str($search, $subject)
     return $subject;
 }
 
-function isStartsWith($search, $subject) {
+function isStartsWith($search, $subject)
+{
     return str_starts_with($subject, $search);
 }
 
-function isEndsWith($search, $subject) {
+function isEndsWith($search, $subject)
+{
     return str_ends_with($subject, $search);
 }
 
@@ -45,7 +47,8 @@ function remove_end_str($search, $subject)
     return $subject;
 }
 
-enum NativeTypes: string {
+enum NativeTypes: string
+{
     case Boolean = "boolean";
     case Integer = "integer";
     case Double = "double";
@@ -57,55 +60,68 @@ enum NativeTypes: string {
     case Unknown = "unknown type";
 }
 
-function isBoolean($value) {
+function isBoolean($value)
+{
     return NativeTypes::Boolean->value == gettype($value);
 }
 
-function isInteger($value) {
+function isInteger($value)
+{
     return NativeTypes::Integer->value == gettype($value);
 }
 
-function isDouble($value) {
+function isDouble($value)
+{
     return NativeTypes::Double->value == gettype($value);
 }
 
-function isString($value) {
+function isString($value)
+{
     return NativeTypes::String->value == gettype($value);
 }
 
-function isArray($value) {
+function isArray($value)
+{
     return NativeTypes::Array->value == gettype($value);
 }
 
-function isObject($value) {
+function isObject($value)
+{
     return NativeTypes::Object->value == gettype($value);
 }
 
-function isResource($value) {
+function isResource($value)
+{
     return NativeTypes::Resource->value == gettype($value);
 }
 
-function isNull($value) {
+function isNull($value)
+{
     return NativeTypes::Null->value == gettype($value);
 }
 
-function isUnknown($value) {
+function isUnknown($value)
+{
     return NativeTypes::Unknown->value == gettype($value);
 }
 
-function isNumber($value) {
+function isNumber($value)
+{
     return isInteger($value) || isDouble($value);
 }
 
-function isNaN($value) {
+function isNaN($value)
+{
     return !isNumber($value);
 }
 
-function isTruthy($value = null) {
+function isTruthy($value = null)
+{
     return !isFalsy($value);
 }
 
-function isFalsy($value = null) {
+function isFalsy($value = null)
+{
     if (isNumber($value)) {
         return $value == 0;
     }
@@ -131,5 +147,7 @@ function isFalsy($value = null) {
 
 function console($obj)
 {
-?> <script> console.log(<?= json_encode($obj) ?>) </script> <?php
-}
+?> <script>
+        console.log(<?= json_encode($obj) ?>)
+    </script> <?php
+            }

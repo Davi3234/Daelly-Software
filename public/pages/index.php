@@ -3,7 +3,6 @@ require_once __DIR__ . '/../services/api/index.php';
 
 $render = RenderClient::createInstance(__DIR__);
 
-console($render->getState());
 ?>
 
 <!DOCTYPE html>
