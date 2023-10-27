@@ -1,9 +1,6 @@
 <?php
 require_once 'util/index.php';
-include 'config/global-config.php';
-
-echo json_encode($_SERVER);
-echo $GLOBALS['GLOBAL_PREFIX_ROUTER'];
+require_once 'config/global-config.php';
 
 function performDocument()
 {
