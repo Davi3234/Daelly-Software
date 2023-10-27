@@ -71,9 +71,17 @@
                 requestOptions['body'] = JSON.stringify(body)
             }
 
-            const response = await fetch(`${baseUrl}?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(res => {
-                return (res || "{}").text()
+            const response = await fetch(`${baseUrl}?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(async res => {
+                const data = await (res || "{}").text()
+
+                try {
+                    return JSON.parse(data)
+                }catch(err) {
+                    return data
+                }
             }).then(res => res)
+
+            console.log({ request: requestOptions, response })
 
             return response
         }
