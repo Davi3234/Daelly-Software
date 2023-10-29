@@ -60,6 +60,46 @@ enum NativeTypes: string
     case Unknown = "unknown type";
 }
 
+function isNaN($value)
+{
+    return !isNumber($value);
+}
+
+function isNumber($value)
+{
+    return isInteger($value) || isDouble($value);
+}
+
+function isTruthy($value = null)
+{
+    return !isFalsy($value);
+}
+
+function isFalsy($value = null)
+{
+    if (isNumber($value)) {
+        return $value == 0;
+    }
+
+    if (isBoolean($value)) {
+        return !$value;
+    }
+
+    if (isString($value)) {
+        return strlen($value) == 0;
+    }
+
+    if (isArray($value)) {
+        return count($value) == 0;
+    }
+
+    if (isObject($value)) {
+        return empty(get_object_vars($value));
+    }
+
+    return !isNull($value) || !isUnknown($value) || !isset($value);
+}
+
 function isBoolean($value)
 {
     return NativeTypes::Boolean->value == gettype($value);
@@ -103,46 +143,6 @@ function isNull($value)
 function isUnknown($value)
 {
     return NativeTypes::Unknown->value == gettype($value);
-}
-
-function isNumber($value)
-{
-    return isInteger($value) || isDouble($value);
-}
-
-function isNaN($value)
-{
-    return !isNumber($value);
-}
-
-function isTruthy($value = null)
-{
-    return !isFalsy($value);
-}
-
-function isFalsy($value = null)
-{
-    if (isNumber($value)) {
-        return $value == 0;
-    }
-
-    if (isBoolean($value)) {
-        return !$value;
-    }
-
-    if (isString($value)) {
-        return strlen($value) == 0;
-    }
-
-    if (isArray($value)) {
-        return count($value) == 0;
-    }
-
-    if (isObject($value)) {
-        return empty(get_object_vars($value));
-    }
-
-    return !isNull($value) || !isUnknown($value) || !isset($value);
 }
 
 function console($obj)

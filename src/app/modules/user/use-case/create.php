@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class UserCreateUseCase {
+class UserCreateUseCase
+{
     private static $instance;
 
     static function getInstance()
@@ -12,7 +13,8 @@ class UserCreateUseCase {
         return self::$instance;
     }
 
-    function perform($data) {
+    function perform($data)
+    {
         return $data;
     }
 }

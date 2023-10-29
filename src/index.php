@@ -5,7 +5,6 @@ require_once 'src/app/app.controller.php';
 class App
 {
     private static $instance;
-
     static function getInstance()
     {
         if (!isset(self::$instance)) {

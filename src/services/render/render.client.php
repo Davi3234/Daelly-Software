@@ -54,6 +54,8 @@ class RenderClient
                 $this->STATE['nextRouterFolder'] = remove_start_str('/', $this->STATE['rootFolderProject']) . ($this->STATE['nextFolderName'] ? '/' . $this->STATE['nextFolderName'] : '');
             }
         }
+
+        $this->STATE['ok-include'] = $this->STATE['nextFolderName'] != $this->STATE['currentFolder'];
     }
 
     function getQueries()
@@ -79,7 +81,8 @@ class RenderClient
         return $this->STATE['queries'];
     }
 
-    function includeComponent($target) {
+    function includeComponent($target)
+    {
         return Render::getInstance()->includeComponent($target);
     }
 
@@ -90,7 +93,7 @@ class RenderClient
         if (!$target) {
             $target = $this->STATE['nextRouterFolder'];
 
-            if (remove_start_str('/', $this->STATE['rootFolderProject']) == $this->STATE['nextRouterFolder']) {
+            if (!$this->STATE['ok-include']) {
                 return false;
             }
         } else {

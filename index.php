@@ -27,12 +27,15 @@ function performRequest()
     $request->loadHeaders($_SERVER);
 
     Api::getInstance()->performHandler($request, Response::getInstance());
-
-    Response::getInstance()->endSend();
 }
 
 if ($_SERVER['HTTP_SEC_FETCH_DEST'] == 'document') {
     performDocument();
 } else if ($_SERVER['HTTP_SEC_FETCH_DEST'] == 'empty') {
+    require_once 'src/services/database.php';
+
+    $res = Database::getInstance()->getTables();
+
+    var_dump($res);
     performRequest();
 }

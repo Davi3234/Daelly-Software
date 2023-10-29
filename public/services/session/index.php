@@ -1,8 +1,8 @@
 <?php
 
-class Session {
+class Session
+{
     private static $instance;
-    private $publicBasePath;
 
     static function getInstance()
     {
@@ -12,5 +12,4 @@ class Session {
 
         return self::$instance;
     }
-
 }

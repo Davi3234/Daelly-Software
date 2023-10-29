@@ -1,36 +1,44 @@
 <?php
 
-class Request {
+class Request
+{
     private $body;
     private $params;
     private $headers;
 
-    function __constructor() {
+    function __constructor()
+    {
         $this->initComponents();
     }
 
-    private function initComponents() {
+    private function initComponents()
+    {
         $this->loadParams();
         $this->loadHeaders();
     }
 
-    function loadBody($body) {
+    function loadBody($body)
+    {
         $this->body = $body;
     }
 
-    function loadParams($params = []) {
+    function loadParams($params = [])
+    {
         $this->params = $params;
     }
 
-    function loadHeaders($headers = []) {
+    function loadHeaders($headers = [])
+    {
         $this->headers = $headers;
     }
 
-    function getParams() {
+    function getParams()
+    {
         return $this->params;
     }
 
-    function getParam($name) {
+    function getParam($name)
+    {
         if (isset($this->getParams()[$name])) {
             return $this->getParams()[$name];
         }
@@ -38,11 +46,13 @@ class Request {
         return '';
     }
 
-    function getHeaders() {
+    function getHeaders()
+    {
         return $this->headers;
     }
 
-    function getHeader($name) {
+    function getHeader($name)
+    {
         if (isset($this->getHeaders()[$name])) {
             return $this->getHeaders()[$name];
         }
@@ -50,11 +60,13 @@ class Request {
         return '';
     }
 
-    function getAllBody() {
+    function getAllBody()
+    {
         return $this->body;
     }
 
-    function getBody($name) {
+    function getBody($name)
+    {
         if (isset($this->getAllBody()[$name])) {
             return $this->getAllBody()[$name];
         }

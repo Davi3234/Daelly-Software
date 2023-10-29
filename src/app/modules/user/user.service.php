@@ -1,6 +1,7 @@
 <?php
 
-class UserService {
+class UserService
+{
     private static $instance;
 
     static function getInstance()
@@ -12,13 +13,15 @@ class UserService {
         return self::$instance;
     }
 
-    function create($data) {
+    function create($data)
+    {
         include $this->getPathUseCase('create');
 
         return UserCreateUseCase::getInstance()->perform($data);
     }
-    
-    private function getPathUseCase($name) {
+
+    private function getPathUseCase($name)
+    {
         $path = 'use-case/' . $name . '.php';
 
         return $path;

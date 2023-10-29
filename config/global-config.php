@@ -2,4 +2,8 @@
 
 global $GLOBAL_PREFIX_ROUTER;
 
-$GLOBAL_PREFIX_ROUTER = remove_end_str('/', remove_end_str('config', remove_start_str($_SERVER['DOCUMENT_ROOT'] . '/', str_replace('\\', '/', __DIR__))));
+$filePath =  str_replace('\\', '/', __DIR__);
+$documentRoot = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
+$basePath = remove_start_str($documentRoot, $filePath);
+
+$GLOBAL_PREFIX_ROUTER = remove_start_str('/', remove_end_str('/config', $basePath));

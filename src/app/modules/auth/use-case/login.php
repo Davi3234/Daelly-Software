@@ -1,6 +1,7 @@
-<?php 
+<?php
 
-class AuthLoginUseCase {
+class AuthLoginUseCase
+{
     private static $instance;
 
     static function getInstance()
@@ -12,7 +13,8 @@ class AuthLoginUseCase {
         return self::$instance;
     }
 
-    function perform($data) {
+    function perform($data)
+    {
         return $data;
     }
 }
