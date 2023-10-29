@@ -2,6 +2,15 @@
 require_once 'util/index.php';
 require_once 'config/global-config.php';
 
+$target = $_SERVER['HTTP_SEC_FETCH_DEST'];
+
+enum Targets: string
+{
+    case Document = 'document';
+    case Request = 'empty';
+    case Style = 'style';
+}
+
 function performDocument()
 {
     require_once 'src/index.php';
@@ -29,13 +38,19 @@ function performRequest()
     Api::getInstance()->performHandler($request, Response::getInstance());
 }
 
+function performStyle()
+{
+    include remove_start_str($GLOBALS['GLOBAL_PREFIX_ROUTER'] . '/', remove_start_str('/', $_SERVER['REDIRECT_URL']));
+}
+
 if ($_SERVER['HTTP_SEC_FETCH_DEST'] == 'document') {
-    performDocument();
-} else if ($_SERVER['HTTP_SEC_FETCH_DEST'] == 'empty') {
-    require_once 'src/services/database.php';
+    return performDocument();
+}
 
-    $res = Database::getInstance()->getTables();
+if ($_SERVER['HTTP_SEC_FETCH_DEST'] == 'empty') {
+    return performRequest();
+}
 
-    var_dump($res);
-    performRequest();
+if ($_SERVER['HTTP_SEC_FETCH_DEST'] == 'style') {
+    return performStyle();
 }
