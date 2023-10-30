@@ -22,6 +22,7 @@ function performDocument()
 function performRequest()
 {
     require_once 'src/services/api/index.php';
+    require_once 'src/services/database/index.php';
     require_once 'src/app/app.controller.php';
 
     $request = new Request();

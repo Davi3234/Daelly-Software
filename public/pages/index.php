@@ -24,14 +24,17 @@ $render = getRender(__DIR__, true);
 
         if (!Render::getInstance()->getRouters()) {
             $render->include('home');
-
-
         ?>
             <script>
                 URL.changeUrl('/home')
             </script>
-        <?php }
+        <?php
+        }
         ?>
+
+        <script>
+            API.post('users/create')
+        </script>
     </main>
 </body>
 

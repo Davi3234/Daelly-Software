@@ -28,8 +28,7 @@ class Render
         if (is_file($this->publicBasePath . '/' . 'index.php')) {
             include $this->publicBasePath . '/' . 'index.php';
         } else {
-            echo 'Public static folder "' . $this->publicBasePath . '" not found';
-            exit(1);
+            die('Public static folder "' . $this->publicBasePath . '" not found');
         }
     }
 
