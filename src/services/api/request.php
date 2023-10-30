@@ -6,7 +6,7 @@ class Request
     private $params;
     private $headers;
 
-    function __constructor()
+    function __construct()
     {
         $this->initComponents();
     }

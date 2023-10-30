@@ -1,9 +1,10 @@
 <?php
 
-function getAttributes($attibutes = []) {
+function getAttributes($attributes = [])
+{
     $attr = '';
 
-    foreach ($attibutes as $key => $value) {
+    foreach ($attributes as $key => $value) {
         $attr .= ' ' . $key . '="' . $value . '"';
     }
 

@@ -10,7 +10,8 @@ function formatterPath($path)
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
-function log_message($message) {
+function log_message($message)
+{
     error_log($message, 3, 'logs/log.txt');
 }
 
@@ -53,15 +54,15 @@ function remove_end_str($search, $subject)
 
 enum NativeTypes: string
 {
-    case Boolean = "boolean";
-    case Integer = "integer";
-    case Double = "double";
-    case String = "string";
-    case Array = "array";
-    case Object = "object";
-    case Resource = "resource";
-    case Null = "NULL";
-    case Unknown = "unknown type";
+    case Boolean = 'boolean';
+    case Integer = 'integer';
+    case Double = 'double';
+    case String = 'string';
+    case Array = 'array';
+    case Object = 'object';
+    case Resource = 'resource';
+    case Null = 'NULL';
+    case Unknown = 'unknown type';
 }
 
 function isNaN($value)

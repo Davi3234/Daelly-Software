@@ -29,7 +29,7 @@ class AuthController
             return $this->performLogin($request, $response);
         }
 
-        $response->send("Cannot found action");
+        $response->send('Cannot found action');
     }
 
     private function performLogin(Request $request, Response $response)

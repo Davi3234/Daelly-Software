@@ -19,13 +19,13 @@ class DatabaseMysql implements Database
     {
         Session::getInstance()->removeItem('DATABASE');
         if (Session::getInstance()->setItem('isConnected', 'DATABASE')) {
-            $this->connection = Session::getInstance()->setItem('connection', 'DATABASE');
+            $this->connection = Session::getInstance()->getItem('connection', 'DATABASE');
 
             return;
         }
 
         try {
-            $this->connection = new PDO("mysql:host=" . $GLOBALS['localhost'] . ";dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
+            $this->connection = new PDO('mysql:host=' . $GLOBALS['DATABASE']['localhost'] . ';dbname=' . $GLOBALS['DATABASE']['dbname'], $GLOBALS['DATABASE']['user'], $GLOBALS['DATABASE']['pass']);
             Session::getInstance()->setItem('isConnected', true, 'DATABASE');
             Session::getInstance()->setItem('connection', $this->connection, 'DATABASE');
         } catch (PDOException $ex) {
@@ -34,12 +34,12 @@ class DatabaseMysql implements Database
         }
     }
 
-    function exec($sql) {
-        
+    function exec($sql)
+    {
     }
 
-    function query($sql) {
-        
+    function query($sql)
+    {
     }
 
     function isConnected()

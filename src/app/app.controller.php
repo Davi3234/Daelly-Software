@@ -26,7 +26,7 @@ class AppController
             return $this->performAuthController($request, $response);
         }
 
-        $response->send("Cannot found controller", 404);
+        $response->send('Cannot found controller', 404);
     }
 
     private function performUserController(Request $request, Response $response)

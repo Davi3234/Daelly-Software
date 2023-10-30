@@ -31,7 +31,7 @@ function performRequest()
 
     $request = new Request();
 
-    $dataJson = file_get_contents("php://input");
+    $dataJson = file_get_contents('php://input');
     $data = json_decode($dataJson, true);
 
     $request->loadBody($data);

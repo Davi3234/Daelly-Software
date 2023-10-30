@@ -3,9 +3,11 @@
 require_once 'config/database-config.php';
 require_once 'database.php';
 
-class Repository {
+class Repository
+{
     private static $instance;
-    static function getInstance() {
+    static function getInstance()
+    {
         if (isset(self::$instance)) {
             return self::$instance;
         }
@@ -13,11 +15,11 @@ class Repository {
         /** @var Database $database */
         $database;
 
-        if ($GLOBALS['provider'] == 'mysql') {
+        if ($GLOBALS['DATABASE']['provider'] == 'mysql') {
             require_once 'mysql.php';
 
             $database = DatabaseMysql::getInstance();
-        } else if ($GLOBALS['provider'] == 'sqlite3') {
+        } else if ($GLOBALS['DATABASE']['provider'] == 'sqlite3') {
             require_once 'sqlite.php';
 
             $database = DatabaseSqlite::getInstance();

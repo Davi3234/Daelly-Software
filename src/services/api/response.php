@@ -28,7 +28,6 @@ class Response
     function send($data, $status = null)
     {
         if (isNumber($status)) {
-            echo '!';
             $this->status($status);
         }
 

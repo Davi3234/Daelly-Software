@@ -1,25 +1,35 @@
 <?php
 
-global $provider, $dbname, $user, $pass, $host;
+global $DATABASE;
 
 $provider = 'sqlite3'; // sqlite3 || mysql
+$dbname = '';
+$dbPath = '';
+$user = '';
+$pass = '';
+$host = '';
 
 if ($provider == 'mysql') {
     if ($_SERVER['SERVER_NAME'] == 'localhost') {
-        $dbname = "daelly";
-        $user = "root";
-        $pass = "root";
+        $dbname = 'daelly';
+        $user = 'root';
+        $pass = 'root';
         $host = 'localhost';
     } else {
-        $dbname = "";
-        $user = "";
-        $pass = "";
-        $host = '';
     }
 } else if ($provider == 'sqlite3') {
     if ($_SERVER['SERVER_NAME'] == 'localhost') {
-        $dbname = "daelly";
+        $dbname = 'daelly';
+        $dbPath = 'storage/';
     } else {
-        $dbname = "";
     }
 }
+
+$DATABASE = [
+    'provider' => $provider,
+    'dbname' => $dbname,
+    'dbPath' => $dbPath,
+    'user' => $user,
+    'pass' => $pass,
+    'host' => $host,
+];

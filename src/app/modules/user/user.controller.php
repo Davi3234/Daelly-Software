@@ -33,7 +33,7 @@ class UserController
             return $this->performList($request, $response);
         }
 
-        $response->send("Cannot found action", 404);
+        $response->send('Cannot found action', 404);
     }
 
     private function performCreate(Request $request, Response $response)

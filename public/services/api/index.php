@@ -58,19 +58,19 @@
                     ...(options.params || {})
                 },
                 headers: {
-                    "Content-Type": "application/json; charset=UTF-8",
+                    'Content-Type': 'application/json; charset=UTF-8',
                     ...(options.headers || {})
                 }
             }
 
             const baseUrl = URL.GLOBAL_PREFIX_ROUTER ? `/${URL.GLOBAL_PREFIX_ROUTER}/` : '/'
 
-            if (method != "GET") {
+            if (method != 'GET') {
                 requestOptions['body'] = JSON.stringify(body)
             }
 
             const response = await fetch(`${baseUrl}?${this.converterObjectToQueryURL({ router: url, ...(options.params || {}) })}`, requestOptions).then(async res => {
-                const data = await (res || "{}").text()
+                const data = await (res || '{}').text()
 
                 try {
                     return JSON.parse(data)
@@ -91,8 +91,8 @@
             let queryURL = Object.keys(obj).map(key => {
                 const body = JSON.stringify(obj[key])
 
-                return `${key}=${typeof obj[key] != "object" ? body.substring(1, body.length - 1) || "" : body}`
-            }).join("&")
+                return `${key}=${typeof obj[key] != 'object' ? body.substring(1, body.length - 1) || '' : body}`
+            }).join('&')
 
             return queryURL;
         }
