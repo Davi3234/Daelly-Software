@@ -2,6 +2,7 @@
 require_once 'util/index.php';
 require_once 'config/global-config.php';
 require_once 'src/services/session/index.php';
+require_once 'src/common/result.php';
 
 $target = $_SERVER['HTTP_SEC_FETCH_DEST'];
 

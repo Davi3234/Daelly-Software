@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../global.php';
 
-$render = getRender(__DIR__, true);
+$render = getRender(__DIR__);
 ?>
 
 <!DOCTYPE html>

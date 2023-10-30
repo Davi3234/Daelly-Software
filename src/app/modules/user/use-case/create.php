@@ -15,8 +15,18 @@ class UserCreateUseCase
 
     function perform($data)
     {
-        $res = Repository::getInstance()->exec("INSERT INTO administrador (nome, email, senha, tentativas, ultimo_acesso) VALUES ('" . $data['username'] .  "', '" . $data['email'] .  "', '" . $data['password'] .  "', 0, '2023-10-30 10:00:00')");
+        $adm = Repository::getInstance()->query("SELECT * FROM administrador WHERE email = '" . $data['email'] . "'");
 
-        return $res;
+        if (isTruthy($adm)) {
+            return Result::failure(ErrorModel::getInstance()->setMessage('Admin already exists')->finally());
+        }
+
+        $res = Repository::getInstance()->exec("INSERT INTO administrador (nome, email, senha, tentativas, ultimo_acesso) VALUES ('" . $data['username'] .  "', '" . $data['email'] .  "', '" . md5($data['password']) .  "', 0, '2023-10-30 10:00:00')");
+
+        if (!$res) {
+            return Result::failure(ErrorModel::getInstance()->setMessage('Error on create admin')->finally());
+        }
+
+        return Result::success('Admin created with successfully');
     }
 }
