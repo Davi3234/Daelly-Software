@@ -23,9 +23,39 @@ class DatabaseSqlite implements Database
         }
     }
 
-    function exec($sql)
+    function begin()
     {
-        return $this->connection->exec($sql);
+        $this->exec('BEGIN');
+    }
+
+    function commit()
+    {
+        $this->exec('COMMIT');
+    }
+
+    function rollback()
+    {
+        $this->exec('ROLLBACK');
+    }
+
+    function exec($sql): bool
+    {
+        try {
+            return $this->connection->exec($sql);
+        } catch (Exception $ex) {
+            return false;
+        }
+    }
+
+    function find($sql)
+    {
+        $res = $this->connection->querySingle($sql, true);
+
+        if (!$res) {
+            return null;
+        }
+
+        return $res;
     }
 
     function query($sql)

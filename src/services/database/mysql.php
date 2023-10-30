@@ -34,8 +34,9 @@ class DatabaseMysql implements Database
         }
     }
 
-    function exec($sql)
+    function exec($sql): bool
     {
+        return false;
     }
 
     function query($sql)
@@ -45,5 +46,15 @@ class DatabaseMysql implements Database
     function isConnected()
     {
         return Session::getInstance()->setItem('isConnected', 'DATABASE');
+    }
+
+    function begin()
+    {
+    }
+    function commit()
+    {
+    }
+    function rollback()
+    {
     }
 }
