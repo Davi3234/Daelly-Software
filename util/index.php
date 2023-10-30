@@ -10,6 +10,10 @@ function formatterPath($path)
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
+function log_message($message) {
+    error_log($message, 3, 'logs/log.txt');
+}
+
 function remove_string($search, $subject)
 {
     return str_replace($search, '', $subject);

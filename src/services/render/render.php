@@ -11,7 +11,7 @@ class Render
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new Render();
+            self::$instance = new self();
         }
 
         return self::$instance;

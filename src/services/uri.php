@@ -7,7 +7,7 @@ class URI
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new URI();
+            self::$instance = new self();
         }
 
         return self::$instance;

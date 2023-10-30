@@ -1,6 +1,7 @@
 <?php
 require_once 'util/index.php';
 require_once 'config/global-config.php';
+require_once 'src/services/session/index.php';
 
 $target = $_SERVER['HTTP_SEC_FETCH_DEST'];
 
@@ -22,12 +23,12 @@ function performDocument()
 function performRequest()
 {
     require_once 'src/services/api/index.php';
+    Response::getInstance()->startSend();
+
     require_once 'src/services/database/index.php';
     require_once 'src/app/app.controller.php';
 
     $request = new Request();
-
-    Response::getInstance()->startSend();
 
     $dataJson = file_get_contents("php://input");
     $data = json_decode($dataJson, true);

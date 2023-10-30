@@ -7,7 +7,7 @@ class UserCreateUseCase
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new UserCreateUseCase();
+            self::$instance = new self();
         }
 
         return self::$instance;

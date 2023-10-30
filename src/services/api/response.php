@@ -7,7 +7,7 @@ class Response
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new Response();
+            self::$instance = new self();
         }
 
         return self::$instance;

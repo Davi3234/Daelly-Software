@@ -7,7 +7,7 @@ class URL
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new URL();
+            self::$instance = new self();
         }
 
         return self::$instance;

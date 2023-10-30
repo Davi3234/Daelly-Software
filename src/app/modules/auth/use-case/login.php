@@ -7,7 +7,7 @@ class AuthLoginUseCase
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new AuthLoginUseCase();
+            self::$instance = new self();
         }
 
         return self::$instance;

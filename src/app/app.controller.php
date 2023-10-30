@@ -8,7 +8,7 @@ class AppController
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new AppController();
+            self::$instance = new self();
         }
 
         return self::$instance;

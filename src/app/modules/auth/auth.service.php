@@ -7,7 +7,7 @@ class AuthService
     static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new AuthService();
+            self::$instance = new self();
         }
 
         return self::$instance;

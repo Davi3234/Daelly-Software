@@ -15,3 +15,5 @@ if ($GLOBALS['provider'] == 'mysql') {
 
     $database = DatabaseSqlite::getInstance();
 }
+
+$database->connect();
