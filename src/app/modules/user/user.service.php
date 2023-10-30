@@ -20,6 +20,13 @@ class UserService
         return UserCreateUseCase::getInstance()->perform($data);
     }
 
+    function list($data)
+    {
+        include $this->getPathUseCase('list');
+
+        return UserListUseCase::getInstance()->perform($data);
+    }
+
     private function getPathUseCase($name)
     {
         $path = 'use-case/' . $name . '.php';

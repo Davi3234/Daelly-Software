@@ -24,8 +24,6 @@ class DatabaseMysql implements Database
             return;
         }
 
-        echo '!';
-
         try {
             $this->connection = new PDO("mysql:host=" . $GLOBALS['localhost'] . ";dbname=" . $GLOBALS["dbname"], $GLOBALS["user"], $GLOBALS["pass"]);
             Session::getInstance()->setItem('isConnected', true, 'DATABASE');
@@ -34,6 +32,14 @@ class DatabaseMysql implements Database
             Session::getInstance()->setItem('isConnected', false, 'DATABASE');
             die($ex->getMessage());
         }
+    }
+
+    function exec($sql) {
+        
+    }
+
+    function query($sql) {
+        
     }
 
     function isConnected()

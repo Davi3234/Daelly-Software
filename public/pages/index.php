@@ -31,10 +31,6 @@ $render = getRender(__DIR__, true);
         <?php
         }
         ?>
-
-        <script>
-            API.post('users/create')
-        </script>
     </main>
 </body>
 

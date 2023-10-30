@@ -29,12 +29,23 @@ class UserController
             return $this->performCreate($request, $response);
         }
 
+        if (str_starts_with(USER_ACTION_ROUTERS::List->value, $action) && USER_METHODS_ROUTERS::List->value == $request->getHeader('REQUEST_METHOD')) {
+            return $this->performList($request, $response);
+        }
+
         $response->send("Cannot found action", 404);
     }
 
     private function performCreate(Request $request, Response $response)
     {
         $responseData = UserService::getInstance()->create($request->getAllBody());
+
+        return $response->send($responseData);
+    }
+
+    private function performList(Request $request, Response $response)
+    {
+        $responseData = UserService::getInstance()->list($request->getAllBody());
 
         return $response->send($responseData);
     }

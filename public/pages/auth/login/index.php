@@ -5,6 +5,14 @@ echo 'Login';
 
 ?>
 
+<button type="button" onclick="create()">Create</button>
+<button type="button" onclick="list()">List</button>
+
 <script>
-    API.post('/auth/login', {username: 'Dan Ruan', password: '123'})
+    async function create() {
+        await API.post('/users/create', {username: 'Dan Ruan', password: '123', email: 'dan@gmail.com'})
+    }
+    async function list() {
+        await API.get('/users')
+    }
 </script>
