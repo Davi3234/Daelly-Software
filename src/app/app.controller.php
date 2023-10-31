@@ -26,7 +26,9 @@ class AppController
             return $this->performAuthController($request, $response);
         }
 
-        $response->send('Cannot found controller', 404);
+        $res = Result::failure(ErrorModel::getInstance()->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
+
+        $response->send($res->getResult(), $res->getStatus());
     }
 
     private function performUserController(Request $request, Response $response)

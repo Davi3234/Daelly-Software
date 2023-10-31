@@ -34,13 +34,18 @@ class DatabaseMysql implements Database
         }
     }
 
-    function exec($sql): bool
+    function exec(string $sql): bool
     {
         return false;
     }
 
-    function query($sql)
+    function query(string $sql)
     {
+    }
+
+    function insert(string $table, array $values): bool
+    {
+        return false;
     }
 
     function isConnected()

@@ -1,6 +1,6 @@
 <?php
 
-class AuthLoginUseCase
+class AuthSignInUseCase
 {
     private static $instance;
 

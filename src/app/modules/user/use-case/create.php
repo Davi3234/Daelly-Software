@@ -25,15 +25,17 @@ class UserCreateUseCase
 
         Repository::getInstance()->begin();
 
-        $adm = Repository::getInstance()->query("SELECT * FROM administrador WHERE email = '" . $args['email'] . "'");
+        $adm = Repository::getInstance()->find("SELECT * FROM administrador WHERE email = '" . $args->email . "'");
 
         if (isTruthy($adm)) {
             Repository::getInstance()->rollback();
 
-            return Result::failure(ErrorModel::getInstance()->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args['email'] . '" is already in use')->finally());
+            return Result::failure(ErrorModel::getInstance()->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args->email . '" is already in use')->finally());
         }
 
-        $res = Repository::getInstance()->exec("INSERT INTO administrador (nome, email, senha, tentativas, ultimo_acesso) VALUES ('" . $args['username'] .  "', '" . $args['email'] .  "', '" . md5($args['password']) .  "', 0, '2023-10-30 10:00:00')");
+        $passwordHash = md5($args->password);
+
+        $res = Repository::getInstance()->insert("administrador", ['nome' => "'" . $args->username . "'", 'email' => "'" . $args->email . "'", 'senha' => "'" . $passwordHash . "'"]);
 
         if (!$res) {
             Repository::getInstance()->rollback();
@@ -53,7 +55,8 @@ class UserCreateUseCase
         if (!array_key_exists('username', $data) || isFalsy($data['username'])) {
             $error->addCause('"Username" is required');
         } else {
-            if (strlen($data['username']) > 3) {
+            $data['username'] = trim($data['username']);
+            if (strlen($data['username']) < 3) {
                 $error->addCause('"Username" must be longer than 3 digits');
             }
         }
@@ -61,7 +64,8 @@ class UserCreateUseCase
         if (!array_key_exists('email', $data) || isFalsy($data['email'])) {
             $error->addCause('"Email" is required');
         } else {
-            if (str_ends_with('@gmail.com', $data['email'])) {
+            $data['email'] = trim($data['email']);
+            if (!str_ends_with($data['email'], '@gmail.com')) {
                 $error->addCause('Format "Email" invalid');
             }
         }
@@ -69,6 +73,7 @@ class UserCreateUseCase
         if (!array_key_exists('password', $data) || isFalsy($data['password'])) {
             $error->addCause('"Password" is required');
         } else {
+            $data['password'] = trim($data['password']);
             if (strlen($data['password']) < 6 || strlen($data['password']) > 15) {
                 $error->addCause('"Password" must contain between 6 and 15 digits');
             }
@@ -78,6 +83,10 @@ class UserCreateUseCase
             return Result::failure($error->finally());
         }
 
-        return Result::success($data);
+        return Result::success((object) [
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]);
     }
 }

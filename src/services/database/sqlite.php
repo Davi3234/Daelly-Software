@@ -18,6 +18,8 @@ class DatabaseSqlite implements Database
     {
         try {
             $this->connection = new SQLite3($GLOBALS['DATABASE']['dbPath'] . $GLOBALS['DATABASE']['dbname'] . '.db');
+
+            // $this->setup();
         } catch (PDOException $ex) {
             die($ex->getMessage());
         }
@@ -38,7 +40,7 @@ class DatabaseSqlite implements Database
         $this->exec('ROLLBACK');
     }
 
-    function exec($sql): bool
+    function exec(string $sql): bool
     {
         try {
             return $this->connection->exec($sql);
@@ -47,7 +49,7 @@ class DatabaseSqlite implements Database
         }
     }
 
-    function find($sql)
+    function find(string $sql)
     {
         $res = $this->connection->querySingle($sql, true);
 
@@ -58,7 +60,12 @@ class DatabaseSqlite implements Database
         return $res;
     }
 
-    function query($sql)
+    function insert(string $table, array $values): bool
+    {
+        return $this->exec('INSERT INTO ' . $table . ' (' . join(', ', array_keys($values)) . ') VALUES (' . join(', ', array_values($values)) . ')');
+    }
+
+    function query(string $sql)
     {
         $res = $this->connection->query($sql);
 
@@ -74,7 +81,7 @@ class DatabaseSqlite implements Database
     private function setup()
     {
         $sqlCreate = [
-            'CREATE TABLE IF NOT EXISTS administrador ( id INTEGER PRIMARY KEY, nome TEXT, email TEXT, senha TEXT, tentativas INTEGER, ultimo_acesso DATETIME, createAt DATETIME DEFAULT CURRENT_TIMESTAMP )',
+            'CREATE TABLE IF NOT EXISTS administrador ( id INTEGER PRIMARY KEY, nome TEXT, email TEXT, senha TEXT, tentativas INTEGER DEFAULT 0, ultimo_acesso DATETIME DEFAULT CURRENT_TIMESTAMP, createAt DATETIME DEFAULT CURRENT_TIMESTAMP )',
             'CREATE TABLE IF NOT EXISTS compressor ( id INTEGER PRIMARY KEY, codigo INTEGER NOT NULL, marca TEXT, modelo TEXT, createAt DATETIME DEFAULT CURRENT_TIMESTAMP )',
             'CREATE TABLE IF NOT EXISTS funca_funci ( id_funcionario INTEGER NOT NULL, id_funcao INTEGER NOT NULL, PRIMARY KEY (id_funcionario, id_funcao), createAt DATETIME DEFAULT CURRENT_TIMESTAMP )',
             'CREATE TABLE IF NOT EXISTS funcao ( id INTEGER PRIMARY KEY, id_tipo INTEGER, nome TEXT NOT NULL, createAt DATETIME DEFAULT CURRENT_TIMESTAMP )',
@@ -88,7 +95,7 @@ class DatabaseSqlite implements Database
         ];
 
         foreach ($sqlCreate as $sql) {
-            $this->connection->exec($sql);
+            $this->exec($sql);
         }
     }
 }

@@ -33,7 +33,9 @@ class UserController
             return $this->performList($request, $response);
         }
 
-        $response->send('Cannot found action', 404);
+        $res = Result::failure(ErrorModel::getInstance()->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
+
+        $response->send($res->getResult(), $res->getStatus());
     }
 
     private function performCreate(Request $request, Response $response)
@@ -47,7 +49,7 @@ class UserController
     {
         $responseData = UserService::getInstance()->list($request->getAllBody());
 
-        return $response->send($responseData);
+        return $response->send($responseData->getResult(), $responseData->getStatus());
     }
 
     private function getBaseRouter()

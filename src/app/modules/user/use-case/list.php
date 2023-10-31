@@ -17,6 +17,6 @@ class UserListUseCase
     {
         $res = Repository::getInstance()->query('select * from administrador');
 
-        return $res;
+        return Result::success($res);
     }
 }

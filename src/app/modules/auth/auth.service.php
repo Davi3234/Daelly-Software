@@ -13,11 +13,11 @@ class AuthService
         return self::$instance;
     }
 
-    function login($data)
+    function signin($data)
     {
-        require_once $this->getPathUseCase('login');
+        require_once $this->getPathUseCase('sign-in');
 
-        return AuthLoginUseCase::getInstance()->perform($data);
+        return AuthSignInUseCase::getInstance()->perform($data);
     }
 
     private function getPathUseCase($name)
