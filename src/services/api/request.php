@@ -5,9 +5,11 @@ class Request
     private $body;
     private $params;
     private $headers;
+    private $attributes;
 
     function __construct()
     {
+        $this->attributes = [];
         $this->initComponents();
     }
 
@@ -72,5 +74,21 @@ class Request
         }
 
         return '';
+    }
+
+    function getAttributes() {
+        return $this->attributes;
+    }
+
+    function getAttribute($name) {
+        if (isset($this->getAttributes()[$name])) {
+            return $this->getAttributes()[$name];
+        }
+
+        return null;
+    }
+
+    function setAttribute($name, $value) {
+        $this->attributes[$name] = $value;
     }
 }
