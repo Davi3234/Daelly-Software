@@ -1,28 +1,20 @@
 <?php
-require_once 'src/services/api/index.php';
-require_once 'src/app/app.controller.php';
+require_once 'app/app.controller.php';
+require_once 'services/jwt.php';
+require_once 'services/api/index.php';
 
-class App
-{
-    private static $instance;
+Response::getInstance()->startSend();
 
-    static function getInstance()
-    {
-        if (!isset(self::$instance)) {
-            self::$instance = new self();
-        }
+require_once 'services/database/index.php';
+require_once 'app/app.controller.php';
 
-        return self::$instance;
-    }
+$request = new Request();
 
-    function factory($publicBasePath = '', $componentBasePath = '')
-    {
-        $this->loadRouter($publicBasePath, $componentBasePath);
-    }
+$dataJson = file_get_contents('php://input');
+$data = json_decode($dataJson, true);
 
-    function loadRouter($publicBasePath, $componentBasePath)
-    {
-        Render::getInstance()->initComponents($publicBasePath, $componentBasePath);
-        Render::getInstance()->loadIndexRouter();
-    }
-}
+$request->loadBody($data);
+$request->loadParams($_REQUEST);
+$request->loadHeaders($_SERVER);
+
+Api::getInstance()->performHandler($request, Response::getInstance());

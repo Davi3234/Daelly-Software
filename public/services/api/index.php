@@ -1,7 +1,3 @@
-<?php
-
-?>
-
 <script>
     class API {
         static async get(url, body = {}, headers = {}) {
@@ -52,7 +48,7 @@
             }
 
             const requestOptions = {
-                method,
+                method: method.toUpperCase(),
                 params: {
                     router: url,
                     ...(options.params || {})

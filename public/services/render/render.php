@@ -1,6 +1,4 @@
 <?php
-require_once __DIR__ . '/../router.php';
-require_once __DIR__ . '/../url.php';
 
 class Render
 {
@@ -23,7 +21,7 @@ class Render
         $this->componentBasePath = $componentBasePath;
     }
 
-    function loadIndexRouter()
+    function loadRouter()
     {
         if (is_file($this->publicBasePath . '/' . 'index.php')) {
             include $this->publicBasePath . '/' . 'index.php';
