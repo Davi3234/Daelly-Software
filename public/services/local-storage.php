@@ -151,5 +151,5 @@
         }
     }
 
-    const storage = new LocalStorage({ useMemory: true });
+    const storage = new LocalStorage({ useMemory: false });
 </script>

@@ -42,7 +42,7 @@ class JWT
         $header_payload = $token[0] . '.' . $token[1];
  
         if (hash_hmac('sha256', $header_payload, $secret, true) !== $signature) {
-            throw new \Exception('Invalid signature');
+            return null;
         }
         return json_decode($payload, true);
     }

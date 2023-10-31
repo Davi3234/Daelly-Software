@@ -1,4 +1,5 @@
 <?php
+include 'modules/auth/guards/authorization.guard.php';
 include 'constants.php';
 
 class AppController
