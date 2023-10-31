@@ -52,6 +52,17 @@ function remove_end_str($search, $subject)
     return $subject;
 }
 
+function arrayHasAttributes(array $array, ...$attributes)
+{
+    foreach ($attributes as $att) {
+        if (!array_key_exists($att, $array)) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
 enum NativeTypes: string
 {
     case Boolean = 'boolean';

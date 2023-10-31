@@ -6,6 +6,7 @@ class ErrorModel
     private $message;
     private $description;
     private $stack;
+    private $causes;
 
     private function __construct()
     {
@@ -13,6 +14,7 @@ class ErrorModel
         $this->message = null;
         $this->description = null;
         $this->stack = null;
+        $this->causes = [];
     }
 
     static function getInstance()
@@ -48,9 +50,41 @@ class ErrorModel
         return $this;
     }
 
+    function addCause($cause)
+    {
+        $this->causes[] = $cause;
+
+        return $this;
+    }
+
+    function getTitle()
+    {
+        return $this->title;
+    }
+
+    function getMessage()
+    {
+        return $this->message;
+    }
+
+    function getDescription()
+    {
+        return $this->description;
+    }
+
+    function getStack()
+    {
+        return $this->stack;
+    }
+
+    function getCauses()
+    {
+        return $this->causes;
+    }
+
     function finally()
     {
-        $err = new ErrorResult($this->title, $this->message, $this->description, $this->stack);
+        $err = new ErrorResult($this->title, $this->message, $this->description, $this->stack, $this->causes);
 
         return $err->getError();
     }
@@ -62,13 +96,15 @@ class ErrorResult
     private $message;
     private $description;
     private $stack;
+    private $causes;
 
-    function __construct($title = null, $message = null, $description = null, $stack = null)
+    function __construct($title = null, $message = null, $description = null, $stack = null, $causes = [])
     {
         $this->title = $title;
         $this->message = $message;
         $this->description = $description;
         $this->stack = $stack;
+        $this->causes = $causes;
     }
 
     function getTitle()
@@ -87,9 +123,13 @@ class ErrorResult
     {
         return $this->stack;
     }
+    function getCauses()
+    {
+        return $this->causes;
+    }
 
     function getError()
     {
-        return (object) ['title' => $this->title, 'message' => $this->message, 'description' => $this->description, 'stack' => $this->stack,];
+        return (object) ['title' => $this->title, 'message' => $this->message, 'description' => $this->description, 'stack' => $this->stack, 'causes' => $this->causes];
     }
 }

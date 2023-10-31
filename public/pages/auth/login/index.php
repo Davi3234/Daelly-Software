@@ -10,7 +10,11 @@ echo 'Login';
 
 <script>
     async function create() {
-        await API.post('/users/create', {username: 'Dan Ruan', password: '123', email: 'dan@gmail.com'})
+        await API.post('/users/create', {
+            username: 'Dan Ruan',
+            password: '123456',
+            email: 'dan@gmail.com'
+        })
     }
     async function list() {
         await API.get('/users')
