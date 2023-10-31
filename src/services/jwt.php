@@ -2,18 +2,30 @@
 
 class JWT
 {
-    public static function encode(array $payload, string $secret): string
+    public static function encode(array $payload, array $config): string
     {
+        if (!isset($config['secret']) || isFalsy($config['secret'])) {
+            throw new \Exception('Secret not defined');
+        }
+
         $header = json_encode([
-            "alg" => "HS256",
-            "typ" => "JWT"
+            'alg' => 'HS256',
+            'typ' => 'JWT'
         ]);
- 
+
+        $timestamp = time();
+
+        $payload['iat'] = $timestamp;
+
+        if (isset($config['expire'])) {
+            $payload['exp'] = $timestamp + $config['expire'];
+        }
+
         $payload = json_encode($payload);
      
         $header_payload = static::base64url_encode($header) . '.' . static::base64url_encode($payload);
  
-        $signature = hash_hmac('sha256', $header_payload, $secret, true);
+        $signature = hash_hmac('sha256', $header_payload, $config['secret'], true);
          
         return 
             static::base64url_encode($header) . '.' . static::base64url_encode($payload) . '.' . static::base64url_encode($signature);

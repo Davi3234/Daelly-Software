@@ -40,13 +40,13 @@ class AuthSignInUseCase
         }
 
         $payload = [
-            'id' => $adm['id'],
+            'sub' => $adm['id'],
             'email' => $adm['email'],
         ];
 
-        $token = JWT::encode($payload, $GLOBALS['KEY_SECRET']);
+        $token = JWT::encode($payload, ['secret' => $GLOBALS['SECRET']['key'], 'expire' => $GLOBALS['SECRET']['expire-token']]);
 
-        return Result::success($token);
+        return Result::success(['token' => $token]);
     }
 
     private function dealDTO($data) {

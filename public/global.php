@@ -1,4 +1,5 @@
 <?php
+require_once 'services/local-storage.php';
 require_once 'services/api/index.php';
 require_once 'components/utils.php';
 
