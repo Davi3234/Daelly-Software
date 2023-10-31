@@ -1,7 +1,7 @@
 <?php
 $render = getRender(__DIR__);
 
-echo "Auth";
+echo 'Admin';
 line();
+
 $render->include();
-?>

@@ -38,7 +38,7 @@ class AuthController
     {
         $responseData = AuthService::getInstance()->signin($request->getAllBody());
 
-        return $response->send($responseData);
+        return $response->send($responseData->getResult(), $responseData->getStatus());
     }
 
     private function getBaseRouter()

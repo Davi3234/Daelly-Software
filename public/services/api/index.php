@@ -77,7 +77,7 @@
                 } catch (err) {
                     return data
                 }
-            }).then(res => res)
+            }).then(res => res).catch(err => err)
 
             console.log({
                 request: requestOptions,

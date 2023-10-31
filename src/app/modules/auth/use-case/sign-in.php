@@ -15,6 +15,62 @@ class AuthSignInUseCase
 
     function perform($data)
     {
-        return $data;
+        $dto = $this->dealDTO($data);
+
+        if (!$dto->isSuccess()) {
+            return $dto;
+        }
+
+        $args = $dto->getValue();
+
+        Repository::getInstance()->begin();
+
+        $adm = Repository::getInstance()->find("SELECT * FROM administrador WHERE email = '" . $args->email . "'");
+
+        if (isFalsy($adm)) {
+            Repository::getInstance()->rollback();
+
+            return Result::failure(ErrorModel::getInstance()->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
+        }
+
+        if ($adm['senha'] != md5($args->password)) {
+            Repository::getInstance()->rollback();
+
+            return Result::failure(ErrorModel::getInstance()->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
+        }
+
+        $payload = [
+            'id' => $adm['id'],
+            'email' => $adm['email'],
+        ];
+
+        $token = JWT::encode($payload, $GLOBALS['KEY_SECRET']);
+
+        return Result::success($token);
+    }
+
+    private function dealDTO($data) {
+        $error = ErrorModel::getInstance()->setTitle('Validate args sign-in Admin')->setMessage('Invalid data for sign-in admin');
+
+        if (!array_key_exists('email', $data) || isFalsy($data['email'])) {
+            $error->addCause('"Email" is required');
+        } else {
+            $data['email'] = trim($data['email']);
+        }
+
+        if (!array_key_exists('password', $data) || isFalsy($data['password'])) {
+            $error->addCause('"Password" is required');
+        } else {
+            $data['password'] = trim($data['password']);
+        }
+
+        if (isTruthy($error->getCauses())) {
+            return Result::failure($error->finally());
+        }
+
+        return Result::success((object) [
+            'email' => $data['email'],
+            'password' => $data['password'],
+        ]);
     }
 }

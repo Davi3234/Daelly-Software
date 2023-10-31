@@ -23,6 +23,7 @@ function performDocument()
 
 function performRequest()
 {
+    require_once 'src/services/jwt.php';
     require_once 'src/services/api/index.php';
     Response::getInstance()->startSend();
 

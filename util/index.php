@@ -102,7 +102,7 @@ function isFalsy($value = null)
     }
 
     if (isString($value)) {
-        return strlen($value) == 0;
+        return strlen($value) == 0 || strlen(trim($value)) == 0;
     }
 
     if (isArray($value)) {
