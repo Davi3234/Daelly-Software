@@ -10,7 +10,12 @@ $request->loadBody($data);
 $request->loadParams($_REQUEST);
 $request->loadHeaders($_SERVER);
 
-if ($request->getParam('router') == '/sign-in/save') {
+if ($request->getParam('router') == '/auth/sign-in/save') {
     require_once 'controller/save-session.php';
+    return;
+}
+
+if ($request->getParam('router') == '/admin/logout') {
+    require_once 'controller/logout.php';
     return;
 }

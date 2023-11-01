@@ -59,8 +59,8 @@ class Request {
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
         ...(options.headers || {}),
-        ...(APP.storage.getItem("token") && {
-          Authorization: "Bearer " + APP.storage.getItem("token"),
+        ...(APP.cookie.get("token") && {
+          Authorization: "Bearer " + APP.cookie.get("token"),
         }),
       },
     };

@@ -31,7 +31,7 @@ echo 'Create';
             await APP.apiServer.get('/users')
         }
 
-        document.querySelector('bt-create').addEventListener('click', () => create())
-        document.querySelector('bt-list').addEventListener('click', () => list())
+        document.querySelector('button[name="bt-create"]').addEventListener('click', () => create())
+        document.querySelector('button[name="bt-list"]').addEventListener('click', () => list())
     })
 </script>

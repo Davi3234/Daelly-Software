@@ -1,6 +1,17 @@
 <?php
 $render = getRender(__DIR__);
 
+if (!Cookie::getInstance()->get('token')) {
+    if (!str_starts_with('/auth/sign-in', Render::getInstance()->getRouters())) {
+        ?>
+        <script>
+            APP.url.redirect('/auth/sign-in')
+        </script>
+        <?php
+        exit;
+    }
+}
+
 if (!Render::getInstance()->getRouters()) {
 ?>
 <script>
@@ -29,6 +40,22 @@ exit;
         <?php
         $render->include();
         ?>
+
+        <button type="button" name="bt-logout">Logout</button>
+
+        <script>
+            APP.ready(() => {
+                async function logout() {
+                    const response = await APP.apiClient.post('/admin/logout')
+
+                    if (response.ok) {
+                        APP.url.redirect('/auth/sign-in')
+                    }
+                }
+                
+                document.querySelector('button[name="bt-logout"]').addEventListener('click', () => logout())
+            })
+        </script>
     </main>
 </body>
 

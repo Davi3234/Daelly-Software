@@ -1,6 +1,6 @@
 <?php
 $token = $request->getBody('token');
 
-Cookie::getInstance()->set('token', $token, 60 * 60 * 24);
+Cookie::getInstance()->remove('token');
 
 $response->send(Result::success(true)->getResult());
