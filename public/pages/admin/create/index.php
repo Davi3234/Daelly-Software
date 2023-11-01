@@ -15,18 +15,23 @@ echo 'Create';
 <input type="text" name="password" id="input-password">
 <?= line() ?>
 
-<button type="button" onclick="create()">Create</button>
-<button type="button" onclick="list()">List</button>
+<button type="button" name="bt-create">Create</button>
+<button type="button" name="bt-list">List</button>
 
 <script>
-    async function create() {
-        await APP.api.post('/users/create', {
-            username: document.querySelector('input[name="username"]').value,
-            password: document.querySelector('input[name="password"]').value,
-            email: document.querySelector('input[name="email"]').value
-        })
-    }
-    async function list() {
-        await APP.api.get('/users')
-    }
+    APP.ready(() => {
+        async function create() {
+            await APP.apiServer.post('/users/create', {
+                username: document.querySelector('input[name="username"]').value,
+                password: document.querySelector('input[name="password"]').value,
+                email: document.querySelector('input[name="email"]').value
+            })
+        }
+        async function list() {
+            await APP.apiServer.get('/users')
+        }
+
+        document.querySelector('bt-create').addEventListener('click', () => create())
+        document.querySelector('bt-list').addEventListener('click', () => list())
+    })
 </script>

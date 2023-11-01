@@ -12,17 +12,23 @@ echo 'Login';
 <input type="text" name="password" id="input-password">
 <?= line() ?>
 
-<button type="button" onclick="login()">Login</button>
+<button type="button" name="bt-login">Login</button>
 
 <script>
-    async function login() {
-        const response = await APP.api.post('/auth/sign-in', {
-            password: document.querySelector('input[name="password"]').value,
-            email: document.querySelector('input[name="email"]').value
-        })
+    APP.ready(() => {
+        async function login() {
+            const response = await APP.apiServer.post('/auth/sign-in', {
+                password: document.querySelector('input[name="password"]').value,
+                email: document.querySelector('input[name="email"]').value
+            })
 
-        if (response.ok) {
-            APP.storage.createItem('token', response.value.token)
+            if (response.ok) {
+                APP.cookie.set('token', response.value.token)
+                APP.storage.createItem('token', response.value.token)
+                APP.url.redirect('/home')
+            }
         }
-    }
+
+        document.querySelector('button[name="bt-login"]').addEventListener('click', () => login())
+    })
 </script>

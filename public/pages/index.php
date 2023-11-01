@@ -1,5 +1,14 @@
 <?php
 $render = getRender(__DIR__);
+
+if (!Render::getInstance()->getRouters()) {
+?>
+<script>
+    APP.url.redirect('/home')
+</script>
+<?php
+exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,15 +28,6 @@ $render = getRender(__DIR__);
     <main>
         <?php
         $render->include();
-
-        if (!Render::getInstance()->getRouters()) {
-            $render->include('home');
-        ?>
-            <script>
-                APP.url.changeUrl('/home')
-            </script>
-        <?php
-        }
         ?>
     </main>
 </body>

@@ -34,20 +34,20 @@ class Response
         $this->notesDebugger[] = $note;
     }
 
-    function send($data, $status = null)
+    function send($data = [], $status = null)
     {
         if (isNumber($status)) {
             $this->status($status);
         }
 
+        $data = json_decode(json_encode($data));
+
         if (isTruthy($this->notesDebugger)) {
             if (isArray($data)) {
-                $data[] = $this->notesDebugger;
+                $data['notesDebugger'] = $this->notesDebugger;
             }
     
             if (isObject($data)) {
-                $data = (object) $data;
-    
                 $data->notesDebugger = $this->notesDebugger;
             }
         }

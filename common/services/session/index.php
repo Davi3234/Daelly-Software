@@ -97,7 +97,7 @@ class Session
         return $_SESSION[$group][$key];
     }
 
-    private function startSession() {
+    function startSession() {
         if(!isset($_SESSION)) { 
             session_start(); 
         }

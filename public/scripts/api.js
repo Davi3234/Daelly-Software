@@ -1,47 +1,51 @@
-class API {
-  static async get(url, body = {}, headers = {}) {
-    const response = await API.performRequest("GET", url, body, headers);
+class Request {
+  constructor(config = { target: "/api" }) {
+    this.config = config;
+  }
+
+  async get(url, body = {}, headers = {}) {
+    const response = await this.performRequest("GET", url, body, headers);
 
     return response;
   }
 
-  static async post(url, body = {}, headers = {}) {
-    const response = await API.performRequest("POST", url, body, headers);
+  async post(url, body = {}, headers = {}) {
+    const response = await this.performRequest("POST", url, body, headers);
 
     return response;
   }
 
-  static async put(url, body = {}, headers = {}) {
-    const response = await API.performRequest("PUT", url, body, headers);
+  async put(url, body = {}, headers = {}) {
+    const response = await this.performRequest("PUT", url, body, headers);
 
     return response;
   }
 
-  static async patch(url, body = {}, headers = {}) {
-    const response = await API.performRequest("PATCH", url, body, headers);
+  async patch(url, body = {}, headers = {}) {
+    const response = await this.performRequest("PATCH", url, body, headers);
 
     return response;
   }
 
-  static async delete(url, body = {}, headers = {}) {
-    const response = await API.performRequest("DELETE", url, body, headers);
+  async delete(url, body = {}, headers = {}) {
+    const response = await this.performRequest("DELETE", url, body, headers);
 
     return response;
   }
 
-  static async head(url, body = {}, headers = {}) {
-    const response = await API.performRequest("HEAD", url, body, headers);
+  async head(url, body = {}, headers = {}) {
+    const response = await this.performRequest("HEAD", url, body, headers);
 
     return response;
   }
 
-  static async options(url, body = {}, headers = {}) {
-    const response = await API.performRequest("OPTIONS", url, body, headers);
+  async options(url, body = {}, headers = {}) {
+    const response = await this.performRequest("OPTIONS", url, body, headers);
 
     return response;
   }
 
-  static async performRequest(method = "", url = "", body = {}, options = {}) {
+  async performRequest(method = "", url = "", body = {}, options = {}) {
     if (!url.startsWith("/")) {
       url = `/${url}`;
     }
@@ -55,15 +59,15 @@ class API {
       headers: {
         "Content-Type": "application/json; charset=UTF-8",
         ...(options.headers || {}),
-        ...(storage.getItem("token") && {
-          Authorization: "Bearer " + storage.getItem("token"),
+        ...(APP.storage.getItem("token") && {
+          Authorization: "Bearer " + APP.storage.getItem("token"),
         }),
       },
     };
 
     const baseUrl = URL.GLOBAL_PREFIX_ROUTER
-      ? `/${URL.GLOBAL_PREFIX_ROUTER}/api`
-      : "/api";
+      ? `/${URL.GLOBAL_PREFIX_ROUTER}${this.config.target}`
+      : `${this.config.target}`;
 
     if (method != "GET") {
       requestOptions["body"] = JSON.stringify(body);
@@ -96,7 +100,7 @@ class API {
     return response;
   }
 
-  static converterObjectToQueryURL(obj) {
+  converterObjectToQueryURL(obj) {
     let queryURL = Object.keys(obj)
       .map((key) => {
         const body = JSON.stringify(obj[key]);
