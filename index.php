@@ -29,7 +29,7 @@ function bootstrap() {
     }
 
     if ($target == Targets::Request->value) {
-        require_once 'common/services/api/index.php';
+        require_once 'src/common/services/api/index.php';
 
         $router = $_SERVER['PATH_INFO'];
 
