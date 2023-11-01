@@ -23,14 +23,22 @@ function bootstrap() {
     }
 
     if ($_SERVER['HTTP_SEC_FETCH_DEST'] == Targets::Request->value) {
-        require_once 'src/index.php';
-        return;
+        if ($_SERVER['PATH_INFO'] == '/api') {
+            require_once 'src/index.php';
+            return;
+        }
+        if ($_SERVER['PATH_INFO'] == '/client') {
+            require_once 'public/request.php';
+            return;
+        }
     }
 
     if ($_SERVER['HTTP_SEC_FETCH_DEST'] == Targets::Style->value) {
         include remove_start_str($GLOBALS['GLOBAL_PREFIX_ROUTER'] . '/', remove_start_str('/', $_SERVER['REDIRECT_URL']));
         return;
     }
+
+    echo json_encode(['ok'=>true]);
 }
 
 bootstrap();

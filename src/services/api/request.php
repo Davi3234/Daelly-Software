@@ -2,12 +2,22 @@
 
 class Request
 {
+    private static $instance;
     private $body;
     private $params;
     private $headers;
     private $attributes;
 
-    function __construct()
+    static function getInstance()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+    private function __construct()
     {
         $this->attributes = [];
         $this->initComponents();

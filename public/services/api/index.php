@@ -60,7 +60,7 @@
                 }
             }
 
-            const baseUrl = URL.GLOBAL_PREFIX_ROUTER ? `/${URL.GLOBAL_PREFIX_ROUTER}/` : '/'
+            const baseUrl = URL.GLOBAL_PREFIX_ROUTER ? `/${URL.GLOBAL_PREFIX_ROUTER}/api` : '/api'
 
             if (method != 'GET') {
                 requestOptions['body'] = JSON.stringify(body)

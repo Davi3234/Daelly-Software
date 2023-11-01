@@ -3,6 +3,7 @@
 class Response
 {
     private static $instance;
+    private $notes;
 
     static function getInstance()
     {
@@ -11,6 +12,10 @@ class Response
         }
 
         return self::$instance;
+    }
+
+    private function __construct() {
+        $this->notes = [];
     }
 
     function startSend()
@@ -25,10 +30,24 @@ class Response
         return $this;
     }
 
+    function addNote($note) {
+        $this->notes[] = $note;
+    }
+
     function send($data, $status = null)
     {
         if (isNumber($status)) {
             $this->status($status);
+        }
+
+        if (isArray($data)) {
+            $data[] = $this->notes;
+        }
+
+        if (isObject($data)) {
+            $data = (object) $data;
+
+            $data->notes = $this->notes;
         }
 
         echo json_encode($data);

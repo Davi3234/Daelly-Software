@@ -12,7 +12,7 @@ $response->startSend();
 require_once 'services/database/index.php';
 require_once 'app/app.controller.php';
 
-$request = new Request();
+$request = Request::getInstance();
 
 $dataJson = file_get_contents('php://input');
 $data = json_decode($dataJson, true);
