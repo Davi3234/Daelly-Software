@@ -3,7 +3,6 @@ require_once 'common/exception/index.php';
 require_once 'common/guard.php';
 require_once 'app/app.controller.php';
 require_once 'services/jwt.php';
-require_once 'services/api/index.php';
 
 $response = Response::getInstance();
 
