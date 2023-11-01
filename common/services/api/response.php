@@ -3,7 +3,7 @@
 class Response
 {
     private static $instance;
-    private $notes;
+    private $notesDebugger;
 
     static function getInstance()
     {
@@ -15,7 +15,7 @@ class Response
     }
 
     private function __construct() {
-        $this->notes = [];
+        $this->notesDebugger = [];
     }
 
     function startSend()
@@ -31,7 +31,7 @@ class Response
     }
 
     function addNote($note) {
-        $this->notes[] = $note;
+        $this->notesDebugger[] = $note;
     }
 
     function send($data, $status = null)
@@ -40,14 +40,16 @@ class Response
             $this->status($status);
         }
 
-        if (isArray($data)) {
-            $data[] = $this->notes;
-        }
-
-        if (isObject($data)) {
-            $data = (object) $data;
-
-            $data->notes = $this->notes;
+        if (isTruthy($this->notesDebugger)) {
+            if (isArray($data)) {
+                $data[] = $this->notesDebugger;
+            }
+    
+            if (isObject($data)) {
+                $data = (object) $data;
+    
+                $data->notesDebugger = $this->notesDebugger;
+            }
         }
 
         echo json_encode($data);

@@ -24,7 +24,7 @@ $render = getRender(__DIR__);
             $render->include('home');
         ?>
             <script>
-                URL.changeUrl('/home')
+                APP.url.changeUrl('/home')
             </script>
         <?php
         }

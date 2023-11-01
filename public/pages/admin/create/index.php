@@ -20,13 +20,13 @@ echo 'Create';
 
 <script>
     async function create() {
-        await API.post('/users/create', {
+        await APP.api.post('/users/create', {
             username: document.querySelector('input[name="username"]').value,
             password: document.querySelector('input[name="password"]').value,
             email: document.querySelector('input[name="email"]').value
         })
     }
     async function list() {
-        await API.get('/users')
+        await APP.api.get('/users')
     }
 </script>

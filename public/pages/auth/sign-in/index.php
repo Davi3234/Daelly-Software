@@ -16,13 +16,13 @@ echo 'Login';
 
 <script>
     async function login() {
-        const response = await API.post('/auth/sign-in', {
+        const response = await APP.api.post('/auth/sign-in', {
             password: document.querySelector('input[name="password"]').value,
             email: document.querySelector('input[name="email"]').value
         })
 
         if (response.ok) {
-            storage.createItem('token', response.value.token)
+            APP.storage.createItem('token', response.value.token)
         }
     }
 </script>
