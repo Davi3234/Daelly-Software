@@ -26,12 +26,6 @@ class UserController
         $action = remove_start_str($this->getBaseRouter(), $router);
 
         if (str_starts_with(USER_ACTION_ROUTERS::Create->value, $action) && USER_METHODS_ROUTERS::Create->value == $request->getHeader('REQUEST_METHOD')) {
-            $responseGuard = AuthorizationGuard::getInstance()->perform($request, $response);
-
-            if (!$responseGuard->isSuccess()) {
-                return $response->send($responseGuard->getResult(), $responseGuard->getStatus());
-            }
-
             return $this->performCreate($request, $response);
         }
 
@@ -46,6 +40,8 @@ class UserController
 
     private function performCreate(Request $request, Response $response)
     {
+        AuthorizationGuard::getInstance()->perform($request, $response);
+
         $responseData = UserService::getInstance()->create($request->getAllBody());
 
         return $response->send($responseData->getResult(), $responseData->getStatus());

@@ -36,7 +36,7 @@ class AuthController
 
     private function performSignIn(Request $request, Response $response)
     {
-        $responseData = AuthService::getInstance()->signin($request->getAllBody());
+        $responseData = AuthService::getInstance()->signIn($request->getAllBody());
 
         return $response->send($responseData->getResult(), $responseData->getStatus());
     }
