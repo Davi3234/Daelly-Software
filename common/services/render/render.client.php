@@ -13,8 +13,6 @@ class RenderClient
         $this->STATE = [
             'directory' => str_replace('\\', '/', $directory)
         ];
-
-        $this->loadState();
     }
 
     static function createInstance($directory)
@@ -22,16 +20,15 @@ class RenderClient
         return new RenderClient($directory);
     }
 
-    private function loadState()
+    function loadState()
     {
         $this->STATE['rootFolderServer'] = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
         $this->STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
-        $this->STATE['publicFolder'] = Render::getInstance()->getPublicBasePath();
         $this->STATE['router'] = remove_start_str('/', Render::getInstance()->getRouters());
 
         $this->STATE['rootFolderProject'] = remove_start_str($this->STATE['rootFolderServer'], $this->STATE['directory']);
-        $this->STATE['pathCurrentFolder'] = remove_start_str($this->STATE['baseRouterURL'] ? '/' . $this->STATE['baseRouterURL'] : '', remove_start_str('/' . $this->STATE['publicFolder'], $this->STATE['rootFolderProject']));
-        $this->STATE['currentFolder'] = remove_start_str('/' . $this->STATE['publicFolder'], $this->STATE['pathCurrentFolder']);
+        $this->STATE['pathCurrentFolder'] = remove_start_str($this->STATE['baseRouterURL'] ? '/' . $this->STATE['baseRouterURL'] : '', remove_start_str('/' . Render::getInstance()->getPublicBasePath(), $this->STATE['rootFolderProject']));
+        $this->STATE['currentFolder'] = remove_start_str('/' . Render::getInstance()->getPublicBasePath(), $this->STATE['pathCurrentFolder']);
         $this->STATE['currentFolder'] = remove_start_str('/', $this->STATE['currentFolder']);
         $this->STATE['nextFolderPath'] = $this->STATE['router'];
 
@@ -97,7 +94,7 @@ class RenderClient
                 return false;
             }
         } else {
-            $target = $this->STATE['publicFolder'] . '/' . $target;
+            $target = Render::getInstance()->getPublicBasePath() . '/' . $target;
         }
 
         return Render::getInstance()->include($target);
@@ -115,7 +112,7 @@ class RenderClient
         if (!$target) {
             $target = $this->STATE['nextRouterFolder'];
         } else {
-            $target = $this->STATE['publicFolder'] . '/' . $target;
+            $target = Render::getInstance()->getPublicBasePath() . '/' . $target;
         }
 
         $target = remove_start_str('/', $target);

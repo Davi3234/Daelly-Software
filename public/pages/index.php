@@ -1,21 +1,8 @@
 <?php
 $render = getRender(__DIR__);
 
-
-if (!Cookie::getInstance()->get('token')) {
-    console(Render::getInstance()->getRouters());
-    if (!isStartsWith('/auth/sign-in', Render::getInstance()->getRouters())) {
-?>
-        <script>
-            APP.url.redirect('/auth/sign-in')
-        </script>
-    <?php
-        exit;
-    }
-}
-
 if (!Render::getInstance()->getRouters()) {
-    ?>
+?>
     <script>
         APP.url.redirect('/home')
     </script>

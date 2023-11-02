@@ -1,15 +1,16 @@
 <?php
 require_once 'components/utils.php';
 
-function getRender($dir, $consoleState = false)
+function getRender($dir, $options = [])
 {
     $render = RenderClient::createInstance($dir);
 
-    if ($consoleState) {
+    if (isset($options['consoleState']) && isTruthy($options['consoleState'])) {
         console($render->getState());
+    }
+    if (!isset($options['not-load']) || isTruthy($options['not-load'])) {
+        $render->loadState();
     }
 
     return $render;
 }
-
-?>
