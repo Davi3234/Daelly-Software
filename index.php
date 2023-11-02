@@ -1,5 +1,6 @@
 <?php
-function loadImports() {
+function loadImports()
+{
     require_once 'common/util/index.php';
     require_once 'config/global-config.php';
     require_once 'common/services/session/index.php';
@@ -17,9 +18,11 @@ enum Targets: string
     case Document = 'document';
     case Request = 'empty';
     case Style = 'style';
+    case Script = 'script';
 }
 
-function bootstrap() {
+function bootstrap()
+{
     $target = $_SERVER['HTTP_SEC_FETCH_DEST'];
 
     if ($target == Targets::Document->value) {
@@ -45,13 +48,13 @@ function bootstrap() {
         }
     }
 
-    if ($target == Targets::Style->value) {
+    if ($target == Targets::Style->value || $target == Targets::Script->value) {
         loadImports();
         include remove_start_str($GLOBALS['GLOBAL_PREFIX_ROUTER'] . '/', remove_start_str('/', $_SERVER['REDIRECT_URL']));
         exit;
     }
 
-    echo json_encode(['ok'=>true]);
+    echo json_encode(['ok' => true]);
 }
 
 bootstrap();
