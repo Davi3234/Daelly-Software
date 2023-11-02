@@ -5,6 +5,10 @@ require_once 'common/services/render/render.client.php';
 require_once 'common/services/render/render.client.php';
 ?>
 
+<script>
+    const GLOBAL_PREFIX_ROUTER = '<?= $GLOBALS['GLOBAL_PREFIX_ROUTER'] ?>'
+</script>
+
 <script src="<?= URL::getInstance()->createURLPath('/public/index.js') ?>"></script>
 
 <?php

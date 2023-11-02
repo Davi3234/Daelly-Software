@@ -1,24 +1,26 @@
 <?php
 $render = getRender(__DIR__);
 
+console($_COOKIE);
+
 if (!Cookie::getInstance()->get('token')) {
     if (!str_starts_with('/auth/sign-in', Render::getInstance()->getRouters())) {
-        ?>
+?>
         <script>
             APP.url.redirect('/auth/sign-in')
         </script>
-        <?php
+    <?php
         exit;
     }
 }
 
 if (!Render::getInstance()->getRouters()) {
-?>
-<script>
-    APP.url.redirect('/home')
-</script>
+    ?>
+    <script>
+        APP.url.redirect('/home')
+    </script>
 <?php
-exit;
+    exit;
 }
 ?>
 
@@ -52,7 +54,7 @@ exit;
                         APP.url.redirect('/auth/sign-in')
                     }
                 }
-                
+
                 document.querySelector('button[name="bt-logout"]').addEventListener('click', () => logout())
             })
         </script>
