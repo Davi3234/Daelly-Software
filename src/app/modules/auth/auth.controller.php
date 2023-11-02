@@ -25,7 +25,7 @@ class AuthController
 
         $action = remove_start_str($this->getBaseRouter(), $router);
 
-        if (str_starts_with(AUTH_ACTION_ROUTERS::SignIn->value, $action) && AUTH_METHODS_ROUTERS::SignIn->value == $request->getHeader('REQUEST_METHOD')) {
+        if (isStartsWith(AUTH_ACTION_ROUTERS::SignIn->value, $action) && AUTH_METHODS_ROUTERS::SignIn->value == $request->getHeader('REQUEST_METHOD')) {
             return $this->performSignIn($request, $response);
         }
 

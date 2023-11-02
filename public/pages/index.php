@@ -1,10 +1,10 @@
 <?php
 $render = getRender(__DIR__);
 
-console($_COOKIE);
 
 if (!Cookie::getInstance()->get('token')) {
-    if (!str_starts_with('/auth/sign-in', Render::getInstance()->getRouters())) {
+    console(Render::getInstance()->getRouters());
+    if (!isStartsWith('/auth/sign-in', Render::getInstance()->getRouters())) {
 ?>
         <script>
             APP.url.redirect('/auth/sign-in')

@@ -23,38 +23,33 @@ enum Targets: string
 
 function bootstrap()
 {
+    loadImports();
     $target = $_SERVER['HTTP_SEC_FETCH_DEST'];
 
+    if ($target == Targets::Style->value || $target == Targets::Script->value) {
+        include remove_start_str($GLOBALS['GLOBAL_PREFIX_ROUTER'] . '/', remove_start_str('/', $_SERVER['REDIRECT_URL']));
+        exit;
+    }
+
     if ($target == Targets::Document->value) {
-        loadImports();
         require_once 'public/index.php';
         exit;
     }
 
     if ($target == Targets::Request->value) {
-        require_once 'src/common/services/api/index.php';
+        require_once 'prepare-request.php';
 
-        $router = $_SERVER['PATH_INFO'];
+        $router = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : remove_start_str('/' . $GLOBALS['GLOBAL_PREFIX_ROUTER'], $_SERVER['REDIRECT_URL']);
 
         if ($router == '/api') {
-            loadImports();
             require_once 'src/index.php';
             exit;
         }
         if ($router == '/client') {
-            loadImports();
             require_once 'public/request.php';
             exit;
         }
     }
-
-    if ($target == Targets::Style->value || $target == Targets::Script->value) {
-        loadImports();
-        include remove_start_str($GLOBALS['GLOBAL_PREFIX_ROUTER'] . '/', remove_start_str('/', $_SERVER['REDIRECT_URL']));
-        exit;
-    }
-
-    echo json_encode(['ok' => true]);
 }
 
 bootstrap();

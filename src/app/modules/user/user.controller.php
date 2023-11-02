@@ -25,11 +25,11 @@ class UserController
 
         $action = remove_start_str($this->getBaseRouter(), $router);
 
-        if (str_starts_with(USER_ACTION_ROUTERS::Create->value, $action) && USER_METHODS_ROUTERS::Create->value == $request->getHeader('REQUEST_METHOD')) {
+        if (isStartsWith(USER_ACTION_ROUTERS::Create->value, $action) && USER_METHODS_ROUTERS::Create->value == $request->getHeader('REQUEST_METHOD')) {
             return $this->performCreate($request, $response);
         }
 
-        if (str_starts_with(USER_ACTION_ROUTERS::List->value, $action) && USER_METHODS_ROUTERS::List->value == $request->getHeader('REQUEST_METHOD')) {
+        if (isStartsWith(USER_ACTION_ROUTERS::List->value, $action) && USER_METHODS_ROUTERS::List->value == $request->getHeader('REQUEST_METHOD')) {
             return $this->performList($request, $response);
         }
 

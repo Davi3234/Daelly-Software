@@ -65,9 +65,9 @@ class Request {
       },
     };
 
-    const baseUrl = URL.GLOBAL_PREFIX_ROUTER
-      ? `/${URL.GLOBAL_PREFIX_ROUTER}${this.config.target}`
-      : `${this.config.target}`;
+    const baseUrl = GLOBAL_PREFIX_ROUTER ?
+      `/${GLOBAL_PREFIX_ROUTER}${this.config.target}` :
+      `${this.config.target}`;
 
     if (method != "GET") {
       requestOptions["body"] = JSON.stringify(body);
@@ -105,11 +105,10 @@ class Request {
       .map((key) => {
         const body = JSON.stringify(obj[key]);
 
-        return `${key}=${
-          typeof obj[key] != "object"
-            ? body.substring(1, body.length - 1) || ""
-            : body
-        }`;
+        return `${key}=${typeof obj[key] != "object"
+          ? body.substring(1, body.length - 1) || ""
+          : body
+          }`;
       })
       .join("&");
 

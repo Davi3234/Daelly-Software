@@ -65,7 +65,7 @@ class UserCreateUseCase
             $error->addCause('"Email" is required');
         } else {
             $data['email'] = trim($data['email']);
-            if (!str_ends_with($data['email'], '@gmail.com')) {
+            if (!isEndsWith($data['email'], '@gmail.com')) {
                 $error->addCause('Format "Email" invalid');
             }
         }
