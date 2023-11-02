@@ -17,7 +17,7 @@ class DatabaseSqlite implements Database
     function connect()
     {
         try {
-            $this->connection = new SQLite3($GLOBALS['DATABASE']['dbPath'] . $GLOBALS['DATABASE']['dbname'] . '.db');
+            $this->connection = new SQLite3($GLOBALS['DATABASE']['dbPath'] . '/' . $GLOBALS['DATABASE']['dbname'] . '.db');
 
             // $this->setup();
         } catch (PDOException $ex) {

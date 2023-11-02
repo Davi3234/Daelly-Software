@@ -14,3 +14,8 @@ function getRender($dir, $options = [])
 
     return $render;
 }
+
+function getRenderAnonymous()
+{
+    return getRender('', ['not-load' => true]);
+}

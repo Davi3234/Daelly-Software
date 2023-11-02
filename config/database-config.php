@@ -20,7 +20,7 @@ if ($provider == 'mysql') {
 } else if ($provider == 'sqlite3') {
     if ($_SERVER['SERVER_NAME'] == 'localhost') {
         $dbname = 'daelly';
-        $dbPath = 'storage/';
+        $dbPath = 'storage';
     } else {
     }
 }
