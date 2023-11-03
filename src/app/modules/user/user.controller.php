@@ -34,9 +34,9 @@ class UserController
 
         $err = new ErrorModel();
 
-        $res = Result::failure($err->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->getError(), 404);
+        $res = Result::failure($err->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found'), 404);
 
-        $response->send($res->getResult(), $res->getStatus());
+        $response->send($res, $res->getStatus());
     }
 
     private function performCreate(Request $request, Response $response)
@@ -45,13 +45,13 @@ class UserController
 
         $responseData = UserService::getInstance()->create($request->getAllBody());
 
-        return $response->send($responseData->getResult(), $responseData->getStatus());
+        return $response->send($responseData, $responseData->getStatus());
     }
 
     private function performList(Request $request, Response $response)
     {
         $responseData = UserService::getInstance()->list($request->getAllBody());
 
-        return $response->send($responseData->getResult(), $responseData->getStatus());
+        return $response->send($responseData, $responseData->getStatus());
     }
 }

@@ -34,13 +34,13 @@ class Response
         $this->notesDebugger[] = $note;
     }
 
-    function send($data = [], $status = null)
+    function send(Result $data, $status = null)
     {
         if (isNumber($status)) {
             $this->status($status);
         }
 
-        $data = json_decode(json_encode($data));
+        $data = json_decode(json_encode($data->getResult()));
 
         if (isTruthy($this->notesDebugger)) {
             if (isArray($data)) {

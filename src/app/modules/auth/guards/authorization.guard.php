@@ -17,9 +17,7 @@ class AuthorizationGuard implements Guard {
         $res = AuthService::getInstance()->authorization(['Authorization' => $request->getHeader('HTTP_AUTHORIZATION')]);
 
         if (!$res->isSuccess()) {
-            $response->send($res->getResult(), $res->getStatus());
-
-            throw new UnauthorizedException($res->getResult()->error['message']);
+            throw new UnauthorizedException($res->getMessage());
         }
 
         $request->setAttribute('userId', $res->getValue()['sub']);

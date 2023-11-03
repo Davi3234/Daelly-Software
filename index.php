@@ -9,8 +9,8 @@ function loadGlobalImports()
     require_once 'common/services/router.php';
     require_once 'common/services/url.php';
     require_once 'common/services/uri.php';
-    require_once 'common/exception/index.php';
     require_once 'common/result.php';
+    require_once 'common/exception/index.php';
 
     Session::getInstance()->startSession();
 }

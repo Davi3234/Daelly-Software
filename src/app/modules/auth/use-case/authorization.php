@@ -24,13 +24,13 @@ class AuthAuthorizationUseCase
         if (isFalsy($bearerToken)) {
             $error->addCause('You must provide an authorization token');
 
-            return Result::failure($error->getError());
+            return Result::failure($error);
         }
         
         if (count(explode(' ', $bearerToken)) != 2) {
             $error->addCause('Invalid Authorization Token Format');
 
-            return Result::failure($error->getError());
+            return Result::failure($error);
         }
 
         [$bearar, $token] = explode(' ', $bearerToken);
@@ -38,7 +38,7 @@ class AuthAuthorizationUseCase
         if ($bearar !== 'Bearer') {
             $error->addCause('Invalid Authorization Token Format');
 
-            return Result::failure($error->getError());
+            return Result::failure($error);
         }
 
         $payload = JWT::decode($token, $GLOBALS['SECRET']['key']);
@@ -46,7 +46,7 @@ class AuthAuthorizationUseCase
         if (isNull($payload)) {
             $error->addCause('Invalid Authorization Token');
 
-            return Result::failure($error->getError());
+            return Result::failure($error);
         }
 
         return Result::success($payload);

@@ -15,30 +15,41 @@ class AuthSignInUseCase
 
     function perform($data)
     {
+        try {
+            Repository::getInstance()->begin();
+
+            $res = $this->performUseCase($data);
+
+            Repository::getInstance()->commit();
+
+            return $res;
+        } catch(Exception | ResultException $e) {
+            Repository::getInstance()->rollback();
+
+            if ($e instanceof ResultException) {
+                return Result::failure($e, $e->getCode());
+            }
+            
+            $err = new ResultModel();
+            return Result::failure($err->setMessage($e->getMessage()));
+        }
+    }
+
+    function performUseCase($data) {
         $dto = $this->dealDTO($data);
 
-        if (!$dto->isSuccess()) {
-            return $dto;
-        }
-
         $args = $dto->getValue();
-
-        Repository::getInstance()->begin();
 
         $adm = Repository::getInstance()->find("SELECT * FROM administrador WHERE email = '" . $args->email . "'");
 
         if (isFalsy($adm)) {
-            Repository::getInstance()->rollback();
-
             $error = new ErrorModel();
-            return Result::failure($error->setTitle('Sign-in User')->setMessage('Cannot sign-in user')->addCause('Email or password invalid')->getError());
+            return Result::failure($error->setTitle('Sign-in User')->setMessage('Cannot sign-in user')->addCause('Email or password invalid'));
         }
 
         if ($adm['senha'] != md5($args->password)) {
-            Repository::getInstance()->rollback();
-
             $error = new ErrorModel();
-            return Result::failure($error->setTitle('Sign-in User')->setMessage('Cannot sign-in user')->addCause('Email or password invalid')->getError());
+            return Result::failure($error->setTitle('Sign-in User')->setMessage('Cannot sign-in user')->addCause('Email or password invalid'));
         }
 
         $payload = [
@@ -68,7 +79,7 @@ class AuthSignInUseCase
         }
 
         if (isTruthy($error->getCauses())) {
-            return Result::failure($error->getError());
+            throw new ResultException($error);
         }
 
         return Result::success((object) [

@@ -29,15 +29,15 @@ class AuthController
         }
 
         $error = new ErrorModel();
-        $res = Result::failure($error->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->getError(), 404);
+        $res = Result::failure($error->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found'), 404);
 
-        $response->send($res->getResult(), $res->getStatus());
+        $response->send($res, $res->getStatus());
     }
 
     private function performSignIn(Request $request, Response $response)
     {
         $responseData = AuthService::getInstance()->signIn($request->getAllBody());
 
-        return $response->send($responseData->getResult(), $responseData->getStatus());
+        return $response->send($responseData, $responseData->getStatus());
     }
 }

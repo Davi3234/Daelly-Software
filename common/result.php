@@ -1,6 +1,15 @@
 <?php
 
-class Result
+interface ResultModel {
+    function getResponse();
+    function isSuccess();
+    function getValue();
+    function getError();
+    function getStatus();
+    function getResult();
+}
+
+class Result implements ResultModel
 {
     private $ok;
     private $status;
@@ -20,9 +29,9 @@ class Result
         return new Result(true, $status, $value, null);
     }
 
-    static function failure(mixed $error, $status = 400)
+    static function failure(ResultException | ErrorModel $error, $status = 400)
     {
-        return new Result(false, $status, null, $error);
+        return new Result(false, $status, null, $error->getError());
     }
 
     static function inherit($ok = true, $status = 200, $value = null, mixed $error = null)

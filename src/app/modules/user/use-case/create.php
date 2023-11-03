@@ -18,22 +18,25 @@ class UserCreateUseCase
         try {
             Repository::getInstance()->begin();
 
-            $response = $this->performUseCase($data);
+            $res = $this->performUseCase($data);
 
             Repository::getInstance()->commit();
 
-            return $response;
-        } catch(Exception $e) {
+            return $res;
+        } catch(Exception | ResultException $e) {
             Repository::getInstance()->rollback();
+
+            if ($e instanceof ResultException) {
+                return Result::failure($e, $e->getCode());
+            }
+            $err = new ResultModel();
+
+            return new ResultException($err->setMessage($e->getMessage()));
         }
     }
 
     private function performUseCase($data) {
         $dto = $this->dealDTO($data);
-
-        if (!$dto->isSuccess()) {
-            return $dto;
-        }
 
         $args = $dto->getValue();
 
@@ -41,7 +44,7 @@ class UserCreateUseCase
 
         if (isTruthy($adm)) {
             $err = new ErrorModel();
-            return Result::failure($err->setTitle('Create User')->setMessage('User already exists')->addCause('"Email" "' . $args->email . '" is already in use')->getError());
+            return Result::failure($err->setTitle('Create User')->setMessage('User already exists')->addCause('"Email" "' . $args->email . '" is already in use'));
         }
 
         $passwordHash = md5($args->password);
@@ -50,7 +53,7 @@ class UserCreateUseCase
 
         if (!$res) {
             $err = new ErrorModel();
-            return Result::failure($err->setTitle('Create User')->setMessage('Error on create user')->getError());
+            return Result::failure($err->setTitle('Create User')->setMessage('Error on create user'));
         }
 
         return Result::success('User created with successfully');
@@ -89,7 +92,7 @@ class UserCreateUseCase
         }
 
         if (isTruthy($error->getCauses())) {
-            return Result::failure($error->getError());
+            throw new ResultException($error);
         }
 
         return Result::success((object) [
