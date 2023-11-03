@@ -42,7 +42,7 @@ class UserController
 
     private function performCreate(Request $request, Response $response)
     {
-        // AuthorizationGuard::getInstance()->perform($request, $response);
+        AuthorizationGuard::getInstance()->perform($request, $response);
 
         $responseData = UserService::getInstance()->create($request->getAllBody());
 

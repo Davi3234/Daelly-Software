@@ -19,7 +19,7 @@ class AuthAuthorizationUseCase
         $bearerToken = $data['Authorization'];
 
         $error = new ErrorModel();
-        $error = $error->setTitle('Authorization Admin')->setMessage('Unauthorization Request');
+        $error = $error->setTitle('Authorization User')->setMessage('Unauthorization Request');
 
         if (isFalsy($bearerToken)) {
             $error->addCause('You must provide an authorization token');

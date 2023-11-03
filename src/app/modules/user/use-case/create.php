@@ -41,7 +41,7 @@ class UserCreateUseCase
 
         if (isTruthy($adm)) {
             $err = new ErrorModel();
-            return Result::failure($err->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args->email . '" is already in use')->getError());
+            return Result::failure($err->setTitle('Create User')->setMessage('User already exists')->addCause('"Email" "' . $args->email . '" is already in use')->getError());
         }
 
         $passwordHash = md5($args->password);
@@ -50,16 +50,16 @@ class UserCreateUseCase
 
         if (!$res) {
             $err = new ErrorModel();
-            return Result::failure($err->setTitle('Create Admin')->setMessage('Error on create admin')->getError());
+            return Result::failure($err->setTitle('Create User')->setMessage('Error on create user')->getError());
         }
 
-        return Result::success('Admin created with successfully');
+        return Result::success('User created with successfully');
     }
 
     private function dealDTO($data)
     {
         $error = new ErrorModel();
-        $error = $error->setTitle('Validate args create Admin')->setMessage('Invalid data for creating an admin');
+        $error = $error->setTitle('Validate args create User')->setMessage('Invalid data for creating an user');
 
         if (!array_key_exists('username', $data) || isFalsy($data['username'])) {
             $error->addCause('"Username" is required');

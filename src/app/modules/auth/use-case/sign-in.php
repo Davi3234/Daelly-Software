@@ -25,20 +25,20 @@ class AuthSignInUseCase
 
         Repository::getInstance()->begin();
 
-        $adm = Repository::getInstance()->find("SELECT * FROM administrador WHERE email = '" . $args->email . "'");
+        $adm = Repository::getInstance()->find("SELECT * FROM useristrador WHERE email = '" . $args->email . "'");
 
         if (isFalsy($adm)) {
             Repository::getInstance()->rollback();
 
             $error = new ErrorModel();
-            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->getError());
+            return Result::failure($error->setTitle('Sign-in User')->setMessage('Cannot sign-in user')->addCause('Email or password invalid')->getError());
         }
 
         if ($adm['senha'] != md5($args->password)) {
             Repository::getInstance()->rollback();
 
             $error = new ErrorModel();
-            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->getError());
+            return Result::failure($error->setTitle('Sign-in User')->setMessage('Cannot sign-in user')->addCause('Email or password invalid')->getError());
         }
 
         $payload = [
@@ -53,7 +53,7 @@ class AuthSignInUseCase
 
     private function dealDTO($data) {
         $error = new ErrorModel();
-        $error = $error->setTitle('Validate args sign-in Admin')->setMessage('Invalid data for sign-in admin');
+        $error = $error->setTitle('Validate args sign-in User')->setMessage('Invalid data for sign-in user');
 
         if (!array_key_exists('email', $data) || isFalsy($data['email'])) {
             $error->addCause('"Email" is required');

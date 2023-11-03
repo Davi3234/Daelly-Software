@@ -35,7 +35,7 @@ if (!URL::getInstance()->getURLRouters()) {
         <script>
             APP.ready(() => {
                 async function logout() {
-                    const response = await APP.apiClient.post('/admin/logout')
+                    const response = await APP.apiClient.post('/user/logout')
 
                     if (response.ok) {
                         APP.url.redirect('/auth/sign-in')

@@ -23,5 +23,6 @@ class AuthorizationGuard implements Guard {
         }
 
         $request->setAttribute('userId', $res->getValue()['sub']);
+        $response->addNote(['userId' => $request->getAttribute('userId')]);
     }
 }

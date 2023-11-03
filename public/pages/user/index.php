@@ -1,7 +1,7 @@
 <?php
 $render = getRender(__DIR__);
 
-echo 'Admin';
+echo 'User';
 line();
 
 $render->include();
