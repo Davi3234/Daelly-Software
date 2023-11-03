@@ -25,7 +25,7 @@ class AuthSignInUseCase
 
         Repository::getInstance()->begin();
 
-        $adm = Repository::getInstance()->find("SELECT * FROM useristrador WHERE email = '" . $args->email . "'");
+        $adm = Repository::getInstance()->find("SELECT * FROM administrador WHERE email = '" . $args->email . "'");
 
         if (isFalsy($adm)) {
             Repository::getInstance()->rollback();

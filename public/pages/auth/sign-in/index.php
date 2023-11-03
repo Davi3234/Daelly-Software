@@ -23,11 +23,8 @@ echo 'Login';
             })
 
             if (response.ok) {
-                const responseSaveToke = await APP.apiClient.post('/auth/sign-in/save', { token: response.value.token })
-
-                if (responseSaveToke.ok) {
-                    APP.url.redirect('/home')
-                }
+                APP.cookie.set('token', response.value.token, 60 * 60 * 24)
+                APP.url.redirect('/home')
             }
         }
 
