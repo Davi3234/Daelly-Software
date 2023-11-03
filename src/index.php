@@ -10,6 +10,7 @@ try {
     Api::getInstance()->performHandler($request, $response);
 } catch (Exception | ResultException $e) {
     if (!$e instanceof ResultException) {
-        $response->send(Result::failure(ErrorModel::getInstance()->setMessage('Server internal error')->finally()), 500);
+        $err = new ErrorModel();
+        $response->send(Result::failure($err->setMessage('Server internal error')->finally()), 500);
     }
 }

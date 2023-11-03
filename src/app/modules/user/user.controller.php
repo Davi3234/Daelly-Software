@@ -33,7 +33,9 @@ class UserController
             return $this->performList($request, $response);
         }
 
-        $res = Result::failure(ErrorModel::getInstance()->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
+        $err = new ErrorModel();
+
+        $res = Result::failure($err->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
 
         $response->send($res->getResult(), $res->getStatus());
     }

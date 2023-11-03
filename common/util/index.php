@@ -10,9 +10,9 @@ function formatterPath($path)
     return str_replace('/', DIRECTORY_SEPARATOR, $path);
 }
 
-function log_message($message)
+function log_message(mixed $message)
 {
-    error_log($message, 3, 'logs/log.txt');
+    error_log(json_encode($message), 3, 'logs/log.txt');
 }
 
 function remove_string($search, $subject)
@@ -76,22 +76,22 @@ enum NativeTypes: string
     case Unknown = 'unknown type';
 }
 
-function isNaN($value)
+function isNaN(mixed $value)
 {
     return !isNumber($value);
 }
 
-function isNumber($value)
+function isNumber(mixed $value)
 {
     return isInteger($value) || isDouble($value);
 }
 
-function isTruthy($value = null)
+function isTruthy(mixed $value = null)
 {
     return !isFalsy($value);
 }
 
-function isFalsy($value = null)
+function isFalsy(mixed $value = null)
 {
     if (isNumber($value)) {
         return $value == 0;
@@ -116,52 +116,52 @@ function isFalsy($value = null)
     return !isNull($value) || !isUnknown($value) || !isset($value);
 }
 
-function isBoolean($value)
+function isBoolean(mixed $value)
 {
     return NativeTypes::Boolean->value == gettype($value);
 }
 
-function isInteger($value)
+function isInteger(mixed $value)
 {
     return NativeTypes::Integer->value == gettype($value);
 }
 
-function isDouble($value)
+function isDouble(mixed $value)
 {
     return NativeTypes::Double->value == gettype($value);
 }
 
-function isString($value)
+function isString(mixed $value)
 {
     return NativeTypes::String->value == gettype($value);
 }
 
-function isArray($value)
+function isArray(mixed $value)
 {
     return NativeTypes::Array->value == gettype($value);
 }
 
-function isObject($value)
+function isObject(mixed $value)
 {
     return NativeTypes::Object->value == gettype($value);
 }
 
-function isResource($value)
+function isResource(mixed $value)
 {
     return NativeTypes::Resource->value == gettype($value);
 }
 
-function isNull($value)
+function isNull(mixed $value)
 {
     return NativeTypes::Null->value == gettype($value);
 }
 
-function isUnknown($value)
+function isUnknown(mixed $value)
 {
     return NativeTypes::Unknown->value == gettype($value);
 }
 
-function console($obj)
+function console(mixed $obj)
 {
 ?> <script>
         console.log(<?= json_encode($obj) ?>)

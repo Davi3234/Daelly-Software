@@ -15,6 +15,21 @@ class UserCreateUseCase
 
     function perform($data)
     {
+        try {
+            Repository::getInstance()->begin();
+
+            $response = $this->performUseCase($data);
+
+            Repository::getInstance()->commit();
+
+            return $response;
+        } catch($e) {
+            Repository::getInstance()->rollback();
+
+        }
+    }
+
+    private function performUseCase($data) {
         $dto = $this->dealDTO($data);
 
         if (!$dto->isSuccess()) {
@@ -30,7 +45,8 @@ class UserCreateUseCase
         if (isTruthy($adm)) {
             Repository::getInstance()->rollback();
 
-            return Result::failure(ErrorModel::getInstance()->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args->email . '" is already in use')->finally());
+            $err = new ErrorModel();
+            return Result::failure($err->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args->email . '" is already in use')->finally());
         }
 
         $passwordHash = md5($args->password);
@@ -40,7 +56,8 @@ class UserCreateUseCase
         if (!$res) {
             Repository::getInstance()->rollback();
 
-            return Result::failure(ErrorModel::getInstance()->setTitle('Create Admin')->setMessage('Error on create admin')->finally());
+            $err = new ErrorModel();
+            return Result::failure($err->setTitle('Create Admin')->setMessage('Error on create admin')->finally());
         }
 
         Repository::getInstance()->commit();
@@ -50,7 +67,8 @@ class UserCreateUseCase
 
     private function dealDTO($data)
     {
-        $error = ErrorModel::getInstance()->setTitle('Validate args create Admin')->setMessage('Invalid data for creating an admin');
+        $error = new ErrorModel();
+        $error = $error->setTitle('Validate args create Admin')->setMessage('Invalid data for creating an admin');
 
         if (!array_key_exists('username', $data) || isFalsy($data['username'])) {
             $error->addCause('"Username" is required');

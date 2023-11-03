@@ -27,7 +27,8 @@ class AppController
             return $this->performAuthController($request, $response);
         }
 
-        $res = Result::failure(ErrorModel::getInstance()->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
+        $error = new ErrorModel();
+        $res = Result::failure($error->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
 
         $response->send($res->getResult(), $res->getStatus());
     }

@@ -30,13 +30,15 @@ class AuthSignInUseCase
         if (isFalsy($adm)) {
             Repository::getInstance()->rollback();
 
-            return Result::failure(ErrorModel::getInstance()->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
+            $error = new ErrorModel();
+            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
         }
 
         if ($adm['senha'] != md5($args->password)) {
             Repository::getInstance()->rollback();
 
-            return Result::failure(ErrorModel::getInstance()->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
+            $error = new ErrorModel();
+            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
         }
 
         $payload = [
@@ -50,7 +52,8 @@ class AuthSignInUseCase
     }
 
     private function dealDTO($data) {
-        $error = ErrorModel::getInstance()->setTitle('Validate args sign-in Admin')->setMessage('Invalid data for sign-in admin');
+        $error = new ErrorModel();
+        $error = $error->setTitle('Validate args sign-in Admin')->setMessage('Invalid data for sign-in admin');
 
         if (!array_key_exists('email', $data) || isFalsy($data['email'])) {
             $error->addCause('"Email" is required');
