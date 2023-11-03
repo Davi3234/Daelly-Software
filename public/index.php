@@ -13,7 +13,7 @@ require_once 'common/services/render/render.client.php';
 <?php
 Render::getInstance()->initComponents([ 'public' => 'public/pages', 'component' => 'public/components', 'assets' => 'public/assets']);
 
-getRenderAnonymous()->include('../services/valid-auth.php');
+getRenderAnonymous()->include('../services/valid-auth');
 
 Render::getInstance()->loadRouter();
 ?>

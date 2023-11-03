@@ -27,24 +27,26 @@ if (!URL::getInstance()->getURLRouters()) {
 <body>
     <main>
         <?php
+        if (!isStartsWith('/auth', URL::getInstance()->getURLRouters())) {
+            $render->includeComponent('menu');
+            ?>
+            <button type="button" name="bt-logout">Logout</button>
+
+            <script>
+                APP.ready(() => {
+                    async function logout() {
+                        APP.cookie.remove('token');
+                        APP.url.redirect('/auth/sign-in')
+                    }
+
+                    document.querySelector('button[name="bt-logout"]').addEventListener('click', () => logout())
+                })
+            </script>
+            <?php
+        }
         $render->include();
         ?>
  
-        <button type="button" name="bt-logout">Logout</button>
-
-        <script>
-            APP.ready(() => {
-                async function logout() {
-                    const response = await APP.apiClient.post('/user/logout')
-
-                    if (response.ok) {
-                        APP.url.redirect('/auth/sign-in')
-                    }
-                }
-
-                document.querySelector('button[name="bt-logout"]').addEventListener('click', () => logout())
-            })
-        </script>
     </main>
 </body>
 

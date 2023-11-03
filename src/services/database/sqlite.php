@@ -97,5 +97,7 @@ class DatabaseSqlite implements Database
         foreach ($sqlCreate as $sql) {
             $this->exec($sql);
         }
+
+        $this->insert('administrador', ['nome' => "Admin", 'email' => 'admin@gmail.com', 'senha' => md5('123456')]);
     }
 }
