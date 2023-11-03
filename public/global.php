@@ -1,6 +1,4 @@
 <?php
-require_once 'components/utils.php';
-
 function getRender($dir, $options = [])
 {
     $render = RenderClient::createInstance($dir);
@@ -18,4 +16,15 @@ function getRender($dir, $options = [])
 function getRenderAnonymous()
 {
     return getRender('', ['not-load' => true]);
+}
+
+function getAttributes($attributes = [])
+{
+    $attr = '';
+
+    foreach ($attributes as $key => $value) {
+        $attr .= ' ' . $key . '="' . $value . '"';
+    }
+
+    return $attr;
 }

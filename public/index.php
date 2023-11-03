@@ -11,7 +11,7 @@ require_once 'common/services/render/render.client.php';
 <script src="<?= URL::getInstance()->createURLPath('/public/index.js') ?>"></script>
 
 <?php
-Render::getInstance()->initComponents('public/pages', 'public/components');
+Render::getInstance()->initComponents([ 'public' => 'public/pages', 'component' => 'public/components', 'assets' => 'public/assets']);
 
 getRenderAnonymous()->include('../services/valid-auth.php');
 

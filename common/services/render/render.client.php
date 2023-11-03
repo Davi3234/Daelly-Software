@@ -83,6 +83,11 @@ class RenderClient
         return Render::getInstance()->includeComponent($target);
     }
 
+    function includeAsset($target)
+    {
+        return Render::getInstance()->includeAsset($target);
+    }
+
     function include($target = '')
     {
         $target = remove_start_str('/', $target);

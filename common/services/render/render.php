@@ -3,8 +3,7 @@
 class Render
 {
     private static $instance;
-    private $publicBasePath;
-    private $componentBasePath;
+    private $STATE;
 
     static function getInstance()
     {
@@ -15,24 +14,33 @@ class Render
         return self::$instance;
     }
 
-    function initComponents($publicBasePath, $componentBasePath)
+    private function __construct() {
+        $this->STATE = [
+            'publicBasePath' => '',
+            'componentBasePath' => '',
+            'assetsBasePath' => ''
+        ];
+    }
+
+    function initComponents($state = [])
     {
-        $this->publicBasePath = $publicBasePath;
-        $this->componentBasePath = $componentBasePath;
+        $this->STATE['publicBasePath'] = isset($state['public']) ? $state['public'] : '';
+        $this->STATE['componentBasePath'] = isset($state['component']) ? $state['component'] : '';
+        $this->STATE['assetsBasePath'] = isset($state['assets']) ? $state['assets'] : '';
     }
 
     function loadRouter()
     {
-        if (is_file($this->publicBasePath . '/' . 'index.php')) {
-            include $this->publicBasePath . '/' . 'index.php';
+        if (is_file($this->STATE['publicBasePath'] . '/' . 'index.php')) {
+            include $this->STATE['publicBasePath'] . '/' . 'index.php';
         } else {
-            die('Public static folder "' . $this->publicBasePath . '" not found');
+            die('Public static folder "' . $this->STATE['publicBasePath'] . '" not found');
         }
     }
 
     function isPageNotFound()
     {
-        return !$this->existsRouter($this->publicBasePath . URL::getInstance()->getURLRouters());
+        return !$this->existsRouter($this->STATE['publicBasePath'] . URL::getInstance()->getURLRouters());
     }
 
     function existsRouter($router)
@@ -46,7 +54,14 @@ class Render
 
     function includeComponent($target)
     {
-        $target = $this->componentBasePath ? $this->componentBasePath . '/' . remove_start_str('/', $target) : remove_start_str('/', $target);
+        $target = $this->STATE['componentBasePath'] ? $this->STATE['componentBasePath'] . '/' . remove_start_str('/', $target) : remove_start_str('/', $target);
+
+        return $this->include($target);
+    }
+
+    function includeAsset($target)
+    {
+        $target = $this->STATE['assetsBasePath'] ? $this->STATE['assetsBasePath'] . '/' . remove_start_str('/', $target) : remove_start_str('/', $target);
 
         return $this->include($target);
     }
@@ -114,9 +129,9 @@ class Render
 
     function isQueryParamNextRouter($path)
     {
-        $path = remove_start_str('/', remove_start_str($this->publicBasePath, $path));
+        $path = remove_start_str('/', remove_start_str($this->STATE['publicBasePath'], $path));
 
-        $currentPathRouter = $this->publicBasePath;
+        $currentPathRouter = $this->STATE['publicBasePath'];
 
         foreach (explode('/', $path) as $key => $value) {
             $pathRouter = $currentPathRouter . '/' . $value;
@@ -212,7 +227,7 @@ class Render
     function getAllNamesRouter($dir = '')
     {
         if (!$dir) {
-            $dir = $this->publicBasePath;
+            $dir = $this->STATE['publicBasePath'];
         }
 
         $files = scandir($dir);
@@ -269,7 +284,7 @@ class Render
 
     function getPublicBasePath()
     {
-        return $this->publicBasePath;
+        return $this->STATE['publicBasePath'];
     }
 
     function getBaseFolder($dir)
