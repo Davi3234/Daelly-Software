@@ -1,7 +1,7 @@
 <?php
 
 if (!Cookie::getInstance()->get('token')) {
-    if (!isStartsWith('/auth/sign-in', Render::getInstance()->getRouters())) {
+    if (!isStartsWith('/auth/sign-in', URL::getInstance()->getURLRouters())) {
 ?>
         <script>
             APP.url.redirect('/auth/sign-in')
@@ -10,7 +10,7 @@ if (!Cookie::getInstance()->get('token')) {
         exit;
     }
 } else {
-    if (isStartsWith('/auth/sign-in', Render::getInstance()->getRouters())) {
+    if (isStartsWith('/auth/sign-in', URL::getInstance()->getURLRouters())) {
     ?>
         <script>
             APP.url.redirect('/home')

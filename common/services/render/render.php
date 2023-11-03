@@ -32,9 +32,7 @@ class Render
 
     function isPageNotFound()
     {
-        $router = remove_start_str('/', $this->getRouters());
-
-        return !$this->existsRouter($this->publicBasePath . '/' . $router);
+        return !$this->existsRouter($this->publicBasePath . URL::getInstance()->getURLRouters());
     }
 
     function existsRouter($router)
@@ -159,7 +157,7 @@ class Render
 
     function getQueryParam()
     {
-        $routers = explode('/', remove_start_str('/', $this->getRouters()));
+        $routers = explode('/', remove_start_str('/', URL::getInstance()->getURLRouters()));
         $structureFolders = $this->getAllNamesRouter();
 
         $queries = [];
@@ -272,27 +270,6 @@ class Render
     function getPublicBasePath()
     {
         return $this->publicBasePath;
-    }
-
-    function getRouters()
-    {
-        if (isset($_GET['url'])) {
-            return '/' . $_GET['url'];
-        }
-
-        $routers = URL::getInstance()->getURLRoutersPaths();
-
-        $path = '';
-
-        if (count($routers) > 0) {
-            foreach ($routers as $router) {
-                if ($router) {
-                    $path .= '/' . $router;
-                }
-            }
-        }
-
-        return $path;
     }
 
     function getBaseFolder($dir)

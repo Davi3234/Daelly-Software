@@ -1,7 +1,7 @@
 <?php
-$render = getRender(__DIR__);
+$render = getRender(__DIR__, true);
 
-if (!Render::getInstance()->getRouters()) {
+if (!URL::getInstance()->getURLRouters()) {
 ?>
     <script>
         APP.url.redirect('/home')

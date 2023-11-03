@@ -19,7 +19,7 @@ class AuthorizationGuard implements Guard {
         if (!$res->isSuccess()) {
             $response->send($res->getResult(), $res->getStatus());
 
-            throw new UnauthorizedException($res->getResult()->error);
+            throw new UnauthorizedException($res->getResult()->error['message']);
         }
 
         $request->setAttribute('userId', $res->getValue()['sub']);

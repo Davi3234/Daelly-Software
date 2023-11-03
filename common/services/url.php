@@ -15,7 +15,7 @@ class URL
 
     function getURL()
     {
-        return $this->getURLBase() . $this->getURLRouters();
+        return $this->getURLBase() . remove_start_str('/' . $this->getURLRouters());
     }
 
     function redirect($url)
@@ -55,6 +55,10 @@ class URL
 
     function getURLRouters()
     {
+        if (isset($_GET['url'])) {
+            return $_GET['url'];
+        }
+
         $router = str_replace('//', '/', $this->getBaseRouter() ? str_replace('/' . $this->getBaseRouter(), '', $_SERVER['REQUEST_URI']) : $_SERVER['REQUEST_URI']);
 
         while (isStartsWith('/', $router)) {
@@ -64,7 +68,7 @@ class URL
             $router = remove_end_str('/', $router);
         }
 
-        return $router;
+        return '/' . $router;
     }
 
     function getBaseRouter()
@@ -74,11 +78,11 @@ class URL
 
     function getURLRoutersPaths()
     {
-        return explode('/', $this->getURLRouters());
+        return explode('/', remove_start_str('/' . $this->getURLRouters()));
     }
 
     function getURLRoutersPathsByIndex($index)
     {
-        return explode('/', $this->getURLRouters())[$index];
+        return explode('/', remove_start_str('/' . $this->getURLRouters()))[$index];
     }
 }

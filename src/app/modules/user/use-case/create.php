@@ -23,9 +23,8 @@ class UserCreateUseCase
             Repository::getInstance()->commit();
 
             return $response;
-        } catch($e) {
+        } catch(Exception $e) {
             Repository::getInstance()->rollback();
-
         }
     }
 
@@ -38,15 +37,11 @@ class UserCreateUseCase
 
         $args = $dto->getValue();
 
-        Repository::getInstance()->begin();
-
         $adm = Repository::getInstance()->find("SELECT * FROM administrador WHERE email = '" . $args->email . "'");
 
         if (isTruthy($adm)) {
-            Repository::getInstance()->rollback();
-
             $err = new ErrorModel();
-            return Result::failure($err->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args->email . '" is already in use')->finally());
+            return Result::failure($err->setTitle('Create Admin')->setMessage('Admin already exists')->addCause('"Email" "' . $args->email . '" is already in use')->getError());
         }
 
         $passwordHash = md5($args->password);
@@ -54,13 +49,9 @@ class UserCreateUseCase
         $res = Repository::getInstance()->insert("administrador", ['nome' => "'" . $args->username . "'", 'email' => "'" . $args->email . "'", 'senha' => "'" . $passwordHash . "'"]);
 
         if (!$res) {
-            Repository::getInstance()->rollback();
-
             $err = new ErrorModel();
-            return Result::failure($err->setTitle('Create Admin')->setMessage('Error on create admin')->finally());
+            return Result::failure($err->setTitle('Create Admin')->setMessage('Error on create admin')->getError());
         }
-
-        Repository::getInstance()->commit();
 
         return Result::success('Admin created with successfully');
     }
@@ -98,7 +89,7 @@ class UserCreateUseCase
         }
 
         if (isTruthy($error->getCauses())) {
-            return Result::failure($error->finally());
+            return Result::failure($error->getError());
         }
 
         return Result::success((object) [

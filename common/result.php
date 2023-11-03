@@ -1,5 +1,4 @@
 <?php
-require_once 'error-result.php';
 
 class Result
 {
@@ -8,7 +7,7 @@ class Result
     private $value;
     private $error;
 
-    private function __construct($ok, $status, $value = null, $error = null)
+    private function __construct($ok, $status, $value = null, mixed $error = null)
     {
         $this->ok = $ok;
         $this->status = $status;
@@ -21,12 +20,12 @@ class Result
         return new Result(true, $status, $value, null);
     }
 
-    static function failure($error, $status = 400)
+    static function failure(mixed $error, $status = 400)
     {
         return new Result(false, $status, null, $error);
     }
 
-    static function inherit($ok = true, $status = 200, $value = null, $error = null)
+    static function inherit($ok = true, $status = 200, $value = null, mixed $error = null)
     {
         return new Result($ok, $status, $value, $error);
     }

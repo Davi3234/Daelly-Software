@@ -27,8 +27,7 @@ class JWT
  
         $signature = hash_hmac('sha256', $header_payload, $config['secret'], true);
          
-        return 
-            static::base64url_encode($header) . '.' . static::base64url_encode($payload) . '.' . static::base64url_encode($signature);
+        return static::base64url_encode($header) . '.' . static::base64url_encode($payload) . '.' . static::base64url_encode($signature);
     }
  
     public static function decode(string $token, string $secret): array

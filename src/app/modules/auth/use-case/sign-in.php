@@ -31,14 +31,14 @@ class AuthSignInUseCase
             Repository::getInstance()->rollback();
 
             $error = new ErrorModel();
-            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
+            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->getError());
         }
 
         if ($adm['senha'] != md5($args->password)) {
             Repository::getInstance()->rollback();
 
             $error = new ErrorModel();
-            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->finally());
+            return Result::failure($error->setTitle('Sign-in Admin')->setMessage('Cannot sign-in admin')->addCause('Email or password invalid')->getError());
         }
 
         $payload = [
@@ -68,7 +68,7 @@ class AuthSignInUseCase
         }
 
         if (isTruthy($error->getCauses())) {
-            return Result::failure($error->finally());
+            return Result::failure($error->getError());
         }
 
         return Result::success((object) [

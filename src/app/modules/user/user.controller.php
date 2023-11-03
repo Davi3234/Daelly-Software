@@ -35,14 +35,14 @@ class UserController
 
         $err = new ErrorModel();
 
-        $res = Result::failure($err->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->finally(), 404);
+        $res = Result::failure($err->setTitle('HTTP Request')->setMessage('Router not found')->addCause('Router ' . $request->getHeader('REQUEST_METHOD') . ' "' . $router . '" not found')->getError(), 404);
 
         $response->send($res->getResult(), $res->getStatus());
     }
 
     private function performCreate(Request $request, Response $response)
     {
-        AuthorizationGuard::getInstance()->perform($request, $response);
+        // AuthorizationGuard::getInstance()->perform($request, $response);
 
         $responseData = UserService::getInstance()->create($request->getAllBody());
 

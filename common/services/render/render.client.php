@@ -24,7 +24,7 @@ class RenderClient
     {
         $this->STATE['rootFolderServer'] = str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']);
         $this->STATE['baseRouterURL'] = URL::getInstance()->getBaseRouter();
-        $this->STATE['router'] = remove_start_str('/', Render::getInstance()->getRouters());
+        $this->STATE['router'] = remove_start_str('/', URL::getInstance()->getURLRouters());
 
         $this->STATE['rootFolderProject'] = remove_start_str($this->STATE['rootFolderServer'], $this->STATE['directory']);
         $this->STATE['pathCurrentFolder'] = remove_start_str($this->STATE['baseRouterURL'] ? '/' . $this->STATE['baseRouterURL'] : '', remove_start_str('/' . Render::getInstance()->getPublicBasePath(), $this->STATE['rootFolderProject']));
