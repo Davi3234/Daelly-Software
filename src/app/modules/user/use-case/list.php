@@ -17,6 +17,10 @@ class UserListUseCase
     {
         $res = Repository::getInstance()->query('select * from administrador');
 
+        foreach ($res as $key => $user) {
+            unset($res[$key]['senha']);
+        }
+
         return Result::success($res);
     }
 }

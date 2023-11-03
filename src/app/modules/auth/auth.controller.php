@@ -21,9 +21,8 @@ class AuthController
 
     public function perform($request, $response)
     {
-        $router = $request->getParam('router');
-
-        $action = remove_start_str($this->getBaseRouter(), $router);
+        $router = $request->getModule();
+        $action = $request->getAction();
 
         if (isStartsWith(AUTH_ACTION_ROUTERS::SignIn->value, $action) && AUTH_METHODS_ROUTERS::SignIn->value == $request->getHeader('REQUEST_METHOD')) {
             return $this->performSignIn($request, $response);
@@ -40,10 +39,5 @@ class AuthController
         $responseData = AuthService::getInstance()->signIn($request->getAllBody());
 
         return $response->send($responseData->getResult(), $responseData->getStatus());
-    }
-
-    private function getBaseRouter()
-    {
-        return PREFIX_CONTROLLERS::Auth->value;
     }
 }

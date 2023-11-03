@@ -21,9 +21,8 @@ class UserController
 
     public function perform(Request $request, Response $response)
     {
-        $router = $request->getParam('router');
-
-        $action = remove_start_str($this->getBaseRouter(), $router);
+        $router = $request->getModule();
+        $action = $request->getAction();
 
         if (isStartsWith(USER_ACTION_ROUTERS::Create->value, $action) && USER_METHODS_ROUTERS::Create->value == $request->getHeader('REQUEST_METHOD')) {
             return $this->performCreate($request, $response);
@@ -54,10 +53,5 @@ class UserController
         $responseData = UserService::getInstance()->list($request->getAllBody());
 
         return $response->send($responseData->getResult(), $responseData->getStatus());
-    }
-
-    private function getBaseRouter()
-    {
-        return PREFIX_CONTROLLERS::User->value;
     }
 }

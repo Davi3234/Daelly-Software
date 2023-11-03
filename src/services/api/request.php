@@ -101,4 +101,28 @@ class Request
     function setAttribute($name, $value) {
         $this->attributes[$name] = $value;
     }
+
+    function getModule() {
+        $router = $this->getParam('router');
+
+        $router = remove_start_str('/', $router);
+
+        if (!$router) {
+            return '/';
+        }
+
+        return '/' . explode('/', $router)[0];
+    }
+
+    function getAction() {
+        $router = $this->getParam('router');
+
+        $router = remove_start_str($this->getModule(), $router);
+
+        if (!$router) {
+            return '/';
+        }
+
+        return $router;
+    }
 }

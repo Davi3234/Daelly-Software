@@ -17,7 +17,7 @@ class AppController
 
     function perform(Request $request, Response $response)
     {
-        $router = $request->getParam('router');
+        $router = $request->getModule();
 
         if (isStartsWith(PREFIX_CONTROLLERS::User->value, $router)) {
             return $this->performUserController($request, $response);

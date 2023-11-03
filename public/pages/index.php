@@ -29,7 +29,7 @@ if (!URL::getInstance()->getURLRouters()) {
         <?php
         $render->include();
         ?>
-
+ 
         <button type="button" name="bt-logout">Logout</button>
 
         <script>
