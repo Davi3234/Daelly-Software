@@ -1,0 +1,24 @@
+.alert {
+    position: relative;
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+    border-radius: $border-radius;
+    &.alert-danger {
+        border: .1rem solid $alert-danger-color;
+        background-color: $alert-danger-color-lightness;
+        color: $alert-danger-color;
+    }
+    &.alert-success {
+        border: .1rem solid $alert-sucess-color;
+        background-color: $alert-sucess-color-lightness;
+        color: $alert-sucess-color;
+    }
+    .close-alert {
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+}
