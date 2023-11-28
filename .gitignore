@@ -1,5 +1,3 @@
+config
+Daelly-Software-main
 .github
-.devcontainer
-.codesandbox
-logs
-**/*.db
