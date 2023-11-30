@@ -1,13 +1,13 @@
 <?php
-require_once '../model/Funcao.php';
-require_once '../model/DaoFuncao.php';
-require_once '../control/ControlFuncao.php';
-require_once '../model/Funcionario.php';
-require_once '../model/DaoFuncionario.php';
-require_once '../control/ControlFuncionario.php';
-require_once '../model/FuncionarioFuncao.php';
-require_once '../model/DaoFuncionarioFuncao.php';
-require_once '../control/ControlFuncionarioFuncao.php';
+require_once '../../model/Funcao.php';
+require_once '../../model/DaoFuncao.php';
+require_once '../../control/ControlFuncao.php';
+require_once '../../model/Funcionario.php';
+require_once '../../model/DaoFuncionario.php';
+require_once '../../control/ControlFuncionario.php';
+require_once '../../model/FuncionarioFuncao.php';
+require_once '../../model/DaoFuncionarioFuncao.php';
+require_once '../../control/ControlFuncionarioFuncao.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");

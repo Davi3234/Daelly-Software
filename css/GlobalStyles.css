@@ -396,7 +396,7 @@ tr {
   border-radius: 1rem;
 }
 #login .bg-image {
-  background-image: url("../assets/imgs/Malharia.jpeg") !important;
+  background-image: url("../../assets/imgs/Malharia.jpeg") !important;
   filter: blur(7px);
   height: 100vh;
   background-position: center;

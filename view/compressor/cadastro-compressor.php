@@ -1,7 +1,7 @@
 <?php
-require_once '../model/Compressor.php';
-require_once '../model/DaoCompressor.php';
-require_once '../control/ControlCompressor.php';
+require_once '../../model/Compressor.php';
+require_once '../../model/DaoCompressor.php';
+require_once '../../control/ControlCompressor.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");

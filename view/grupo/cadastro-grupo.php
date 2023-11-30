@@ -1,7 +1,7 @@
 <?php
-require_once '../model/Grupo.php';
-require_once '../model/DaoGrupo.php';
-require_once '../control/ControlGrupo.php';
+require_once '../../model/Grupo.php';
+require_once '../../model/DaoGrupo.php';
+require_once '../../control/ControlGrupo.php';
 session_start();
 if (!isset($_SESSION['email'])) {
     header("location: login.php");

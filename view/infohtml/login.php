@@ -28,7 +28,7 @@ if (isset($_SESSION["email"])) {
     <div class="session-login">
         <form class="login-content" action="" method="post">
             <div class="form-header">
-                <img src="../assets/imgs/Logo.png" alt="">
+                <img src="../../assets/imgs/Logo.png" alt="">
             </div>
 
             <div id="erro" class="alert alert-danger"></div>
@@ -58,7 +58,7 @@ if (isset($_SESSION["email"])) {
             var email = $("#email").val();
             var senha = $("#senha").val();
             $.ajax({
-                url: '/ajax/login.php',
+                url: '../ajax/login.php',
                 dataType: 'text',
                 data: {
                     email: email,
@@ -72,7 +72,7 @@ if (isset($_SESSION["email"])) {
                         $("#erro").css("display", "block");
                         $("body").css("padding-top", ($(window).height() - $(".login-panel").height()) / 2);
                     } else {
-                        $(location).attr("href", "/view/painel.php");
+                        $(location).attr("href", "/view/infohtml/painel.php");
                     }
                 }
             });
